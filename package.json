@@ -19,9 +19,10 @@
     "precompile-svgs": "node utils/precompileSvgs/index.js && yarn run pregenerate",
     "precompile-custom-svgs": "node utils/precompileSvgs/index.js --custom && yarn run pregenerate",
     "_lint-watch-fix": "yarn lint -w -m",
+    "test:percy": "PERCY_LOGLEVEL=error npx percy exec -v -- jest --config jest.conf/visual.index.js -i ./lib/buttons-and-links/__tests__/KButton.spec.js",
     "test": "yarn test:unit && yarn test:visual",
     "test:unit": "jest --config=jest.conf/index.js",
-    "test:visual": "JEST_PUPPETEER_CONFIG=./jest-puppeteer.config.js node startVisualTests.js",
+    "test:visual": "concurrently --kill-others --success first --names \"SERVER,TEST\" -c \"bgCyan.bold,bgYellow.bold\" \"yarn dev-only > /dev/null 2>&1\" \"yarn test:percy\"",
     "_api-watch": "chokidar \"**/lib/**\" -c \"node utils/extractApi.js\""
   },
   "files": [
