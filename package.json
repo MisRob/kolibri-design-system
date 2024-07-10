@@ -73,6 +73,7 @@
     "normalize.css": "^8.0.1",
     "nuxt": "2.18.1",
     "prismjs": "^1.27.0",
+    "ps-tree": "^1.2.0",
     "puppeteer": "^22.11.0",
     "raw-loader": "0.5.1",
     "sass-loader": "^10.5.2",
