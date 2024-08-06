@@ -40,8 +40,8 @@ export async function renderComponent(component, props) {
   global.expect(isComponentRendered).toBe(true);
 }
 
-export async function takeSnapshot(name) {
+export async function takeSnapshot(name, options = {}) {
   if (process.env.TEST_TYPE == 'visual') {
-    await percySnapshot(page, name);
+    await percySnapshot(page, name, options);
   }
 }
