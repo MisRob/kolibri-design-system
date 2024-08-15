@@ -27,6 +27,7 @@
         See the custom click implementation in 'onMouseUp'. 
       -->
       <router-link
+        class="link"
         tabindex="-1"
         :to="to"
         draggable="false"
@@ -199,9 +200,16 @@
   }
 
   .base-card-title {
+    display: inline-block; // for skeleton areas
+    width: 100%; // for skeleton areas
     font-size: 16px;
     font-weight: 600;
     line-height: 1.5;
+  }
+
+  .link {
+    display: inline-block; // for skeleton areas
+    width: 100%; // for skeleton areas
   }
 
 </style>
