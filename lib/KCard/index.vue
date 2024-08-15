@@ -6,14 +6,16 @@
     :headingLevel="headingLevel"
     :titleLines="titleLines"
     :class="['k-card', rootClass, thumbnailAlignClass]"
+    :style="cardGridStyle"
     :headingStyles="headingStyles"
+    isSkeleton
   >
     <template v-if="$slots.title" #title>
       <!-- @slot Optional slot section containing the title contents, should not contain a heading element. -->
       <slot name="title"></slot>
     </template>
     <template #default>
-      <div class="thumbnail">
+      <div v-if="thumbnailDisplay !== 'none'" class="thumbnail">
         <!-- 
           Render KImg even if thumbnailSrc is not provided since in that case
           KImg takes care of showing the gray placeholder area.
@@ -70,6 +72,8 @@
 
 <script>
 
+  import { inject } from '@vue/composition-api';
+
   import BaseCard from './BaseCard.vue';
 
   const Layouts = {
@@ -104,6 +108,12 @@
   export default {
     name: 'KCard',
     components: { BaseCard },
+    setup() {
+      const cardGridStyle = inject('cardGridStyle');
+      return {
+        cardGridStyle,
+      };
+    },
     props: {
       /**
        * Sets card title if provided. The title should be
@@ -195,6 +205,12 @@
         required: false,
         default: 2,
       },
+      // TODO: Update KCard so that it does not navigate in skeleton mode. Also some a11y may be needed
+      isSkeleton: {
+        type: Boolean,
+        required: false,
+        default: false,
+      },
     },
     computed: {
       rootClass() {
@@ -213,20 +229,21 @@
         return this.stylesAndClasses.thumbnailAlignClass;
       },
       /*
-          Returns dynamic classes and few style-like data that CSS was cumbersome/impossible to use for ,or are in need of using theme, grouped by all possible combinations of layouts.
+            Returns dynamic classes and few style-like data that CSS was cumbersome/impossible to use for ,or are in need of using theme, grouped by all possible combinations of layouts.
 
-          New styles and classes are meant to be added to this single-source-of-truth object so
-          that we can easily locate all styling being applied to a particular layout
+            New styles and classes are meant to be added to this single-source-of-truth object so
+            that we can easily locate all styling being applied to a particular layout
 
-          Could be further simplified by using solely dynamic styles, but that would have detrimental effects on our auto RTL machinery and we would need to take care manually of more places. 
-        */
+            Could be further simplified by using solely dynamic styles, but that would have detrimental effects on our auto RTL machinery and we would need to take care manually of more places. 
+          */
       stylesAndClasses() {
         /* In px. Needs to be the same as $spacer variable in styles part */
         const SPACER = 24;
 
         const headingCommonStyles = {
           order: 3,
-          margin: `${SPACER}px ${SPACER}px ${SPACER / 2}px ${SPACER}px`,
+          margin: 0,
+          padding: `${SPACER}px ${SPACER}px ${SPACER / 2}px ${SPACER}px`,
         };
         const thumbnailCommonStyles = {
           width: '100%',
@@ -328,13 +345,18 @@
   /* Needs to be the same as SPACER constant in JavaScript part */
   $spacer: 24px;
 
-  /*
-        Just couple of comments that are referenced from several places:
-        - (1) Intentionally fixed. Cards on the same row of a grid should have the same overall height and their sections too should have the same height so that information is placed consistently. As documented, consumers need to ensure that contents provided via slots fits well or is truncated.
-        - (2) Solves issues with fixed height in a flex item
-      */
-
   /************* Common styles **************/
+
+  @keyframes fadeInAnimation {
+    0% {
+      opacity: 0;
+      transform: translateX(-5px);
+    }
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
 
   .k-card {
     position: relative; /* basis for absolute positioning of thumbnail images */
@@ -343,6 +365,9 @@
     flex-wrap: nowrap;
     width: 100%;
     font-size: 12px;
+    animation: fadeInAnimation ease 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
   }
 
   .thumbnail {
@@ -352,25 +377,18 @@
 
   .above-title {
     order: 2;
-    height: 24px; /* (1) */
-    min-height: 24px; /* (2) */
-    margin: $spacer $spacer 0;
-    overflow: hidden; /* (1) */
+    padding: $spacer $spacer 0;
   }
 
   .below-title {
     order: 4;
-    min-height: 26px; /* (2) */
-    margin: 0 $spacer 0 $spacer;
-    overflow: hidden; /* (1) */
+    padding: 0 $spacer 0 $spacer;
   }
 
   .footer {
     order: 5;
-    height: 58px; /* (1) */
-    min-height: 58px; /* (2) */
-    margin: auto $spacer $spacer;
-    overflow: hidden; /* (1) */
+    padding: $spacer;
+    margin-top: auto;
   }
 
   .thumbnail-placeholder {
@@ -385,11 +403,9 @@
   /************* Layout-specific styles *************/
 
   .vertical-with-large-thumbnail {
-    height: 480px; /* (1) */
-
     .thumbnail {
       height: 45%;
-      min-height: 45%; /* (2) */
+      min-height: 45%; // solves issues with fixed height in a flex item
     }
   }
 
@@ -399,12 +415,11 @@
     /* stylelint-enable scss/at-extend-no-missing-placeholder */
 
     .thumbnail {
-      margin: $spacer $spacer 0;
+      padding: $spacer $spacer 0;
     }
   }
   .horizontal-with-large-thumbnail {
     position: relative;
-    height: 240px; /* (1) */
 
     .thumbnail {
       position: absolute;
@@ -427,7 +442,7 @@
       .above-title,
       .below-title,
       .footer {
-        margin-right: $spacer;
+        padding-right: $spacer;
       }
     }
 
@@ -440,14 +455,12 @@
       .above-title,
       .below-title,
       .footer {
-        margin-left: $spacer;
+        padding-left: $spacer;
       }
     }
   }
 
   .horizontal-with-small-thumbnail {
-    height: 220px; /* (1) */
-
     .thumbnail {
       position: absolute;
       top: $spacer;
