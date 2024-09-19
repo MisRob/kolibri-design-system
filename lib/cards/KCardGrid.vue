@@ -4,8 +4,21 @@
     class="card-grid"
     :style="gridStyle"
   >
-    <!-- @slot Slot for `KCard`s -->
-    <slot></slot>
+    <template v-if="isLoading">
+      <SkeletonCard
+        v-for="i in skeletonCount"
+        :key="i"
+        :style="{ height: skeletonHeight, backgroundColor: 'blue' }"
+        :orientation="skeletonOrientation"
+        :thumbnailDisplay="skeletonThumbnailDisplay"
+        :thumbnailAlign="skeletonThumbnailAlign"
+      />
+    </template>
+    <!-- TODO v-show? -->
+    <template v-else>
+      <!-- @slot Slot for `KCard`s -->
+      <slot></slot>
+    </template>
   </ul>
 
 </template>
@@ -17,6 +30,8 @@
 
   import { LAYOUT_1_1_1, LAYOUT_1_2_2, LAYOUT_1_2_3 } from './gridBaseLayouts';
   import useResponsiveGridLayout from './useResponsiveGridLayout';
+  import useLoadingSkeletons from './useLoadingSkeletons';
+  import SkeletonCard from './SkeletonCard';
 
   /**
    * Displays a grid of cards `KCard`.
@@ -28,9 +43,20 @@
    */
   export default {
     name: 'KCardGrid',
+    components: {
+      SkeletonCard,
+    },
 
     setup(props) {
       const { currentLevelConfig } = useResponsiveGridLayout(props);
+      const {
+        isLoading,
+        skeletonCount,
+        skeletonHeight,
+        skeletonOrientation,
+        skeletonThumbnailDisplay,
+        skeletonThumbnailAlign,
+      } = useLoadingSkeletons(props);
 
       const gridStyle = ref({});
       const gridItemStyle = ref({});
@@ -62,6 +88,12 @@
 
       return {
         gridStyle,
+        isLoading,
+        skeletonCount,
+        skeletonHeight,
+        skeletonOrientation,
+        skeletonThumbnailDisplay,
+        skeletonThumbnailAlign,
       };
     },
     props: {
@@ -99,6 +131,21 @@
         default: null,
       },
       // eslint-enable-next-line kolibri/vue-no-unused-properties
+      loading: {
+        type: Boolean,
+        required: false,
+        default: true,
+      },
+      /**
+       * Configures how loading skeletons look
+       * like for each breakpoint level
+       */
+      // TODO: validation all breakpoint levels, format of sub-objects
+      // { count, height, orientation, thumbnailDisplay, thumbnailAlign }
+      skeletonsConfig: {
+        type: Object,
+        required: true,
+      },
     },
   };
 

@@ -182,22 +182,22 @@
        */
       to: {
         type: Object,
-        required: true,
+        required: false,
       },
       /**
        * HTML heading level in range (h2 - h6) for the title
        */
       headingLevel: {
         type: Number,
-        required: true,
-        validator(value) {
+        required: false,
+        /* validator(value) {
           if (value <= 6 && value >= 2) {
             return true;
           } else {
             console.error(`[KCard] 'headingLevel' must be between 2 and 6.`);
             return false;
           }
-        },
+        }, */
       },
       /**
        * Card title
@@ -449,9 +449,9 @@
       },
     },
     mounted() {
-      if (!this.$slots.title && !this.title) {
+      /* if (!this.$slots.title && !this.title) {
         console.error(`[KCard] provide title via 'title' slot or prop`);
-      }
+      } */
     },
     methods: {
       onLinkFocus() {
