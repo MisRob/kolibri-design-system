@@ -38,6 +38,9 @@
       watch(
         currentLevelConfig,
         newValue => {
+          if (!newValue) {
+            return;
+          }
           const { cardsPerRow, columnGap, rowGap } = newValue;
 
           gridStyle.value = {
@@ -85,6 +88,17 @@
           return [LAYOUT_1_1_1, LAYOUT_1_2_2, LAYOUT_1_2_3].includes(value);
         },
       },
+      // eslint-enable-next-line kolibri/vue-no-unused-properties
+      /**
+       * Overrides the base grid `layout` for chosen breakpoints levels
+       */
+      // eslint-disable-next-line kolibri/vue-no-unused-properties
+      layoutOverride: {
+        type: Object,
+        required: false,
+        default: null,
+      },
+      // eslint-enable-next-line kolibri/vue-no-unused-properties
     },
   };
 
