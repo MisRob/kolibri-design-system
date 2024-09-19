@@ -85,12 +85,15 @@
       </DocsToggleContent>
 
       <DocsShow block>
-        <KCardGrid layout="1-1-1">
+        <KCardGrid
+          gridId="grid-1"  
+          layout="1-1-1"
+        >
           <DocsKCard
-            v-for="i in 2"
+            v-for="i in 15"
             :key="i"
             :headingLevel="5"
-            orientation="horizontal"
+            orientation="vertical"
             :prependTitle="`(${i})`"
           />
         </KCardGrid>
@@ -141,7 +144,10 @@
       </DocsToggleContent>
 
       <DocsShow block>
-        <KCardGrid layout="1-2-2">
+        <KCardGrid
+          gridId="grid-2"  
+          layout="1-2-2"
+        >
           <DocsKCard
             v-for="i in 3"
             :key="i"
@@ -196,7 +202,10 @@
       </DocsToggleContent>
 
       <DocsShow block>
-        <KCardGrid layout="1-2-3">
+        <KCardGrid
+          gridId="grid-3"  
+          layout="1-2-3"
+        >
           <DocsKCard
             v-for="i in 5"
             :key="i"
@@ -234,7 +243,10 @@
       <p><em>Setting height on cards is discouraged. Instead, manage height bottom-up, for example by setting height on card sections, using text truncation, or other ways to limit its inner content.</em> Such approaches ensure content tolerance, prevent from unexpected overflows or excessive height, and keep vertical alignment of card sections consistent on a grid row. This is especially important when dealing with unknown lenghts or amounts of content displayed in cards. Consider:</p>
 
       <DocsShow>
-        <KCardGrid layout="1-2-3">
+        <KCardGrid
+          gridId="grid-4"
+          layout="1-2-3"
+        >
           <DocsKCard
             :headingLevel="4"
             preserveAboveTitle
@@ -402,7 +414,10 @@
       <p>Grid configuration can be combined with <code>KCard</code>'s settings to further improve responsive experience. A common pattern is switching <code>KCard</code>'s horizontal orientation to vertical for smaller screens to organize content more effectively in limited space:</p>
 
       <DocsShow block>
-        <KCardGrid layout="1-2-2">
+        <KCardGrid
+          gridId="grid-4"  
+          layout="1-2-2"
+        >
           <DocsKCard
             v-for="i in 2"
             :key="i"
@@ -441,7 +456,10 @@
       <p>This technique also works for adjusting <code>KCard</code> slots content. In the following example, some metadata pills are hidden on smaller screens:</p>
 
       <DocsShow block>
-        <KCardGrid layout="1-2-2">
+        <KCardGrid
+          gridId="grid-5"
+          layout="1-2-2"
+        >
           <DocsKCard
             v-for="i in 2"
             :key="i"
@@ -524,7 +542,10 @@
 
 <script>
 
+  import Vue from 'vue';
+  import { onMounted } from '@vue/composition-api';
   import useKResponsiveWindow from '../../lib/composables/useKResponsiveWindow';
+  import useKCardGrid from '../../lib/composables/useKCardGrid';
   import DocsKCard from '../pages-components/DocsKCard';
 
   export default {
@@ -532,7 +553,20 @@
       DocsKCard,
     },
     setup() {
+      console.log('setup');
       const { windowBreakpoint } = useKResponsiveWindow();
+      const { setCardsPerRow, setColumnGap, setRowGap } = useKCardGrid();
+
+      onMounted(() => {
+        console.log('onMounted');
+        /* Vue.nextTick(() => {
+
+        }); */
+        setCardsPerRow({ gridId: 'grid-1', cards: 3, breakpoints: [4, 5, 6, 7] });
+        setColumnGap({ gridId: 'grid-1', columnGap: '50px', breakpoints: [4, 5, 6, 7] });
+        setRowGap({ gridId: 'grid-1', columnGap: '50px', breakpoints: [4, 5, 6, 7] });
+      });
+
       return { windowBreakpoint };
     },
     data() {

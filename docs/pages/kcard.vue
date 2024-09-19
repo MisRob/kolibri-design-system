@@ -7,7 +7,10 @@
       <p>It manages the layout, including the thumbnail image, title, and other content. It offers several base layouts and many customization options. Cards like the examples shown can be created, and many others.</p>
 
       <DocsShow block :style="{ maxWidth: '800px' }">
-        <KCardGrid layout="1-1-1">
+        <KCardGrid
+          gridId="grid-1"  
+          layout="1-1-1"
+        >
           <DocsKCard
             :headingLevel="3"
             :orientation="windowBreakpoint > 2 ? 'horizontal' : 'vertical'"
@@ -243,7 +246,10 @@
       <p><code>KCard</code> has two orientations: horizontal and vertical. It is also possible to configure whether a thumbnail area is displayed, its size and alignment. By combining <code>orientation</code>, <code>thumbnailDisplay</code> and <code>thumbnailAlign</code> props, the following card layouts can be achieved to organize diverse kinds of content:</p>
 
       <DocsShow block>
-        <KCardGrid layout="1-2-3">
+        <KCardGrid
+          gridId="grid-2"  
+          layout="1-2-3"
+        >
           <DocsKCard
             :headingLevel="4"
             orientation="vertical"
@@ -303,7 +309,10 @@
       </DocsShow>
 
       <DocsShow block>
-        <KCardGrid layout="1-2-2">
+        <KCardGrid
+          gridId="grid-3"  
+          layout="1-2-2"
+        >
           <DocsKCard
             :headingLevel="4"
             orientation="horizontal"
@@ -324,7 +333,10 @@
       </DocsShow>
 
       <DocsShow block>
-        <KCardGrid layout="1-2-3">
+        <KCardGrid
+          gridId="grid-4"  
+          layout="1-2-3"
+        >
           <DocsKCard
             :headingLevel="4"
             orientation="vertical"
@@ -413,7 +425,10 @@
       <p>Use <code>aboveTitle</code>, <code>belowTitle</code>, and <code>footer</code> slots to add content to a card. <code>KCard</code> will organize these areas according to its <DocsInternalLink text="layout configuration" href="#layout" />. Apply custom styling to the inner content of slots to achieve desired effects.</p>
 
       <DocsShow block>
-        <KCardGrid layout="1-1-1">
+        <KCardGrid
+          gridId="grid-5"  
+          layout="1-1-1"
+        >
           <KCard
             :to="{ path: '/test-url' }"
             :headingLevel="4"
@@ -497,7 +512,10 @@
       <p>Use the <code>thumbnailPlaceholder</code> slot to add a placeholder element, such as an icon, to this area. <em>Provide a placeholder element even if a thumbnail image is available.</em> This serves as a progressive loading experience where the placeholder element is displayed until the image is loaded, and is particularly important on slower networks.</p>
 
       <DocsShow block>
-        <KCardGrid layout="1-1-1">
+        <KCardGrid
+          gridId="grid-6"  
+          layout="1-1-1"
+        >
           <DocsKCard
             :headingLevel="4"
             :orientation="windowBreakpoint > 2 ? 'horizontal' : 'vertical'"
@@ -546,7 +564,10 @@
       <p><em>This applies to all slot content, but considering accessibility is especially important with interactive elements.</em> For instance, <code>ariaLabel</code> is applied to the bookmark icon button in the following example so that screenreaders can communicate its purpose. In production, more work would be needed to indicate the bookmark's toggled state. Always assess on a case-by-case basis.</p>
 
       <DocsShow block>
-        <KCardGrid layout="1-1-1">
+        <KCardGrid
+          gridId="grid-7"  
+          layout="1-1-1"
+        >
           <DocsKCard
             :headingLevel="4"
             :orientation="windowBreakpoint > 2 ? 'horizontal' : 'vertical'"
@@ -594,7 +615,10 @@
       <p>Managing the selection state is not <code>KCard</code>'s responsibility.</p>
 
       <DocsShow block :style="{ maxWidth: '800px' }">
-        <KCardGrid layout="1-1-1">
+        <KCardGrid
+          gridId="grid-8"  
+          layout="1-1-1"
+        >
           <DocsKCard
             :to="{ path: '/kcard' }"
             :headingLevel="4"

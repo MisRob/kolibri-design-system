@@ -16,7 +16,7 @@
   import { watch, ref, provide } from '@vue/composition-api';
 
   import { LAYOUT_1_1_1, LAYOUT_1_2_2, LAYOUT_1_2_3 } from './gridBaseLayouts';
-  import useResponsiveGridLayout from './useResponsiveGridLayout';
+  import useGridConfig from './useGridConfig';
 
   /**
    * Displays a grid of cards `KCard`.
@@ -30,14 +30,17 @@
     name: 'KCardGrid',
 
     setup(props) {
-      const { currentLevelConfig } = useResponsiveGridLayout(props);
+      const { currentBreakpointConfig } = useGridConfig(props);
 
       const gridStyle = ref({});
       const gridItemStyle = ref({});
 
       watch(
-        currentLevelConfig,
+        currentBreakpointConfig,
         newValue => {
+          if (!newValue) {
+            return;
+          }
           const { cardsPerRow, columnGap, rowGap } = newValue;
 
           gridStyle.value = {
@@ -63,6 +66,16 @@
     },
     props: {
       /**
+       * The id of the grid unique to a page
+       */
+      // used from 'useGridConfig'
+      /* eslint-disable-next-line kolibri/vue-no-unused-properties */
+      gridId: {
+        type: String,
+        required: true,
+      },
+      /* eslint-enable-next-line kolibri/vue-no-unused-properties */
+      /**
        * Sets the base grid layout.
        *
        * Options: `'1-1-1'`, `'1-2-2'`, and `'1-2-3'`.
@@ -78,7 +91,7 @@
        */
       // eslint-disable-next-line kolibri/vue-no-unused-properties
       layout: {
-        required: false,
+        required: true,
         type: String,
         default: '1-2-2',
         validator: value => {
