@@ -233,7 +233,7 @@
 
       <p><em>Setting height on cards is discouraged. Instead, manage height bottom-up, for example by setting height on card sections, using text truncation, or other ways to limit its inner content.</em> Such approaches ensure content tolerance, prevent from unexpected overflows or excessive height, and keep vertical alignment of card sections consistent on a grid row. This is especially important when dealing with unknown lenghts or amounts of content displayed in cards. Consider:</p>
 
-      <DocsShow language="html">
+      <DocsShow>
         <KCardGrid layout="1-2-3">
           <DocsKCard
             :headingLevel="4"
