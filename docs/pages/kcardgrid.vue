@@ -41,6 +41,7 @@
           { text: 'Card height, content tolerance and  alignment', href: '#card-height-and-alignment' },
           { text: 'Fine-tuning responsiveness', href: '#fine-tuning-responsiveness' },
           { text: 'Loading state (TBD)', href: '#loading-state' },
+          { text: 'Non-reactive configuration', href: '#non-reactive-configuration' },
         ]"
       />
 
@@ -568,6 +569,13 @@
       </h3>
 
       <p>When cards are loading, <code>KCardGrid</code> displays skeleton cards...(TBD)</p>
+
+      <h3>
+        Non-reactive configuration
+        <DocsAnchorTarget anchor="#non-reactive-configuration" />
+      </h3>
+
+      <p>Note that <code>layout</code>, <code>layoutOverride</code>, and <code>skeletonsOverride</code> props do not provide reactive behavior so grids won't be updated when they change. Reactivity would add performance cost, and since grids are configured once, it's unnecessary.</p>
     </DocsPageSection>
 
     <DocsPageSection title="Related" anchor="#related">
