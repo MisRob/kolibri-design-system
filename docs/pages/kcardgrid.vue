@@ -86,7 +86,11 @@
       </DocsToggleContent>
 
       <DocsShow block>
-        <KCardGrid layout="1-1-1">
+        <KCardGrid
+          layout="1-1-1"
+          :skeletonsConfig="skeletonsConfig1"
+          :loading="loading"
+        >
           <DocsKCard
             v-for="i in 2"
             :key="i"
@@ -142,7 +146,11 @@
       </DocsToggleContent>
 
       <DocsShow block>
-        <KCardGrid layout="1-2-2">
+        <KCardGrid
+          layout="1-2-2"
+          :skeletonsConfig="skeletonsConfig2"
+          :loading="loading"  
+        >
           <DocsKCard
             v-for="i in 3"
             :key="i"
@@ -197,7 +205,11 @@
       </DocsToggleContent>
 
       <DocsShow block>
-        <KCardGrid layout="1-2-3">
+        <KCardGrid
+          layout="1-2-3"
+          :skeletonsConfig="skeletonsConfig3"
+          :loading="loading"
+        >
           <DocsKCard
             v-for="i in 5"
             :key="i"
@@ -237,6 +249,8 @@
         <KCardGrid
           layout="1-2-3"
           :layoutOverride="layoutOverride"
+          :skeletonsConfig="skeletonsConfig4"
+          :loading="loading"
         >
           <DocsKCard
             v-for="i in 6"
@@ -297,8 +311,12 @@
 
       <p><em>Setting height on cards is discouraged. Instead, manage height bottom-up, for example by setting height on card sections, using text truncation, or other ways to limit its inner content.</em> Such approaches ensure content tolerance, prevent from unexpected overflows or excessive height, and keep vertical alignment of card sections consistent on a grid row. This is especially important when dealing with unknown lenghts or amounts of content displayed in cards. Consider:</p>
 
-      <DocsShow language="html">
-        <KCardGrid layout="1-2-3">
+      <DocsShow block>
+        <KCardGrid
+          layout="1-2-3"
+          :skeletonsConfig="skeletonsConfig5"
+          :loading="loading"  
+        >
           <DocsKCard
             :headingLevel="4"
             preserveAboveTitle
@@ -466,7 +484,11 @@
       <p>Grid configuration can be combined with <code>KCard</code>'s settings to further improve responsive experience. A common pattern is switching <code>KCard</code>'s horizontal orientation to vertical for smaller screens to organize content more effectively in limited space:</p>
 
       <DocsShow block>
-        <KCardGrid layout="1-2-2">
+        <KCardGrid
+          layout="1-2-2"
+          :skeletonsConfig="skeletonsConfig6"
+          :loading="loading"  
+        >
           <DocsKCard
             v-for="i in 2"
             :key="i"
@@ -505,7 +527,11 @@
       <p>This technique also works for adjusting <code>KCard</code> slots content. In the following example, some metadata pills are hidden on smaller screens:</p>
 
       <DocsShow block>
-        <KCardGrid layout="1-2-2">
+        <KCardGrid
+          layout="1-2-2"
+          :skeletonsConfig="skeletonsConfig7"
+          :loading="loading"  
+        >
           <DocsKCard
             v-for="i in 2"
             :key="i"
@@ -608,6 +634,109 @@
     },
     data() {
       return {
+        loading: true,
+        skeletonsConfig1: [
+          {
+            breakpoints: [0, 1, 2, 3, 4, 5, 6, 7],
+            count: 2,
+            orientation: 'horizontal',
+            thumbnailDisplay: 'large',
+            thumbnailAlign: 'left',
+            height: '250px',
+          },
+          {
+            breakpoints: [3, 4, 5, 6, 7],
+            height: '200px',
+          },
+        ],
+        skeletonsConfig2: [
+          {
+            breakpoints: [0, 1, 2, 3, 4, 5, 6, 7],
+            count: 3,
+            orientation: 'vertical',
+            thumbnailDisplay: 'large',
+            height: '470px',
+          },
+          {
+            breakpoints: [2, 3],
+            height: '430px',
+          },
+          {
+            breakpoints: [4, 5, 6, 7],
+            height: '390px',
+          },
+        ],
+        skeletonsConfig3: [
+          {
+            breakpoints: [0, 1, 2, 3, 4, 5, 6, 7],
+            count: 5,
+            orientation: 'vertical',
+            thumbnailDisplay: 'large',
+            height: '470px',
+          },
+          {
+            breakpoints: [2, 3],
+            height: '430px',
+          },
+          {
+            breakpoints: [4, 5, 6, 7],
+            height: '390px',
+          },
+        ],
+        skeletonsConfig4: [
+          {
+            breakpoints: [0, 1, 2, 3, 4, 5, 6, 7],
+            count: 6,
+            orientation: 'vertical',
+            thumbnailDisplay: 'large',
+            height: '360px',
+          },
+        ],
+        skeletonsConfig5: [
+          {
+            breakpoints: [0, 1, 2, 3, 4, 5, 6, 7],
+            count: 3,
+            orientation: 'vertical',
+            thumbnailDisplay: 'large',
+            height: '420px',
+          },
+          {
+            breakpoints: [3, 4, 5, 6, 7],
+            height: '390px',
+          },
+        ],
+        skeletonsConfig6: [
+          {
+            breakpoints: [0, 1, 2, 3, 4, 5, 6, 7],
+            count: 2,
+            orientation: 'vertical',
+            thumbnailDisplay: 'large',
+            height: '470px',
+          },
+          {
+            breakpoints: [3],
+            height: '420px',
+          },
+          {
+            breakpoints: [4, 5, 6, 7],
+            height: '250px',
+            orientation: 'horizontal',
+            thumbnailAlign: 'left',
+          },
+        ],
+        skeletonsConfig7: [
+          {
+            breakpoints: [0, 1, 2, 3, 4, 5, 6, 7],
+            count: 2,
+            orientation: 'vertical',
+            thumbnailDisplay: 'large',
+            height: '430px',
+          },
+          {
+            breakpoints: [4, 5, 6, 7],
+            height: '370px',
+          },
+        ],
         layoutOverride: [
           {
             breakpoints: [0, 1],
@@ -625,6 +754,11 @@
       slicedPills() {
         return ['Short Activity', 'Biology', 'Ecology', 'Ornithology'].slice(0, 2);
       },
+    },
+    mounted() {
+      setTimeout(() => {
+        this.loading = false;
+      }, 4000);
     },
   };
 

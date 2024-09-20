@@ -285,6 +285,16 @@
         type: Boolean,
         default: false,
       },
+      /**
+       * Private. Do not use.
+       */
+      // Disables validations and functionality
+      // that shouldn't be present when card
+      // used as loading skeleton via `SkeletonCard`
+      isSkeleton: {
+        type: Boolean,
+        default: false,
+      },
     },
     data() {
       return {
@@ -457,12 +467,18 @@
     },
     methods: {
       onLinkFocus() {
+        if (this.isSkeleton) {
+          return;
+        }
         this.isLinkFocused = true;
       },
       onLinkBlur() {
         this.isLinkFocused = false;
       },
       navigate() {
+        if (this.isSkeleton) {
+          return;
+        }
         this.$router.push(this.to);
       },
       onFocus(e) {
@@ -484,6 +500,9 @@
         this.mouseDownTime = new Date().getTime();
       },
       onClick() {
+        if (this.isSkeleton) {
+          return;
+        }
         const mouseUpTime = new Date().getTime();
         // Make textual content selectable within the whole clickable card area.
         //
@@ -510,6 +529,17 @@
 
   $spacer: 16px;
 
+  @keyframes fadeInAnimation {
+    0% {
+      opacity: 0;
+      transform: translateX(-5px);
+    }
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
   /************* Common styles **************/
 
   .k-card {
@@ -521,6 +551,9 @@
     text-decoration: none;
     list-style-type: none;
     cursor: pointer;
+    animation: fadeInAnimation ease 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
 
     &.with-selection-controls {
       display: flex;
@@ -594,6 +627,8 @@
   }
 
   .link {
+    display: inline-block; // allows title placeholder in the skeleton card
+    width: 100%; // allows title placeholder in the skeleton card
     text-decoration: none;
     outline: none; // the focus ring is moved to the whole <li>
   }
