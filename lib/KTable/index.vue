@@ -309,9 +309,11 @@
         if (key === 'Enter' && rowIndex === -1 && this.sortable) {
           this.handleSort(colIndex);
         } else if (key === 'Tab') {
-          if (this.handleTabKey(event, rowIndex, colIndex)) {
-            return;
-          }
+          this.handleTabKey(event, rowIndex, colIndex);
+          return;
+          // if (this.handleTabKey(event, rowIndex, colIndex)) {
+          //   return;
+          // }
         }
 
         this.focusCell(nextRowIndex, nextColIndex);
@@ -387,26 +389,22 @@
         let nextColIndex = colIndex;
 
         if (!event.shiftKey) {
-          // Mimic ArrowRight key
-          if (colIndex === totalCols - 1) {
-            nextColIndex = 0;
-            nextRowIndex = rowIndex === totalRows - 1 ? -1 : rowIndex + 1;
-          } else {
+          if (colIndex < totalCols - 1) {
             nextColIndex = colIndex + 1;
+          } else if (rowIndex < totalRows - 1) {
+            nextColIndex = 0;
+            nextRowIndex = rowIndex + 1;
+          } else {
+            return;
           }
         } else {
-          // Mimic ArrowLeft key
-          if (colIndex === 0) {
-            if (rowIndex === -1) {
-              // Move to the last cell if the first cell is focused
-              nextColIndex = totalCols - 1;
-              nextRowIndex = totalRows - 1;
-            } else {
-              nextColIndex = totalCols - 1;
-              nextRowIndex = rowIndex > 0 ? rowIndex - 1 : -1;
-            }
-          } else {
+          if (colIndex > 0) {
             nextColIndex = colIndex - 1;
+          } else if (rowIndex > 0) {
+            nextColIndex = totalCols - 1;
+            nextRowIndex = rowIndex - 1;
+          } else {
+            return;
           }
         }
 
