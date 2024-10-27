@@ -360,15 +360,18 @@
       },
 
       handleTabKey(event, rowIndex, colIndex) {
+        // Identify all focusable elements inside the current cell
         const currentCell = this.getCell(rowIndex, colIndex);
 
         if (!currentCell) return false;
 
+        // Collect focusable elements using getFocusableElements(currentCell)
         const focusableElements = this.getFocusableElements(currentCell);
         const focusedElementIndex = focusableElements.indexOf(document.activeElement);
 
         if (focusableElements.length > 0) {
           if (!event.shiftKey) {
+            // if navigating between more focusable elements within the cell
             if (focusedElementIndex < focusableElements.length - 1) {
               focusableElements[focusedElementIndex + 1].focus();
               event.preventDefault();
@@ -381,6 +384,7 @@
               return true;
             }
           }
+          // Allow default behavior when reaching the last cell
         }
 
         const totalRows = this.rows.length;
@@ -395,6 +399,7 @@
             nextColIndex = 0;
             nextRowIndex = rowIndex + 1;
           } else {
+            // Allow default behavior when reaching the last cell
             return;
           }
         } else {
@@ -404,6 +409,7 @@
             nextColIndex = totalCols - 1;
             nextRowIndex = rowIndex - 1;
           } else {
+            // Allow default behavior when reaching the last cell
             return;
           }
         }
@@ -422,7 +428,7 @@
           Array.from(cell.getElementsByTagName(selector))
         );
       },
-      //My code ends here
+
       getCell(rowIndex, colIndex) {
         if (rowIndex === -1) {
           return this.$refs[`header-${colIndex}`][0];
