@@ -294,38 +294,32 @@
        *  - header highlight
        */
       handleKeydown(event, rowIndex, colIndex) {
-        const key = event.key;
-        const totalRows = this.rows.length;
-        const totalCols = this.headers.length;
-
-        let { nextRowIndex, nextColIndex } = this.getNextIndexes(
-          key,
-          rowIndex,
-          colIndex,
-          totalRows,
-          totalCols
-        );
-
-        if (key === 'Enter' && rowIndex === -1 && this.sortable) {
-          this.handleSort(colIndex);
-        } else if (key === 'Tab') {
-          this.handleTabKey(event, rowIndex, colIndex);
-          return;
-          // if (this.handleTabKey(event, rowIndex, colIndex)) {
-          //   return;
-          // }
+        switch (event.key) {
+          case 'Enter':
+            this.handleEnterKey(colIndex);
+            break;
+          case 'Tab':
+            this.handleTabKey(event, rowIndex, colIndex);
+            break;
+          case 'ArrowUp':
+          case 'ArrowDown':
+          case 'ArrowLeft':
+          case 'ArrowRight':
+            this.handleArrowKeys(event.key, rowIndex, colIndex);
+            break;
+          default:
+            break;
         }
-
-        this.focusCell(nextRowIndex, nextColIndex);
-        this.focusedRowIndex = nextRowIndex === -1 ? null : nextRowIndex;
-        this.focusedColIndex = nextColIndex;
-
-        this.highlightHeader(nextColIndex);
-
-        event.preventDefault();
+      },
+      handleEnterKey(colIndex) {
+        if (this.sortable) {
+          this.handleSort(colIndex);
+        }
       },
 
-      getNextIndexes(key, rowIndex, colIndex, totalRows, totalCols) {
+      handleArrowKeys(key, rowIndex, colIndex) {
+        const totalRows = this.rows.length;
+        const totalCols = this.headers.length;
         const lastRowIndex = totalRows - 1;
         const lastColIndex = totalCols - 1;
         let nextRowIndex = rowIndex;
@@ -356,78 +350,75 @@
             }
             break;
         }
-        return { nextRowIndex, nextColIndex };
+        this.focusCell(nextRowIndex, nextColIndex);
+        event.preventDefault();
+      },
+
+      handleEnterKey(colIndex) {
+        if (this.sortable) {
+          this.handleSort(colIndex);
+        }
       },
 
       handleTabKey(event, rowIndex, colIndex) {
-        // Identify all focusable elements inside the current cell
-        const currentCell = this.getCell(rowIndex, colIndex);
-
-        if (!currentCell) return false;
-
-        // Collect focusable elements using getFocusableElements(currentCell)
-        const focusableElements = this.getFocusableElements(currentCell);
-        const focusedElementIndex = focusableElements.indexOf(document.activeElement);
-
-        if (focusableElements.length > 0) {
-          if (!event.shiftKey) {
-            // if navigating between more focusable elements within the cell
-            if (focusedElementIndex < focusableElements.length - 1) {
-              focusableElements[focusedElementIndex + 1].focus();
-              event.preventDefault();
-              return true;
-            }
-          } else {
-            if (focusedElementIndex > 0) {
-              focusableElements[focusedElementIndex - 1].focus();
-              event.preventDefault();
-              return true;
-            }
-          }
-          // Allow default behavior when reaching the last cell
-        }
-
         const totalRows = this.rows.length;
         const totalCols = this.headers.length;
         let nextRowIndex = rowIndex;
         let nextColIndex = colIndex;
 
-        if (!event.shiftKey) {
-          if (colIndex < totalCols - 1) {
-            nextColIndex = colIndex + 1;
-          } else if (rowIndex < totalRows - 1) {
-            nextColIndex = 0;
-            nextRowIndex = rowIndex + 1;
-          } else {
-            // Allow default behavior when reaching the last cell
-            return;
-          }
-        } else {
-          if (colIndex > 0) {
-            nextColIndex = colIndex - 1;
-          } else if (rowIndex > 0) {
-            nextColIndex = totalCols - 1;
-            nextRowIndex = rowIndex - 1;
-          } else {
-            // Allow default behavior when reaching the last cell
-            return;
-          }
-        }
+        const currentCell = this.getCell(rowIndex, colIndex);
+        const focusableElements = this.getFocusableElements(currentCell);
+        const focusedElementIndex = focusableElements.indexOf(document.activeElement);
 
-        this.focusCell(nextRowIndex, nextColIndex);
-        this.focusedRowIndex = nextRowIndex === -1 ? null : nextRowIndex;
-        this.focusedColIndex = nextColIndex;
-        this.highlightHeader(nextColIndex);
-        event.preventDefault();
-        return true;
+        if (focusableElements.length > 0) {
+          if (!event.shiftKey) {
+            if (focusedElementIndex < focusableElements.length - 1) {
+              focusableElements[focusedElementIndex + 1].focus();
+              event.preventDefault();
+              return;
+            } else {
+              if (colIndex < totalCols - 1) {
+                nextColIndex = colIndex + 1;
+              } else if (rowIndex < totalRows - 1) {
+                nextColIndex = 0;
+                nextRowIndex = rowIndex + 1;
+              } else {
+                return; // Allow default tab behavior
+              }
+            }
+          } else {
+            if (focusedElementIndex > 0) {
+              focusableElements[focusedElementIndex - 1].focus();
+              event.preventDefault();
+              return;
+            } else {
+              if (colIndex > 0) {
+                nextColIndex = colIndex - 1;
+              } else if (rowIndex > 0) {
+                nextColIndex = totalCols - 1;
+                nextRowIndex = rowIndex - 1;
+              } else {
+                return; // Allow default shift+tab behavior
+              }
+            }
+          }
+          this.focusCell(nextRowIndex, nextColIndex);
+          event.preventDefault();
+        }
       },
 
       getFocusableElements(cell) {
-        const focusableSelectors = ['button', 'a', 'input', 'select', 'textarea'];
-        return focusableSelectors.flatMap(selector =>
-          Array.from(cell.getElementsByTagName(selector))
-        );
+        if (!cell) return [];
+        const selectors = 'button, a, input, select, textarea';
+        return Array.from(cell.querySelectorAll(selectors));
       },
+
+      // focusCell(rowIndex, colIndex) {
+      //   const cell = this.getCell(rowIndex, colIndex);
+      //   if (cell) {
+      //     cell.focus();
+      //   }
+      // },
 
       getCell(rowIndex, colIndex) {
         if (rowIndex === -1) {
