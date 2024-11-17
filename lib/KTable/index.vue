@@ -295,25 +295,20 @@
        */
       handleKeydown(event, rowIndex, colIndex) {
         switch (event.key) {
-          case 'Enter':
-            this.handleEnterKey(colIndex);
-            break;
-          case 'Tab':
-            this.handleTabKey(event, rowIndex, colIndex);
-            break;
           case 'ArrowUp':
           case 'ArrowDown':
           case 'ArrowLeft':
           case 'ArrowRight':
             this.handleArrowKeys(event.key, rowIndex, colIndex);
             break;
+          case 'Enter':
+            this.handleEnterKey(colIndex);
+            break;
+          case 'Tab':
+            this.handleTabKey(event, rowIndex, colIndex);
+            break;
           default:
             break;
-        }
-      },
-      handleEnterKey(colIndex) {
-        if (this.sortable) {
-          this.handleSort(colIndex);
         }
       },
 
@@ -351,6 +346,10 @@
             break;
         }
         this.focusCell(nextRowIndex, nextColIndex);
+        this.focusedRowIndex = nextRowIndex === -1 ? null : nextRowIndex;
+        this.focusedColIndex = nextColIndex;
+
+        this.highlightHeader(nextColIndex);
         event.preventDefault();
       },
 
@@ -403,6 +402,10 @@
             }
           }
           this.focusCell(nextRowIndex, nextColIndex);
+          this.focusedRowIndex = nextRowIndex === -1 ? null : nextRowIndex;
+          this.focusedColIndex = nextColIndex;
+
+          this.highlightHeader(nextColIndex);
           event.preventDefault();
         }
       },
