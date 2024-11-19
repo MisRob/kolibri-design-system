@@ -17,7 +17,9 @@
       :class="['card-area', ...cardAreaClasses ]"
       :style="{ backgroundColor: $themeTokens.surface }"
     >
-      <!--
+      <div class="upper-card-area">
+        <div class="around-title">
+          <!--
         Utilizing `visuallyhidden`, `aria-labelledby`,
         and `aria-hidden` to ensure:
         - More reliable output for some screen readers
@@ -25,124 +27,129 @@
         - Prevents undesired screen reader announcements
           when title is customized via the `title` slot
       -->
-      <span :id="`card-title-${_uid}`" class="visuallyhidden">
-        {{ title }}
-      </span>
-      <component
-        :is="headingElement"
-        class="heading"
-        :style="{ color: $themeTokens.text }"
-      >
-        <!--
-          `event=""` prevents router-link click event
-          (technique used by Vue community because
-          the usual ways don't work for router-link).
-          This is to
-            - (1) prevent double navigation (the wrapping
-                  <li> is supposed to take care of navigation)
-            - (2) together with the `draggable` disabled, 
-                  ensures that text selection works on
-                  the title text (see the feature for allowing
-                  selecting card's content in `onClick`)
-        -->
-        <router-link
-          v-if="to"
-          event=""
-          :to="to"
-          draggable="false"
-          class="title"
-          :aria-labelledby="`card-title-${_uid}`"
-          @focus.native="onTitleFocus"
-          @blur.native="onTitleBlur"
-        >
-          <span aria-hidden="true">
-            <!-- @slot A scoped slot via which the `title` can be customized. Provides the `titleText` attribute.-->
-            <slot 
-              v-if="$scopedSlots.title"
-              name="title"
-              :titleText="title"
-            ></slot>
-            <KTextTruncator
-              v-else
-              :text="title"
-              :maxLines="titleMaxLines"
-            />
+          <span :id="`card-title-${_uid}`" class="visuallyhidden">
+            {{ title }}
           </span>
-        </router-link>
-        <!--
-          Set tabindex to 0 to make title focusable so we
-          can use the same focus ring logic like when title
-          is a router-link. Relatedly set data-focus so that
-          the trackInputModality can set modality to keyboard
-          to make the focus ring display correctly
-          -->
-        <span
-          v-else
-          tabindex="0"
-          data-focus="true"
-          class="title"
-          :aria-labelledby="`card-title-${_uid}`"
-          @focus="onTitleFocus"
-          @blur="onTitleBlur"
-        >
-          <span aria-hidden="true">
-            <!-- @slot A scoped slot via which the `title` can be customized. Provides the `titleText` attribute. -->
-            <slot 
-              v-if="$scopedSlots.title"
-              name="title"
-              :titleText="title"
-            ></slot>
-            <KTextTruncator
+          <component
+            :is="headingElement"
+            class="heading"
+            :style="{ color: $themeTokens.text }"
+          >
+            <!--
+              `event=""` prevents router-link click event
+              (technique used by Vue community because
+              the usual ways don't work for router-link).
+              This is to
+                - (1) prevent double navigation (the wrapping
+                      <li> is supposed to take care of navigation)
+                - (2) together with the `draggable` disabled, 
+                      ensures that text selection works on
+                      the title text (see the feature for allowing
+                      selecting card's content in `onClick`)
+            -->
+            <router-link
+              v-if="to"
+              event=""
+              :to="to"
+              draggable="false"
+              class="title"
+              :aria-labelledby="`card-title-${_uid}`"
+              @focus.native="onTitleFocus"
+              @blur.native="onTitleBlur"
+            >
+              <span aria-hidden="true">
+                <!-- @slot A scoped slot via which the `title` can be customized. Provides the `titleText` attribute.-->
+                <slot 
+                  v-if="$scopedSlots.title"
+                  name="title"
+                  :titleText="title"
+                ></slot>
+                <KTextTruncator
+                  v-else
+                  :text="title"
+                  :maxLines="titleMaxLines"
+                />
+              </span>
+            </router-link>
+            <!--
+              Set tabindex to 0 to make title focusable so we
+              can use the same focus ring logic like when title
+              is a router-link. Relatedly set data-focus so that
+              the trackInputModality can set modality to keyboard
+              to make the focus ring display correctly
+              -->
+            <span
               v-else
-              :text="title"
-              :maxLines="titleMaxLines"
-            />
-          </span>
-        </span>
-      </component>
+              tabindex="0"
+              data-focus="true"
+              class="title"
+              :aria-labelledby="`card-title-${_uid}`"
+              @focus="onTitleFocus"
+              @blur="onTitleBlur"
+            >
+              <span aria-hidden="true">
+                <!-- @slot A scoped slot via which the `title` can be customized. Provides the `titleText` attribute. -->
+                <slot 
+                  v-if="$scopedSlots.title"
+                  name="title"
+                  :titleText="title"
+                ></slot>
+                <KTextTruncator
+                  v-else
+                  :text="title"
+                  :maxLines="titleMaxLines"
+                />
+              </span>
+            </span>
+          </component>
 
-      <div
-        v-if="thumbnailDisplay !== ThumbnailDisplays.NONE"
-        class="thumbnail"
-      >
-        <!-- 
-          Render KImg even if thumbnailSrc is not provided since in that case
-          KImg takes care of showing the gray placeholder area.
-        -->
-        <KImg
-          data-test="thumbnail-img"
-          :src="thumbnailSrc"
-          :scaleType="thumbnailScaleType"
-          :aspectRatio="thumbnailAspectRatio"
-          :isDecorative="true"
-          :appearanceOverrides="thumbnailStyles"
-          @error="onThumbnailError"
-        />
-        <span
-          v-if="!thumbnailSrc || thumbnailError"
-          class="thumbnail-placeholder"
+          <div
+            v-if="hasAboveTitleArea"
+            data-test="aboveTitle"
+            class="above-title"
+          >
+            <!-- @slot Places content to the area above the title. -->
+            <slot name="aboveTitle"></slot>
+          </div>
+
+          <div
+            v-if="hasBelowTitleArea"
+            data-test="belowTitle"
+            class="below-title"
+            :style="{ color: $themeTokens.annotation }"
+          >
+            <!-- @slot Places content to the area below the title. -->
+            <slot name="belowTitle"></slot>
+          </div>
+        </div>
+
+        <div
+          v-if="thumbnailDisplay !== ThumbnailDisplays.NONE"
+          class="thumbnail"
         >
-          <!-- @slot Places content to the thumbnail placeholder area. -->
-          <slot name="thumbnailPlaceholder"></slot>
-        </span>
+          <!-- 
+            Render KImg even if thumbnailSrc is not provided since in that case
+            KImg takes care of showing the gray placeholder area.
+          -->
+          <KImg
+            data-test="thumbnail-img"
+            :src="thumbnailSrc"
+            :scaleType="thumbnailScaleType"
+            :aspectRatio="thumbnailAspectRatio"
+            :isDecorative="true"
+            :appearanceOverrides="thumbnailStyles"
+            @error="onThumbnailError"
+          />
+          <span
+            v-if="!thumbnailSrc || thumbnailError"
+            class="thumbnail-placeholder"
+          >
+            <!-- @slot Places content to the thumbnail placeholder area. -->
+            <slot name="thumbnailPlaceholder"></slot>
+          </span>
+        </div>
       </div>
-      <div
-        v-if="hasAboveTitleArea"
-        data-test="aboveTitle"
-        class="above-title"
-      >
-        <!-- @slot Places content to the area above the title. -->
-        <slot name="aboveTitle"></slot>
-      </div>
-      <div
-        v-if="hasBelowTitleArea"
-        data-test="belowTitle"
-        class="below-title"
-        :style="{ color: $themeTokens.annotation }"
-      >
-        <!-- @slot Places content to the area below the title. -->
-        <slot name="belowTitle"></slot>
-      </div>
+
       <div
         v-if="hasFooterArea"
         data-test="footer"
@@ -573,10 +580,9 @@
   .card-area {
     @extend %dropshadow-2dp;
 
-    position: relative; /* basis for absolute positioning of thumbnail images */
     display: flex;
     flex-direction: column;
-    flex-wrap: nowrap;
+    justify-content: space-between; // push footer to the bottom of the card
     width: 100%;
     height: 100%;
     border-radius: 0.5em;
@@ -590,28 +596,47 @@
   }
 
   .heading {
-    order: 3;
     font-size: 16px;
     font-weight: 600;
     line-height: 1.5;
   }
 
+  .title {
+    display: inline-block; // allows title placeholder in the skeleton card
+    width: 100%; // allows title placeholder in the skeleton card
+    color: inherit;
+    text-decoration: none;
+    outline: none; // the focus ring is moved to the whole <li>
+  }
+
+  // because the title and the areas above and below it
+  // are grouped together in all layoyts, abstract them
+  // into one whole here for easier ordering of this section
+  // in the layout-specific styles
+  .around-title {
+    display: flex;
+    flex-direction: column;
+
+    .heading {
+      order: 2;
+    }
+
+    .above-title {
+      order: 1;
+    }
+
+    .below-title {
+      order: 3;
+    }
+  }
+
+  /************* Thumbnail **************/
+
+  /* stylelint-disable no-duplicate-selectors */
   .thumbnail {
-    position: relative; /* basis for absolute positioning of 'thumbnailPlaceholder' slot content */
-    order: 1;
+    position: relative; /* for absolute positioning of .thumbnail-placeholder  */
   }
-
-  .above-title {
-    order: 2;
-  }
-
-  .below-title {
-    order: 4;
-  }
-
-  .footer {
-    order: 5;
-  }
+  /* stylelint-enable no-duplicate-selectors */
 
   .thumbnail-placeholder {
     position: absolute;
@@ -626,64 +651,67 @@
     height: 100%;
   }
 
-  .title {
-    display: inline-block; // allows title placeholder in the skeleton card
-    width: 100%; // allows title placeholder in the skeleton card
-    color: inherit;
-    text-decoration: none;
-    outline: none; // the focus ring is moved to the whole <li>
-  }
-
   /************* Manage spaces *************/
 
-  .heading,
-  .above-title,
-  .below-title,
-  .footer {
-    padding: 0;
-    margin-top: 0;
-    margin-right: $spacer;
-    margin-bottom: calc(#{$spacer} / 2);
-    margin-left: $spacer;
-  }
+  /* .heading,
+   .above-title,
+   .below-title,
+   .footer {
+     padding: 0;
+     margin-top: 0;
+     margin-right: $spacer;
+     margin-bottom: calc(#{$spacer} / 2);
+     margin-left: $spacer;
+   } */
 
   // when the 'aboveTitle' area is present,
   // apply top margin to it and also set smaller
   // margin between the area and the heading...
-  .with-above-title {
-    .above-title {
-      margin-top: $spacer;
-      margin-bottom: calc(#{$spacer} / 2);
-    }
-  }
+
+  /* .with-above-title {
+     .above-title {
+       margin-top: $spacer;
+       margin-bottom: calc(#{$spacer} / 2);
+     }
+   } */
 
   // ...and when the 'aboveTitle' area is not present,
   // instead apply the top margin to the heading
-  .without-above-title {
-    .heading {
-      margin-top: $spacer;
-    }
-  }
+
+  /* .without-above-title {
+     .heading {
+       margin-top: $spacer;
+     }
+   } */
 
   // if there's the 'belowTitle' area present,
   // override the heading's margin to smaller one
-  .with-below-title {
-    .heading {
-      margin-bottom: calc(#{$spacer} / 2);
-    }
-  }
 
-  /* stylelint-disable no-duplicate-selectors */
+  /* .with-below-title {
+     .heading {
+       margin-bottom: calc(#{$spacer} / 2);
+     }
+   } 
+
   .footer {
-    margin-top: auto; // push footer to the bottom
-  }
-  /* stylelint-enable no-duplicate-selectors */
+     width: calc(100% - 2 * #{$spacer});
+   } */
 
   /************* Layout-specific styles *************/
 
   .vertical-with-large-thumbnail {
+    .upper-card-area {
+      display: flex;
+      flex-direction: column;
+    }
+
     .thumbnail {
+      order: 1;
       height: 180px;
+    }
+
+    .around-title {
+      order: 2;
     }
   }
 
@@ -698,104 +726,79 @@
     }
   }
 
-  .horizontal-with-large-thumbnail {
-    $thumbnail-width: 40%;
-
-    .thumbnail {
-      position: absolute;
-      width: $thumbnail-width;
-      height: 100%;
+  .horizontal-with-small-thumbnail {
+    .upper-card-area {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
     }
 
-    .heading,
-    .above-title,
-    .below-title,
-    .footer {
-      width: calc(100% - #{$thumbnail-width} - 2 * #{$spacer});
+    .thumbnail {
+      width: 30%;
+      margin: $spacer;
+    }
+
+    .around-title {
+      width: 70%;
     }
 
     &.thumbnail-align-left {
-      align-items: flex-end;
-
       .thumbnail {
-        left: 0;
+        order: 1;
+      }
+      .around-title {
+        order: 2;
       }
     }
 
     &.thumbnail-align-right {
-      align-items: flex-start;
-
       .thumbnail {
-        right: 0;
+        order: 2;
+      }
+      .around-title {
+        order: 1;
       }
     }
   }
 
-  .horizontal-with-small-thumbnail {
-    $thumbnail-width: null;
+  .horizontal-with-large-thumbnail {
+    /* stylelint-disable scss/at-extend-no-missing-placeholder */
+    @extend .horizontal-with-small-thumbnail;
+    /* stylelint-enable scss/at-extend-no-missing-placeholder */
 
-    /*
-      Coordinates space taken by the thumbnail area and the content area
-      next to it more intelligently in browsers that support `clamp()` by:
-
-      - Instead of defining 'width', 'min-width', and 'max-width' separately,
-        `clamp()` is used with the goal to have the actual thumbnail width
-        saved in the single `$thumbnail-width` value.
-
-      - The `$thumbnail-width` value is then referenced when calculating
-        the remaining space for the content area, ensuring the precise
-        distribution of space.
-
-      Resolves some issues related to unprecise calculations, most importantly
-      this removes the area of empty space between the thumbnail and content areas
-      in some card's sizes, wasting space that can be used for card's textual content.
-    */
-    @mixin clamp-with-fallback($min, $preferred, $max) {
-      // fallback for browsers that don't support 'clamp()'
-      $thumbnail-width: $preferred;
-
-      width: $thumbnail-width;
-      min-width: $min;
-      max-width: $max;
-
-      // clamp(1px, 1%, 1px) only used for testing support
-      @supports (width: clamp(1px, 1%, 1px)) {
-        $thumbnail-width: clamp(#{$min}, #{$preferred}, #{$max});
-
-        width: $thumbnail-width;
-      }
+    &.card-area {
+      position: relative; /* for absolute positioning of .thumbnail  */
     }
 
     .thumbnail {
-      @include clamp-with-fallback(100px, 35%, 120px);
-
       position: absolute;
-      top: $spacer;
-    }
-
-    .heading,
-    .above-title,
-    .below-title {
-      width: calc(100% - #{$thumbnail-width} - 3 * #{$spacer});
+      height: 100%;
+      margin: 0;
     }
 
     .footer {
-      width: calc(100% - 2 * #{$spacer});
-    }
-
-    &.thumbnail-align-left {
-      align-items: flex-end;
-
-      .thumbnail {
-        left: $spacer;
-      }
+      width: calc(70% - 2 * #{$spacer});
     }
 
     &.thumbnail-align-right {
-      align-items: flex-start;
-
       .thumbnail {
-        right: $spacer;
+        right: 0;
+      }
+
+      .around-title,
+      .footer {
+        margin-right: auto;
+      }
+    }
+
+    &.thumbnail-align-left {
+      .thumbnail {
+        left: 0;
+      }
+
+      .around-title,
+      .footer {
+        margin-left: auto;
       }
     }
   }
