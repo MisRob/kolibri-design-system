@@ -302,7 +302,7 @@
             this.handleArrowKeys(event.key, rowIndex, colIndex);
             break;
           case 'Enter':
-            this.handleEnterKey(colIndex);
+            this.handleEnterKey(rowIndex, colIndex);
             break;
           case 'Tab':
             this.handleTabKey(event, rowIndex, colIndex);
@@ -352,8 +352,8 @@
         event.preventDefault();
       },
 
-      handleEnterKey(colIndex) {
-        if (this.sortable) {
+      handleEnterKey(rowIndex, colIndex) {
+        if (rowIndex === -1 && this.sortable) {
           this.handleSort(colIndex);
         }
       },
