@@ -345,7 +345,6 @@
             }
             break;
         }
-        this.focusCell(nextRowIndex, nextColIndex);
         this.updateFocusState(nextRowIndex, nextColIndex);
         event.preventDefault();
       },
@@ -396,9 +395,9 @@
           }
         } else {
           // Shift+Tab key navigation
-          if (focusedIndex > 0) {
+          if (focusedIndex < cellAndFocusableElements.length - 1) {
             // Move to the previous focusable element within the cell
-            cellAndFocusableElements[focusedIndex - 1].focus();
+            cellAndFocusableElements[focusedIndex + 1].focus();
             event.preventDefault();
             return;
           } else {
@@ -424,6 +423,7 @@
         this.focusedRowIndex = nextRowIndex === -1 ? null : nextRowIndex;
         this.focusedColIndex = nextColIndex;
         this.highlightHeader(nextColIndex);
+        this.focusCell(nextRowIndex, nextColIndex);
       },
 
       getFocusableElements(cell) {
