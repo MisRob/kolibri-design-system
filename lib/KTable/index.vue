@@ -346,9 +346,7 @@
             break;
         }
         this.focusCell(nextRowIndex, nextColIndex);
-        this.focusedRowIndex = nextRowIndex === -1 ? null : nextRowIndex;
-        this.focusedColIndex = nextColIndex;
-        this.highlightHeader(nextColIndex);
+        this.updateFocusState(rowIndex, colIndex);
         event.preventDefault();
       },
 
