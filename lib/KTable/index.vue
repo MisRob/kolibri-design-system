@@ -346,7 +346,7 @@
             break;
         }
         this.focusCell(nextRowIndex, nextColIndex);
-        this.updateFocusState(rowIndex, colIndex);
+        this.updateFocusState(nextRowIndex, nextColIndex);
         event.preventDefault();
       },
 
@@ -420,10 +420,10 @@
           }
         }
       },
-      updateFocusState(rowIndex, colIndex) {
-        this.focusedRowIndex = rowIndex === -1 ? null : rowIndex;
-        this.focusedColIndex = colIndex;
-        this.highlightHeader(colIndex);
+      updateFocusState(nextRowIndex, nextColIndex) {
+        this.focusedRowIndex = nextRowIndex === -1 ? null : nextRowIndex;
+        this.focusedColIndex = nextColIndex;
+        this.highlightHeader(nextColIndex);
       },
 
       getFocusableElements(cell) {
