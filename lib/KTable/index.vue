@@ -411,7 +411,7 @@
             event.preventDefault();
             return;
           } else {
-            // Move to the first focusable element of the next cell
+            // Move to the next cell
             if (colIndex < totalCols - 1) {
               nextColIndex = colIndex + 1;
             } else if (rowIndex < totalRows - 1) {
