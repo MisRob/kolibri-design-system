@@ -420,10 +420,6 @@
             } else {
               return; // Allow default Tab behavior when reaching the end
             }
-            const nextCell = this.getCell(nextRowIndex, nextColIndex);
-            const nextFocusableElements = this.getFocusableElements(nextCell);
-            const nextCellAndFocusableElements = [nextCell, ...nextFocusableElements];
-            nextCellAndFocusableElements[0].focus();
             this.updateFocusState(nextRowIndex, nextColIndex);
             event.preventDefault();
           }
@@ -444,10 +440,6 @@
             } else {
               return; // Allow default Shift+Tab behavior when at the beginning
             }
-            const prevCell = this.getCell(nextRowIndex, nextColIndex);
-            const prevFocusableElements = this.getFocusableElements(prevCell);
-            const prevCellAndFocusableElements = [prevCell, ...prevFocusableElements];
-            prevCellAndFocusableElements[prevCellAndFocusableElements.length - 1].focus();
             this.updateFocusState(nextRowIndex, nextColIndex);
             event.preventDefault();
           }
