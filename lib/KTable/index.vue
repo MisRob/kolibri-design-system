@@ -322,24 +322,58 @@
 
         switch (key) {
           case 'ArrowUp':
-            nextRowIndex = rowIndex === -1 ? lastRowIndex : rowIndex - 1;
+            if (rowIndex === -1) {
+              nextRowIndex = lastRowIndex;
+            } else {
+              nextRowIndex = rowIndex - 1;
+            }
             break;
           case 'ArrowDown':
-            nextRowIndex = rowIndex === -1 ? 0 : rowIndex === lastRowIndex ? -1 : rowIndex + 1;
+            if (rowIndex === -1) {
+              nextRowIndex = 0;
+            } else if (rowIndex === lastRowIndex) {
+              nextRowIndex = -1;
+            } else {
+              nextRowIndex = rowIndex + 1;
+            }
             break;
           case 'ArrowLeft':
             if (rowIndex === -1) {
-              nextColIndex = colIndex > 0 ? colIndex - 1 : lastColIndex;
-              nextRowIndex = colIndex === 0 ? lastRowIndex : -1;
+              if (colIndex > 0) {
+                nextColIndex = colIndex - 1;
+              } else {
+                nextColIndex = lastColIndex;
+              }
+              if (colIndex === 0) {
+                nextRowIndex = lastRowIndex;
+              } else {
+                nextRowIndex = -1;
+              }
             } else {
-              nextColIndex = colIndex > 0 ? colIndex - 1 : lastColIndex;
-              nextRowIndex = colIndex === 0 ? (rowIndex > 0 ? rowIndex - 1 : -1) : rowIndex;
+              if (colIndex > 0) {
+                nextColIndex = colIndex - 1;
+              } else {
+                nextColIndex = lastColIndex;
+              }
+              if (colIndex === 0) {
+                if (rowIndex > 0) {
+                  nextRowIndex = rowIndex - 1;
+                } else {
+                  nextRowIndex = -1;
+                }
+              } else {
+                nextRowIndex = rowIndex;
+              }
             }
             break;
           case 'ArrowRight':
             if (colIndex === lastColIndex) {
               nextColIndex = 0;
-              nextRowIndex = rowIndex === lastRowIndex ? -1 : rowIndex + 1;
+              if (rowIndex === lastRowIndex) {
+                nextRowIndex = -1;
+              } else {
+                nextRowIndex = rowIndex + 1;
+              }
             } else {
               nextColIndex = colIndex + 1;
             }
