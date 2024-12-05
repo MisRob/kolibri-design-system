@@ -7,6 +7,227 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#838]
+  - **Description:** Re-organizes `KCard` styles to improve content tolerance and simplify styles, and fixes the thumbnail overflow problems in horizontal layout with small thumbnail
+  - **Products impact:** bugfix
+  - **Addresses:**  Thumbnail overflow problems in horizontal layout with small thumbnail experienced in Kolibri and Studio
+  - **Components:** `KCard`
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -
+
+[#838]: https://github.com/learningequality/kolibri-design-system/pull/838
+
+
+
+- [#824]
+  - **Description:** Adds default sorting functionality feature
+  - **Products impact:** new API
+  - **Addresses:** [#794](https://github.com/learningequality/kolibri-design-system/issues/794)
+  - **Components:** KTable
+  - **Breaking:**  no
+  - **Impacts a11y:** no
+  - **Guidance:** -
+
+[#824]: https://github.com/learningequality/kolibri-design-system/pull/824
+
+- [#824]
+  - **Description:**  Adds requirement for `columnId` attribute in all `header` objects
+  - **Products impact:** updated API
+  - **Addresses:** [#794](https://github.com/learningequality/kolibri-design-system/issues/794)
+  - **Components:** KTable
+  - **Breaking:**  yes
+  - **Impacts a11y:** no
+  - **Guidance:** Add a unique column identifier `columnId` to all `header` objects
+
+[#824]: https://github.com/learningequality/kolibri-design-system/pull/824
+
+- [#824]
+  - **Description:** Renames `disableDefaultSorting` prop to `disableBuiltinSorting`
+  - **Products impact:** updated API
+  - **Addresses:** [#794](https://github.com/learningequality/kolibri-design-system/issues/794)
+  - **Components:** KTable
+  - **Breaking:**  yes
+  - **Impacts a11y:** no
+  - **Guidance:** Rename all occurrence of `disableDefaultSorting`
+
+[#824]: https://github.com/learningequality/kolibri-design-system/pull/824
+
+
+
+- [#835]
+  - **Description:** Enables the action that updates the contributions spreadsheet
+  - **Products impact:** no
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#835]: https://github.com/learningequality/kolibri-design-system/pull/835
+
+
+
+- [#846]
+  - **Description:** Added `radiogroup` role to the `KRadioButtonGroup` component as described in https://www.w3.org/WAI/ARIA/apg/patterns/radio/
+  - **Products impact:** none
+  - **Addresses:** addresses #828
+  - **Components:** `KRadioButtonGroup` component.
+  - **Breaking:** No
+  - **Impacts a11y:** yes
+  - **Guidance:** `radiogroup` role offers a better UX to screen reader users by providing context that they are navigating through (and selecting from) a group of related set of options, and how many they have available.
+
+[#846]: https://github.com/learningequality/kolibri-design-system/pull/846
+
+
+
+- [#819]
+  - **Description:** This PR addresses the reorganization of content related to Material Design elevation. The Google Material Design elevation image was previously located under the dropdown menu section, which was not relevant to its intended focus on layering and hierarchy. It has been moved to the z-index section for better alignment with layering concepts.
+  - **Products impact:** updated API
+  - **Addresses:** learningequality/kolibri-design-system#813
+  - **Components:**  no
+  - **Impacts a11y:** no
+  - **Guidance:** Clearer guidance reduces the potential for confusion while referring to the drop-shadow docs.
+
+[#819]: https://github.com/learningequality/kolibri-design-system/pull/819
+
+
+
+- [#821]
+  - **Description:** Documentation update for kselect
+  - **Products impact:** none
+  - **Addresses:** [Link(s) to GH issue(s) addressed. Include KDS links as well as links to related issues in a consumer product repository too.](https://github.com/learningequality/kolibri-design-system/issues/664#issuecomment-2470533019)
+  - **Components:** Kselect
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -
+
+[#821]: https://github.com/learningequality/kolibri-design-system/pull/821
+
+
+
+- [#844]
+  - **Description:** Bump kds version to 5.0.0-rc10.
+  - **Products impact:** -.
+  - **Addresses:** -.
+  - **Components:** -.
+  - **Breaking:** -.
+  - **Impacts a11y:** -.
+  - **Guidance:** -.
+
+[#844]: https://github.com/learningequality/kolibri-design-system/pull/844
+
+
+
+- [#843]
+  - **Description:** Restore value watcher to update selection in KSelect
+  - **Products impact:** bugfix
+  - **Addresses:** https://github.com/learningequality/kolibri/issues/12821
+  - **Components:** KSelect
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** Fixes a regression
+
+[#843]: https://github.com/learningequality/kolibri-design-system/pull/843
+
+
+
+- [#831]
+  - **Description:** Creates the initial KToolbar component as a direct port of UiToolbar
+  - **Products impact:** new API, removed API - adds KToolbar, removes UiToolbar from the keen dir
+  - **Addresses:** N/A
+  - **Components:** UiToolbar, KToolbar
+  - **Breaking:** yes
+  - **Impacts a11y:** no
+  - **Guidance:** Creates initial KToolbar component as a port of UiToolbar. Further changes and iterations to API expected.
+
+[#831]: https://github.com/learningequality/kolibri-design-system/pull/831
+
+
+
+- [#825]
+  - **Description:** Make the `title` prop required
+  - **Products impact:** updated API
+  - **Addresses:** A new use-case in Studio in https://github.com/learningequality/studio/pull/4803 where a side panel needs to be toggled on card click without changing URL.
+  - **Components:** KCard
+  - **Breaking:** yes
+  - **Impacts a11y:** no
+  - **Guidance:** Even if you use the `title` slot, pass the title text via the `title` prop.
+
+[#825]: https://github.com/learningequality/kolibri-design-system/pull/825
+
+- [#825]
+  - **Description:** Change the `title` slot into a scoped slot
+  - **Products impact:** updated API
+  - **Addresses:** A new use-case in Studio in https://github.com/learningequality/studio/pull/4803 where a side panel needs to be toggled on card click without changing URL.
+  - **Components:** KCard
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:**  Consider using the slot's `textTitle` attribute to achieve more intuitive code when customizing the title.
+
+[#825]: https://github.com/learningequality/kolibri-design-system/pull/825
+
+- [#825]
+  - **Description:** Emit `click` event when card is clicked.
+  - **Products impact:** updated API
+  - **Addresses:** A new use-case in Studio in https://github.com/learningequality/studio/pull/4803 where a side panel needs to be toggled on card click without changing URL.
+  - **Components:** KCard
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -
+
+[#825]: https://github.com/learningequality/kolibri-design-system/pull/825
+
+- [#825]
+  - **Description:** Make `to` prop optional and when not provided, do not render the title text as `router-link` but rather as `span`.
+  - **Products impact:** updated API
+  - **Addresses:** A new use-case in Studio in https://github.com/learningequality/studio/pull/4803 where a side panel needs to be toggled on card click without changing URL.
+  - **Components:** KCard
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -
+
+[#825]: https://github.com/learningequality/kolibri-design-system/pull/825
+
+- [#825]
+  - **Description:** Ensure reliable screen readers announcements no matter whether card is link or no, and no matter whether the title is customized via the title slot
+  - **Products impact:** bugfix
+  - **Addresses:** A new use-case in Studio in https://github.com/learningequality/studio/pull/4803 where a side panel needs to be toggled on card click without changing URL.
+  - **Components:** KCard
+  - **Breaking:** no
+  - **Impacts a11y:** yes
+  - **Guidance:** -
+
+[#825]: https://github.com/learningequality/kolibri-design-system/pull/825
+
+
+
+- [#818]
+  - **Description:** keyboard navigation on KDropdownMenu
+  - **Products impact:** bugfix.
+  - **Addresses:**Issues with keyboard navigation on KDropdownMenu #588.
+  - **Components:** kDropdownMenu.vue
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#818]: https://github.com/learningequality/kolibri-design-system/pull/818
+
+
+
+- [#827]
+  - **Description:** Ensure visibility of focus-ring on the KDS website in Firefox
+  - **Products impact:** -
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/206
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#827]: https://github.com/learningequality/kolibri-design-system/pull/827
+
+
+
 - [#815]
   - **Description:** removed the deprecated dropshadows
   - **Products impact:**  none

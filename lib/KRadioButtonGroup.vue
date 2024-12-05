@@ -1,6 +1,6 @@
 <template>
 
-  <div class="k-radio-button-group">
+  <div class="k-radio-button-group" role="radiogroup">
     <!-- @slot For `KRadioButton`s -->
     <slot></slot>
   </div>

@@ -24,8 +24,8 @@
       <slot name="aboveTitle"></slot>
     </template>
 
-    <template v-if="$slots.title" #title>
-      <slot name="title"></slot>
+    <template v-if="$scopedSlots.title" #title="{ titleText }">
+      <slot name="title" :titleText="titleText"></slot>
     </template>
 
     <template v-if="$slots.belowTitle" #belowTitle>
@@ -151,9 +151,6 @@
       cardTitle() {
         if (this.title) {
           return this.title;
-        }
-        if (this.$slots.title) {
-          return null;
         }
 
         return `${this.prependTitle} Learn everything about hummingbirds: their habitats, feeding patterns, and stunning flight abilities`;

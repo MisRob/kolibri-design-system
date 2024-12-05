@@ -1,8 +1,8 @@
 <template>
 
-  <div class="ui-toolbar" :class="classes">
-    <div class="ui-toolbar__left">
-      <div v-if="!removeNavIcon" class="ui-toolbar__nav-icon">
+  <div class="k-toolbar" :class="classes">
+    <div class="k-toolbar-left">
+      <div v-if="!removeNavIcon" class="k-toolbar-nav-icon">
         <slot name="icon">
           <UiIconButton
             size="large"
@@ -16,40 +16,41 @@
         </slot>
       </div>
 
-      <div v-if="brand || $slots.brand" class="ui-toolbar__brand">
+      <div v-if="brand || $slots.brand" class="k-toolbar-brand">
         <slot name="brand">
-          <div class="ui-toolbar__brand-text">
+          <div class="k-toolbar-brand-text">
             {{ brand }}
           </div>
         </slot>
       </div>
       <slot>
-        <div v-if="title" class="ui-toolbar__title">
+        <div v-if="title" class="k-toolbar-title">
           {{ title }}
         </div>
       </slot>
-      <slot name="navigation" class="ui-toolbar__nav"></slot>
+      <slot name="navigation" class="k-toolbar-nav"></slot>
     </div>
 
-    
 
-    <div class="ui-toolbar__right">
+
+    <div class="k-toolbar-right">
       <slot name="actions"></slot>
     </div>
 
     <UiProgressLinear
       v-show="loading"
-      class="ui-toolbar__progress"
+      class="k-toolbar-progress"
       :color="progressColor"
     />
   </div>
 
 </template>
 
+
 <script>
 
-  import UiIconButton from './UiIconButton.vue';
-  import UiProgressLinear from './UiProgressLinear.vue';
+  import UiIconButton from './keen/UiIconButton.vue';
+  import UiProgressLinear from './keen/UiProgressLinear.vue';
 
   export default {
     name: 'UiToolbar',
@@ -68,11 +69,13 @@
         type: String,
         default: 'black', // 'black' or 'white'
       },
-      title: String,
-      brand: String,
-      removeBrandDivider: {
-        type: Boolean,
-        default: false,
+      title: {
+        type: String,
+        default: '',
+      },
+      brand: {
+        type: String,
+        default: '',
       },
       navIcon: {
         type: String,
@@ -99,19 +102,15 @@
     computed: {
       classes() {
         return [
-          `ui-toolbar--type-${this.type}`,
-          `ui-toolbar--text-color-${this.textColor}`,
-          `ui-toolbar--progress-position-${this.progressPosition}`,
+          `k-toolbar--type-${this.type}`,
+          `k-toolbar--text-color-${this.textColor}`,
+          `k-toolbar--progress-position-${this.progressPosition}`,
           { 'is-raised': this.raised },
         ];
       },
 
       progressColor() {
         return this.textColor === 'black' ? 'primary' : 'white';
-      },
-
-      hasBrandDivider() {
-        return this.removeBrandDivider ? false : this.brand || this.$slots.brand;
       },
     },
 
@@ -124,101 +123,108 @@
 
 </script>
 
+
 <style lang="scss">
-  @import '../styles/definitions';
-  @import './styles/imports';
 
-  $ui-toolbar-font-size: rem(18px) !default;
-  $ui-toolbar-height: rem(56px) !default;
+  @import './styles/definitions';
+  @import './keen/styles/imports';
 
-  .ui-toolbar {
+  $k-toolbar-font-size: rem(18px) !default;
+  $k-toolbar-height: rem(56px) !default;
+
+  .k-toolbar {
     position: relative;
     display: flex;
     align-content: center;
     align-items: center;
     justify-content: space-between;
-    height: $ui-toolbar-height;
-    padding-left: rem(16px);
     max-width: 100%;
+    height: $k-toolbar-height;
+    padding: 0 16px;
     font-family: inherit;
-    font-size: $ui-toolbar-font-size;
+    font-size: $k-toolbar-font-size;
 
     &.is-raised {
       @extend %dropshadow-2dp;
     }
 
-    &:not(.is-raised).ui-toolbar--type-default {
-      border-bottom: rem(1px) solid $divider-color;
+    &:not(.is-raised).k-toolbar--type-default {
+      border-bottom: 1px solid $divider-color;
     }
 
     .ui-icon-button {
-      width: rem(48px);
-      height: rem(48px);
+      width: 48px;
+      height: 48px;
     }
   }
 
-  .ui-toolbar__left {
-    display: inline-flex;
-  }
-
-  .ui-toolbar__nav-icon {
-    margin-right: rem(8px);
-    margin-left: rem(-16px);
-  }
-
-  .ui-toolbar__nav {
-    margin-right: rem(8px);
-    margin-left: rem(-16px);
+  .k-toolbar-left {
     display: flex;
-    align-items: bottom;
+    align-items: center;
     margin-left: 16px;
   }
 
-  .ui-toolbar__brand {
-    min-width: rem(160px);
+  .k-toolbar-nav-icon {
+    margin-right: 8px;
+    margin-left: -16px;
   }
 
-  .ui-toolbar__brand-text {
+  .k-toolbar-nav {
+    display: flex;
+    align-items: baseline;
+    margin-right: 8px;
+    margin-left: 16px;
+  }
+
+  .k-toolbar-brand {
+    min-width: inherit;
+  }
+
+  .k-toolbar-brand-text {
     flex-grow: 1;
-    padding-right: rem(8px);
+    padding-right: 8px;
   }
 
-  .ui-toolbar__body {
-
+  .k-toolbar__body {
     &.has-brand-divider {
-      padding-left: rem(24px);
+      padding-left: 24px;
       border-left-style: solid;
-      border-left-width: rem(1px);
+      border-left-width: 1px;
     }
   }
 
-  .ui-toolbar__right {
+  .k-toolbar-right {
     display: inline-block;
   }
 
-  .ui-toolbar__progress {
+  .k-toolbar-progress {
     position: absolute;
     right: 0;
     bottom: 0;
     left: 0;
-    height: rem(3px);
+    height: 3px;
+  }
+
+  .k-toolbar-title {
+    overflow: hidden;
+    white-space: nowrap;
   }
 
   // ================================================
   // Types
   // ================================================
 
-  .ui-toolbar--type-default {
+  .k-toolbar--type-default {
     background-color: white;
   }
 
-  .ui-toolbar--type-colored {
+  .k-toolbar--type-colored {
     background-color: $brand-primary-color;
   }
 
-  .ui-toolbar--type-clear {
+  .k-toolbar--type-clear {
     background-color: transparent;
-    border: none;
+    border: 0;
     box-shadow: none;
   }
 
@@ -226,19 +232,19 @@
   // Text colors
   // ================================================
 
-  .ui-toolbar--text-color-black {
+  .k-toolbar--text-color-black {
     color: $primary-text-color;
 
-    .ui-toolbar__body {
-      border-left-color: rgba(black, 0.15);
+    .k-toolbar__body {
+      border-left-color: rgba(0, 0, 0, 0.15);
     }
   }
 
-  .ui-toolbar--text-color-white {
+  .k-toolbar--text-color-white {
     color: white;
 
-    .ui-toolbar__body {
-      border-color: rgba(white, 0.4);
+    .k-toolbar__body {
+      border-color: rgba(255, 255, 255, 0.4);
     }
   }
 
@@ -246,8 +252,8 @@
   // Progress positions
   // ================================================
 
-  .ui-toolbar--progress-position-top {
-    .ui-toolbar__progress {
+  .k-toolbar--progress-position-top {
+    .k-toolbar-progress {
       top: 0;
     }
   }

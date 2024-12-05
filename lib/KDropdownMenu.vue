@@ -117,6 +117,7 @@
     data() {
       return {
         trigger: null,
+        lastFocusElement: null,
       };
     },
     watch: {
@@ -145,6 +146,7 @@
     },
     methods: {
       handleOpen() {
+        this.lastFocusElement = document.activeElement;
         this.$nextTick(() => this.$nextTick(() => this.setFocus()));
         window.addEventListener('keydown', this.handleOpenMenuNavigation, true);
       },
@@ -160,10 +162,31 @@
             focusedElement.classList.contains('ui-popover-focus-redirector') ||
             focusedElement.classList.contains('ui-menu-option'))
         ) {
-          this.focusOnButton();
+          if (this.lastFocusElement) {
+            this.lastFocusElement.focus();
+          }
         }
+
         window.removeEventListener('keyup', this.handleKeyUp, true);
       },
+      getNextFocusableSibling(focusedElement) {
+        let sibling = focusedElement.nextElementSibling;
+        while (sibling && !this.isFocusable(sibling)) {
+          sibling = sibling.nextElementSibling;
+        }
+        return sibling;
+      },
+      getPreviousFocusableSibling(focusedElement) {
+        let sibling = focusedElement.previousElementSibling;
+        while (sibling && !this.isFocusable(sibling)) {
+          sibling = sibling.previousElementSibling;
+        }
+        return sibling;
+      },
+      isFocusable(element) {
+        return element && element.tabIndex >= 0;
+      },
+
       handleOpenMenuNavigation(event) {
         // identify the menu state and length
         if (!this.$refs.popover && !this.$refs.popover.$el) {
@@ -175,19 +198,22 @@
         const popoverIsOpen = popover.clientWidth > 0 && popover.clientHeight > 0;
         // set current element and its siblings
         let focusedElement = document.activeElement;
-        let sibling = focusedElement.nextElementSibling;
-        let prevSibling = focusedElement.previousElementSibling;
 
         // manage rotating through the options using arrow keys
         // UP arrow: .keyCode is depricated and should used only as a fallback
         if ((event.key == 'ArrowUp' || event.keyCode == 38) && popoverIsOpen) {
           event.preventDefault();
+
+          // Checking if previous sibling is divider and if yes then skip it
+          const prevSibling = this.getPreviousFocusableSibling(focusedElement);
           prevSibling
             ? this.$nextTick(() => prevSibling.focus())
             : this.$nextTick(() => lastChild.focus());
           // DOWN arrow
         } else if ((event.key == 'ArrowDown' || event.keyCode == 40) && popoverIsOpen) {
           event.preventDefault();
+          //Chekcing if next sibling is divider and skipping it
+          const sibling = this.getNextFocusableSibling(focusedElement);
           sibling ? this.$nextTick(() => sibling.focus()) : this.$nextTick(() => this.setFocus());
           // if a TAB key, not an arrow key, close the popover and advance to next item in the tab index
         } else if ((event.key == 'Tab' || event.keyCode == 9) && popoverIsOpen) {
@@ -205,11 +231,6 @@
       closePopover() {
         this.$emit('close');
         this.$refs.popover.close();
-      },
-      focusOnButton() {
-        if (this.$refs.button) {
-          this.$refs.button.$el.focus();
-        }
       },
     },
   };

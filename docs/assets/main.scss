@@ -49,8 +49,9 @@ a {
   }
 }
 
-*:focus {
-  outline-color: #757575;
+*:focus-visible {
+  outline: 5px solid #757575;
+  outline-offset: 2px;
 }
 
 *::selection {

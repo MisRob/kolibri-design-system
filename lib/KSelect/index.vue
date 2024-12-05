@@ -43,6 +43,7 @@
           :class="labelClasses"
           :style="activeColorStyle"
         >
+          <!-- @slot Optional slot as alternative to `label` prop -->
           <slot>{{ label }}</slot>
         </div>
 
@@ -51,6 +52,7 @@
             class="ui-select-display-value"
             :class="{ 'is-placeholder': !hasDisplayText }"
           >
+            <!-- @slot Optional slot to override the display of the selected value -->
             <slot name="display">
               {{ hasDisplayText ? displayText : (
                 hasFloatingLabel && isLabelInline) ? null : placeholder }}
@@ -106,6 +108,7 @@
 
                 @mouseover.native.stop="onMouseover(option)"
               >
+                <!-- @slot Optional slot to override the display of the option in the options dropdown -->
                 <slot
                   name="option"
 
@@ -117,6 +120,7 @@
               </KSelectOption>
 
               <div v-show="hasNoResults" class="ui-select-no-results">
+                <!-- @slot Optional slot as alternative to `noResultsText` prop -->
                 <slot name="no-results">
                   {{ noResultsText }}
                 </slot>
@@ -128,12 +132,14 @@
 
       <div v-if="hasFeedback" class="ui-select-feedback">
         <div v-if="showError" class="ui-select-feedback-text">
+          <!-- @slot Optional slot as alternative to `invalidText` prop -->
           <slot name="error">
             {{ invalidText }}
           </slot>
         </div>
 
         <div v-else-if="showHelp" class="ui-select-feedback-text">
+          <!-- @slot Optional slot as alternative to `help` prop -->
           <slot name="help">
             {{ help }}
           </slot>
@@ -214,14 +220,14 @@
         },
       },
       /**
-       * Placeholder
+       * Sets the placeholder value
        */
       placeholder: {
         type: String,
         default: '',
       },
       /**
-       * Label
+       * Specifies the label text. Default is  empty  if not provided.
        */
       label: {
         type: String,
@@ -255,6 +261,10 @@
         type: String,
         default: '',
       },
+      /**
+       * Object that defines the label, value and image keys in objects of the `options` prop.
+       * Default: { label: 'label', value: 'value', image: 'image' }
+       */
       keys: {
         type: Object,
         default() {
@@ -297,6 +307,9 @@
         type: Boolean,
         default: false,
       },
+      /**
+       * Defines the tooltip and aria-label of the clear button if the select is clearable.
+       */
       clearText: {
         type: String,
         default: '',
@@ -492,6 +505,9 @@
     },
 
     watch: {
+      value(inputValue) {
+        this.selection = inputValue;
+      },
       filteredOptions() {
         this.highlightedOption = this.filteredOptions[0];
         resetScroll(this.$refs.optionsList);
@@ -500,14 +516,23 @@
       showDropdown() {
         if (this.showDropdown) {
           this.onOpen();
+          /**
+           * Emit on opening dropdown
+           */
           this.$emit('dropdown-open');
         } else {
           this.onClose();
+          /**
+           * Emit on closing dropdown
+           */
           this.$emit('dropdown-close');
         }
       },
 
       query() {
+        /**
+         * Emits whenever the query value changes.
+         */
         this.$emit('query-change', this.query);
       },
 
@@ -575,7 +600,9 @@
       setValue(value) {
         value = value ? value : this.multiple ? [] : '';
         this.selection = value;
-
+        /**
+         * Emits an 'input' event with the new value when the selection is updated.
+         */
         this.$emit('input', value);
       },
 
@@ -863,7 +890,8 @@
       },
 
       /**
-       * @public
+       * Resets the selected values of dropdown
+       * @public This is a public method
        */
       reset() {
         this.setValue(JSON.parse(this.initialValue));

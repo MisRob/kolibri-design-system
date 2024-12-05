@@ -112,24 +112,22 @@
     setup(props, { emit }) {
       const headers = ref(props.headers);
       const rows = ref(props.rows);
-      const useLocalSorting = ref(props.sortable && !props.disableDefaultSorting);
+      const disableBuiltinSorting = ref(props.disableBuiltinSorting);
+
+      const defaultSort = ref({
+        index: props.headers.findIndex(h => h.columnId === props.defaultSort.columnId),
+        direction: props.defaultSort.direction,
+      });
+
       const {
         sortKey,
         sortOrder,
         sortedRows,
         handleSort: localHandleSort,
         getAriaSort,
-      } = useSorting(headers, rows, useLocalSorting);
+      } = useSorting(headers, rows, defaultSort, disableBuiltinSorting);
 
-      const finalRows = computed(() => {
-        if (props.sortable) {
-          return useLocalSorting.value ? sortedRows.value : rows.value;
-        } else {
-          return rows.value;
-        }
-      });
-
-      const isTableEmpty = computed(() => finalRows.value.length === 0);
+      const isTableEmpty = computed(() => sortedRows.value.length === 0);
 
       watch(
         () => props.rows,
@@ -142,15 +140,11 @@
         if (headers.value[index].dataType === DATA_TYPE_OTHERS) {
           return;
         }
-        if (useLocalSorting.value) {
-          localHandleSort(index);
-        } else {
-          emit(
-            'changeSort',
-            index,
-            sortOrder.value === SORT_ORDER_ASC ? SORT_ORDER_DESC : SORT_ORDER_ASC
-          );
-        }
+
+        if (props.disableBuiltinSorting && props.sortable) {
+          // Emit the event to the parent to notify that the sorting has been requested
+          emit('changeSort', index, sortOrder.value);
+        } else localHandleSort(index);
       };
 
       const getHeaderStyle = header => {
@@ -159,10 +153,11 @@
         if (header.width) style.width = header.width;
         return style;
       };
+
       return {
         sortKey,
         sortOrder,
-        finalRows,
+        finalRows: sortedRows,
         handleSort,
         getAriaSort,
         SORT_ORDER_ASC,
@@ -175,16 +170,22 @@
     /* eslint-disable kolibri/vue-no-unused-properties */
     props: {
       /**
-       * An array of objects `{ label, dataType, minWidth, width }`representing the headers of the table. The `dataType` can be one of `'string'`, `'number'`, `'date'`, or `'undefined'`. `label` and `dataType` are required. `minWidth` and `width` are optional.
+       * An array of objects `{ label, dataType, minWidth, width, columnId }`representing the headers of the table. The `dataType` can be one of `'string'`, `'number'`, `'date'`, or `'undefined'`. `label` and `dataType` are required. `minWidth` and `width` are optional. `columnId` is an unique identifier for the column, and can be a `number` or a `string`.
        */
       headers: {
         type: Array,
         required: true,
         validator: function(value) {
-          return value.every(
-            header =>
-              ['label', 'dataType'].every(key => key in header) &&
-              ['string', 'number', 'date', 'undefined'].includes(header.dataType)
+          const uniqueColumnIds = new Set(value.map(h => h.columnId));
+
+          return (
+            uniqueColumnIds.size == value.length &&
+            value.every(
+              header =>
+                ['label', 'dataType', 'columnId'].every(key => key in header) &&
+                ['string', 'number', 'date', 'undefined'].includes(header.dataType) &&
+                ['string', 'number'].includes(typeof header.columnId)
+            )
           );
         },
       },
@@ -201,14 +202,6 @@
       caption: {
         type: String,
         required: true,
-      },
-
-      /**
-       * Disables the default sorting when sortable is true. Facilitates integration with externally sorted data.
-       */
-      disableDefaultSorting: {
-        type: Boolean,
-        default: false,
       },
       /**
        * Enables or disables sorting functionality for the table headers.
@@ -230,6 +223,33 @@
       dataLoading: {
         type: Boolean,
         default: false,
+      },
+      /**
+       * Indicates whether the table is to be sorted by default by any header or not. By default it is an empty object which means no default sorting is to be used. It accepts a configuration object `{ columnId, direction }`. `columnId` references a `columnId` defined for a header in `headers`. This specifies a column by which the table should be sorted when initially loaded. `direction` can be `'asc'` for ascending or `'desc'` for descending sort direction.
+       */
+      defaultSort: {
+        type: Object,
+        required: false,
+        default: () => ({}),
+        validator: function(value) {
+          if (Object.keys(value).length === 0) {
+            return true;
+          }
+
+          return (
+            ['columnId', 'direction'].every(key => key in value) &&
+            ['asc', 'desc'].includes(value.direction) &&
+            ['string', 'number'].includes(typeof value.columnId)
+          );
+        },
+      },
+      /**
+       * Disables built-in sort function. This is useful when you want to define your own sorting logic. Refer to the examples above for more details.
+       */
+      disableBuiltinSorting: {
+        type: Boolean,
+        default: false,
+        required: false,
       },
     },
     data() {
@@ -281,6 +301,23 @@
       },
       isColumnSortable() {
         return colIndex => this.sortable && this.headers[colIndex].dataType !== DATA_TYPE_OTHERS;
+      },
+    },
+    watch: {
+      // Use a watcher on props to perform validation on props.
+      // This is required as we need access to multiple props simultaneously in some validations.
+      $props: {
+        immediate: true,
+        handler() {
+          if (this.defaultSort.columnId) {
+            const allHeaderColumnIds = this.headers.map(h => h.columnId);
+            if (!allHeaderColumnIds.includes(this.defaultSort.columnId)) {
+              console.error(
+                `The columnId used for default sorting is ${this.defaultSort.columnId}, but the same was not found to be defined in any headers.`
+              );
+            }
+          }
+        },
       },
     },
     methods: {
