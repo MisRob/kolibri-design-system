@@ -19,7 +19,7 @@
       v-if="icon"
       :icon="icon"
       :color="iconColor"
-      data-test="iconBefore"
+      data-testid="iconBefore"
       class="prop-icon"
     />
     <!-- @slot Pass sub-components into the button, typically `KDropdownMenu` -->
@@ -40,7 +40,7 @@
       v-if="iconAfter"
       :icon="iconAfter"
       :color="iconColor"
-      data-test="iconAfter"
+      data-testid="iconAfter"
       class="prop-icon"
     />
 
@@ -50,7 +50,7 @@
       icon="dropdown"
       class="dropdown-arrow"
       :style="arrowStyles"
-      data-test="dropdownIcon"
+      data-testid="dropdownIcon"
       style="width: 24px; height: 24px"
     />
   </component>
