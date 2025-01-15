@@ -7,6 +7,84 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#887]
+  - **Description:** Added `margin-top: 16px` and `margin-bottom: 16px` to the empty table message to ensure consistent spacing with the table header and data rows.
+  - **Products impact:** bugfix
+  - **Addresses:** -  #881
+  - **Components:** KTable
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:**
+
+[#887]: https://github.com/learningequality/kolibri-design-system/pull/887
+
+
+
+- [#847]
+  - **Description:** Improvement of the Table of Contents filter to work properly with browsers' command.
+  - **Products impact:** Updated API
+  - **Addresses:** Issue#213
+  - **Components:** no
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** Improves KDS.
+
+[#847]: https://github.com/learningequality/kolibri-design-system/pull/847
+
+
+
+- [#874]
+  - **Description:** Removes `pull_request_review` event from the community contributions spreadsheet action. When triggered by this event, secrets are not available. This fixes the action failure when pull request reviewed.
+  - **Products impact:** none
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#874]: https://github.com/learningequality/kolibri-design-system/pull/874
+
+
+
+- [#854]
+  - **Description:** Makes KTable sorting case-insensitive and internationalized
+  - **Products impact:** bugfix
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/852
+  - **Components:** KTable
+  - **Breaking:** No
+  - **Impacts a11y:** No
+  - **Guidance:** NA
+
+[#854]: https://github.com/learningequality/kolibri-design-system/pull/854
+
+
+
+- [#859]
+  - **Description:** Add documentation to the `KTooltip` page
+  - **Products impact:** none
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/694
+  - **Components:** `KTooltip`
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -
+
+[#859]: https://github.com/learningequality/kolibri-design-system/pull/859
+
+
+
+- [#872]
+  - **Description:** Adds the global title attribute to `KBreadcrumbs` so that the truncated text can be seen fully when a breadcrumb item is hovered.
+  - **Products impact:** UX/UI update
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/208
+  - **Components:** `KBreadcrumbs`
+  - **Breaking:**  no
+  - **Impacts a11y:** Yes. Improves experience for sighted users.
+  - **Guidance:**  -
+
+[#872]: https://github.com/learningequality/kolibri-design-system/pull/872
+
+
+
 - [#868]
   - **Description:** Revert regression in KLogo display
   - **Products impact:** bugfix

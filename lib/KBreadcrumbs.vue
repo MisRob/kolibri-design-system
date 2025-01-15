@@ -65,12 +65,19 @@
               :text="crumb.text"
               :to="crumb.link"
               dir="auto"
+              :title="crumb.text"
             >
               <template #text="{ text }">
-                <span class="breadcrumbs-crumb-text">{{ text }}</span>
+                <span
+                  class="breadcrumbs-crumb-text"
+                  :title="text"
+                >{{ text }}</span>
               </template>
             </KRouterLink>
-            <span v-else>{{ crumb.text }}</span>
+            <span
+              v-else
+              :title="crumb.text"
+            >{{ crumb.text }}</span>
           </li>
 
           <li
@@ -82,6 +89,7 @@
               class="breadcrumbs-crumb-text"
               :style="{ maxWidth: lastBreadcrumbMaxWidth }"
               dir="auto"
+              :title="crumb.text"
             >
               {{ crumb.text }}
             </span>
