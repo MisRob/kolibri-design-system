@@ -39,21 +39,22 @@ export async function renderComponent(component, props, slots = {}) {
           props: props,
           slots: slots,
         },
-        '*'
+        '*',
       );
     },
-    { component, props, slots }
+    { component, props, slots },
   );
   await page.waitForSelector('#testing-playground');
 
-  // Wait until the innerHTML of the testing playground changes, indicating that the component has been rendered.
+  // Wait until the innerHTML of the testing playground changes,
+  // indicating that the component has been rendered.
   await page.waitForFunction(
     initialState => {
       const testing_playground = document.querySelector('#testing-playground');
       return testing_playground && testing_playground.innerHTML !== initialState;
     },
     {},
-    beforeRenderState
+    beforeRenderState,
   );
 
   // Check if the component has been rendered by comparing the initial state with the current state.
@@ -76,13 +77,13 @@ export async function renderComponent(component, props, slots = {}) {
  * @see https://www.browserstack.com/docs/percy/take-percy-snapshots/snapshots-via-scripts#per-snapshot-configuration
  */
 export async function takeSnapshot(name, options = {}) {
-  if (process.env.TEST_TYPE == 'visual') {
+  if (process.env.VISUAL_TESTING == 'true') {
     await percySnapshot(page, name, options);
   }
 }
 
 export async function delay(time) {
-  return new Promise(function(resolve) {
+  return new Promise(function (resolve) {
     setTimeout(resolve, time);
   });
 }

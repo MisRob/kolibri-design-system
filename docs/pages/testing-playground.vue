@@ -6,10 +6,17 @@
 
     Please do not modify the contents of this file.
   -->
-  <div id="testing-playground" style="padding: 24px">
-    <component :is="component" v-bind="componentProps">
+  <div
+    id="testing-playground"
+    style="padding: 24px"
+  >
+    <component
+      :is="component"
+      v-bind="componentProps"
+    >
       <!-- Render slots if provided -->
       <template v-for="(slot, name) in slots">
+        <!-- eslint-disable vue/no-v-text-v-html-on-component -->
         <!-- eslint-disable vue/no-v-html -->
         <component
           :is="slot.element"

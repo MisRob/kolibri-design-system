@@ -21,7 +21,7 @@
     "_lint-watch-fix": "yarn lint -w -m",
     "test:percy": "PERCY_LOGLEVEL=info npx percy exec -v -- jest --config jest.conf/visual.index.js",
     "test": "jest --config=jest.conf/index.js",
-    "test:visual": "concurrently --kill-others --success first --names \"SERVER,TEST\" -c \"bgCyan.bold,bgYellow.bold\" \"yarn dev-only > /dev/null 2>&1\" \"yarn test:percy\"",
+    "test:visual": "VISUAL_TESTING=true concurrently --kill-others --success first --names \"SERVER,TEST\" -c \"bgCyan.bold,bgYellow.bold\" \"yarn dev-only > /dev/null 2>&1\" \"yarn test:percy\"",
     "_api-watch": "chokidar \"**/lib/**\" -c \"node utils/extractApi.js\""
   },
   "files": [

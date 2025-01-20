@@ -67,7 +67,7 @@ const checkPageLoad = async (url, timeout = 30000) => {
 const validatePercyToken = () => {
   if (!process.env.PERCY_TOKEN) {
     throw new Error(
-      'PERCY_TOKEN environment variable is not set. Please set it to run visual tests.'
+      'PERCY_TOKEN environment variable is not set. Please set it to run visual tests.',
     );
   }
 };
@@ -96,10 +96,8 @@ module.exports = async () => {
       moduleFileExtensions: ['js', 'json', 'vue'],
       testNamePattern: '\\[Visual\\]',
       moduleNameMapper: {
-        '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|css)$': path.resolve(
-          __dirname,
-          './fileMock.js'
-        ),
+        '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|css)$':
+          path.resolve(__dirname, './fileMock.js'),
       },
       transform: {
         '^.+\\.js$': require.resolve('babel-jest'),
