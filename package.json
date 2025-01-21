@@ -28,7 +28,6 @@
     "lib"
   ],
   "dependencies": {
-    "@vue/composition-api": "1.7.2",
     "aphrodite": "https://github.com/learningequality/aphrodite/",
     "autosize": "3.0.21",
     "color": "3.2.1",
