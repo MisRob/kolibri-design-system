@@ -7,6 +7,137 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#907]
+  - **Description:** Skip sync projects job if the owner is not LearningEquality
+  - **Products impact:**  -.
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/906.
+  - **Components:** -.
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -.
+
+[#907]: https://github.com/learningequality/kolibri-design-system/pull/907
+
+
+
+- [#903]
+  - **Description:** Fixes infinite recursive error when KModal request the focus.
+  - **Products impact:** bugfix.
+  - **Addresses:** https://github.com/learningequality/studio/issues/4772, https://github.com/learningequality/kolibri-design-system/issues/228.
+  - **Components:** KModal.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** .
+
+[#903]: https://github.com/learningequality/kolibri-design-system/pull/903
+
+
+
+- [#862]
+  - **Description:** Improves docs mobile responsiveness by adding a menu hamburguer to open docs sidenav on mobile devices.
+  - **Products impact:** bugfix
+  - **Addresses:** N/A
+  - **Components:** KDS Docs: SideNav, Header
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:**
+
+[#862]: https://github.com/learningequality/kolibri-design-system/pull/862
+  - The new toggle functionality allows users to show and hide the side navigation bar, with a close button to close it manually.
+  - The overlay provides a better user experience by dimming the content when the sidebar is open in mobile view.
+  - No breaking changes were introduced, so this update can be safely merged into existing applications.
+
+
+
+- [#904]
+  - **Description:** Transform project numbers to int in the Sync KDS Roadmap Project Statuses workflow.
+  - **Products impact:** -.
+  - **Addresses:** -.
+  - **Components:** -.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -
+
+[#904]: https://github.com/learningequality/kolibri-design-system/pull/904
+
+
+
+- [#882]
+  - **Description:** Adds Adds two workflows to keep KDS Roadmap statuses updated
+  - **Products impact:** none.
+  - **Addresses:** -.
+  - **Components:** -.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -.
+
+[#882]: https://github.com/learningequality/kolibri-design-system/pull/882
+
+
+
+- [#898]
+  - **Description:** Fixes KModal backdrop entrance transition not being smooth.
+  - **Products impact : bugfix .
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/848.
+  - **Components:** KModal
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -.
+
+[#898]: https://github.com/learningequality/kolibri-design-system/pull/898
+
+
+
+- [#823]
+  - **Description:** Bump globby from 6.1.0 to 14.0.2
+  - **Products impact:** Dev Dependency upgrade
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#823]: https://github.com/learningequality/kolibri-design-system/pull/823
+
+
+
+- [#877]
+  - **Description:** Teleport KSelect dropdown to the Overlay layer using Popper.
+  - **Products impact:** bugfix.
+  - **Addresses:**https://github.com/learningequality/kolibri-design-system/issues/324, https://github.com/learningequality/kolibri-design-system/issues/690.
+  - **Components:** KSelect.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -.
+
+[#877]: https://github.com/learningequality/kolibri-design-system/pull/877
+
+- [#877]
+  - **Description:** Removes internal KModal calculations to modify its content height if it had a KSelect inside.
+  - **Products impact:** bugfix.
+  - **Addresses:**https://github.com/learningequality/kolibri-design-system/issues/324.
+  - **Components:** KModal.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -.
+
+[#877]: https://github.com/learningequality/kolibri-design-system/pull/877
+
+
+
+- [#879]
+  - **Description:** Adds logic to mount overlay layer if it needed when we call getOverlayEl.
+  - **Products impact:** bugfix.
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/878.
+  - **Components:** useKOverlay.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -.
+
+[#879]: https://github.com/learningequality/kolibri-design-system/pull/879
+
+
+
 - [#893]
   - **Description:** Bump kds version to 5.0.0-rc12.
   - **Products impact:** -.
