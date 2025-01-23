@@ -1,5 +1,5 @@
 const path = require('node:path');
-const http = require('http');
+const http = require('node:http');
 const puppeteer = require('puppeteer');
 
 /* eslint-disable no-console */
