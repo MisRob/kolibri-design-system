@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#870]
+  - **Description:** remove text truncation for the download button
+  - **Products impact:** Choose from - none
+  - **Addresses:** https://github.com/learningequality/kolibri/issues/5557
+  - **Components:** KDropdownMenu,UiMenu
+  - **Breaking:** no
+  - **Impacts a11y:** yes
+  - **Guidance:** -
+
+[#870]: https://github.com/learningequality/kolibri-design-system/pull/870
+
+
+
 - [#907]
   - **Description:** Skip sync projects job if the owner is not LearningEquality
   - **Products impact:**  -.
