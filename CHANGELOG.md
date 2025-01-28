@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#804]
+  - **Description:** Refactored `handleKeydown` method into smaller, modular methods for handling different key events. Ensured that the `Tab` key mimics the functionality of the `ArrowRight` key, and the `Shift+Tab` key mimics the functionality of the `ArrowLeft` key. \
+  - **Products impact:** none
+  - **Addresses:** #795
+  - **Components:** `KTable `
+  - **Breaking:** no
+  - **Impacts a11y:** yes
+  - **Guidance:** No special guidance required for consumers.
+
+[#804]: https://github.com/learningequality/kolibri-design-system/pull/804
+
+
+
 - [#870]
   - **Description:** remove text truncation for the download button
   - **Products impact:** Choose from - none
