@@ -1,5 +1,44 @@
 const GithubAPI = require('./GithubAPI');
 
+async function generateComment(percyUrl) {
+  return `
+### Percy Visual Test Results
+
+**Percy Dashboard:** [View Detailed Report](${percyUrl})
+
+**Environment:**
+- **Node.js Version:** 18.x
+- **OS:** Ubuntu-latest
+
+**Instructions for Reviewers:**
+- Click on the [Percy Dashboard](${percyUrl}) link to view detailed visual diffs.
+- Review the visual changes highlighted in the report.
+- Approve or request changes based on the visual differences.
+`;
+}
+
+async function findComment(github, context, issue_number) {
+  let comment;
+  let page = 1
+  while (!comment) {
+    const request = await github.rest.issues.listComments({
+      issue_number,
+      owner: context.repo.owner,
+      repo: context.repo.repo,
+      page,
+    })
+    const comments = request.data
+    if (!comments.length) {
+      return;
+    }
+    comment = comments.find(c => c.body && c.body.includes('### Percy Visual Test Results'));
+    if (comment) {
+      return comment.id.toString()
+    }
+    page += 1;
+  }
+}
+
 /**
  * Will synchronize the KDS Roadmap project statuses synced
  * with the Iteration backlog project items statuses. So if an issue belongs to
@@ -199,6 +238,8 @@ const updateReleasedItemsStatuses = async ({context, github, projectNumber}) => 
 
 
 module.exports = {
+  findComment,
+  generateComment,
   synchronizeProjectsStatuses,
   updateReleasedItemsStatuses,
 };
