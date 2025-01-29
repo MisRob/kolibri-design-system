@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#901]
+  - **Description:** Integrates visual testing setup to KDS.
+  - **Products impact:** -
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#901]: https://github.com/learningequality/kolibri-design-system/pull/901
+
+
+
 - [#804]
   - **Description:** Refactored `handleKeydown` method into smaller, modular methods for handling different key events. Ensured that the `Tab` key mimics the functionality of the `ArrowRight` key, and the `Shift+Tab` key mimics the functionality of the `ArrowLeft` key. \
   - **Products impact:** none
