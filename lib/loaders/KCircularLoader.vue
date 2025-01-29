@@ -276,8 +276,9 @@
 
   .ui-progress-circular--transition-fade-enter-active,
   .ui-progress-circular--transition-fade-leave-active {
-    transition: opacity 0.3s ease;
-    transform: 0.3s ease;
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease;
   }
 
   .ui-progress-circular--transition-fade-enter,
