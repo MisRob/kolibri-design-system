@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#916]
+  - **Description:** Fixes the no usable sandbox error observed in visual test workflow after merging of visual testing PR.
+  - **Products impact:** bugfix
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#916]: https://github.com/learningequality/kolibri-design-system/pull/916
+
+
+
 - [#901]
   - **Description:** Integrates visual testing setup to KDS.
   - **Products impact:** -
