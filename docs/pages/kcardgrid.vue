@@ -968,12 +968,10 @@
 
   import useKResponsiveWindow from '../../lib/composables/useKResponsiveWindow';
   import DocsKCard from '../pages-components/DocsKCard';
-  import DocsExample from '../common/DocsExample';
 
   export default {
     components: {
       DocsKCard,
-      DocsExample,
     },
     setup() {
       const { windowBreakpoint } = useKResponsiveWindow();
