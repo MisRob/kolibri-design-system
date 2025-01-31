@@ -5,16 +5,6 @@ Changelog is rather internal in nature. See release notes for the public overvie
 ## Upcoming version 5.x.x (`develop` branch)
 
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
-- [#836]
-  - **Description:** Implemented `DocsExample` component with toggle functionality for switching between an example and its code snippet.
-  - **Products impact:** Feature enhancement for documentation UI.
-  - **Addresses:** -#826
-  - **Components:** `DocsExample`, `KIconButton`
-  - **Breaking:** no
-  - **Impacts a11y:** no
-  - **Guidance:** Use `DocsExample` to streamline example and code display in documentation.
-
-[#836]: https://github.com/learningequality/kolibri-design-system/pull/836
 
 
 - [#916]
@@ -295,7 +285,7 @@ Changelog is rather internal in nature. See release notes for the public overvie
   - **Description:** Revert regression in KLogo display
   - **Products impact:** bugfix
   - **Addresses:** -
-  - **Components:** KCard
+  - **Components:** KLogo
   - **Breaking:** no
   - **Impacts a11y:** no
   - **Guidance:** -
@@ -1296,7 +1286,7 @@ Changelog is rather internal in nature. See release notes for the public overvie
 [#741]: https://github.com/learningequality/kolibri-design-system/pull/751
 
 - [#650]
-  - **Description:** Add `KRadioButtonGroup` component to fix keyboard navigation in radio button groups in Firefox
+  - **Description:** Add `KRadioButtonGroup` component to fix keyboard navigation in radio button groups in Firefox 
   - **Products impact:** New API
   - **Addresses:** https://github.com/learningequality/kolibri/issues/10491
   - **Components:** `KRadioButtonGroup`
@@ -1354,9 +1344,9 @@ Changelog is rather internal in nature. See release notes for the public overvie
 
 - [705]
   - **Description:**  Update`KCard`  updates: Adds 'preserveAboveTitle`, `preserveBelowTitle`, `preserveFooter` prop for flexible  slot management.
-  - **Products impact:**  Card updates
+  - **Products impact:**  Card updates 
   - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/702
-  - **Components:** `KCard`
+  - **Components:** `KCard` 
   - **Breaking:** N0
   - **Impacts a11y:** No
   - **Guidance:**
@@ -1386,7 +1376,7 @@ Changelog is rather internal in nature. See release notes for the public overvie
 [#718]: https://github.com/learningequality/kolibri-design-system/pull/718
 
 - [#687]
-  - **Description:** Adds logic that inserts ARIA live assertive and polite regions to an application's document body during KDS initialization and documents this on the new "Installation" page. Relatedly adds `useKLiveRegion` composable with public methods for updating the live regions with assertive and polite messages.
+  - **Description:** Adds logic that inserts ARIA live assertive and polite regions to an application's document body during KDS initialization and documents this on the new "Installation" page. Relatedly adds `useKLiveRegion` composable with public methods for updating the live regions with assertive and polite messages. 
   - **Products impact:** new API
   - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/668
   - **Components:** `useKLiveRegion`
@@ -1397,10 +1387,10 @@ Changelog is rather internal in nature. See release notes for the public overvie
 [#687]: https://github.com/learningequality/kolibri-design-system/pull/687
 
 - [#688]
-  - **Description:**  Update`KCard` styling
-  - **Products impact:**  Card updates
-  - **Addresses:**
-  - **Components:** `KCard`
+  - **Description:**  Update`KCard` styling 
+  - **Products impact:**  Card updates 
+  - **Addresses:** 
+  - **Components:** `KCard` 
   - **Breaking:** N0
   - **Impacts a11y:** No
   - **Guidance:**
@@ -1409,7 +1399,7 @@ Changelog is rather internal in nature. See release notes for the public overvie
 
 - [#707]
   - **Description:** Card Validations
-  - **Products impact:**
+  - **Products impact:**  
   - **Addresses:** [#695](https://github.com/learningequality/kolibri-design-system/issues/695)
   - **Components:** `KCard`
   - **Breaking:** No
@@ -1419,10 +1409,10 @@ Changelog is rather internal in nature. See release notes for the public overvie
 [#707]: https://github.com/learningequality/kolibri-design-system/pull/707
 
 - [#706]
-  - **Description:** Add new alignment options to `KCard`
-  - **Products impact:**  new alignment
+  - **Description:** Add new alignment options to `KCard` 
+  - **Products impact:**  new alignment 
   - **Addresses:** [#701](https://github.com/learningequality/kolibri-design-system/issues/701)
-  - **Components:** `KCard`
+  - **Components:** `KCard` 
   - **Breaking:** N0
   - **Impacts a11y:** No
   - **Guidance:**
@@ -1431,10 +1421,10 @@ Changelog is rather internal in nature. See release notes for the public overvie
 
 
 - [#709]
-  - **Description:**  Update spaces to the latest design`KCard`
-  - **Products impact:**  Card updates
+  - **Description:**  Update spaces to the latest design`KCard` 
+  - **Products impact:**  Card updates 
   - **Addresses:** [#704](https://github.com/learningequality/kolibri-design-system/issues/704)
-  - **Components:** `KCard`
+  - **Components:** `KCard` 
   - **Breaking:** N0
   - **Impacts a11y:** No
   - **Guidance:**
@@ -1628,7 +1618,7 @@ Changelog is rather internal in nature. See release notes for the public overvie
   - **Components:** KModal.
   - **Breaking:** no
   - **Impacts a11y:** no
-  - **Guidance:**
+  - **Guidance:** 
 
 - [#680]
   - **Description:** Fixes the calculation of overflowed items when changes in the size of the list item slots occur.
@@ -1637,7 +1627,7 @@ Changelog is rather internal in nature. See release notes for the public overvie
   - **Components:** KListWithOverflow.
   - **Breaking:** no
   - **Impacts a11y:** no
-  - **Guidance:**
+  - **Guidance:** 
 
 [#680]: https://github.com/learningequality/kolibri-design-system/pull/680
 
