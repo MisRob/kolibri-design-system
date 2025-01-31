@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#873]
+  - **Description:**  Implemented `DocsExample` component with toggle functionality for switching between an example and its code snippet in the KDS documentation.
+  - **Products impact:** none
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/826
+  - **Components:** -
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -
+
+[#873]: https://github.com/learningequality/kolibri-design-system/pull/873
+
+
+
 - [#916]
   - **Description:** Fixes the no usable sandbox error observed in visual test workflow after merging of visual testing PR.
   - **Products impact:** bugfix
