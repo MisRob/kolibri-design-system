@@ -1,7 +1,10 @@
 <template>
 
   <div class="docs-example">
-    <div class="code-toggle-button">
+    <div
+      class="code-toggle-button"
+      :style="toggleButtonStyle"
+    >
       <KIconButton
         appearance="raised-button"
         :icon="isCodeVisible ? 'chevronUp' : 'codeToggle'"
@@ -10,39 +13,55 @@
       />
     </div>
 
-    <div v-show="isCodeVisible">
-      <!-- Template Tag -->
-      <div v-if="$slots.html">
-        <slot name="html"></slot>
-      </div>
-      <DocsShowCode
-        v-else-if="codeBlocks.html"
-        language="html"
+    <!-- Code examples -->
+    <div v-if="presentTabs.length && isCodeVisible">
+      <KTabs
+        :tabs="presentTabs"
+        :tabsId="exampleId"
+        ariaLabel="Language blocks for the Vue component"
       >
-        {{ codeBlocks.html }}
-      </DocsShowCode>
-
-      <!-- Script Tag -->
-      <div v-if="$slots.javascript || codeBlocks.javascript">
-        <slot name="javascript">
-          <DocsShowCode language="javascript">
-            {{ codeBlocks.javascript }}
+        <!-- Template -->
+        <template #template>
+          <div v-if="$slots.html">
+            <slot name="html"></slot>
+          </div>
+          <DocsShowCode
+            v-else-if="codeBlocks.html"
+            language="html"
+          >
+            {{ codeBlocks.html }}
           </DocsShowCode>
-        </slot>
-      </div>
+        </template>
 
-      <!-- Style Tag -->
-      <div v-if="$slots.scss || codeBlocks.scss">
-        <slot name="scss">
-          <DocsShowCode language="scss">
-            {{ codeBlocks.scss }}
-          </DocsShowCode>
-        </slot>
-      </div>
+        <!-- Script -->
+        <template #script>
+          <div v-if="$slots.javascript || codeBlocks.javascript">
+            <slot name="javascript">
+              <DocsShowCode language="javascript">
+                {{ codeBlocks.javascript }}
+              </DocsShowCode>
+            </slot>
+          </div>
+        </template>
+
+        <!-- Style -->
+        <template #style>
+          <div v-if="$slots.scss || codeBlocks.scss">
+            <slot name="scss">
+              <DocsShowCode language="scss">
+                {{ codeBlocks.scss }}
+              </DocsShowCode>
+            </slot>
+          </div>
+        </template>
+      </KTabs>
     </div>
 
     <!-- Rendering the component itself -->
-    <div v-if="$slots.default">
+    <div v-if="!isLoaded">
+      <KLoader />
+    </div>
+    <div v-else-if="$slots.default">
       <slot></slot>
     </div>
     <div v-else-if="loadedComponent">
@@ -69,18 +88,63 @@
         required: false,
         default: null,
       },
+      /*
+       * Unique identifier for the example. This must be unique within
+       * the scope of the documentation page across all the DocsExample components.
+       * @type {String}
+       */
+      exampleId: {
+        type: String,
+        required: true,
+      },
     },
     data() {
       return {
         isCodeVisible: false,
+        isLoaded: false,
         loadedComponent: null,
         codeBlocks: {},
       };
     },
+    computed: {
+      presentTabs() {
+        const tabList = [];
+        if (this.$slots.html || this.codeBlocks.html) {
+          tabList.push({
+            id: 'template',
+            label: 'Template',
+          });
+        }
+
+        if (this.$slots.javascript || this.codeBlocks.javascript) {
+          tabList.push({
+            id: 'script',
+            label: 'Script',
+          });
+        }
+
+        if (this.$slots.scss || this.codeBlocks.scss) {
+          tabList.push({
+            id: 'style',
+            label: 'Style',
+          });
+        }
+
+        return tabList;
+      },
+      toggleButtonStyle() {
+        return {
+          marginBottom: this.isCodeVisible ? '0' : '12px',
+        };
+      },
+    },
     created() {
       if (this.loadExample) {
-        this.loadComponentCode();
-        this.loadComponent();
+        Promise.all([this.loadComponentCode(), this.loadComponent()]).then(() => {
+          this.isLoaded = true;
+        });
+      } else {
+        this.loaded = true;
       }
     },
     methods: {
@@ -172,7 +236,6 @@
   .code-toggle-button {
     display: flex;
     justify-content: flex-end;
-    margin-bottom: 16px;
   }
 
 </style>

@@ -30,7 +30,10 @@
         functionality, as a simple table.
       </p>
 
-      <DocsExample loadExample="KTable/Base.vue" />
+      <DocsExample
+        loadExample="KTable/Base.vue"
+        exampleId="base"
+      />
 
       <!-- Frontend Sorting Example-->
       <h3>Table with sorting</h3>
@@ -46,7 +49,10 @@
         of ascending, descending, and unsorted.
       </p>
 
-      <DocsExample loadExample="KTable/Sortable.vue" />
+      <DocsExample
+        loadExample="KTable/Sortable.vue"
+        exampleId="sortable"
+      />
 
       <!--Table showing use of slots-->
       <h3>Table showing use of slots</h3>
@@ -56,7 +62,10 @@
         the table header and cell content respectively.
       </p>
 
-      <DocsExample loadExample="KTable/Slots.vue" />
+      <DocsExample
+        loadExample="KTable/Slots.vue"
+        exampleId="slots"
+      />
 
       <!--Table with custom column widths-->
       <h3>Table with custom column widths</h3>
@@ -68,7 +77,10 @@
         shrink.
       </p>
 
-      <DocsExample loadExample="KTable/CustomWidth.vue" />
+      <DocsExample
+        loadExample="KTable/CustomWidth.vue"
+        exampleId="custom-width"
+      />
 
       <!--Table with default sort-->
       <h3>Table with default sort</h3>
@@ -90,7 +102,10 @@
         <code>disableBuiltinSorting</code> attribute is not set to <code>true</code>.
       </p>
 
-      <DocsExample loadExample="KTable/DefaultSort.vue" />
+      <DocsExample
+        loadExample="KTable/DefaultSort.vue"
+        exampleId="default-sort"
+      />
 
       <!-- Disable built-in sorting -->
       <h3>Disable built-in sorting</h3>
@@ -111,7 +126,10 @@
         notify the parent component to handle the sorting logic.
       </p>
 
-      <DocsExample loadExample="KTable/DisableBuiltinSort.vue" />
+      <DocsExample
+        loadExample="KTable/DisableBuiltinSort.vue"
+        exampleId="disable-builtin-sort"
+      />
     </DocsPageSection>
   </DocsPageTemplate>
 

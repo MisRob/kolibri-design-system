@@ -163,7 +163,7 @@
         </DocsTable>
       </DocsToggleContent>
 
-      <DocsExample>
+      <DocsExample exampleId="1-1-1-grid">
         <DocsShow block>
           <KCardGrid
             layout="1-1-1"
