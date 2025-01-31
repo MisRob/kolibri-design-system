@@ -1,8 +1,8 @@
 <template>
 
-  <a :href="'/' + component.toLowerCase()">
+  <router-link :to="computedLink">
     <code>{{ component }}</code>
-  </a>
+  </router-link>
 
 </template>
 
@@ -15,6 +15,15 @@
       component: {
         type: String,
         required: true,
+      },
+    },
+    computed: {
+      computedLink() {
+        // Preserve query parameters in the link
+        return {
+          path: '/' + this.component.toLowerCase(),
+          query: { ...this.$route.query },
+        };
       },
     },
   };

@@ -8,6 +8,11 @@
     >
       <template if="loaded">
         <h1 class="header">
+          <KIconButton
+            icon="close"
+            class="close-icon"
+            @click="closeSideNav"
+          />
           <KLogo
             altText="Design System"
             size="60"
@@ -77,28 +82,51 @@
         return toc;
       },
     },
+
     watch: {
       filterText(newValue) {
         if (window) {
-          window.sessionStorage.setItem('nav-filter', newValue);
+          //Clear the filter query when filtertext is empty
+          if (!newValue) {
+            this.$router.push({ path: this.$route.path, query: {} });
+          } else {
+            //else ,update the filter query param
+            this.$router.push({
+              path: this.$route.path,
+              query: { ...this.$route.query, filter: newValue },
+            });
+          }
         }
       },
     },
     mounted() {
       if (window) {
-        const filterText = window.sessionStorage.getItem('nav-filter');
-        if (filterText) {
-          this.filterText = filterText;
+        const { filter } = this.$route.query;
+        // Set filterText from the query parameter if it exists
+        if (filter) {
+          this.filterText = filter;
         }
         this.$refs.links.scrollTop = window.sessionStorage.getItem('nav-scroll');
+        // Restoring filter state when a user navigates back
+        window.addEventListener('popstate', event => {
+          if (event.state && 'filterText' in event.state) {
+            this.filterText = event.state.filterText;
+          } else {
+            this.filterText = ''; // Reset if no filterText is in state
+          }
+        });
       }
-      // don't show the nav until the state is set
+
+      //  Don't show the nav until the state is set
       this.loaded = true;
     },
     methods: {
       throttleHandleScroll: throttle(function handleScroll() {
         window.sessionStorage.setItem('nav-scroll', this.$refs.links.scrollTop);
       }, 100),
+      closeSideNav() {
+        this.$emit('update-side-nav', false);
+      },
     },
   };
 
@@ -146,6 +174,7 @@
     left: 0;
     z-index: 100;
     width: $nav-width;
+    transition: transform 0.3s ease;
   }
 
   .sidenav {
@@ -163,6 +192,16 @@
 
   .nav-links {
     margin-top: 16px;
+  }
+
+  .close-icon {
+    display: none !important;
+  }
+
+  @media (max-width: 768px) {
+    .close-icon {
+      display: block !important;
+    }
   }
 
 </style>
