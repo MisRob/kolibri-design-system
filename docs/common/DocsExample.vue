@@ -11,18 +11,42 @@
     </div>
 
     <div v-show="isCodeVisible">
+      <!-- Template Tag -->
+      <div v-if="$slots.html">
+        <slot name="html"></slot>
+      </div>
       <DocsShowCode
-        v-for="(block, index) in codeBlocks"
-        :key="index"
-        :language="block.language"
+        v-else-if="codeBlocks.html"
+        language="html"
       >
-        {{ block.content }}
+        {{ codeBlocks.html }}
       </DocsShowCode>
+
+      <!-- Script Tag -->
+      <div v-if="$slots.javascript || codeBlocks.javascript">
+        <slot name="javascript">
+          <DocsShowCode language="javascript">
+            {{ codeBlocks.javascript }}
+          </DocsShowCode>
+        </slot>
+      </div>
+
+      <!-- Style Tag -->
+      <div v-if="$slots.scss || codeBlocks.scss">
+        <slot name="scss">
+          <DocsShowCode language="scss">
+            {{ codeBlocks.scss }}
+          </DocsShowCode>
+        </slot>
+      </div>
     </div>
 
-    <div>
-      <!-- @slot Code example -->
+    <!-- Rendering the component itself -->
+    <div v-if="$slots.default">
       <slot></slot>
+    </div>
+    <div v-else-if="loadedComponent">
+      <component :is="loadedComponent" />
     </div>
   </div>
 
@@ -50,55 +74,13 @@
       return {
         isCodeVisible: false,
         loadedComponent: null,
-        loadedComponentCode: {},
+        codeBlocks: {},
       };
-    },
-    computed: {
-      /*
-       * Returns the code blocks for the template, script, and style of the loaded component
-       * @returns {Array} - An array of code blocks
-       */
-      codeBlocks() {
-        const {
-          html: htmlExampleCode,
-          js: jsExampleCode,
-          scss: scssExampleCode,
-        } = this.loadedComponentCode;
-        const codeBlocks = [];
-
-        const htmlBlockContent = this.$slots.html || htmlExampleCode;
-        if (htmlBlockContent) {
-          codeBlocks.push({
-            language: 'html',
-            content: htmlBlockContent,
-            title: 'Template',
-          });
-        }
-
-        const jsBlockContent = this.$slots.js || jsExampleCode;
-        if (jsBlockContent) {
-          codeBlocks.push({
-            language: 'javascript',
-            content: jsBlockContent,
-            title: 'Script',
-          });
-        }
-
-        const scssBlockContent = this.$slots.scss || scssExampleCode;
-        if (scssBlockContent) {
-          codeBlocks.push({
-            language: 'scss',
-            content: scssBlockContent,
-            title: 'Style',
-          });
-        }
-
-        return codeBlocks;
-      },
     },
     created() {
       if (this.loadExample) {
-        this.loadComponentData();
+        this.loadComponentCode();
+        this.loadComponent();
       }
     },
     methods: {
@@ -106,18 +88,27 @@
         this.isCodeVisible = !this.isCodeVisible;
       },
       /*
-       * Loads the component file as raw source code and the component itself
-       * and sets the loaded component and code to the data properties
+       * Loads the component file as raw source code and then parses
+       * the same for template, script and style tag content
        */
-      async loadComponentData() {
+      async loadComponentCode() {
         try {
           const content = await import(`!!raw-loader!@/examples/${this.loadExample}?raw`);
-          this.loadedComponentCode = this.parseTemplate(content.default);
-
+          this.codeBlocks = this.parseTemplate(content.default);
+        } catch (error) {
+          throw new Error(`Failed to load component code: ${error}`);
+        }
+      },
+      /*
+       * Loads the component file as a Vue component
+       * and sets the loaded component to the data properties
+       */
+      async loadComponent() {
+        try {
           const component = await import(`../examples/${this.loadExample}`);
           this.loadedComponent = component.default;
         } catch (error) {
-          throw new Error(`Failed to load component content: ${error}`);
+          throw new Error(`Failed to load component: ${error}`);
         }
       },
       /*
@@ -154,7 +145,7 @@
 
         const script = this.applyRegex(content, 'script');
         if (script) {
-          codeBlocks.js = script;
+          codeBlocks.javascript = script;
         }
 
         const style = this.applyRegex(content, 'style');
