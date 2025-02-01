@@ -139,7 +139,7 @@ You can also provide a `loadExample` prop to the same, which is a file path rela
 3. Providing only some slots:
 
 ```vue
-<DocsExample exampleId="simple-button">
+<DocsExample exampleId="simple-button" loadExample="KButton/Base.vue">  
   <KButton>Click me</KButton>
   
   <template #html>
