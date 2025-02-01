@@ -58,15 +58,14 @@
     </div>
 
     <!-- Rendering the component itself -->
-    <div v-if="!isLoaded">
-      <KLoader />
-    </div>
-    <div v-else-if="$slots.default">
-      <slot></slot>
-    </div>
-    <div v-else-if="loadedComponent">
-      <component :is="loadedComponent" />
-    </div>
+    <KTransition kind="component-fade-out-in">
+      <KCircularLoader v-if="show(exampleId, !isLoaded, MINIMUM_LOADER_TIME)" />
+      <div v-else>
+        <slot>
+          <component :is="loadedComponent" />
+        </slot>
+      </div>
+    </KTransition>
   </div>
 
 </template>
@@ -74,14 +73,20 @@
 
 <script>
 
+  import useKShow from '../../lib/composables/useKShow';
+
   export default {
     name: 'DocsExample',
+    setup() {
+      const { show } = useKShow();
+      return { show, MINIMUM_LOADER_TIME: 300 };
+    },
     props: {
       /**
        * Path to the Vue component file to be displayed as example
        * The path should be relative to the 'docs/examples/' directory
        * @type {String}
-       * @example 'KTable/Base.vue'
+       * @example 'KComponent/Variant.vue'
        */
       loadExample: {
         type: String,
@@ -144,7 +149,7 @@
           this.isLoaded = true;
         });
       } else {
-        this.loaded = true;
+        this.isLoaded = true;
       }
     },
     methods: {
