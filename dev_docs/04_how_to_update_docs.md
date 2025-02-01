@@ -152,4 +152,4 @@ You can also provide a `loadExample` prop to the same, which is a file path rela
 </DocsExample>
 ```
 
-</summary>
+</details>
