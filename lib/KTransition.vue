@@ -69,17 +69,17 @@
 
   /********* component-vertical-slide **********/
   .component-vertical-slide-enter-active {
-    transition: all 0.3s ease-out;
+    transition: all 0.3s ease;
   }
 
   .component-vertical-slide-leave-active {
-    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+    transition: all 0.3s ease;
   }
 
   .component-vertical-slide-enter,
   .component-vertical-slide-leave-to {
     opacity: 0;
-    transform: translateY(-100%);
+    transform: translateY(-50%);
   }
 
 </style>

@@ -21,31 +21,42 @@
     </div>
 
     <!-- Code examples -->
-    <div v-if="presentTabs.length && isCodeVisible">
-      <KTabs
-        :tabs="presentTabs.map(t => ({ id: t.id, label: t.label }))"
-        :tabsId="exampleId"
-        ariaLabel="Language blocks for the Vue component"
+    <KTransition kind="component-vertical-slide-out-in">
+      <div
+        v-if="presentTabs.length && isCodeVisible"
+        key="code-blocks"
       >
-        <template
-          v-for="tab in presentTabs"
-          #[tab.id]
+        <KTabs
+          :tabs="presentTabs.map(t => ({ id: t.id, label: t.label }))"
+          :tabsId="exampleId"
+          ariaLabel="Language blocks for the Vue component"
         >
-          <div :key="tab.id">
-            <slot :name="tab.language">
-              <DocsShowCode :language="tab.language">
-                {{ tab.content }}
-              </DocsShowCode>
-            </slot>
-          </div>
-        </template>
-      </KTabs>
-    </div>
+          <template
+            v-for="tab in presentTabs"
+            #[tab.id]
+          >
+            <div :key="tab.id">
+              <slot :name="tab.language">
+                <DocsShowCode :language="tab.language">
+                  {{ tab.content }}
+                </DocsShowCode>
+              </slot>
+            </div>
+          </template>
+        </KTabs>
+      </div>
+    </KTransition>
 
     <!-- Rendering the component itself -->
     <KTransition kind="component-fade-out-in">
-      <KCircularLoader v-if="show(exampleId, !isLoaded, MINIMUM_LOADER_TIME)" />
-      <div v-else>
+      <KCircularLoader
+        v-if="show(exampleId, !isLoaded, MINIMUM_LOADER_TIME)"
+        key="loader"
+      />
+      <div
+        v-else
+        key="loaded-component"
+      >
         <slot>
           <component :is="loadedComponent" />
         </slot>
