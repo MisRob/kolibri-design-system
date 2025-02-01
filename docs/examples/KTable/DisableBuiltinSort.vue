@@ -34,7 +34,6 @@
     },
     methods: {
       changeSortHandler(index, sortOrder) {
-        // eslint-disable-next-line no-console
         console.log(`changeSort event emitted with index: ${index} and sortOrder: ${sortOrder}`);
       },
     },
