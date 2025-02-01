@@ -23,7 +23,7 @@
     <!-- Code examples -->
     <div v-if="presentTabs.length && isCodeVisible">
       <KTabs
-        :tabs="presentTabs"
+        :tabs="presentTabs.map(t => ({ id: t.id, label: t.label }))"
         :tabsId="exampleId"
         ariaLabel="Language blocks for the Vue component"
       >
