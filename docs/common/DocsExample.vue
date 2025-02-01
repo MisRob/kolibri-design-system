@@ -2,9 +2,16 @@
 
   <div class="docs-example">
     <div
-      class="code-toggle-button"
-      :style="toggleButtonStyle"
+      class="code-button"
+      :style="codeButtonStyle"
     >
+      <KIconButton
+        v-if="loadExample"
+        appearance="raised-button"
+        icon="github"
+        tooltip="View the complete code example on GitHub"
+        @click="redirectToGitHub"
+      />
       <KIconButton
         appearance="raised-button"
         :icon="isCodeVisible ? 'chevronUp' : 'codeToggle'"
@@ -137,7 +144,7 @@
 
         return tabList;
       },
-      toggleButtonStyle() {
+      codeButtonStyle() {
         return {
           marginBottom: this.isCodeVisible ? '0' : '12px',
         };
@@ -155,6 +162,13 @@
     methods: {
       toggleCodeVisibility() {
         this.isCodeVisible = !this.isCodeVisible;
+      },
+      /*
+       * Redirects the user to the GitHub page for the example
+       */
+      redirectToGitHub() {
+        const githubSampleUrl = `https://github.com/learningequality/kolibri-design-system/blob/develop/docs/examples/${this.loadExample}`;
+        window.open(githubSampleUrl, '_blank');
       },
       /*
        * Loads the component file as raw source code and then parses
@@ -238,8 +252,9 @@
     margin-bottom: 24px;
   }
 
-  .code-toggle-button {
+  .code-button {
     display: flex;
+    gap: 10px;
     justify-content: flex-end;
   }
 
