@@ -68,10 +68,7 @@
   }
 
   /********* component-vertical-slide **********/
-  .component-vertical-slide-enter-active {
-    transition: all 0.3s ease;
-  }
-
+  .component-vertical-slide-enter-active,
   .component-vertical-slide-leave-active {
     transition: all 0.3s ease;
   }

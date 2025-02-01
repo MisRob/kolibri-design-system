@@ -30,6 +30,11 @@
           :tabs="presentTabs.map(t => ({ id: t.id, label: t.label }))"
           :tabsId="exampleId"
           ariaLabel="Language blocks for the Vue component"
+          :appearanceOverrides="{
+            textTransform: 'none',
+          }"
+          :colorActive="DOCS_LINK_COLOR"
+          :hoverBackgroundColor="$themePalette.green.v_100"
         >
           <template
             v-for="tab in presentTabs"
@@ -75,7 +80,11 @@
     name: 'DocsExample',
     setup() {
       const { show } = useKShow();
-      return { show, MINIMUM_LOADER_TIME: 300 };
+      return {
+        show,
+        MINIMUM_LOADER_TIME: 300,
+        DOCS_LINK_COLOR: '#368d74',
+      };
     },
     props: {
       /**
