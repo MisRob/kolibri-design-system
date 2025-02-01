@@ -27,36 +27,14 @@
         :tabsId="exampleId"
         ariaLabel="Language blocks for the Vue component"
       >
-        <!-- Template -->
-        <template #template>
-          <div v-if="$slots.html">
-            <slot name="html"></slot>
-          </div>
-          <DocsShowCode
-            v-else-if="codeBlocks.html"
-            language="html"
-          >
-            {{ codeBlocks.html }}
-          </DocsShowCode>
-        </template>
-
-        <!-- Script -->
-        <template #script>
-          <div v-if="$slots.javascript || codeBlocks.javascript">
-            <slot name="javascript">
-              <DocsShowCode language="javascript">
-                {{ codeBlocks.javascript }}
-              </DocsShowCode>
-            </slot>
-          </div>
-        </template>
-
-        <!-- Style -->
-        <template #style>
-          <div v-if="$slots.scss || codeBlocks.scss">
-            <slot name="scss">
-              <DocsShowCode language="scss">
-                {{ codeBlocks.scss }}
+        <template
+          v-for="tab in presentTabs"
+          #[tab.id]
+        >
+          <div :key="tab.id">
+            <slot :name="tab.language">
+              <DocsShowCode :language="tab.language">
+                {{ tab.content }}
               </DocsShowCode>
             </slot>
           </div>
@@ -113,32 +91,45 @@
     data() {
       return {
         isCodeVisible: false,
+        // Flag to check if the component has been loaded dynamically
         isLoaded: false,
+        // Stores the loaded component
         loadedComponent: null,
-        codeBlocks: {},
+        // Stores the raw content of the component file
+        content: null,
       };
     },
     computed: {
       presentTabs() {
         const tabList = [];
-        if (this.$slots.html || this.codeBlocks.html) {
+
+        const templateContent = this.applyRegex(this.content, 'template');
+        if (this.$slots.html || templateContent) {
           tabList.push({
-            id: 'template',
+            id: 'html-codeblock',
             label: 'Template',
+            content: templateContent,
+            language: 'html',
           });
         }
 
-        if (this.$slots.javascript || this.codeBlocks.javascript) {
+        const scriptContent = this.applyRegex(this.content, 'script');
+        if (this.$slots.javascript || scriptContent) {
           tabList.push({
-            id: 'script',
+            id: 'js-codeblock',
             label: 'Script',
+            content: scriptContent,
+            language: 'javascript',
           });
         }
 
-        if (this.$slots.scss || this.codeBlocks.scss) {
+        const styleContent = this.applyRegex(this.content, 'style');
+        if (this.$slots.scss || styleContent) {
           tabList.push({
-            id: 'style',
+            id: 'scss-codeblock',
             label: 'Style',
+            content: styleContent,
+            language: 'scss',
           });
         }
 
@@ -177,7 +168,7 @@
       async loadComponentCode() {
         try {
           const content = await import(`!!raw-loader!@/examples/${this.loadExample}?raw`);
-          this.codeBlocks = this.parseTemplate(content.default);
+          this.content = content.default;
         } catch (error) {
           throw new Error(`Failed to load component code: ${error}`);
         }
@@ -201,6 +192,10 @@
        * @returns {string | null} - The content between the opening and closing tags
        */
       applyRegex(content, target) {
+        if (!content) {
+          return null;
+        }
+
         const pattern = new RegExp(`(<${target}(\\s[^>]*)?>)([\\w\\W]*)(<\\/${target}>)`, 'g');
         const parsed = pattern.exec(content);
         if (!parsed) {
@@ -208,35 +203,6 @@
         }
         // Extract the content between the first opening and the last closing tags
         return parsed[3].trim();
-      },
-      /*
-       * Parses the content of the component file into separate code blocks for template, script, and style.
-       * @param {string | null} content - The content of the component file
-       * @returns {Object} - An object describing the code blocks
-       */
-      parseTemplate(content) {
-        if (!content) {
-          return {};
-        }
-
-        const codeBlocks = {};
-
-        const template = this.applyRegex(content, 'template');
-        if (template) {
-          codeBlocks.html = template;
-        }
-
-        const script = this.applyRegex(content, 'script');
-        if (script) {
-          codeBlocks.javascript = script;
-        }
-
-        const style = this.applyRegex(content, 'style');
-        if (style) {
-          codeBlocks.scss = style;
-        }
-
-        return codeBlocks;
       },
     },
   };
