@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#922]
+  - **Description:** Fixes playground path in dev docs and gitignore
+  - **Products impact:** internal docs.
+  - **Addresses:** -.
+  - **Components:** -.
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -.
+
+[#922]: https://github.com/learningequality/kolibri-design-system/pull/922
+
+
+
 - [#873]
   - **Description:**  Implemented `DocsExample` component with toggle functionality for switching between an example and its code snippet in the KDS documentation.
   - **Products impact:** none
