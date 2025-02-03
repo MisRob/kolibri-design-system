@@ -19,7 +19,6 @@
       title="Usage"
       anchor="#usage"
     >
-     
       <p>By default, text truncates to one line.</p>
 
       <h3>Customizing the number of lines</h3>
