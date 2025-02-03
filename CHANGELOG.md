@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#923]
+  - **Description:** Fixes glob query in extrac api script.
+  - **Products impact:** bugfix.
+  - **Addresses:** -.
+  - **Components:** Docs.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** .
+
+[#923]: https://github.com/learningequality/kolibri-design-system/pull/923
+
+
+
 - [#922]
   - **Description:** Fixes playground path in dev docs and gitignore
   - **Products impact:** internal docs.
