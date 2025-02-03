@@ -19,15 +19,10 @@
       title="Usage"
       anchor="#usage"
     >
-      <p>
-        Use <code>KTextTruncator</code> to shorten long text while keeping it readable. It limits
-        the text to a specific number of lines and adds an ellipsis (<code>...</code>) when the text
-        overflows.
-      </p>
+     
+      <p>By default, text truncates to one line.</p>
 
-      <p>By default, text truncates to one line if <code>maxLines</code> is not set.</p>
-
-      <h3>Customizing the Number of Lines</h3>
+      <h3>Customizing the number of lines</h3>
       <p>Use <code>maxLines</code> to control the number of lines before truncation.</p>
       <DocsShow>
         <p>
