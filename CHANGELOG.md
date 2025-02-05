@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#919]
+  - **Description:** Additional category icons are now available
+  - **Products impact:** -
+  - **Addresses:** -
+  - **Components:** KIcon
+  - **Breaking:** No
+  - **Impacts a11y:** No
+  - **Guidance:** New icons can now be used
+
+[#919]: https://github.com/learningequality/kolibri-design-system/pull/919
+
+
+
 - [#923]
   - **Description:** Fixes glob query in extrac api script.
   - **Products impact:** bugfix.
