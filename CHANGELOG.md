@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#910]
+  - **Description:** Pinned Node.js (18.20.6) and Yarn (1.22.22) versions using Volta.
+  - **Products impact:** none (internal updates).
+  - **Addresses:** Compatibility issues with Node.js and Yarn versions across contributors' environments.
+  - **Components:** Documentation updates for KDS setup.
+  - **Breaking:** no.
+  - **Impacts a11y:** no.
+  - **Guidance:** Developers need to install Volta if not already installed and ensure they follow the updated setup instructions in the documentation.
+
+[#910]: https://github.com/learningequality/kolibri-design-system/pull/910
+
+
+
 - [#929]
   - **Description:** Bumps KDS version to 5.0.0
   - **Products impact:** -
