@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#932]
+  - **Description:** Fix the action not updating some data in the contributions tracking sheet
+  - **Products impact:** none
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#932]: https://github.com/learningequality/kolibri-design-system/pull/932
+
+
+
 - [#910]
   - **Description:** Pinned Node.js (18.20.6) and Yarn (1.22.22) versions using Volta.
   - **Products impact:** none (internal updates).
