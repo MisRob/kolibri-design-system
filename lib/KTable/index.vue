@@ -424,58 +424,24 @@
 
         switch (key) {
           case 'ArrowUp':
-            if (rowIndex === -1) {
-              nextRowIndex = lastRowIndex;
-            } else {
-              nextRowIndex = rowIndex - 1;
-            }
+            nextRowIndex = rowIndex === -1 ? lastRowIndex : rowIndex - 1;
             break;
           case 'ArrowDown':
-            if (rowIndex === -1) {
-              nextRowIndex = 0;
-            } else if (rowIndex === lastRowIndex) {
-              nextRowIndex = -1;
-            } else {
-              nextRowIndex = rowIndex + 1;
-            }
+            nextRowIndex = rowIndex === -1 ? 0 : rowIndex === lastRowIndex ? -1 : rowIndex + 1;
             break;
           case 'ArrowLeft':
             if (rowIndex === -1) {
-              if (colIndex > 0) {
-                nextColIndex = colIndex - 1;
-              } else {
-                nextColIndex = lastColIndex;
-              }
-              if (colIndex === 0) {
-                nextRowIndex = lastRowIndex;
-              } else {
-                nextRowIndex = -1;
-              }
+              nextColIndex = colIndex > 0 ? colIndex - 1 : lastColIndex;
+              nextRowIndex = colIndex === 0 ? lastRowIndex : -1;
             } else {
-              if (colIndex > 0) {
-                nextColIndex = colIndex - 1;
-              } else {
-                nextColIndex = lastColIndex;
-              }
-              if (colIndex === 0) {
-                if (rowIndex > 0) {
-                  nextRowIndex = rowIndex - 1;
-                } else {
-                  nextRowIndex = -1;
-                }
-              } else {
-                nextRowIndex = rowIndex;
-              }
+              nextColIndex = colIndex > 0 ? colIndex - 1 : lastColIndex;
+              nextRowIndex = colIndex === 0 ? (rowIndex > 0 ? rowIndex - 1 : -1) : rowIndex;
             }
             break;
           case 'ArrowRight':
             if (colIndex === lastColIndex) {
               nextColIndex = 0;
-              if (rowIndex === lastRowIndex) {
-                nextRowIndex = -1;
-              } else {
-                nextRowIndex = rowIndex + 1;
-              }
+              nextRowIndex = rowIndex === lastRowIndex ? -1 : rowIndex + 1;
             } else {
               nextColIndex = colIndex + 1;
             }
@@ -513,7 +479,7 @@
             event.preventDefault();
             return;
           } else {
-            // Move to the next cell
+            // Move to the first focusable element of the next cell
             if (colIndex < totalCols - 1) {
               nextColIndex = colIndex + 1;
             } else if (rowIndex < totalRows - 1) {
@@ -522,14 +488,18 @@
             } else {
               return; // Allow default Tab behavior when reaching the end
             }
+            const nextCell = this.getCell(nextRowIndex, nextColIndex);
+            const nextFocusableElements = this.getFocusableElements(nextCell);
+            const nextCellAndFocusableElements = [nextCell, ...nextFocusableElements];
+            nextCellAndFocusableElements[0].focus();
             this.updateFocusState(nextRowIndex, nextColIndex);
             event.preventDefault();
           }
         } else {
           // Shift+Tab key navigation
-          if (focusedIndex < cellAndFocusableElements.length - 1) {
+          if (focusedIndex > 0) {
             // Move to the previous focusable element within the cell
-            cellAndFocusableElements[focusedIndex + 1].focus();
+            cellAndFocusableElements[focusedIndex - 1].focus();
             event.preventDefault();
             return;
           } else {
@@ -542,22 +512,31 @@
             } else {
               return; // Allow default Shift+Tab behavior when at the beginning
             }
-            this.updateFocusState(nextRowIndex, nextColIndex);
+            const prevCell = this.getCell(nextRowIndex, nextColIndex);
+            const prevFocusableElements = this.getFocusableElements(prevCell);
+            const prevCellAndFocusableElements = [prevCell, ...prevFocusableElements];
+            prevCellAndFocusableElements[prevCellAndFocusableElements.length - 1].focus();
+            this.updateFocusState(nextRowIndex, nextColIndex, false);
             event.preventDefault();
           }
         }
       },
-      updateFocusState(nextRowIndex, nextColIndex) {
+      updateFocusState(nextRowIndex, nextColIndex, shouldFocusCell = true) {
         this.focusedRowIndex = nextRowIndex === -1 ? null : nextRowIndex;
         this.focusedColIndex = nextColIndex;
         this.highlightHeader(nextColIndex);
-        this.focusCell(nextRowIndex, nextColIndex);
+        // Focus the cell only if it is necessary
+        if (shouldFocusCell) {
+          this.focusCell(nextRowIndex, nextColIndex);
+        }
       },
 
       getFocusableElements(cell) {
         if (!cell) return [];
-        const selectors = 'button, a, input, select, textarea';
-        return Array.from(cell.querySelectorAll(selectors));
+        const focusableSelectors = ['button', 'a', 'input', 'select', 'textarea'];
+        return focusableSelectors.flatMap(selector =>
+          Array.from(cell.getElementsByTagName(selector))
+        );
       },
 
       getCell(rowIndex, colIndex) {
