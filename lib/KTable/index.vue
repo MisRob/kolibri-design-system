@@ -535,7 +535,7 @@
         if (!cell) return [];
         const focusableSelectors = ['button', 'a', 'input', 'select', 'textarea'];
         return focusableSelectors.flatMap(selector =>
-          Array.from(cell.getElementsByTagName(selector))
+          Array.from(cell.getElementsByTagName(selector)),
         );
       },
 
