@@ -173,7 +173,7 @@
           return `${baseTooltipMessage} (Not available in local environment)`;
         }
         if (environment.pull_request) {
-          return `${baseTooltipMessage} (Not available for PR(s))`;
+          return `${baseTooltipMessage} (Not available for PRs)`;
         }
         return baseTooltipMessage;
       },
