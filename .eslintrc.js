@@ -25,7 +25,7 @@ esLintConfig.settings['import/resolver'].nuxt = {
   nuxtSrcDir: 'docs',
 };
 
-// Configure Eslint plugin for jest-dom matchers
+// Configure ESLint plugin for jest-dom matchers
 esLintConfig.plugins.push('jest-dom')
 esLintConfig.extends.push("plugin:jest-dom/recommended")
 
