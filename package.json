@@ -86,5 +86,9 @@
   },
   "browserslist": [
     "extends browserslist-config-kolibri"
-  ]
+  ],
+  "volta": {
+    "node": "18.20.6",
+    "yarn": "1.22.22"
+  }
 }
