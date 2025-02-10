@@ -9,7 +9,7 @@
         v-if="loadExample"
         appearance="raised-button"
         icon="github"
-        tooltip="View the complete code example on GitHub"
+        :tooltip="githubTooltip"
         @click="redirectToGitHub"
       />
       <KIconButton
@@ -75,6 +75,7 @@
 <script>
 
   import useKShow from '../../lib/composables/useKShow';
+  import environment from '~/environment';
 
   export default {
     name: 'DocsExample',
@@ -155,10 +156,23 @@
 
         return tabList;
       },
+      /*
+       * Returns the style for the code button
+       */
       codeButtonStyle() {
         return {
           marginBottom: this.isCodeVisible ? '0' : '12px',
         };
+      },
+      /*
+       * Returns the tooltip message for the GitHub icon
+       */
+      githubTooltip() {
+        const baseTooltipMessage = 'View the complete code example on GitHub';
+        if (environment.local) {
+          return `${baseTooltipMessage} (Not available in local environment)`;
+        }
+        return baseTooltipMessage;
       },
     },
     created() {
@@ -178,8 +192,14 @@
        * Redirects the user to the GitHub page for the example
        */
       redirectToGitHub() {
-        const githubSampleUrl = `https://github.com/learningequality/kolibri-design-system/blob/develop/docs/examples/${this.loadExample}`;
-        window.open(githubSampleUrl, '_blank');
+        if (environment.local) {
+          // No need to redirect the user as the example files (might not) exist on the repository
+          return;
+        }
+
+        const baseURL = environment.url;
+        const exampleFileURL = `${baseURL}/docs/examples/${this.loadExample}`;
+        window.open(exampleFileURL, '_blank');
       },
       /*
        * Loads the component file as raw source code and then parses
