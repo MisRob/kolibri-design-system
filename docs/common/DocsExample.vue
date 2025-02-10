@@ -172,6 +172,9 @@
         if (environment.local) {
           return `${baseTooltipMessage} (Not available in local environment)`;
         }
+        if (environment.pull_request) {
+          return `${baseTooltipMessage} (Not available for PR(s))`;
+        }
         return baseTooltipMessage;
       },
     },
@@ -192,13 +195,10 @@
        * Redirects the user to the GitHub page for the example
        */
       redirectToGitHub() {
-        if (environment.local) {
-          // No need to redirect the user as the example files (might not) exist on the repository
+        if (environment.local || environment.pull_request) {
           return;
         }
-
-        const baseURL = environment.url;
-        const exampleFileURL = `${baseURL}/docs/examples/${this.loadExample}`;
+        const exampleFileURL = `${environment.url}/docs/examples/${this.loadExample}`;
         window.open(exampleFileURL, '_blank');
       },
       /*
