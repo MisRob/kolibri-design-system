@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#840]
+  - **Description:** Corrected **Shift+Tab** navigation behavior to follow the expected reverse order of focusable elements within cells.
+  - **Products impact:** bugfix
+  - **Addresses:** #837 #804
+  - **Components:** KTable
+  - **Breaking:** no
+  - **Impacts a11y:** yes
+  - **Guidance:** No special guidance required for consumers.
+
+[#840]: https://github.com/learningequality/kolibri-design-system/pull/840
+
+
+
 - [#932]
   - **Description:** Fix the action not updating some data in the contributions tracking sheet
   - **Products impact:** none
