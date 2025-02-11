@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#856]
+  - **Description:** Adds aria-haspopup and aria-expanded attributes to KButton when used with dropdown menus to improve screen reader feedback
+  - **Products impact:** Anhancement
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/832
+  - **Components:** KButton
+  - **Breaking:** no
+  - **Impacts a11y:** yes
+  - **Guidance:** WNo changes required for existing implementations. The ARIA attributes are automatically added when KButton is used with dropdown menus through the menu slot.
+
+[#856]: https://github.com/learningequality/kolibri-design-system/pull/856
+
+
+
 - [#840]
   - **Description:** Corrected **Shift+Tab** navigation behavior to follow the expected reverse order of focusable elements within cells.
   - **Products impact:** bugfix
