@@ -83,21 +83,25 @@ KDS has a visual testing system that allows you to take snapshots of how KDS Com
                   items: ['Option 1', 'Option 2'],
                 },
               },
-            }); 
+            });
           ```
 
           **Note:** Use `'default'` key for passing default slots, with the HTML content specified using `innerHTML` prop. Checkout [`KButton.spec.js`](../lib/buttons-and-links/__tests__/KButton.spec.js) for reference.
 
-      - **Example involving more complex component structures:** When dealing with more complex component structures, it's recommended to create a dedicated Vue component for visual testing purposes. Add all the use cases in a Vue file and then render the custom component using the `renderComponent` function. 
+      - **Example involving more complex component structures:** When dealing with more complex component structures, it's recommended to create a dedicated Vue component for visual testing purposes. This custom component can be placed in the same directory as the test file, inside a `components` folder. You can then import this component and render it using the `renderComponent` method.
 
           ```javascript
-            await renderComponent('CustomVueComponent');
+            import CustomVueComponent from './components/CustomVueComponent.vue';
+
+            ...
+
+            await renderComponent(CustomVueComponent, { someProp: 'someValue' });
           ```
 
           This approach ensures that all necessary child components and slots are correctly set up and rendered.
 
-   - Make sure to use `describe.visual` or `it.visual` instead of the default notations for writing test blocks containing visual tests so as to prevent any unexpected behavior. These custom blocks add a `[Visual]` tag to the test name whose presence or absence are then checked using a regex pattern based on the type of tests executed. 
-      - Anything inside these blocks will not be executed when running unit tests. The default `describe` and `it` blocks can be used inside a parent `describe.visual` block, which itelf can be placed within a `describe` block as its parent (as `describe` blocks just group the tests placed within them). 
+   - Make sure to use `describe.visual` or `it.visual` instead of the default notations for writing test blocks containing visual tests so as to prevent any unexpected behavior. These custom blocks add a `[Visual]` tag to the test name whose presence or absence are then checked using a regex pattern based on the type of tests executed.
+      - Anything inside these blocks will not be executed when running unit tests. The default `describe` and `it` blocks can be used inside a parent `describe.visual` block, which itelf can be placed within a `describe` block as its parent (as `describe` blocks just group the tests placed within them).
       - In simple terms, any test block with a `[Visual]` tag will be executed when running visual tests, regardless of the type of test blocks used within it, and will be ignored when running unit tests. Using `describe.visual` or `it.visual` automatically appends this tag to the test name.
       - This implementation helps determine which test blocks should be executed by Jest and which ones should be skipped.
 
@@ -117,7 +121,7 @@ KDS has a visual testing system that allows you to take snapshots of how KDS Com
   - **Puppeteer:** for interacting with the testing environment and the rendered components.
   - **Jest-Puppeteer:** to provide all required configuration to run tests using Puppeteer.
   - **Percy:** to take snapshots for comparing visual diffs.
-  
+
   The key parts of the mechanism include:
 
 1. **Configuration Files**: Since we are using Jest for both unit and visual tests, there are two separate configuration files for visual tests apart from the ones being used for unit tests so as to ensure separation of logic needed for running both types of tests.
