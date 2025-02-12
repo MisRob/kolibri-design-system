@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#917]
+  - **Description:** Added the missing usage section for the KTextTruncator component in the documentation
+  - **Products impact:** none
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/899
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#917]: https://github.com/learningequality/kolibri-design-system/pull/917
+
+
+
 - [#856]
   - **Description:** Adds aria-haspopup and aria-expanded attributes to KButton when used with dropdown menus to improve screen reader feedback
   - **Products impact:** Anhancement
