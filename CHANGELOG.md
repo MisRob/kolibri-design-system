@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#888]
+  - **Description:** Updates KDateRange logic so that end date is cleared only if start date is after end date; users can now set start date via keyboard, then select end date using the calendar view.
+  - **Products impact:** none
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/817
+  - **Components:** -
+  - **Breaking:** no
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#888]: https://github.com/learningequality/kolibri-design-system/pull/888
+
+
+
 - [#917]
   - **Description:** Added the missing usage section for the KTextTruncator component in the documentation
   - **Products impact:** none
