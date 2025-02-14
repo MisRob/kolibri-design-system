@@ -7,6 +7,136 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#888]
+  - **Description:** Updates KDateRange logic so that end date is cleared only if start date is after end date; users can now set start date via keyboard, then select end date using the calendar view.
+  - **Products impact:** none
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/817
+  - **Components:** -
+  - **Breaking:** no
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#888]: https://github.com/learningequality/kolibri-design-system/pull/888
+
+
+
+- [#917]
+  - **Description:** Added the missing usage section for the KTextTruncator component in the documentation
+  - **Products impact:** none
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/899
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#917]: https://github.com/learningequality/kolibri-design-system/pull/917
+
+
+
+- [#856]
+  - **Description:** Adds aria-haspopup and aria-expanded attributes to KButton when used with dropdown menus to improve screen reader feedback
+  - **Products impact:** Anhancement
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/832
+  - **Components:** KButton
+  - **Breaking:** no
+  - **Impacts a11y:** yes
+  - **Guidance:** WNo changes required for existing implementations. The ARIA attributes are automatically added when KButton is used with dropdown menus through the menu slot.
+
+[#856]: https://github.com/learningequality/kolibri-design-system/pull/856
+
+
+
+- [#840]
+  - **Description:** Corrected **Shift+Tab** navigation behavior to follow the expected reverse order of focusable elements within cells.
+  - **Products impact:** bugfix
+  - **Addresses:** #837 #804
+  - **Components:** KTable
+  - **Breaking:** no
+  - **Impacts a11y:** yes
+  - **Guidance:** No special guidance required for consumers.
+
+[#840]: https://github.com/learningequality/kolibri-design-system/pull/840
+
+
+
+- [#932]
+  - **Description:** Fix the action not updating some data in the contributions tracking sheet
+  - **Products impact:** none
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#932]: https://github.com/learningequality/kolibri-design-system/pull/932
+
+
+
+- [#910]
+  - **Description:** Pinned Node.js (18.20.6) and Yarn (1.22.22) versions using Volta.
+  - **Products impact:** none (internal updates).
+  - **Addresses:** Compatibility issues with Node.js and Yarn versions across contributors' environments.
+  - **Components:** Documentation updates for KDS setup.
+  - **Breaking:** no.
+  - **Impacts a11y:** no.
+  - **Guidance:** Developers need to install Volta if not already installed and ensure they follow the updated setup instructions in the documentation.
+
+[#910]: https://github.com/learningequality/kolibri-design-system/pull/910
+
+
+
+- [#929]
+  - **Description:** Bumps KDS version to 5.0.0
+  - **Products impact:** -
+  - **Addresses:** -.
+  - **Components:** -.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -.
+
+[#929]: https://github.com/learningequality/kolibri-design-system/pull/929
+
+
+
+- [#919]
+  - **Description:** Additional category icons are now available
+  - **Products impact:** -
+  - **Addresses:** -
+  - **Components:** KIcon
+  - **Breaking:** No
+  - **Impacts a11y:** No
+  - **Guidance:** New icons can now be used
+
+[#919]: https://github.com/learningequality/kolibri-design-system/pull/919
+
+
+
+- [#923]
+  - **Description:** Fixes glob query in extrac api script.
+  - **Products impact:** bugfix.
+  - **Addresses:** -.
+  - **Components:** Docs.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** .
+
+[#923]: https://github.com/learningequality/kolibri-design-system/pull/923
+
+
+
+- [#922]
+  - **Description:** Fixes playground path in dev docs and gitignore
+  - **Products impact:** internal docs.
+  - **Addresses:** -.
+  - **Components:** -.
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -.
+
+[#922]: https://github.com/learningequality/kolibri-design-system/pull/922
+
+
+
 - [#873]
   - **Description:**  Implemented `DocsExample` component with toggle functionality for switching between an example and its code snippet in the KDS documentation.
   - **Products impact:** none
