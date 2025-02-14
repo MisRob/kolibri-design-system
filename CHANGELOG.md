@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#876]
+  - **Description:** Bump color from 3.2.1 to 4.2.3
+  - **Products impact:** Dev Dependency upgrade
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#876]: https://github.com/learningequality/kolibri-design-system/pull/876
+
+
+
 - [#888]
   - **Description:** Updates KDateRange logic so that end date is cleared only if start date is after end date; users can now set start date via keyboard, then select end date using the calendar view.
   - **Products impact:** none
