@@ -10,12 +10,14 @@
         appearance="raised-button"
         icon="github"
         :tooltip="githubTooltip"
+        :ariaLabel="githubTooltip"
         @click="redirectToGitHub"
       />
       <KIconButton
         appearance="raised-button"
         :icon="isCodeVisible ? 'chevronUp' : 'codeToggle'"
         tooltip="Toggle code visibility"
+        aria-label="Toggle code visibility"
         @click="toggleCodeVisibility"
       />
     </div>
@@ -100,9 +102,9 @@
         default: null,
       },
       /**
-       * Unique identifier for the example. This must be unique for all the DocExamples
-       * that are used in one documentation page (the same is used to coordinate the
-       * movement of the code-tabs with KTabs).
+       * Unique identifier for the example. Needs to be be unique in regards
+       * to all DocsExample components rendered on one page (used as
+       * `tabId` for the `KTabs` rendering the code blocks).
        * @type {String}
        * @example 'variantName'
        */
