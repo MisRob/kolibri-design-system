@@ -90,7 +90,7 @@
     props: {
       /**
        * Path to the Vue component file to be displayed as example
-       * The path should be relative to the 'docs/examples/' directory
+       * The path should be relative to the 'docs/examples/' directory.
        * @type {String}
        * @example 'KComponent/Variant.vue'
        */
@@ -99,10 +99,12 @@
         required: false,
         default: null,
       },
-      /*
-       * Unique identifier for the example. This must be unique within
-       * the scope of the documentation page across all the DocsExample components.
+      /**
+       * Unique identifier for the example. This must be unique for all the DocExamples
+       * that are used in one documentation page (the same is used to coordinate the
+       * movement of the code-tabs with KTabs).
        * @type {String}
+       * @example 'variantName'
        */
       exampleId: {
         type: String,
