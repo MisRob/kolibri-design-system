@@ -15,7 +15,10 @@
       v-bind="componentProps"
     >
       <!-- Render slots if provided -->
-      <template v-for="(slot, name) in slots">
+      <template
+        v-for="(slot, name) in slots"
+        #[name]
+      >
         <!-- eslint-disable vue/no-v-text-v-html-on-component -->
         <!-- eslint-disable vue/no-v-html -->
         <component
