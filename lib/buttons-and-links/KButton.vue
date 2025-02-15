@@ -17,7 +17,7 @@
     <!-- @slot Slot alternative to the `icon` prop -->
    
     <span class="icon-container">
-      <slot name="icon">No icon slot content! </slot>
+      <slot name="icon"></slot>
     </span>
    
    
