@@ -4,7 +4,6 @@
     :is="htmlTag"
     ref="button"
     dir="auto"
-    class="wrapper"
     :class="buttonClasses"
     :type="type"
     :disabled="disabled"
@@ -17,9 +16,9 @@
     
     <!-- @slot Slot alternative to the `icon` prop -->
    
-    <div class="icon-container">
+    <span class="icon-container">
       <slot name="icon">No icon slot content! </slot>
-    </div>
+    </span>
    
    
     
@@ -30,6 +29,7 @@
       data-test="iconBefore"
       class="prop-icon"
     />
+  
     <!-- @slot Pass sub-components into the button, typically `KDropdownMenu` -->
     <slot name="menu"></slot>
 
@@ -200,13 +200,7 @@
 
   @import './buttons';
   
-    .wrapper {
-    position: relative;
-  display: inline-flex;
-  align-items: center;
-  width: 100%;
- 
-}
+  
 .icon-container{
   position: relative;
   top: 4px;
