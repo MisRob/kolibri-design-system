@@ -22,7 +22,7 @@
       ]"
     /> -->
 
-    <!-- Play around with your component here: -->  
+    <!-- Play around with your component here: -->
   </div>
 
 </template>
