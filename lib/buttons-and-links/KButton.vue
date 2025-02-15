@@ -13,15 +13,12 @@
     @mouseenter="hovering = true"
     @mouseleave="hovering = false"
   >
-    
     <!-- @slot Slot alternative to the `icon` prop -->
-   
+
     <span class="icon-container">
       <slot name="icon"></slot>
     </span>
-   
-   
-    
+
     <KIcon
       v-if="icon"
       :icon="icon"
@@ -29,7 +26,7 @@
       data-test="iconBefore"
       class="prop-icon"
     />
-  
+
     <!-- @slot Pass sub-components into the button, typically `KDropdownMenu` -->
     <slot name="menu"></slot>
 
@@ -199,12 +196,11 @@
 <style lang="scss" scoped>
 
   @import './buttons';
-  
-  
-.icon-container{
-  position: relative;
-  top: 4px;
-} 
+
+  .icon-container {
+    position: relative;
+    top: 4px;
+  }
 
   .dropdown-arrow {
     position: relative;
