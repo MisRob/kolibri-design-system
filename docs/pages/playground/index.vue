@@ -23,6 +23,31 @@
     /> -->
 
     <!-- Play around with your component here: -->
+    
+    <KButton
+      text="settings"
+      appearance="flat-button"
+    >
+      <template #icon>
+        <KIcon
+          icon="settings"
+          style="font-size: 20px"
+        />
+      </template>
+    </KButton>
+  
+    <KLabeledIcon
+      label="settings"
+    >
+      <template #icon>
+        <KIcon
+          icon="settings"
+          style="font-size: 20px"
+        />
+      </template>
+    </KLabeledIcon>
+    
+    
   </div>
 
 </template>

@@ -4,6 +4,7 @@
     :is="htmlTag"
     ref="button"
     dir="auto"
+    class="wrapper"
     :class="buttonClasses"
     :type="type"
     :disabled="disabled"
@@ -13,8 +14,15 @@
     @mouseenter="hovering = true"
     @mouseleave="hovering = false"
   >
+    
     <!-- @slot Slot alternative to the `icon` prop -->
-    <slot name="icon"></slot>
+   
+    <div class="icon-container">
+      <slot name="icon">No icon slot content! </slot>
+    </div>
+   
+   
+    
     <KIcon
       v-if="icon"
       :icon="icon"
@@ -191,6 +199,18 @@
 <style lang="scss" scoped>
 
   @import './buttons';
+  
+    .wrapper {
+    position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+ 
+}
+.icon-container{
+  position: relative;
+  top: 4px;
+} 
 
   .dropdown-arrow {
     position: relative;
@@ -198,7 +218,7 @@
   }
 
   .prop-icon {
-    top: 4px;
+   top: 4px;
   }
 
 </style>
