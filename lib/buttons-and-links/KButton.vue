@@ -212,7 +212,7 @@
   }
 
   .prop-icon {
-   top: 4px;
+    top: 4px;
   }
 
 </style>
