@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#935]
+  - **Description:** Add visual test for KIconButton component
+  - **Products impact:** None
+  - **Addresses:**  https://github.com/learningequality/kolibri-design-system/issues/927
+  - **Components:** None
+  - **Breaking:** No
+  - **Impacts a11y:** No
+  - **Guidance:**  Not required
+
+[#935]: https://github.com/learningequality/kolibri-design-system/pull/935
+
+
+
 - [#911]
   - **Description:** Bump the github group with 2 updates
   - **Products impact:** Dev Dependency upgrade
