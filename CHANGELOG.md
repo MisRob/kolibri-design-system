@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#911]
+  - **Description:** Bump the github group with 2 updates
+  - **Products impact:** Dev Dependency upgrade
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#911]: https://github.com/learningequality/kolibri-design-system/pull/911
+
+
+
 - [#939]
   - **Description:** Fixed KIcon alignment in KButton and KLabeledIcon to ensure vertical centering.
   - **Products impact:** Kolibri
