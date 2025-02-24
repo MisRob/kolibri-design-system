@@ -18,6 +18,14 @@ esLintConfig.overrides.push({
   rules: nuxtDocsRules,
 });
 
+const nuxtExampleOverrides = {
+  files: ['docs/examples/**/*.vue'],
+  rules: {
+    // Allow console.log in examples
+    'no-console': 0,
+  }
+};
+esLintConfig.overrides.push(nuxtExampleOverrides);
 
 // Allow nuxt resources to be found
 esLintConfig.settings['import/resolver'].nuxt = {
