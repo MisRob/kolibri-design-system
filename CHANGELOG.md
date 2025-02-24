@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#918]
+  - **Description:** Adds dynamic loading of component examples in `DocsExample`
+  - **Products impact:** new API
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/845
+  - **Components:** -
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -
+
+[#918]: https://github.com/learningequality/kolibri-design-system/pull/918
+
+
+
 - [#935]
   - **Description:** Add visual test for KIconButton component
   - **Products impact:** None
