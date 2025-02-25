@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#943]
+  - **Description:** Bumps KDS version to 5.0.1
+  - **Products impact:** -
+  - **Addresses:** -.
+  - **Components:** -.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -.
+
+[#943]: https://github.com/learningequality/kolibri-design-system/pull/943
+
+
+
 - [#942]
   - **Description:** Match the hover background color of flat-button KButton to that of KIconButton
   - **Products impact:** bugfix
