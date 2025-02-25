@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#942]
+  - **Description:** Match the hover background color of flat-button KButton to that of KIconButton
+  - **Products impact:** bugfix
+  - **Addresses:** -
+  - **Components:** KButton.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:**
+
+[#942]: https://github.com/learningequality/kolibri-design-system/pull/942
+
+
+
 - [#918]
   - **Description:** Adds dynamic loading of component examples in `DocsExample`
   - **Products impact:** new API
