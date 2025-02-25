@@ -108,8 +108,6 @@
     },
     computed: {
       appearanceOverrides() {
-        const hover =
-          this.appearance === 'flat-button' ? { backgroundColor: 'rgba(0,0,0,.1)' } : {};
         return {
           ...this.sizeStyles,
           // Circle
@@ -119,7 +117,6 @@
           // Remove minHeight & padding
           minHeight: '0px',
           padding: '0',
-          ':hover': hover,
         };
       },
       sizeStyles() {
