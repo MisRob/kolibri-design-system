@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#948]
+  - **Description:** Updates contact information in the contributing guidelines
+  - **Products impact:** none
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#948]: https://github.com/learningequality/kolibri-design-system/pull/948
+
+
+
 - [#943]
   - **Description:** Bumps KDS version to 5.0.1
   - **Products impact:** -
