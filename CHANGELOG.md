@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#945]
+  - **Description:** Add automated workflow for managing community contribution labels when issues are assigned/unassigned to external contributors
+  - **Products impact:** none
+  - **Addresses:** learningequality/kolibri#12923
+  - **Components:** -
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -
+
+[#945]: https://github.com/learningequality/kolibri-design-system/pull/945
+
+
+
 - [#948]
   - **Description:** Updates contact information in the contributing guidelines
   - **Products impact:** none
