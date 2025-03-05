@@ -14,7 +14,7 @@ jobs:
         uses: fkirc/skip-duplicate-actions@master
         with:
           github_token: ${{ github.token }}
-          paths: '["**.vue", "**.js", "**.css", "**.scss", "yarn.lock"]'
+          paths: '["lib/**", "jest.conf/visual*" ]'
 
   visual_tests:
     name: Frontend Visual Tests
@@ -46,7 +46,7 @@ jobs:
           npm rebuild node-sass
       - name: Download Chromium
         run: npx puppeteer browsers install chrome
-      - name: Extract jsdocs and environment info 
+      - name: Extract jsdocs and environment info
         run: yarn pregenerate
       - name: Run visual tests
         run: yarn test:visual 2>&1 | tee test-output.log
@@ -57,7 +57,7 @@ jobs:
         run: |
           url=$(grep -o 'https://percy.io/[a-zA-Z0-9/_-]*' test-output.log | tail -1)
           echo "percy_url=$url" >> $GITHUB_OUTPUT
-    
+
   comment:
     name: Comment Percy results
     needs: visual_tests
