@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#954]
+  - **Description:** Updates visual tests workflow skip paths just to run on chnges on the lib/ folder and the visual testing config files.
+  - **Products impact:** -.
+  - **Addresses:** -.
+  - **Components:** -.
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#954]: https://github.com/learningequality/kolibri-design-system/pull/954
+
+
+
 - [#945]
   - **Description:** Add automated workflow for managing community contribution labels when issues are assigned/unassigned to external contributors
   - **Products impact:** none
