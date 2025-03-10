@@ -1,0 +1,35 @@
+<template>
+  <div>
+    <KTabsList
+      v-model="activeTabId"
+      tabsId="tabsAppearanceOverrides"
+      ariaLabel="Coach reports"
+      :tabs="tabs"
+      :appearanceOverrides="{
+        ':hover': {
+          color: $themeTokens.primary,
+        },
+        textTransform: 'none',
+        margin: '0 32px',
+      }"
+      :appearanceOverridesActive="{
+        borderBottomWidth: '6px',
+      }"
+    />
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      activeTabId: 'tabLessons',
+      tabs: [
+        { id: 'tabLessons', label: 'Lessons' },
+        { id: 'tabLearners', label: 'Learners' },
+        { id: 'tabGroups', label: 'Groups' },
+      ],
+    };
+  },
+};
+</script>
