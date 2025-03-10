@@ -37,8 +37,6 @@
 
 <script>
 
-  import { deserializeComponent } from '../../jest.conf/visual.testUtils';
-
   /**
    * Renders the components for visual testing
    * to ensure expected visual behavior under
@@ -86,11 +84,6 @@
       handleMessage(event) {
         if (event.data.type === 'RENDER_COMPONENT') {
           this.component = event.data.component;
-          if (typeof this.component === 'object') {
-            // If its a custom component, deserialize it and add it to the components object
-            this.component = deserializeComponent(this.component);
-            this.$options.components[this.component.name] = this.component;
-          }
           this.componentProps = event.data.props;
           this.slots = event.data.slots || {};
         }

@@ -1,41 +1,6 @@
 import percySnapshot from '@percy/puppeteer';
 
 /**
- * Serializes Vue component methods to strings. This is necessary because Puppeteer cannot serialize
- * component methods like the "render" method when passing them to `page.evaluate`.
- * @param {*} component Vue component
- * @returns Component serialized with methods as strings
- */
-function serializeComponent(component) {
-  const serializedComponent = {};
-  Object.keys(component).forEach(key => {
-    if (typeof component[key] === 'function') {
-      serializedComponent[key] = component[key].toString();
-    } else {
-      serializedComponent[key] = component[key];
-    }
-  });
-  return serializedComponent;
-}
-
-/**
- * Deserializes a serialized Vue component by converting string methods back to functions.
- * @param {*} obj serialized component
- * @returns deserialized component
- */
-export function deserializeComponent(obj) {
-  const component = {};
-  Object.keys(obj).forEach(key => {
-    if (typeof obj[key] === 'string' && obj[key].startsWith('function')) {
-      component[key] = new Function(`return ${obj[key]}`)();
-    } else {
-      component[key] = obj[key];
-    }
-  });
-  return component;
-}
-
-/**
  * Renders a Vue component within the VisualTestingPlayground.
  *
  * @param {string} component - The name of the Vue component to render.
@@ -82,11 +47,7 @@ export async function renderComponent(component, props, slots = {}) {
         '*',
       );
     },
-    {
-      component: typeof component === 'object' ? serializeComponent(component) : component,
-      props,
-      slots,
-    },
+    { component, props, slots },
   );
   await page.waitForSelector('#testing-playground');
 

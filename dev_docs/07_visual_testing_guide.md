@@ -88,14 +88,23 @@ KDS has a visual testing system that allows you to take snapshots of how KDS Com
 
           **Note:** Use `'default'` key for passing default slots, with the HTML content specified using `innerHTML` prop. Checkout [`KButton.spec.js`](../lib/buttons-and-links/__tests__/KButton.spec.js) for reference.
 
-      - **Example involving more complex component structures:** When dealing with more complex component structures, it's recommended to create a dedicated Vue component for visual testing purposes. This custom component can be placed in the same directory as the test file, inside a `components` folder. You can then import this component and render it using the `renderComponent` method.
+      - **Example involving more complex component structures:** When dealing with more complex component structures, it's recommended to create a dedicated test component for visual testing purposes.
 
-          ```javascript
-            import CustomVueComponent from './components/CustomVueComponent.vue';
+        * This custom component should be placed in the same directory as the test file, inside a `components` folder with a name following the pattern `K[TestCase]Test.vue`
+          * e.g.: `/lib/KImg/__tests__/components/KImgTest.vue`.
+        * Then you will need to declare this component in the the [visual.load-test-components.js](../jest.conf/visual.load-test-components.js) file so that its available for rendering in the visual testing playground.
+          * e.g.:
+            ```javascript
+            import KImgTest from '~~/lib/KImg/__tests__/components/KImgTest.vue';
 
             ...
 
-            await renderComponent(CustomVueComponent, { someProp: 'someValue' });
+            Vue.component('KImgTest', KImgTest);
+            ```
+        * Finally, you can then use the test component name in the `renderComponent` method.
+
+          ```javascript
+            await renderComponent('KImgTest', { someProp: 'someValue' });
           ```
 
           This approach ensures that all necessary child components and slots are correctly set up and rendered.
