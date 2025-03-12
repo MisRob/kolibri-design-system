@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#957]
+  - **Description:** Bump prismjs from 1.29.0 to 1.30.0
+  - **Products impact:** Dev Dependency upgrade
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#957]: https://github.com/learningequality/kolibri-design-system/pull/957
+
+
+
 - [#954]
   - **Description:** Updates visual tests workflow skip paths just to run on chnges on the lib/ folder and the visual testing config files.
   - **Products impact:** -.
