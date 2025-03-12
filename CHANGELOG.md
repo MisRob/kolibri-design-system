@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#912]
+  - **Description:** Bump tibdex/github-app-token from 1 to 2
+  - **Products impact:** Dev Dependency upgrade
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#912]: https://github.com/learningequality/kolibri-design-system/pull/912
+
+
+
 - [#928]
   - **Description:** Bump @babel/core from 7.26.0 to 7.26.7 in the babel group
   - **Products impact:** Dev Dependency upgrade
