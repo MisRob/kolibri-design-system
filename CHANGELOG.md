@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#897]
+  - **Description:** MIgrated test from enzyme to Vue testing library
+  - **Products impact:**  none
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/510
+  - **Components:** none
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -
+
+[#897]: https://github.com/learningequality/kolibri-design-system/pull/897
+
+
+
 - [#937]
   - **Description:** Allow object component rendering and unmount previoius component on render
   - **Products impact:** internal
