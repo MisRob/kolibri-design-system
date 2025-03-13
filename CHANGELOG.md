@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#937]
+  - **Description:** Allow object component rendering and unmount previoius component on render
+  - **Products impact:** internal
+  - **Addresses:** .
+  - **Components:** .
+  - **Breaking:**
+  - **Impacts a11y:**
+  - **Guidance:**
+
+[#937]: https://github.com/learningequality/kolibri-design-system/pull/937
+
+
+
 - [#959]
   - **Description:** Bump axios from 1.7.9 to 1.8.2
   - **Products impact:** Dev Dependency upgrade
