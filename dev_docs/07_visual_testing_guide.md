@@ -84,7 +84,7 @@ You can write the visual tests alongside the unit tests, i.e. in the same test f
       - **Example with slots:** For components that involve slots, you can render them with `renderComponentForVisualTest` by passing the slot structure using element and elementProps. You can pass multiple slots at once.
 
             ```javascript
-             await renderComponent('KIconButton', { icon: 'add' }, {
+             await renderComponentForVisualTest('KIconButton', { icon: 'add' }, {
                menu: { // slot named #menu
                  element: 'KDropdownMenu',
                  elementProps: {
@@ -99,10 +99,10 @@ You can write the visual tests alongside the unit tests, i.e. in the same test f
 
         ```
 
-      - **Example involving more complex component structures:** When dealing with more complex component structures, it's recommended to create a dedicated Vue component for visual testing purposes. Add all the use cases in a Vue file and then render the custom component using the `renderComponent` function.
+      - **Example involving more complex component structures:** When dealing with more complex component structures, it's recommended to create a dedicated Vue component for visual testing purposes. Add all the use cases in a Vue file and then render the custom component using the `renderComponentForVisualTest` function.
 
         ```javascript
-        await renderComponent('CustomVueComponent');
+        await renderComponentForVisualTest('CustomVueComponent');
         ```
 
       This approach ensures that all necessary child components and slots are correctly set up and rendered.
