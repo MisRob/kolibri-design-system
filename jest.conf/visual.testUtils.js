@@ -30,14 +30,19 @@ export async function renderComponentForVisualTest(component, props, slots = {})
     return testing_playground ? testing_playground.innerHTML : '';
   });
 
+  // Clean up the previous rendered component
+  await page.evaluate(() => {
+    window.postMessage({ type: 'RENDER_COMPONENT', component: 'div' }, '*');
+  });
+
   await page.evaluate(
     ({ component, props, slots }) => {
       window.postMessage(
         {
           type: 'RENDER_COMPONENT',
-          component: component,
-          props: props,
-          slots: slots,
+          component,
+          props,
+          slots,
         },
         '*',
       );

@@ -1,6 +1,12 @@
 name: Percy Visual Tests
 
-on: [pull_request_target]
+on:
+  pull_request_target:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - closed
 
 jobs:
   pre_job:
@@ -14,21 +20,41 @@ jobs:
         uses: fkirc/skip-duplicate-actions@master
         with:
           github_token: ${{ github.token }}
-          paths: '["**.vue", "**.js", "**.css", "**.scss", "yarn.lock"]'
+          paths: '["lib/**", "jest.conf/visual*" ]'
+          # Avoid duplicate skipping so it can be run again on the target branch
+          skip_after_successful_duplicate: false
 
   visual_tests:
     name: Frontend Visual Tests
     needs: pre_job
     if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
     runs-on: ubuntu-latest
-    environment: percy_tests
+    strategy:
+      # Using matrix just to dynamically set the environment variable
+      matrix:
+        env:
+          # Protect deployments from non-merged PRs but allow merged PRs to run
+          # on the target branch
+          - ${{ github.event.pull_request.merged == false && 'percy_tests' || '' }}
+    environment: ${{ matrix.env }}
     outputs:
       percy_url: ${{ steps.extract-url.outputs.percy_url }}
     steps:
       - name: Checkout code from PR
+        if: github.event.pull_request.merged == false
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
+      - name: Checkout code from target branch
+        if: github.event.pull_request.merged == true
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
+      - name: Set PERCY_BRANCH to target branch
+        if: github.event.pull_request.merged == true
+        # set the PERCY_BRANCH environment variable to the target branch for the Percy build
+        # to be associated with the target branch
+        run: echo "PERCY_BRANCH=${{ github.event.pull_request.base.ref }}" >> $GITHUB_ENV
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
@@ -46,7 +72,7 @@ jobs:
           npm rebuild node-sass
       - name: Download Chromium
         run: npx puppeteer browsers install chrome
-      - name: Extract jsdocs and environment info 
+      - name: Extract jsdocs and environment info
         run: yarn pregenerate
       - name: Run visual tests
         run: yarn test:visual 2>&1 | tee test-output.log
@@ -57,11 +83,11 @@ jobs:
         run: |
           url=$(grep -o 'https://percy.io/[a-zA-Z0-9/_-]*' test-output.log | tail -1)
           echo "percy_url=$url" >> $GITHUB_OUTPUT
-    
+
   comment:
     name: Comment Percy results
     needs: visual_tests
-    if: ${{ needs.visual_tests.result == 'success' }}
+    if: ${{ needs.visual_tests.result == 'success' && github.event.pull_request.merged == false }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code from PR

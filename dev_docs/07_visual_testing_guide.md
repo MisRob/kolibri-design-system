@@ -47,82 +47,80 @@ We use GitHub Actions to execute the visual testing workflow on every PR. When c
 
 You can write the visual tests alongside the unit tests, i.e. in the same test file. Take a look at [`KButton.spec.js`](../lib/buttons-and-links/__tests__/KButton.spec.js) to familiarize yourself with writing visual tests.
 
-1. **Import Utility Functions**:
+1.  **Import Utility Functions**:
 
-   - Import the utility functions from [`visual.testUtils.js`](../jest.conf/visual.testUtils.js):
+    - Import the utility functions from [`visual.testUtils.js`](../jest.conf/visual.testUtils.js):
 
-     ```javascript
-     import { renderComponentForVisualTest, takeSnapshot } from './visual.testUtils';
-     ```
+      ```javascript
+      import { renderComponentForVisualTest, takeSnapshot } from './visual.testUtils';
+      ```
 
-     You can import and use the utility functions for managing component's visual states as needed. Different utility functions available are:
+      You can import and use the utility functions for managing component's visual states as needed. Different utility functions available are:
 
-     - `renderComponentForVisualTest(component, props, slots)`: Renders the specified component with given props and slots in the visual testing playground.
-     - `takeSnapshot(name, options)`: Takes a Percy snapshot with the given name and options.
-     - `click(selector)`, `hover(selector)`, `scrollToPos(selector, scrollOptions)`, `waitFor(selector)`, `delay(time)`: Utility functions for simulating user interactions.
+      - `renderComponentForVisualTest(component, props, slots)`: Renders the specified component with given props and slots in the visual testing playground.
+      - `takeSnapshot(name, options)`: Takes a Percy snapshot with the given name and options.
+      - `click(selector)`, `hover(selector)`, `scrollToPos(selector, scrollOptions)`, `waitFor(selector)`, `delay(time)`: Utility functions for simulating user interactions.
 
-2. **Write Tests**:
+2.  **Write Tests**:
 
-   - Use the utility functions to render components and take snapshots. For example:
+    - Use the utility functions to render components and take snapshots. For example:
 
-     ```javascript
-     describe.visual('KButton Visual Tests', () => {
-       it('Sample test for KButton', async () => {
-         await renderComponentForVisualTest('KButton', {
-           text: 'Raised Button',
-           appearance: 'raised-button',
-         });
-         await takeSnapshot('KButton - Raised Button', { widths: [375, 520] });
-       });
-     });
-     ```
+      ```javascript
+      describe.visual('KButton Visual Tests', () => {
+        it('Sample test for KButton', async () => {
+          await renderComponentForVisualTest('KButton', {
+            text: 'Raised Button',
+            appearance: 'raised-button',
+          });
+          await takeSnapshot('KButton - Raised Button', { widths: [375, 520] });
+        });
+      });
+      ```
 
-     Note that the `widths` parameter passed to the `takeSnaphot` function is a part of Percy CLI's snapshot options. For a full list of available options, refer the [Percy documentation](https://www.browserstack.com/docs/percy/take-percy-snapshots/snapshots-via-scripts#per-snapshot-configuration).
+      Note that the `widths` parameter passed to the `takeSnaphot` function is a part of Percy CLI's snapshot options. For a full list of available options, refer the [Percy documentation](https://www.browserstack.com/docs/percy/take-percy-snapshots/snapshots-via-scripts#per-snapshot-configuration).
 
-   - For rendering complex commponents, refer to the following:
+    - For rendering complex commponents, refer to the following:
 
-     - **Example with slots:** For components that involve slots, you can render them with `renderComponentForVisualTest` by passing the slot structure using element and elementProps. You can pass multiple slots at once.
+      - **Example with slots:** For components that involve slots, you can render them with `renderComponentForVisualTest` by passing the slot structure using element and elementProps. You can pass multiple slots at once.
 
-       ```javascript
-       await renderComponentForVisualTest(
-         'KIconButton',
-         { icon: 'add' },
-         {
-           menu: {
-             // slot named #menu
-             element: 'KDropdownMenu',
-             elementProps: {
-               items: ['Option 1', 'Option 2'],
-             },
-           },
-         }
-       );
-       ```
+            ```javascript
+             await renderComponent('KIconButton', { icon: 'add' }, {
+               menu: { // slot named #menu
+                 element: 'KDropdownMenu',
+                 elementProps: {
+                   items: ['Option 1', 'Option 2'],
+                 },
+               },
+             });
 
-       **Note:** Use `'default'` key for passing default slots, with the HTML content specified using `innerHTML` prop. Checkout [`KButton.spec.js`](../lib/buttons-and-links/__tests__/KButton.spec.js) for reference.
+        ```
 
-     - **Example involving more complex component structures:** When dealing with more complex component structures, it's recommended to create a dedicated Vue component for visual testing purposes. Add all the use cases in a Vue file and then render the custom component using the `renderComponentForVisualTest` function.
+        **Note:** Use `'default'` key for passing default slots, with the HTML content specified using `innerHTML` prop. Checkout [`KButton.spec.js`](../lib/buttons-and-links/__tests__/KButton.spec.js) for reference.
 
-       ```javascript
-       await renderComponentForVisualTest('CustomVueComponent');
-       ```
+        ```
 
-       This approach ensures that all necessary child components and slots are correctly set up and rendered.
+      - **Example involving more complex component structures:** When dealing with more complex component structures, it's recommended to create a dedicated Vue component for visual testing purposes. Add all the use cases in a Vue file and then render the custom component using the `renderComponent` function.
 
-   - Make sure to use `describe.visual` or `it.visual` instead of the default notations for writing test blocks containing visual tests so as to prevent any unexpected behavior. These custom blocks add a `[Visual]` tag to the test name whose presence or absence are then checked using a regex pattern based on the type of tests executed.
-     - Anything inside these blocks will not be executed when running unit tests. The default `describe` and `it` blocks can be used inside a parent `describe.visual` block, which itelf can be placed within a `describe` block as its parent (as `describe` blocks just group the tests placed within them).
-     - In simple terms, any test block with a `[Visual]` tag will be executed when running visual tests, regardless of the type of test blocks used within it, and will be ignored when running unit tests. Using `describe.visual` or `it.visual` automatically appends this tag to the test name.
-     - This implementation helps determine which test blocks should be executed by Jest and which ones should be skipped.
+        ```javascript
+        await renderComponent('CustomVueComponent');
+        ```
 
-3. **Simulate User Interactions**:
+      This approach ensures that all necessary child components and slots are correctly set up and rendered.
 
-   - Use the custom commands to simulate user interactions. For example, to simulate the _'click'_ user event, you can do something like:
+    - Make sure to use `describe.visual` or `it.visual` instead of the default notations for writing test blocks containing visual tests so as to prevent any unexpected behavior. These custom blocks add a `[Visual]` tag to the test name whose presence or absence are then checked using a regex pattern based on the type of tests executed.
+      - Anything inside these blocks will not be executed when running unit tests. The default `describe` and `it` blocks can be used inside a parent `describe.visual` block, which itelf can be placed within a `describe` block as its parent (as `describe` blocks just group the tests placed within them).
+      - In simple terms, any test block with a `[Visual]` tag will be executed when running visual tests, regardless of the type of test blocks used within it, and will be ignored when running unit tests. Using `describe.visual` or `it.visual` automatically appends this tag to the test name.
+      - This implementation helps determine which test blocks should be executed by Jest and which ones should be skipped.
 
-     ```javascript
-     await click('button');
-     ```
+3.  **Simulate User Interactions**:
 
-     Here, _'button'_ is the CSS selector for the component. You can pass different selectors to the functions, exposed by [`visual.testUtils.js`](../jest.conf/visual.testUtils.js), to simulate user interaction as per requirement.
+    - Use the custom commands to simulate user interactions. For example, to simulate the _'click'_ user event, you can do something like:
+
+      ```javascript
+      await click('button');
+      ```
+
+      Here, _'button'_ is the CSS selector for the component. You can pass different selectors to the functions, exposed by [`visual.testUtils.js`](../jest.conf/visual.testUtils.js), to simulate user interaction as per requirement.
 
 ## Implementation details
 

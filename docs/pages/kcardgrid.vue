@@ -163,7 +163,7 @@
         </DocsTable>
       </DocsToggleContent>
 
-      <DocsExample>
+      <DocsExample exampleId="1-1-1-grid">
         <DocsShow block>
           <KCardGrid
             layout="1-1-1"
@@ -180,7 +180,7 @@
           </KCardGrid>
         </DocsShow>
 
-        <template #code>
+        <template #html>
           <!-- eslint-disable -->
           <DocsShowCode language="html">
             <KCardGrid layout="1-1-1">
