@@ -24,7 +24,7 @@ import percySnapshot from '@percy/puppeteer';
  * `default` is for the default slot content, which can be raw HTML or another component.
  * Other keys correspond to named slots.
  */
-export async function renderComponent(component, props, slots = {}) {
+export async function renderComponentForVisualTest(component, props, slots = {}) {
   const beforeRenderState = await page.evaluate(() => {
     const testing_playground = document.querySelector('#testing-playground');
     return testing_playground ? testing_playground.innerHTML : '';
