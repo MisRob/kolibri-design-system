@@ -1,5 +1,5 @@
 <template>
-  <div>
+
     <KTabsList
       v-model="activeTabId"
       tabsId="tabsAppearanceOverrides"
@@ -16,20 +16,16 @@
         borderBottomWidth: '6px',
       }"
     />
-  </div>
+
 </template>
 
+
 <script>
+import { sharedExampleData } from '../../pages/ktabslist.vue';
+
 export default {
   data() {
-    return {
-      activeTabId: 'tabLessons',
-      tabs: [
-        { id: 'tabLessons', label: 'Lessons' },
-        { id: 'tabLearners', label: 'Learners' },
-        { id: 'tabGroups', label: 'Groups' },
-      ],
-    };
+    return sharedExampleData; // Use shared data
   },
 };
 </script>

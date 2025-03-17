@@ -1,4 +1,5 @@
 <template>
+
   <DocsPageTemplate apiDocs>
     <DocsPageSection
       title="Overview"
@@ -6,7 +7,7 @@
     >
       <p>Displays the tab list of a tabbed interface:</p>
 
-      <DocsExample 
+      <DocsExample
         exampleId="overview"
         loadExample="KTabsList/Intro.vue"
       />
@@ -222,6 +223,7 @@
       <DocsExample
         loadExample="KTabsList/CustomStyling.vue"
         exampleId="custom-styling"
+        dark
       />
 
       <p>
@@ -231,18 +233,17 @@
         tab:
       </p>
 
-   <DocsExample
+      <DocsExample
         loadExample="KTabsList/AppearanceOverrides.vue"
         exampleId="appearance-overrides"
       />
-
 
       <p>
         Lastly, the <code>tab</code> slot can be used to adjust labels, for example to add icons.
         It's a scoped slot that exposes <code>tab</code> object and <code>isActive</code> boolean
         value:
       </p>
- <DocsExample
+      <DocsExample
         loadExample="KTabsList/CustomTabs.vue"
         exampleId="custom-tabs"
       />
@@ -268,25 +269,29 @@
       </ul>
     </DocsPageSection>
   </DocsPageTemplate>
+
 </template>
 
+
 <script>
+export const sharedExampleData = {
+  tabs: [
+    { id: 'tabLessons', label: 'Lessons' },
+    { id: 'tabLearners', label: 'Learners' },
+    { id: 'tabGroups', label: 'Groups' },
+  ],
+  activeTabId: 'tabLessons',
+  icons: {
+    tabLessons: 'lesson',
+    tabLearners: 'person',
+    tabGroups: 'people',
+  },
+};
+
 export default {
   name: 'DocsKTabsList',
   data() {
-    return {
-      tabs: [
-        { id: 'tabLessons', label: 'Lessons' },
-        { id: 'tabLearners', label: 'Learners' },
-        { id: 'tabGroups', label: 'Groups' },
-      ],
-      ex1activeTabId: 'tabLessons',
-      icons: {
-        tabLessons: 'lesson',
-        tabLearners: 'person',
-        tabGroups: 'people',
-      },
-    };
+    return sharedExampleData;
   },
 };
 </script>
