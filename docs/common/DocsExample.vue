@@ -113,13 +113,13 @@
         required: true,
       },
       /*
-        * Flag to determine if the component should take up full width
-        */
+       * Flag to determine if the component should take up full width
+       */
       block: {
         type: Boolean,
         default: false,
         required: false,
-      }
+      },
     },
     data() {
       return {

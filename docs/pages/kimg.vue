@@ -59,7 +59,7 @@
                 src="hummingbird.jpg"
                 altText="A sitting hummingbird"
               />
-            </span>  
+            </span>
           </DocsShowCode>
         </template>
       </DocsExample>
@@ -84,11 +84,10 @@
                 src="hummingbird.jpg"
                 altText="A sitting hummingbird"
               />
-            </div>  
+            </div>
           </DocsShowCode>
         </template>
       </DocsExample>
-
 
       <h3>Alternative text</h3>
 
