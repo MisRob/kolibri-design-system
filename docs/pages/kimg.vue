@@ -48,22 +48,21 @@
         default.
       </p>
 
-      <DocsShowCode language="html">
-        <span>
-          <KImg
-            src="hummingbird.jpg"
-            altText="A sitting hummingbird"
-          />
-        </span>
-      </DocsShowCode>
-      <DocsShow>
-        <span>
-          <KImg
-            :src="require('../assets/hummingbird-small-cc-by-sa-4.jpg')"
-            altText="A sitting hummingbird"
-          />
-        </span>
-      </DocsShow>
+      <DocsExample
+        loadExample="KImg/Base.vue"
+        exampleId="base-inline"
+      >
+        <template #html>
+          <DocsShowCode language="html">
+            <span>
+              <KImg
+                src="hummingbird.jpg"
+                altText="A sitting hummingbird"
+              />
+            </span>  
+          </DocsShowCode>
+        </template>
+      </DocsExample>
 
       <h4>Block</h4>
 
@@ -73,22 +72,23 @@
         <DocsInternalLink href="/kimg#prop:scaleType"> scale type </DocsInternalLink> by default.
       </p>
 
-      <DocsShowCode language="html">
-        <div>
-          <KImg
-            src="hummingbird.jpg"
-            altText="A sitting hummingbird"
-          />
-        </div>
-      </DocsShowCode>
-      <DocsShow block>
-        <div>
-          <KImg
-            :src="require('../assets/hummingbird-small-cc-by-sa-4.jpg')"
-            altText="A sitting hummingbird"
-          />
-        </div>
-      </DocsShow>
+      <DocsExample
+        loadExample="KImg/Base.vue"
+        exampleId="base-block"
+        block
+      >
+        <template #html>
+          <DocsShowCode language="html">
+            <div>
+              <KImg
+                src="hummingbird.jpg"
+                altText="A sitting hummingbird"
+              />
+            </div>  
+          </DocsShowCode>
+        </template>
+      </DocsExample>
+
 
       <h3>Alternative text</h3>
 
