@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#965]
+  - **Description:** Bug-fix `DocsExample` to provide support for `SCSS` language and `block` attribute
+  - **Products impact:** none
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -
+
+[#965]: https://github.com/learningequality/kolibri-design-system/pull/965
+
+
+
 - [#897]
   - **Description:** MIgrated test from enzyme to Vue testing library
   - **Products impact:**  none
