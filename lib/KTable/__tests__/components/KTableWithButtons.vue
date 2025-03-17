@@ -7,7 +7,7 @@
   >
     <!-- Header Cells -->
     <template #header="{ header }">
-      <span v-if="addButtonToColumnIDs.includes(header.id)">
+      <span v-if="addButtonsToColumnIDs.includes(header.columnId)">
         <KButton>{{ header.label }}</KButton>
       </span>
       <span v-else>
@@ -17,7 +17,7 @@
 
     <!-- Row Cells -->
     <template #cell="{ content, colIndex }">
-      <span v-if="addButtonToColumnIndices.includes(colIndex)">
+      <span v-if="addButtonsToColumnIndices.includes(colIndex)">
         <KButton>{{ content }} </KButton>
       </span>
       <span v-else>{{ content }}</span>
@@ -42,7 +42,7 @@
       /*
        * Array of column IDs to which a button should be added
        */
-      addButtonToColumnIDs: {
+      addButtonsToColumnIDs: {
         type: Array,
         default: () => [],
       },
@@ -51,10 +51,10 @@
       /*
        * Array of column indices to which a button should be added
        */
-      addButtonToColumnIndices() {
+      addButtonsToColumnIndices() {
         return this.headers
           .map((h, idx) => ({ ...h, idx }))
-          .filter(h => this.addButtonToColumnIDs.includes(h.id))
+          .filter(h => this.addButtonsToColumnIDs.includes(h.columnId))
           .map(h => h.idx);
       },
     },
