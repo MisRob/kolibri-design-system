@@ -321,7 +321,6 @@
     margin-top: 8px;
     margin-bottom: 8px;
     font-size: 16px;
-    font-weight: bold;
     line-height: 32px;
     white-space: nowrap;
   }
