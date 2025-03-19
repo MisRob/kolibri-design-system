@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#886]
+  - **Description:** Removed SCSS variables in lib/keen/styles/variables.scss that relied on theming SCSS variables. Replaced their usage in KDS components and styles with direct references to the corresponding  JS/Vue theme variables using inline style bindings or dynamic classes.
+  - **Products impact:** none
+  - **Addresses:** Issue #617
+  - **Components:** No public KDS components directly affected.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** Consumers of KDS should ensure they are not relying on the removed SCSS variables. If theming is applied, they must directly reference the appropriate KDS color variables in Vue templates for consistency and runtime theming support.
+
+[#886]: https://github.com/learningequality/kolibri-design-system/pull/886
+
+
+
 - [#973]
   - **Description:** Add validator for the extension for loadExample prop in DocsExample
   - **Products impact:** -
