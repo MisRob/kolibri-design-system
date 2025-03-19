@@ -1,8 +1,14 @@
 <template>
 
-  <span class="ui-icon" :class="[iconSet, icon, { 'is-mirrored': mirror }]" :aria-label="ariaLabel">
+  <span class="ui-icon" 
+        :class="[iconSet, icon, { 'is-mirrored': mirror }]"  
+        :aria-label="ariaLabel"
+        :style="iconStyle" 
+  >
     <svg v-if="useSvg">
-      <use xmlns:xlink="http://www.w3.org/1999/xlink" :xlink:href="'#' + icon" />
+      <use xmlns:xlink="http://www.w3.org/1999/xlink" 
+           :xlink:href="'#' + icon" 
+      />
     </svg>
 
     <slot v-else>{{ removeText ? null : icon }}</slot>
@@ -21,6 +27,10 @@
       iconSet: {
         type: String,
         default: 'material-icons',
+      },
+      iconStyle: {
+        type: Object,
+        default: () => ({})
       },
       ariaLabel: String,
       removeText: {
