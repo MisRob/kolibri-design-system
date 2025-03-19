@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#973]
+  - **Description:** Add validator for the extension for loadExample prop in DocsExample
+  - **Products impact:** -
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** Will this change break something in a consumer? Choose from: no
+  - **Impacts a11y:** no
+  - **Guidance:** -
+
+[#973]: https://github.com/learningequality/kolibri-design-system/pull/973
+
+
+
 - [#962]
   - **Description:** Migrate KImg documentation to use DocsExample component
   - **Products impact:** -
