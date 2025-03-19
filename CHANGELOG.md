@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#962]
+  - **Description:** Migrate KImg documentation to use DocsExample component
+  - **Products impact:** -
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/952
+  - **Components:** -
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -
+
+[#962]: https://github.com/learningequality/kolibri-design-system/pull/962
+
+
+
 - [#965]
   - **Description:** Bug-fix `DocsExample` to provide support for `SCSS` language and `block` attribute
   - **Products impact:** none
