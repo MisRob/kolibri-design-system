@@ -100,6 +100,9 @@
         type: String,
         required: false,
         default: null,
+        validator(value) {
+          return value === null || value.endsWith('.vue');
+        },
       },
       /**
        * Unique identifier for the example. Needs to be be unique in regards
