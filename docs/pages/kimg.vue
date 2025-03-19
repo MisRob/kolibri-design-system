@@ -49,7 +49,7 @@
       </p>
 
       <DocsExample
-        loadExample="KImg/Base"
+        loadExample="KImg/Base.vue"
         exampleId="base-inline"
       >
         <template #html>
@@ -73,7 +73,7 @@
       </p>
 
       <DocsExample
-        loadExample="KImg/Base"
+        loadExample="KImg/Base.vue"
         exampleId="base-block"
         block
       >
@@ -141,7 +141,7 @@
       </p>
 
       <DocsExample
-        loadExample="KImg/FitCenterInside"
+        loadExample="KImg/FitCenterInside.vue"
         exampleId="fit-center-inside"
         block
       >
@@ -169,7 +169,7 @@
       </p>
 
       <DocsExample
-        loadExample="KImg/FitContain"
+        loadExample="KImg/FitContain.vue"
         exampleId="fit-contain"
         block
       >
@@ -197,7 +197,7 @@
       </p>
 
       <DocsExample
-        loadExample="KImg/FitXY"
+        loadExample="KImg/FitXY.vue"
         exampleId="fit-xy"
         block
       >
@@ -233,7 +233,7 @@
       </p>
 
       <DocsExample
-        loadExample="KImg/AspectRatio"
+        loadExample="KImg/AspectRatio.vue"
         exampleId="aspect-ratio"
         block
       >
@@ -267,7 +267,7 @@
       </p>
 
       <DocsExample
-        loadExample="KImg/Placeholder"
+        loadExample="KImg/Placeholder.vue"
         exampleId="placeholder"
         block
       />
@@ -292,7 +292,7 @@
       </p>
 
       <DocsExample
-        loadExample="KImg/ContentOnTop"
+        loadExample="KImg/ContentOnTop.vue"
         exampleId="content-on-top"
       >
         <template #html>
