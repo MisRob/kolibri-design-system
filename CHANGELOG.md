@@ -7,6 +7,31 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#900]
+  - **Description:** Fixes the bug in keyboard navigation in `KTable` when Shift + Tab navigation was trapped
+  - **Products impact:**  bugfix
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/883
+  - **Components:** `KTable`
+  - **Breaking:** no
+  - **Impacts a11y:** yes
+  - **Guidance:** -
+
+[#900]: https://github.com/learningequality/kolibri-design-system/pull/900
+
+- [#900]
+  - **Description:** Refactors internal methods for better maintenance
+  - **Products impact:**  none
+  - **Addresses:** -
+  - **Components:** `KTable`
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -
+
+[#900]: https://github.com/learningequality/kolibri-design-system/pull/900
+  -
+
+
+
 - [#886]
   - **Description:** Removed SCSS variables in lib/keen/styles/variables.scss that relied on theming SCSS variables. Replaced their usage in KDS components and styles with direct references to the corresponding  JS/Vue theme variables using inline style bindings or dynamic classes.
   - **Products impact:** none
