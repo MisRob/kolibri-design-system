@@ -21,11 +21,16 @@
 
 
 <script>
-import { sharedExampleData } from '../../pages/ktabslist.vue';
-
-export default {
-  data() {
-    return sharedExampleData; // Use shared data
-  },
-};
-</script>
+  export default {
+    data() {
+      return {
+        activeTabId: 'tabLessons',
+        tabs: [
+          { id: 'tabLessons', label: 'Lessons' },
+          { id: 'tabLearners', label: 'Learners' },
+          { id: 'tabGroups', label: 'Groups' },
+        ],
+      };
+    },
+  };
+  </script>

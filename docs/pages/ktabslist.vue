@@ -223,7 +223,6 @@
       <DocsExample
         loadExample="KTabsList/CustomStyling.vue"
         exampleId="custom-styling"
-        dark
       />
 
       <p>
@@ -274,24 +273,21 @@
 
 
 <script>
-export const sharedExampleData = {
-  tabs: [
-    { id: 'tabLessons', label: 'Lessons' },
-    { id: 'tabLearners', label: 'Learners' },
-    { id: 'tabGroups', label: 'Groups' },
-  ],
-  activeTabId: 'tabLessons',
-  icons: {
-    tabLessons: 'lesson',
-    tabLearners: 'person',
-    tabGroups: 'people',
-  },
-};
-
 export default {
-  name: 'DocsKTabsList',
-  data() {
-    return sharedExampleData;
-  },
+data() {
+  return {
+    activeTabId: 'tabLessons',
+    tabs: [
+      { id: 'tabLessons', label: 'Lessons' },
+      { id: 'tabLearners', label: 'Learners' },
+      { id: 'tabGroups', label: 'Groups' },
+    ],
+    icons: {
+      tabLessons: 'lesson',
+      tabLearners: 'person',
+      tabGroups: 'people',
+    },
+  };
+},
 };
 </script>

@@ -18,17 +18,23 @@
 </template>
 
 
-<script>
-import { sharedExampleData } from '../../pages/ktabslist.vue';
 
+<script>
 export default {
-  data() {
-    // Clone the shared data to avoid shared state
-    return {
-      tabs: [...sharedExampleData.tabs], // Clone the tabs array
-      activeTabId: sharedExampleData.activeTabId, // Copy primitive value
-      icons: { ...sharedExampleData.icons }, // Clone the icons object
-    };
-  },
+data() {
+  return {
+    activeTabId: 'tabLessons',
+    tabs: [
+      { id: 'tabLessons', label: 'Lessons' },
+      { id: 'tabLearners', label: 'Learners' },
+      { id: 'tabGroups', label: 'Groups' },
+    ],
+    icons: {
+      tabLessons: 'lesson',
+      tabLearners: 'person',
+      tabGroups: 'people',
+    },
+  };
+},
 };
 </script>
