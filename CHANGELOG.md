@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#971]
+  - **Description:**  Added visual tests for KDropdownMenu (covering single, multiple, icons, and header slot scenarios) and renamed KDropdownMenu.vue to KDropdownMenu/index.vue.
+  - **Products impact:** None
+  - **Addresses:** #926
+  - **Components:** KDropdownMenu
+  - **Breaking:** No
+  - **Impacts a11y:** No
+  - **Guidance:** Visual tests are implemented in separate test files following the approach used for KButton visual tests. This ensures that different configurations of KDropdownMenu render correctly and consistently.
+
+[#971]: https://github.com/learningequality/kolibri-design-system/pull/971
+
+
+
 - [#900]
   - **Description:** Fixes the bug in keyboard navigation in `KTable` when Shift + Tab navigation was trapped
   - **Products impact:**  bugfix
