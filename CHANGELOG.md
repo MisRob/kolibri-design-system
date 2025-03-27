@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#979]
+  - **Description:** Bump browserslist-config-kolibri from 0.16.0-dev.7 to 0.18.0
+  - **Products impact:** Dev Dependency upgrade
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#979]: https://github.com/learningequality/kolibri-design-system/pull/979
+
+
+
 - [#971]
   - **Description:**  Added visual tests for KDropdownMenu (covering single, multiple, icons, and header slot scenarios) and renamed KDropdownMenu.vue to KDropdownMenu/index.vue.
   - **Products impact:** None
