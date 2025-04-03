@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#983]
+  - **Description:** Ensures visual focus outline appears around the KCheckbox in its indeterminate state by adding the correct styling for active checkboxes.
+  - **Products impact:**  bugfix
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/974
+  - **Components:** KCheckbox
+  - **Breaking:** no
+  - **Impacts a11y:** yes
+  - **Guidance:** -
+
+[#983]: https://github.com/learningequality/kolibri-design-system/pull/983
+
+
+
 - [#979]
   - **Description:** Bump browserslist-config-kolibri from 0.16.0-dev.7 to 0.18.0
   - **Products impact:** Dev Dependency upgrade
