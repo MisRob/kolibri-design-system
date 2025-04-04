@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#981]
+  - **Description:** Adds the automation to remove stale assignments from issues
+  - **Products impact:** none
+  - **Addresses:** https://github.com/learningequality/kolibri/issues/12837
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#981]: https://github.com/learningequality/kolibri-design-system/pull/981
+
+
+
 - [#983]
   - **Description:** Ensures visual focus outline appears around the KCheckbox in its indeterminate state by adding the correct styling for active checkboxes.
   - **Products impact:**  bugfix
