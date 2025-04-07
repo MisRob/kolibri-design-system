@@ -124,13 +124,6 @@
         sort order in its payload.
       </p>
 
-      <p>
-        You should not use this attribute if <code>sortable</code> is set to <code>false</code>. If
-        <code>sortable</code> is set to <code>true</code>, then the table component will emit a
-        <code>changeSort</code> event with column index of the header clicked and the sort order to
-        notify the parent component to handle the sorting logic.
-      </p>
-
       <DocsExample
         loadExample="KTable/DisableBuiltinSort.vue"
         exampleId="disable-builtin-sort"
