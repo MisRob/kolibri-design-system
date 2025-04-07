@@ -32,7 +32,7 @@
           href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/caption#table_with_caption"
           target="_blank"
         >MDN</a>
-        for why it matters.
+        for more.
       </p>
 
       <h3>Table without sorting functionality</h3>
