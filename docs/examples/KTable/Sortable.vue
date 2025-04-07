@@ -3,7 +3,7 @@
   <KTable
     :headers="headers"
     :rows="rows"
-    caption="In-built Sortable Table"
+    caption="Table with built-in sorting"
     sortable
   />
 
