@@ -27,7 +27,6 @@
 
       <p>A caption is required via the <code>caption</code> prop. Provide a concise and translated string that accurately describes the table’s content. See <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/caption#table_with_caption" target="_blank">MDN</a> for why it matters.</p>
 
-      <!--Non-Sortable Table-->
       <h3>Table without sorting functionality</h3>
       <p>
         This is an example to show how <code>KTable</code> can be used without any sorting
@@ -40,7 +39,6 @@
         block
       />
 
-      <!-- Frontend Sorting Example-->
       <h3>Table with sorting</h3>
       <p>
         The <code>KTable</code> offers built-in sorting functionality. There are 4 permissible data
@@ -60,7 +58,6 @@
         block
       />
 
-      <!--Table showing use of slots-->
       <h3>Table showing use of slots</h3>
       <p>
         This is an example to show how slots can be used in <code>KTable</code>. The table currently
@@ -74,7 +71,6 @@
         block
       />
 
-      <!--Table with custom column widths-->
       <h3>Table with custom column widths</h3>
       <p>
         This is an example to show how <code>KTable</code> can be used with custom column widths.
@@ -90,7 +86,6 @@
         block
       />
 
-      <!--Table with default sort-->
       <h3>Table with default sort</h3>
       <p>
         This is an example to show how to use the <code>defaultSort</code> prop to sort the table
@@ -116,7 +111,6 @@
         block
       />
 
-      <!-- Disable built-in sorting -->
       <h3>Disable built-in sorting</h3>
       <p>
         For <code>sortable</code> tables, you can use the <code>disableBuiltinSorting</code> prop to
