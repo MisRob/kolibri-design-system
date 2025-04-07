@@ -90,7 +90,7 @@
       <p>
         This is an example to show how to use the <code>defaultSort</code> prop to sort the table
         based on a particular column upon the initial load. The <code>defaultSort</code> attribute
-        can be used irrespective of the <code>sortable</code> attribute.
+        can be used irrespective of the <code>sortable</code> attribute. If built-in sorting is disabled via <code>disableBuiltinSorting</code>, <code>defaultSort</code> will have no effect.
       </p>
 
       <p>
@@ -98,11 +98,6 @@
         <code>columnId</code> and <code>direction</code>. The <code>columnId</code> is the unique
         identifier of the column based on which the table should be sorted. The
         <code>direction</code> can be either <code>asc</code> or <code>desc</code>.
-      </p>
-
-      <p>
-        To make use of <code>defaultSort</code>, please ensure that the
-        <code>disableBuiltinSorting</code> attribute is not set to <code>true</code>.
       </p>
 
       <DocsExample
