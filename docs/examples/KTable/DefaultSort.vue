@@ -5,7 +5,7 @@
     <KTable
       :headers="headers"
       :rows="rows"
-      caption="Sortable table with rows sorted by 'Age' column"
+      caption="User name, age and city"
       sortable
       :defaultSort="{ columnId: 'age', direction: 'asc' }"
     />
@@ -14,7 +14,7 @@
     <KTable
       :headers="headers"
       :rows="rows"
-      caption="Unsortable table with rows sorted by 'Age'  by 'Age' column"
+      caption="User name, age and city"
       :defaultSort="{ columnId: 'age', direction: 'asc' }"
     />
   </div>

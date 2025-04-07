@@ -3,7 +3,7 @@
   <KTable
     :headers="headers"
     :rows="rows"
-    caption="Sortable table with disabled built-in sorting"
+    caption="User name, age and city"
     sortable
     disableDefaultSorting
     @changeSort="changeSortHandler"

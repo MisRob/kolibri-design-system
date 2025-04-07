@@ -3,7 +3,7 @@
   <KTable
     :headers="headersWithCustomWidths"
     :rows="customRows"
-    caption="Table showing columns with custom widths"
+    caption="User name, age, city, and joined date"
     sortable
   />
 

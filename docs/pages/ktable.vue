@@ -22,7 +22,11 @@
     <DocsPageSection
       title="Usage"
       anchor="#usage"
-    >
+    > 
+      <h3>Table caption</h3>
+
+      <p>A caption is required via the <code>caption</code> prop. Provide a concise and translated string that accurately describes the table’s content. See <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/caption#table_with_caption" target="_blank">MDN</a> for why it matters.</p>
+
       <!--Non-Sortable Table-->
       <h3>Table without sorting functionality</h3>
       <p>

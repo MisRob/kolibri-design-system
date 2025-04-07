@@ -3,7 +3,7 @@
   <KTable
     :headers="headers"
     :rows="rows"
-    caption="Table with built-in sorting"
+    caption="User name, age and city"
     sortable
   />
 

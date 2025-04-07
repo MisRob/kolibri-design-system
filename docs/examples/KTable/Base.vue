@@ -3,7 +3,7 @@
   <KTable
     :headers="headers"
     :rows="rows"
-    caption="Non-sortable table"
+    caption="User name, age and city"
   />
 
 </template>
