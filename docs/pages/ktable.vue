@@ -22,10 +22,18 @@
     <DocsPageSection
       title="Usage"
       anchor="#usage"
-    > 
+    >
       <h3>Table caption</h3>
 
-      <p>A caption is required via the <code>caption</code> prop. Provide a concise and translated string that accurately describes the table’s content. See <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/caption#table_with_caption" target="_blank">MDN</a> for why it matters.</p>
+      <p>
+        A caption is required via the <code>caption</code> prop. Provide a concise and translated
+        string that accurately describes the table’s content. See
+        <a
+          href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/caption#table_with_caption"
+          target="_blank"
+        >MDN</a>
+        for why it matters.
+      </p>
 
       <h3>Table without sorting functionality</h3>
       <p>
@@ -90,7 +98,9 @@
       <p>
         This is an example to show how to use the <code>defaultSort</code> prop to sort the table
         based on a particular column upon the initial load. The <code>defaultSort</code> attribute
-        can be used irrespective of the <code>sortable</code> attribute. If built-in sorting is disabled via <code>disableBuiltinSorting</code>, <code>defaultSort</code> will have no effect.
+        can be used irrespective of the <code>sortable</code> attribute. If built-in sorting is
+        disabled via <code>disableBuiltinSorting</code>, <code>defaultSort</code> will have no
+        effect.
       </p>
 
       <p>
