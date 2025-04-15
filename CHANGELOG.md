@@ -7,6 +7,16 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#978]
+  - **Description:** Refactored KCardGrid docs and example files to use the new DocsExample component
+  - **Products impact**: none
+  - **Components**: KCardGrid
+  - **Breaking**: no
+  - **Impacts a11y**: no
+  - **Guidance**: -
+
+
+
 - [#986]
   - **Description:** Bumps KDS version to 5.0.2
   - **Products impact:** -
