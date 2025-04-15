@@ -66,7 +66,9 @@
       SkeletonCard,
     },
     setup(props) {
-      useGridMetrics();
+      if (props.syncCardsMetrics) {
+        useGridMetrics();
+      }
       const { currentBreakpointConfig, windowBreakpoint } = useGridLayout(props);
       const {
         showGrid,
@@ -173,6 +175,17 @@
       debug: {
         type: Boolean,
         default: false,
+      },
+      /**
+       * Enables the `syncCardsMetrics` feature.
+       * This feature is used to synchronize the metrics of
+       * cards in the grid, e.g. when you have some cards with
+       * a select control and some without it, this will make that
+       * all cards have the same space for the select control.
+       */
+      syncCardsMetrics: {
+        type: Boolean,
+        default: true,
       },
     },
   };

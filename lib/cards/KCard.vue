@@ -5,7 +5,7 @@
     to allow for @click.stop on buttons and similar
     rendered within a card via its slots -->
   <li
-    :class="['k-card', selectionControlWidth > 0 ? 'k-with-selection-controls' : undefined]"
+    :class="['k-card', haveSelectionControl ? 'k-with-selection-controls' : undefined]"
     :style="[gridItemStyle, focusStyle]"
     @focus="onFocus"
     @mouseenter="onHover"
@@ -172,7 +172,7 @@
     <div
       ref="selectionControl"
       class="k-selection-control"
-      :style="{ minWidth: `${selectionControlWidth}px` }"
+      :style="{ minWidth: `${selectionControlWidth || 0}px` }"
       @keyup.enter.stop
       @click.stop
     >
@@ -186,7 +186,7 @@
 
 <script>
 
-  import { getCurrentInstance, inject } from 'vue';
+  import { computed, getCurrentInstance, inject } from 'vue';
   import { useCardMetrics } from './useGridMetrics';
 
   const Orientations = {
@@ -236,8 +236,18 @@
         },
       });
 
+      const haveSelectionControl = computed(() => {
+        // If selectionControlWidth is null, it means that the styles sync is not enabled
+        // so lets just rely on the presence of the select slot
+        if (selectionControlWidth.value === null) {
+          return Boolean(instance.proxy.$slots.select);
+        }
+        return selectionControlWidth.value > 0;
+      });
+
       return {
         gridItemStyle,
+        haveSelectionControl,
         selectionControlWidth,
       };
     },
