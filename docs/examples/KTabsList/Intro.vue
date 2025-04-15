@@ -1,14 +1,17 @@
 <template>
-    <KTabsList
-      v-model="activeTabId"
-      tabsId="tabsIntro"
-      ariaLabel="Coach reports"
-      :tabs="tabs"
-    />
+
+  <KTabsList
+    v-model="activeTabId"
+    tabsId="tabsIntro"
+    ariaLabel="Coach reports"
+    :tabs="tabs"
+  />
+
 </template>
 
 
 <script>
+
   export default {
     data() {
       return {
@@ -21,4 +24,5 @@
       };
     },
   };
-  </script>
+
+</script>

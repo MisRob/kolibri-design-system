@@ -273,21 +273,23 @@
 
 
 <script>
-export default {
-data() {
-  return {
-    activeTabId: 'tabLessons',
-    tabs: [
-      { id: 'tabLessons', label: 'Lessons' },
-      { id: 'tabLearners', label: 'Learners' },
-      { id: 'tabGroups', label: 'Groups' },
-    ],
-    icons: {
-      tabLessons: 'lesson',
-      tabLearners: 'person',
-      tabGroups: 'people',
+
+  export default {
+    data() {
+      return {
+        activeTabId: 'tabLessons',
+        tabs: [
+          { id: 'tabLessons', label: 'Lessons' },
+          { id: 'tabLearners', label: 'Learners' },
+          { id: 'tabGroups', label: 'Groups' },
+        ],
+        icons: {
+          tabLessons: 'lesson',
+          tabLearners: 'person',
+          tabGroups: 'people',
+        },
+      };
     },
   };
-},
-};
+
 </script>
