@@ -1,17 +1,24 @@
 <template>
 
   <KCardGrid
-    layout="1-2-2"
+    layout="1-1-1"
     :skeletonsConfig="skeletonsConfig"
     :loading="loading"
   >
     <Card
-      v-for="i in 2"
-      :key="i"
       :headingLevel="4"
-      :orientation="windowBreakpoint < 4 ? 'vertical' : 'horizontal'"
-      :prependTitle="`(${i})`"
-    />
+      :orientation="windowBreakpoint > 2 ? 'horizontal' : 'vertical'"
+      thumbnailDisplay="large"
+      thumbnailAlign="right"
+    >
+      <template #footer>
+        <KIconButton
+          ariaLabel="Bookmark resource"
+          :icon="isBookmarked ? 'bookmark' : 'bookmarkEmpty'"
+          @click.stop="isBookmarked = !isBookmarked"
+        />
+      </template>
+    </Card>
   </KCardGrid>
 
 </template>
@@ -28,19 +35,24 @@
     },
     data() {
       return {
+        isBookmarked: false,
         loading: true,
         skeletonsConfig: [
           {
             breakpoints: [0, 1, 2, 3, 4, 5, 6, 7],
             orientation: 'vertical',
             thumbnailDisplay: 'large',
-            height: '440px',
+            height: '460px',
           },
           {
-            breakpoints: [4, 5, 6, 7],
-            height: '220px',
+            breakpoints: [2],
+            height: '390px',
+          },
+          {
+            breakpoints: [3, 4, 5, 6, 7],
             orientation: 'horizontal',
-            thumbnailAlign: 'left',
+            thumbnailAlign: 'right',
+            height: '170px',
           },
         ],
       };
