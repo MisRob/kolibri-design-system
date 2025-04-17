@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#975]
+  - **Description:** Updated KCard documentation to use the DocsExample component and migrated example code into separate Vue files in the KCard directory. Cleaned up unnecessary script in KCard.vue.
+  - **Products impact:** none
+  - **Addresses:** [#950](https://github.com/learningequality/kolibri-design-system/issues/950)
+  - **Components:** KCard
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -
+
+[#975]: https://github.com/learningequality/kolibri-design-system/pull/975
+
+
+
 - [#978]
   - **Description:** Refactored KCardGrid docs and example files to use the new DocsExample component
   - **Products impact**: none
