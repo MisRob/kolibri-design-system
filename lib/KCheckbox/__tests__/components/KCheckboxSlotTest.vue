@@ -1,12 +1,16 @@
 <template>
-    <KCheckbox showLabel>
-      <span>Label from default slot</span>
-    </KCheckbox>
-  </template>
-  
-  <script>
+
+  <KCheckbox showLabel>
+    <span>Label from default slot</span>
+  </KCheckbox>
+
+</template>
+
+
+<script>
+
   export default {
-    name: 'KCheckboxSlotTest'
-  }
-  </script>
-  
+    name: 'KCheckboxSlotTest',
+  };
+
+</script>
