@@ -132,7 +132,7 @@
         type: Array,
         required: false,
         default() {
-          return ['template', 'script', 'style']
+          return ['template', 'script', 'style'];
         },
       },
     },
