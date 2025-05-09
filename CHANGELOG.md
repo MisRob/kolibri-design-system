@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1017]
+  - **Description:** added visual tests for the KCheckbox component and the KCheckbox component file has been renamed from KCheckbox.vue to KCheckbox/index.vue to better organize the component structure.
+  - **Products impact:** none
+  - **Addresses:** [[Visual testing]: Add visual tests for KCheckbox](https://github.com/learningequality/kolibri-design-system/issues/925)
+  - **Components:** KCheckbox
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** Visual test is implemented in separate test file
+
+[#1017]: https://github.com/learningequality/kolibri-design-system/pull/1017
+
+
+
 - [#999]
   - **Description:** Changed default grid gap to 24px instead of 30px of KCardGrid.
   - **Products impact:** KDS, Studio, Kolibri
