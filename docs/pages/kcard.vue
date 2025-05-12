@@ -419,7 +419,7 @@
       <DocsExample
         loadExample="KCard/Layout1.vue"
         exampleId="kcard-layout"
-        :docTabs="['script', 'template']"
+        :hideStyle="true"
         block
       >
         <template #html>

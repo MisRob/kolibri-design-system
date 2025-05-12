@@ -124,17 +124,35 @@
         required: false,
       },
       /**
-       * Its purpose is to dynamically control the set of documentation tabs rendered
-       * @type {Array}
-       * @example ['template', 'script', 'style']
+       * If true, hides the template (HTML) code block from the code viewer.
+       * @type {Boolean}
+       * @default false
        */
-      docTabs: {
-        type: Array,
+      hideTemplate: {
+        type: Boolean,
+        default: false,
         required: false,
-        default() {
-          return ['template', 'script', 'style'];
-        },
       },
+      /**
+       * If true, hides the script (JavaScript) code block from the code viewer.
+       * @type {Boolean}
+       * @default false
+       */
+      hideScript: {
+        type: Boolean,
+        default: false,
+        required: false,
+      },
+      /**
+       * If true, hides the style (SCSS) code block from the code viewer.
+       * @type {Boolean}
+       * @default false
+       */
+      hideStyle: {
+        type: Boolean,
+        default: false,
+        required: false,
+      }
     },
     data() {
       return {
@@ -152,7 +170,7 @@
         const tabList = [];
 
         const templateContent = this.applyRegex(this.content, 'template');
-        if ((this.$slots.html || templateContent) && this.docTabs.includes('template')) {
+        if ((this.$slots.html || templateContent) && !this.hideTemplate) {
           tabList.push({
             id: 'html-codeblock',
             label: 'Template',
@@ -162,7 +180,7 @@
         }
 
         const scriptContent = this.applyRegex(this.content, 'script');
-        if ((this.$slots.javascript || scriptContent) && this.docTabs.includes('script')) {
+        if ((this.$slots.javascript || scriptContent) && !this.hideScript) {
           tabList.push({
             id: 'js-codeblock',
             label: 'Script',
@@ -172,7 +190,7 @@
         }
 
         const styleContent = this.applyRegex(this.content, 'style');
-        if ((this.$slots.scss || styleContent) && this.docTabs.includes('style')) {
+        if ((this.$slots.scss || styleContent) && !this.hideStyle) {
           tabList.push({
             id: 'scss-codeblock',
             label: 'Style',
