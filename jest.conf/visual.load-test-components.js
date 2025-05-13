@@ -5,7 +5,6 @@ import KDropdownMenuTest from '~~/lib/KDropdownMenu/__tests__/components/KDropdo
 import KCheckboxSlotTest from '~~/lib/KCheckbox/__tests__/components/KCheckboxSlotTest.vue';
 import KLogoTest from '~~/lib/KLogo/__tests__/components/KLogoTest.vue';
 
-
 Vue.component('KCheckboxSlotTest', KCheckboxSlotTest);
 Vue.component('KButtonWithDropdownTest', KButtonWithDropdownTest);
 Vue.component('KDropdownMenuTest', KDropdownMenuTest);
