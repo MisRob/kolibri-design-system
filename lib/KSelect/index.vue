@@ -133,6 +133,7 @@
                 :multiple="multiple"
                 :option="option"
                 :selected="isOptionSelected(option)"
+                :truncateLabel="truncateOptionsLabel"
                 type="basic"
                 @click.native.stop="selectOption(option)"
                 @mouseover.native.stop="onMouseover(option)"
@@ -380,6 +381,15 @@
       inline: {
         type: Boolean,
         default: false,
+      },
+      /**
+       * Whether or not to truncate the options label
+       * when the label is too long to fit in one line.
+       * If false, the label will break into multiple lines.
+       */
+      truncateOptionsLabel: {
+        type: Boolean,
+        default: true,
       },
     },
     data() {
