@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1016]
+  - **Description:** Adds clarifications regarding registering KDS components in `visual.load-test-components.js` to the visual testing development docs.
+  - **Products impact:** none.
+  - **Addresses:** -.
+  - **Components:** -.
+  - **Breaking:** no.
+  - **Impacts a11y:** no.
+  - **Guidance:** -.
+
+[#1016]: https://github.com/learningequality/kolibri-design-system/pull/1016
+
+
+
 - [#1026]
   - **Description:** Wraps ResizeObserver callback in `useKResponsiveElement` with requestAnimationFrame to avoid possible resize observer issues.
   - **Products impact:** none.
