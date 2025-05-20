@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/no-v-for-template-key -->
 <template>
 
   <DocsPageTemplate apiDocs>
@@ -107,7 +106,7 @@
 
       <DocsShow>
         <template
-          v-for="(colorScheme) in [
+          v-for="colorScheme in [
             'monoBlack',
             'monoWhite',
             'monoPrimary',
@@ -115,11 +114,11 @@
             'whiteGrey',
             'blackGrey',
           ]"
-          :key="`text${colorScheme}`"
         >
-          <p>Color scheme: {{ colorScheme }}</p>
+          <p :key="`text${colorScheme}`">Color scheme: {{ colorScheme }}</p>
           <KLogo
             :ref="`${colorScheme}LogoWithBackground`"
+            :key="colorScheme"
             class="halfsquare-background"
             :colorScheme="colorScheme"
             altText="Kolibri Logo"
@@ -127,6 +126,7 @@
             :size="150"
           />
           <div
+            :key="`button${colorScheme}`"
             style="display: none; width: 100%; text-align: center"
           >
             <KButton @click="saveSVG(`${colorScheme}LogoWithBackground`)"> Save SVG </KButton>
@@ -222,8 +222,7 @@
 <style scoped>
 
   .halfsquare-background {
-    background-image:
-      linear-gradient(45deg, #ffffff 50%, #f5f5f5 50%),
+    background-image: linear-gradient(45deg, #ffffff 50%, #f5f5f5 50%),
       linear-gradient(45deg, #f5f5f5 50%, #ffffff 50%);
     background-repeat: repeat;
     background-position:
