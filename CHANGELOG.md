@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1023]
+  - **Description:** Adds a `min-width: 0` to k card area to prevent text overflow issues within KCards with checkboxes.
+  - **Products impact:** bugfix.
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/958.
+  - **Components:**  KCard.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -.
+
+[#1023]: https://github.com/learningequality/kolibri-design-system/pull/1023
+
+
+
 - [#1016]
   - **Description:** Adds clarifications regarding registering KDS components in `visual.load-test-components.js` to the visual testing development docs.
   - **Products impact:** none.
