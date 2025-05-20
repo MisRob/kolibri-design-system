@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#990]
+  - **Description:** Adds KCardGrid management for reserving space for selection control width in KCard to align cards that already selection controls and the ones who doesnt.
+  - **Products impact:** bugfix.
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/980.
+  - **Components:** KCard
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** .
+
+[#990]: https://github.com/learningequality/kolibri-design-system/pull/990
+
+
+
 - [#1023]
   - **Description:** Adds a `min-width: 0` to k card area to prevent text overflow issues within KCards with checkboxes.
   - **Products impact:** bugfix.
