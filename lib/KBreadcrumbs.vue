@@ -352,7 +352,6 @@
     z-index: 8;
     max-width: 100%;
     padding: 16px;
-    font-weight: bold;
   }
 
   .breadcrumbs-dropdown-items {
