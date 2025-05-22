@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1027]
+  - **Description:** Adds truncateOptionsLabel prop to control wether to truncate or wrap KSelect options label when it overflows.
+  - **Products impact:** new API.
+  - **Addresses:** https://github.com/learningequality/kolibri/issues/12166.
+  - **Components:** KSelect.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** .
+
+[#1027]: https://github.com/learningequality/kolibri-design-system/pull/1027
+
+
+
 - [#1021]
   - **Description:** This PR changes allows individual documentation tabs (template, script, and style) to be hidden using their respective boolean props.
   - **Products impact:** None
