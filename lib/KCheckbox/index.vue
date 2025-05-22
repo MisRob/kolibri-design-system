@@ -24,7 +24,7 @@
 
         <KIcon
           v-if="indeterminate"
-          :style="notBlank"
+          :style="[notBlank, activeOutline]"
           class="checkbox-icon"
           icon="indeterminateCheck"
         />

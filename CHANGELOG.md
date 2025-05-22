@@ -7,6 +7,262 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1021]
+  - **Description:** This PR changes allows individual documentation tabs (template, script, and style) to be hidden using their respective boolean props.
+  - **Products impact:** None
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/995
+  - **Components:** KCard, DocsExample
+  - **Breaking:** No
+  - **Impacts a11y:**  No
+  - **Guidance:** None
+
+[#1021]: https://github.com/learningequality/kolibri-design-system/pull/1021
+
+
+
+- [#990]
+  - **Description:** Adds KCardGrid management for reserving space for selection control width in KCard to align cards that already selection controls and the ones who doesnt.
+  - **Products impact:** bugfix.
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/980.
+  - **Components:** KCard
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** .
+
+[#990]: https://github.com/learningequality/kolibri-design-system/pull/990
+
+
+
+- [#1023]
+  - **Description:** Adds a `min-width: 0` to k card area to prevent text overflow issues within KCards with checkboxes.
+  - **Products impact:** bugfix.
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/958.
+  - **Components:**  KCard.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -.
+
+[#1023]: https://github.com/learningequality/kolibri-design-system/pull/1023
+
+
+
+- [#1016]
+  - **Description:** Adds clarifications regarding registering KDS components in `visual.load-test-components.js` to the visual testing development docs.
+  - **Products impact:** none.
+  - **Addresses:** -.
+  - **Components:** -.
+  - **Breaking:** no.
+  - **Impacts a11y:** no.
+  - **Guidance:** -.
+
+[#1016]: https://github.com/learningequality/kolibri-design-system/pull/1016
+
+
+
+- [#1026]
+  - **Description:** Wraps ResizeObserver callback in `useKResponsiveElement` with requestAnimationFrame to avoid possible resize observer issues.
+  - **Products impact:** none.
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/960.
+  - **Components:** -.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** .
+
+[#1026]: https://github.com/learningequality/kolibri-design-system/pull/1026
+
+
+
+- [#1017]
+  - **Description:** added visual tests for the KCheckbox component and the KCheckbox component file has been renamed from KCheckbox.vue to KCheckbox/index.vue to better organize the component structure.
+  - **Products impact:** none
+  - **Addresses:** [[Visual testing]: Add visual tests for KCheckbox](https://github.com/learningequality/kolibri-design-system/issues/925)
+  - **Components:** KCheckbox
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** Visual test is implemented in separate test file
+
+[#1017]: https://github.com/learningequality/kolibri-design-system/pull/1017
+
+
+
+- [#999]
+  - **Description:** Changed default grid gap to 24px instead of 30px of KCardGrid.
+  - **Products impact:** KDS, Studio, Kolibri
+  - **Addresses:**  issue #[996](https://github.com/learningequality/kolibri-design-system/issues/996) and one related PR in kolibri #[13344](https://github.com/learningequality/kolibri/pull/13344/)
+  - **Components:** KCardGrid
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** none
+
+[#999]: https://github.com/learningequality/kolibri-design-system/pull/999
+
+
+
+- [#975]
+  - **Description:** Updated KCard documentation to use the DocsExample component and migrated example code into separate Vue files in the KCard directory. Cleaned up unnecessary script in KCard.vue.
+  - **Products impact:** none
+  - **Addresses:** [#950](https://github.com/learningequality/kolibri-design-system/issues/950)
+  - **Components:** KCard
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -
+
+[#975]: https://github.com/learningequality/kolibri-design-system/pull/975
+
+
+
+- [#978]
+  - **Description:** Refactored KCardGrid docs and example files to use the new DocsExample component
+  - **Products impact**: none
+  - **Components**: KCardGrid
+  - **Breaking**: no
+  - **Impacts a11y**: no
+  - **Guidance**: -
+
+
+
+- [#986]
+  - **Description:** Bumps KDS version to 5.0.2
+  - **Products impact:** -
+  - **Addresses:** -.
+  - **Components:** -.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -.
+
+[#986]: https://github.com/learningequality/kolibri-design-system/pull/986
+
+
+
+- [#981]
+  - **Description:** Adds the automation to remove stale assignments from issues
+  - **Products impact:** none
+  - **Addresses:** https://github.com/learningequality/kolibri/issues/12837
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#981]: https://github.com/learningequality/kolibri-design-system/pull/981
+
+
+
+- [#983]
+  - **Description:** Ensures visual focus outline appears around the KCheckbox in its indeterminate state by adding the correct styling for active checkboxes.
+  - **Products impact:**  bugfix
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/974
+  - **Components:** KCheckbox
+  - **Breaking:** no
+  - **Impacts a11y:** yes
+  - **Guidance:** -
+
+[#983]: https://github.com/learningequality/kolibri-design-system/pull/983
+
+
+
+- [#979]
+  - **Description:** Bump browserslist-config-kolibri from 0.16.0-dev.7 to 0.18.0
+  - **Products impact:** Dev Dependency upgrade
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#979]: https://github.com/learningequality/kolibri-design-system/pull/979
+
+
+
+- [#971]
+  - **Description:**  Added visual tests for KDropdownMenu (covering single, multiple, icons, and header slot scenarios) and renamed KDropdownMenu.vue to KDropdownMenu/index.vue.
+  - **Products impact:** None
+  - **Addresses:** #926
+  - **Components:** KDropdownMenu
+  - **Breaking:** No
+  - **Impacts a11y:** No
+  - **Guidance:** Visual tests are implemented in separate test files following the approach used for KButton visual tests. This ensures that different configurations of KDropdownMenu render correctly and consistently.
+
+[#971]: https://github.com/learningequality/kolibri-design-system/pull/971
+
+
+
+- [#900]
+  - **Description:** Fixes the bug in keyboard navigation in `KTable` when Shift + Tab navigation was trapped
+  - **Products impact:**  bugfix
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/883
+  - **Components:** `KTable`
+  - **Breaking:** no
+  - **Impacts a11y:** yes
+  - **Guidance:** -
+
+[#900]: https://github.com/learningequality/kolibri-design-system/pull/900
+
+- [#900]
+  - **Description:** Refactors internal methods for better maintenance
+  - **Products impact:**  none
+  - **Addresses:** -
+  - **Components:** `KTable`
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -
+
+[#900]: https://github.com/learningequality/kolibri-design-system/pull/900
+  -
+
+
+
+- [#886]
+  - **Description:** Removed SCSS variables in lib/keen/styles/variables.scss that relied on theming SCSS variables. Replaced their usage in KDS components and styles with direct references to the corresponding  JS/Vue theme variables using inline style bindings or dynamic classes.
+  - **Products impact:** none
+  - **Addresses:** Issue #617
+  - **Components:** No public KDS components directly affected.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** Consumers of KDS should ensure they are not relying on the removed SCSS variables. If theming is applied, they must directly reference the appropriate KDS color variables in Vue templates for consistency and runtime theming support.
+
+[#886]: https://github.com/learningequality/kolibri-design-system/pull/886
+
+
+
+- [#973]
+  - **Description:** Add validator for the extension for loadExample prop in DocsExample
+  - **Products impact:** -
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** Will this change break something in a consumer? Choose from: no
+  - **Impacts a11y:** no
+  - **Guidance:** -
+
+[#973]: https://github.com/learningequality/kolibri-design-system/pull/973
+
+
+
+- [#962]
+  - **Description:** Migrate KImg documentation to use DocsExample component
+  - **Products impact:** -
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/952
+  - **Components:** -
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -
+
+[#962]: https://github.com/learningequality/kolibri-design-system/pull/962
+
+
+
+- [#965]
+  - **Description:** Bug-fix `DocsExample` to provide support for `SCSS` language and `block` attribute
+  - **Products impact:** none
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -
+
+[#965]: https://github.com/learningequality/kolibri-design-system/pull/965
+
+
+
 - [#897]
   - **Description:** MIgrated test from enzyme to Vue testing library
   - **Products impact:**  none

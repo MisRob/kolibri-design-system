@@ -3,7 +3,9 @@
   <div class="ui-autocomplete" :class="classes">
     <div v-if="icon || $slots.icon" class="ui-autocomplete__icon-wrapper">
       <slot name="icon">
-        <UiIcon :icon="icon" />
+        <UiIcon :icon="icon" 
+                :iconStyle="{ color: $themePalette.grey.v_700 }"
+        />
       </slot>
     </div>
 
@@ -13,6 +15,7 @@
           v-if="label || $slots.default"
           class="ui-autocomplete__label-text"
           :class="labelClasses"
+          :style="colorStyle"
         >
           <slot>{{ label }}</slot>
         </div>
@@ -20,7 +23,7 @@
         <UiIcon
           v-show="!disabled && valueLength > 0"
           class="ui-autocomplete__clear-button"
-
+          :style="{ color: $themePalette.grey.v_700 }"
           title="Clear"
 
           @click.native="updateValue('')"
@@ -34,7 +37,10 @@
           ref="input"
           autocomplete="off"
           class="ui-autocomplete__input"
-
+          :style="{ color: $themeBrand.primary.v_600 ,
+                    'border-bottom-color': isActive ?
+                      $themeBrand.primary.v_600 : $themePalette.grey.v_700
+          }"
           :disabled="disabled"
           :name="name"
           :placeholder="hasFloatingLabel ? null : placeholder"
@@ -228,7 +234,11 @@
           { 'has-floating-label': this.hasFloatingLabel },
         ];
       },
-
+      colorStyle() {
+    return this.isActive && !this.disabled ? {
+      color: this.$themeBrand.primary.v_600 
+    } : { color: $themePalette.grey.v_700 };
+  },
       labelClasses() {
         return {
           'is-inline': this.hasFloatingLabel && this.isLabelInline,
@@ -462,11 +472,10 @@
     &.is-active:not(.is-disabled) {
       .ui-autocomplete__label-text,
       .ui-autocomplete__icon-wrapper .ui-icon {
-        color: $ui-input-label-color--active;
+        color: inherit;
       }
 
       .ui-autocomplete__input {
-        border-bottom-color: $ui-input-border-color--active;
         border-bottom-width: $ui-input-border-width--active;
       }
     }
@@ -478,7 +487,6 @@
         display: table;
 
         &.is-inline {
-          color: $ui-input-label-color; // So the hover styles don't override it
           cursor: text;
           transform: translateY($ui-input-label-top--inline) scale(1.1);
         }
@@ -545,7 +553,7 @@
     margin-right: $ui-input-icon-margin-right;
 
     .ui-icon {
-      color: $ui-input-icon-color;
+      color: inherit;
     }
   }
 
@@ -557,7 +565,6 @@
     margin-bottom: $ui-input-label-margin-bottom;
     font-size: $ui-input-label-font-size;
     line-height: $ui-input-label-line-height;
-    color: $ui-input-label-color;
     cursor: default;
     transition: color 0.1s ease, transform 0.2s ease;
     transform-origin: left;
@@ -574,7 +581,6 @@
     cursor: auto;
     background: none;
     border: none;
-    border-bottom-color: $ui-input-border-color;
     border-bottom-style: solid;
     border-bottom-width: $ui-input-border-width;
     border-radius: 0;
@@ -592,9 +598,7 @@
     top: $ui-input-button-margin-top;
     right: 0;
     font-size: $ui-input-button-size;
-    color: $ui-input-button-color;
     cursor: pointer;
-
     &:hover {
       color: $ui-input-button-color--hover;
     }

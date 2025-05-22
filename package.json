@@ -1,6 +1,6 @@
 {
   "name": "kolibri-design-system",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "private": false,
   "description": "The Kolibri Design System defines common design patterns and code for use in Kolibri applications",
   "repository": {
@@ -59,7 +59,7 @@
     "@vuedoc/parser": "^3.4.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^29.7.0",
-    "browserslist-config-kolibri": "0.16.0-dev.7",
+    "browserslist-config-kolibri": "0.18.0",
     "chokidar-cli": "^3.0.0",
     "concurrently": "^9.1.0",
     "consola": "^2.15.3",

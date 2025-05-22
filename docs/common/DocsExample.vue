@@ -60,14 +60,14 @@
         v-if="show(exampleId, !isLoaded, MINIMUM_LOADER_TIME)"
         key="loader"
       />
-      <div
+      <DocsShow
         v-else
-        key="loaded-component"
+        :block="block"
       >
         <slot>
           <component :is="loadedComponent" />
         </slot>
-      </div>
+      </DocsShow>
     </KTransition>
   </div>
 
@@ -100,6 +100,9 @@
         type: String,
         required: false,
         default: null,
+        validator(value) {
+          return value === null || value.endsWith('.vue');
+        },
       },
       /**
        * Unique identifier for the example. Needs to be be unique in regards
@@ -111,6 +114,44 @@
       exampleId: {
         type: String,
         required: true,
+      },
+      /*
+       * Flag to determine if the component should take up full width
+       */
+      block: {
+        type: Boolean,
+        default: false,
+        required: false,
+      },
+      /**
+       * Flag to optionally hide the Template tab of a code sample.
+       * @type {Boolean}
+       * @default false
+       */
+      hideTemplate: {
+        type: Boolean,
+        default: false,
+        required: false,
+      },
+      /**
+       * Flag to optionally hide the Script tab of a code sample.
+       * @type {Boolean}
+       * @default false
+       */
+      hideScript: {
+        type: Boolean,
+        default: false,
+        required: false,
+      },
+      /**
+       * Flag to optionally hide the Style tab of code sample.
+       * @type {Boolean}
+       * @default false
+       */
+      hideStyle: {
+        type: Boolean,
+        default: false,
+        required: false,
       },
     },
     data() {
@@ -129,7 +170,7 @@
         const tabList = [];
 
         const templateContent = this.applyRegex(this.content, 'template');
-        if (this.$slots.html || templateContent) {
+        if ((this.$slots.html || templateContent) && !this.hideTemplate) {
           tabList.push({
             id: 'html-codeblock',
             label: 'Template',
@@ -139,7 +180,7 @@
         }
 
         const scriptContent = this.applyRegex(this.content, 'script');
-        if (this.$slots.javascript || scriptContent) {
+        if ((this.$slots.javascript || scriptContent) && !this.hideScript) {
           tabList.push({
             id: 'js-codeblock',
             label: 'Script',
@@ -149,7 +190,7 @@
         }
 
         const styleContent = this.applyRegex(this.content, 'style');
-        if (this.$slots.scss || styleContent) {
+        if ((this.$slots.scss || styleContent) && !this.hideStyle) {
           tabList.push({
             id: 'scss-codeblock',
             label: 'Style',

@@ -407,7 +407,11 @@
             this.handleEnterKey(rowIndex, colIndex);
             break;
           case 'Tab':
-            this.handleTabKey(event, rowIndex, colIndex);
+            if (!event.shiftKey) {
+              this.handleTabKey(event, rowIndex, colIndex);
+            } else {
+              this.handleShiftTabKey(event, rowIndex, colIndex);
+            }
             break;
           default:
             break;
@@ -450,76 +454,63 @@
         this.updateFocusState(nextRowIndex, nextColIndex);
         event.preventDefault();
       },
-
       handleEnterKey(rowIndex, colIndex) {
         if (rowIndex === -1 && this.sortable) {
           this.handleSort(colIndex);
         }
       },
-
       handleTabKey(event, rowIndex, colIndex) {
-        const totalRows = this.rows.length;
-        const totalCols = this.headers.length;
-        let nextRowIndex = rowIndex;
-        let nextColIndex = colIndex;
+        const cell = this.getCell(rowIndex, colIndex);
+        const focusableElements = this.getFocusableElements(cell);
+        const focusedIndex = focusableElements.indexOf(document.activeElement);
 
-        const currentCell = this.getCell(rowIndex, colIndex);
-        const focusableElements = this.getFocusableElements(currentCell);
-        const focusedElement = document.activeElement;
-
-        // Include the cell itself as the first focusable element
-        const cellAndFocusableElements = [currentCell, ...focusableElements];
-        const focusedIndex = cellAndFocusableElements.indexOf(focusedElement);
-
-        if (!event.shiftKey) {
-          // Tab key navigation
-          if (focusedIndex < cellAndFocusableElements.length - 1) {
-            // Move to the next focusable element within the cell
-            cellAndFocusableElements[focusedIndex + 1].focus();
-            event.preventDefault();
-            return;
-          } else {
-            // Move to the first focusable element of the next cell
-            if (colIndex < totalCols - 1) {
-              nextColIndex = colIndex + 1;
-            } else if (rowIndex < totalRows - 1) {
-              nextColIndex = 0;
-              nextRowIndex = rowIndex + 1;
-            } else {
-              return; // Allow default Tab behavior when reaching the end
-            }
-            const nextCell = this.getCell(nextRowIndex, nextColIndex);
-            const nextFocusableElements = this.getFocusableElements(nextCell);
-            const nextCellAndFocusableElements = [nextCell, ...nextFocusableElements];
-            nextCellAndFocusableElements[0].focus();
-            this.updateFocusState(nextRowIndex, nextColIndex);
-            event.preventDefault();
-          }
-        } else {
-          // Shift+Tab key navigation
-          if (focusedIndex > 0) {
-            // Move to the previous focusable element within the cell
-            cellAndFocusableElements[focusedIndex - 1].focus();
-            event.preventDefault();
-            return;
-          } else {
-            // Move to the last focusable element of the previous cell
-            if (colIndex > 0) {
-              nextColIndex = colIndex - 1;
-            } else if (rowIndex > 0) {
-              nextColIndex = totalCols - 1;
-              nextRowIndex = rowIndex - 1;
-            } else {
-              return; // Allow default Shift+Tab behavior when at the beginning
-            }
-            const prevCell = this.getCell(nextRowIndex, nextColIndex);
-            const prevFocusableElements = this.getFocusableElements(prevCell);
-            const prevCellAndFocusableElements = [prevCell, ...prevFocusableElements];
-            prevCellAndFocusableElements[prevCellAndFocusableElements.length - 1].focus();
-            this.updateFocusState(nextRowIndex, nextColIndex, false);
-            event.preventDefault();
-          }
+        // If there is another focusable element in the cell, focus on the same
+        if (focusedIndex < focusableElements.length - 1) {
+          focusableElements[focusedIndex + 1].focus();
+          this.updateFocusState(rowIndex, colIndex, false);
+          event.preventDefault();
+          return;
         }
+
+        // If there is a next cell in the table, focus on the same
+        const [nextRowIndex, nextColIndex] = this.getNextCellCoordinates(rowIndex, colIndex);
+        if (nextColIndex !== null) {
+          this.updateFocusState(nextRowIndex, nextColIndex);
+          event.preventDefault();
+          return;
+        }
+
+        // No next cell, so we are exiting the table
+        // Allow default tab behavior, and clear the highlighted state
+        this.clearHighlighted();
+      },
+      handleShiftTabKey(event, rowIndex, colIndex) {
+        const cell = this.getCell(rowIndex, colIndex);
+        const focusableElements = this.getFocusableElements(cell);
+        const focusedIndex = focusableElements.indexOf(document.activeElement);
+
+        if (focusedIndex > 0) {
+          // There is a focusable element before the current one
+          focusableElements[focusedIndex - 1].focus();
+          this.updateFocusState(rowIndex, colIndex, false);
+          event.preventDefault();
+          return;
+        }
+
+        const [prevRowIndex, prevColIndex] = this.getPreviousCellCoordinates(rowIndex, colIndex);
+        // If there is a previous cell, shift focus to same
+        if (prevRowIndex != null) {
+          const prevCell = this.getCell(prevRowIndex, prevColIndex);
+          const prevFocusableElements = this.getFocusableElements(prevCell);
+          prevFocusableElements[prevFocusableElements.length - 1].focus();
+          this.updateFocusState(prevRowIndex, prevColIndex, false);
+          event.preventDefault();
+          return;
+        }
+
+        // No previous cell, so we are exiting the table
+        // Allow default tab behavior, and clear the highlighted state
+        this.clearHighlighted();
       },
       updateFocusState(nextRowIndex, nextColIndex, shouldFocusCell = true) {
         this.focusedRowIndex = nextRowIndex === -1 ? null : nextRowIndex;
@@ -530,15 +521,106 @@
           this.focusCell(nextRowIndex, nextColIndex);
         }
       },
-
+      /*
+       * Clears the highlighted state of the table.
+       */
+      clearHighlighted() {
+        this.focusedRowIndex = null;
+        this.focusedColIndex = null;
+      },
+      /*
+       * Returns all focusable elements within a cell. The elements are returned in the
+       * order they should be navigated to when using Tab navigation.
+       * The first element in the array is the cell itself, and then later the focusable elements
+       * present in the cell are returned.
+       * @param {HTMLElement} cell - The cell element.
+       * @returns {HTMLElement[]} - An array of focusable elements within the cell.
+       */
       getFocusableElements(cell) {
         if (!cell) return [];
-        const focusableSelectors = ['button', 'a', 'input', 'select', 'textarea'];
-        return focusableSelectors.flatMap(selector =>
-          Array.from(cell.getElementsByTagName(selector)),
-        );
-      },
 
+        const focusableSelectors = ['button', 'a', 'input', 'select', 'textarea'];
+        return [
+          cell,
+          ...focusableSelectors
+            .flatMap(selector => Array.from(cell.getElementsByTagName(selector)))
+            .filter(this.isFocusable),
+        ];
+      },
+      /*
+       * Checks if the element is focusable.
+       * @param {HTMLElement} item - The element to check.
+       * @returns {boolean} - True if the element is focusable, false otherwise.
+       */
+      isFocusable(item) {
+        if (item.tabIndex < 0) {
+          return false;
+        }
+        switch (item.tagName) {
+          case 'A':
+            return !!item.href;
+          case 'INPUT':
+            return item.type !== 'hidden' && !item.disabled;
+          case 'SELECT':
+          case 'TEXTAREA':
+          case 'BUTTON':
+            return !item.disabled;
+          default:
+            return false;
+        }
+      },
+      /*
+       * Returns the coordinates of the next cell in the tab navigation order.
+       * Returns `[nextRowIndex, nextColIndex]` if the cell is available,
+       * else sets both the values to null
+       */
+      getNextCellCoordinates(rowIndex, colIndex) {
+        const totalRows = this.rows.length;
+        const totalCols = this.headers.length;
+        let nextRowIndex = rowIndex;
+        let nextColIndex = colIndex;
+
+        if (colIndex < totalCols - 1) {
+          nextColIndex = colIndex + 1;
+        } else {
+          // Need to go to the first cell of the next row
+          if (rowIndex !== totalRows - 1) {
+            nextRowIndex = rowIndex + 1;
+            nextColIndex = 0;
+          } else {
+            // Have reached the end of the table
+            nextRowIndex = null;
+            nextColIndex = null;
+          }
+        }
+        return [nextRowIndex, nextColIndex];
+      },
+      /*
+       * Returns the coordinates of the previous cell based on the tab navigation order.
+       * Returns `[prevRowIndex, prevColIndex]` if cell is available, else sets
+       * both of the values to null.
+       */
+      getPreviousCellCoordinates(rowIndex, colIndex) {
+        const totalCols = this.headers.length;
+        let prevRowIndex = rowIndex;
+        let prevColIndex = colIndex;
+
+        if (colIndex > 0) {
+          prevColIndex = colIndex - 1;
+        } else {
+          // Need to go to the last cell of the previous row
+          if (rowIndex > -1) {
+            prevRowIndex = rowIndex - 1;
+            prevColIndex = totalCols - 1;
+          } else {
+            // We have reached the first cell of the header
+            // and there is no previous cell available
+            prevRowIndex = null;
+            prevColIndex = null;
+          }
+        }
+        return [prevRowIndex, prevColIndex];
+      },
       getCell(rowIndex, colIndex) {
         if (rowIndex === -1) {
           return this.$refs[`header-${colIndex}`][0];
@@ -582,7 +664,6 @@
           this.scrollCellIntoView(nextCell);
         }
       },
-
       handleRowMouseOver(rowIndex) {
         this.hoveredRowIndex = rowIndex;
       },

@@ -11,6 +11,10 @@
   <div
     class="ui-select"
     :class="classes"
+    :style="{
+      'border-bottom-color':
+        isActive && !disabled ? $themeBrand.primary.v_600 : $themePalette.grey.v_700,
+    }"
   >
     <input
       v-if="name"
@@ -40,7 +44,9 @@
           v-if="label || $slots.default"
           class="ui-select-label-text"
           :class="labelClasses"
-          :style="activeColorStyle"
+          :style="{
+            color: isActive ? $themeTokens.primary : $themePalette.grey.v_700,
+          }"
         >
           <!-- @slot Optional slot as alternative to `label` prop -->
           <slot>{{ label }}</slot>
@@ -69,6 +75,7 @@
           <UiIcon
             v-if="!clearableState"
             class="ui-select-dropdown-button"
+            :style="{ color: isActive ? $themeTokens.primary : $themePalette.grey.v_700 }"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -410,7 +417,6 @@
           { 'ui-select-disabled': this.disabled },
         ];
       },
-
       labelClasses() {
         return {
           'is-inline': this.hasFloatingLabel && this.isLabelInline,
@@ -920,29 +926,21 @@
     align-items: flex-start;
     margin-bottom: $ui-input-margin-bottom;
     background: $md-grey-100;
-    border-bottom-color: $ui-input-border-color;
     border-bottom-style: solid;
     border-bottom-width: $ui-input-border-width;
     border-radius: 2px 2px 0 0;
     outline: none;
 
-    &:hover:not(.is-disabled) {
-      border-bottom-color: $ui-input-border-color--hover;
+    /* stylelint-disable */
+    &:hover:not(.is-disabled):not(.is-active) {
+      border-bottom-color: $ui-input-border-color--hover !important;
 
       .ui-select-label-text {
-        color: $ui-input-label-color--hover;
+        color: $ui-input-label-color--hover !important;
       }
 
       .ui-select-dropdown-button {
-        color: $ui-input-button-color--hover;
-      }
-    }
-
-    &.is-active:not(.is-disabled) {
-      border-bottom-color: $ui-input-border-color--active;
-
-      .ui-icon {
-        color: $ui-input-icon-color--active;
+        color: $ui-input-button-color--hover !important;
       }
     }
 
@@ -953,7 +951,6 @@
         display: table;
 
         &.is-inline {
-          color: $ui-input-label-color; // So the hover styles don't override it
           cursor: pointer;
           transform: translateY($ui-input-label-top--inline) scale(1.1);
         }
@@ -1031,7 +1028,6 @@
     margin-bottom: $ui-input-label-margin-bottom;
     font-size: $ui-input-label-font-size;
     line-height: $ui-input-label-line-height;
-    color: $ui-input-label-color;
     cursor: default;
     transition:
       color 0.1s ease,
@@ -1074,7 +1070,6 @@
     margin-right: rem-calc(-4px);
     margin-left: auto;
     font-size: $ui-input-button-size;
-    color: $ui-input-button-color;
   }
 
   .ui-select-dropdown {
