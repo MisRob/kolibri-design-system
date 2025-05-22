@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1021]
+  - **Description:** This PR changes allows individual documentation tabs (template, script, and style) to be hidden using their respective boolean props.
+  - **Products impact:** None
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/995
+  - **Components:** KCard, DocsExample
+  - **Breaking:** No
+  - **Impacts a11y:**  No
+  - **Guidance:** None
+
+[#1021]: https://github.com/learningequality/kolibri-design-system/pull/1021
+
+
+
 - [#990]
   - **Description:** Adds KCardGrid management for reserving space for selection control width in KCard to align cards that already selection controls and the ones who doesnt.
   - **Products impact:** bugfix.
