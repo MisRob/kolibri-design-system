@@ -7,7 +7,7 @@
     :tabs="tabs"
     :color="$themeTokens.textInverted"
     :colorActive="$themeTokens.textInverted"
-    :backgroundColor="$themeTokens.primaryDark"
+    :backgroundColor="$themeTokens.primary"
     :hoverBackgroundColor="$themeTokens.primaryDark"
   />
 
