@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#956]
+  - **Description:** Migrated `KTabsList` documentation to use `DocsExample`.
+  - **Products impact:** Documentation update (no API impact).
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/953
+  - **Components:** `KTabsList` documentation.
+  - **Breaking:** No
+  - **Impacts a11y:** No
+  - **Guidance:** No changes needed for consumers.
+
+[#956]: https://github.com/learningequality/kolibri-design-system/pull/956
+
+
+
 - [#1027]
   - **Description:** Adds truncateOptionsLabel prop to control wether to truncate or wrap KSelect options label when it overflows.
   - **Products impact:** new API.
