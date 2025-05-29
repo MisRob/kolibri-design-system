@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1025]
+  - **Description:** Adds visual tests for KLogo.
+  - **Products impact:** None
+  - **Addresses:** [#1010](https://github.com/learningequality/kolibri-design-system/issues/1010)
+  - **Components:** No
+  - **Breaking:** No
+  - **Impacts a11y:** No
+  - **Guidance:** None
+
+[#1025]: https://github.com/learningequality/kolibri-design-system/pull/1025
+
+
+
 - [#1034]
   - **Description:** Updated disableBuiltInSorting method
   - **Products impact:** None
