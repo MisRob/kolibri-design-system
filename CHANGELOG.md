@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1040]
+  - **Description:** Bumps KDS version to 5.1.0
+  - **Products impact:** -
+  - **Addresses:** -.
+  - **Components:** -.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -.
+
+[#1040]: https://github.com/learningequality/kolibri-design-system/pull/1040
+
+
+
 - [#1031]
   - **Description:** Adds icons needed for feature development in Kolibri
   - **Products impact:** Kolibri
