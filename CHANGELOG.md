@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1031]
+  - **Description:** Adds icons needed for feature development in Kolibri
+  - **Products impact:** Kolibri
+  - **Addresses:** n/a
+  - **Components:** KIcon*
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** Use the given added icon key(s) to use the icons in Kolibri
+
+[#1031]: https://github.com/learningequality/kolibri-design-system/pull/1031
+
+
+
 - [#1024]
   - **Description:** Added a Usage section to the KModal documentation.
   - **Products impact:** None
