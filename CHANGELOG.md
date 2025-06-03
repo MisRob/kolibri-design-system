@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1035]
+  - **Description:** Adds visual tests for KIcon.
+  - **Products impact:** None
+  - **Addresses:** [#1009](https://github.com/learningequality/kolibri-design-system/issues/1008)
+  - **Components:** No
+  - **Breaking:** No
+  - **Impacts a11y:** No
+  - **Guidance:** None
+
+[#1035]: https://github.com/learningequality/kolibri-design-system/pull/1035
+
+
+
 - [#967]
   - **Description:** Removes `font-weight: bold` from KBreadcrumbs
   - **Products impact:** All
