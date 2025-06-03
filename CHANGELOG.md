@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#967]
+  - **Description:** Removes `font-weight: bold` from KBreadcrumbs
+  - **Products impact:** All
+  - **Addresses:** Discussion in KDS tactical
+  - **Components:** KBreadcrumbs
+  - **Breaking:** No
+  - **Impacts a11y:** No
+  - **Guidance:** This is a minor style change.
+
+[#967]: https://github.com/learningequality/kolibri-design-system/pull/967
+
+
+
 - [#1039]
   - **Description:** Added new prop readonly to KTextbox
   - **Products impact:** Yes, new feature added
