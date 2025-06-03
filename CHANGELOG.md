@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1039]
+  - **Description:** Added new prop readonly to KTextbox
+  - **Products impact:** Yes, new feature added
+  - **Addresses:** [#1030](https://github.com/learningequality/kolibri-design-system/issues/1030)
+  - **Components:** No
+  - **Breaking:** No
+  - **Impacts a11y:** No
+  - **Guidance:** none
+
+[#1039]: https://github.com/learningequality/kolibri-design-system/pull/1039
+
+
+
 - [#1040]
   - **Description:** Bumps KDS version to 5.1.0
   - **Products impact:** -
