@@ -65,6 +65,24 @@
         keyboard navigation.
       </p>
 
+      <h3>Readonly input</h3>
+      <KTextbox
+        label="Token"
+        value="123456789"
+        readonly
+      />
+      <DocsShowCode language="html">
+        <KTextbox
+          label="Token"
+          value="123456789"
+          readonly
+        />
+      </DocsShowCode>
+      <p>
+        This text box is readonly. It cannot be edited but it can still select and copy the text.
+        It's also included in keyboard navigation.
+      </p>
+
       <h3>Number input</h3>
       <KTextbox
         label="Number input"
