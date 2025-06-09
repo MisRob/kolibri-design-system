@@ -98,6 +98,23 @@
         block
       />
 
+      <h3>Disable built-in sorting</h3>
+      <p>
+        For <code>sortable</code> tables, you can use the <code>disableBuiltinSorting</code> prop to
+        disable built-in sort function. This is useful when the table receives already sorted data,
+        for example when sorting is done by backend or a custom sorting function outside the table.
+        In this case, when one of the header sort buttons is clicked, the table won't sort the
+        column itself, but only emit the <code>changeSort</code> event to notify the parent
+        component to handle the sorting logic. The event contains column index of the header and the
+        sort order in its payload.
+      </p>
+
+      <DocsExample
+        loadExample="KTable/DisableBuiltinSort.vue"
+        exampleId="disable-builtin-sort"
+        block
+      />
+
       <h3>Table with default sort</h3>
       <p>
         This is an example to show how to use the <code>defaultSort</code> prop to sort the table
@@ -117,23 +134,6 @@
       <DocsExample
         loadExample="KTable/DefaultSort.vue"
         exampleId="default-sort"
-        block
-      />
-
-      <h3>Disable built-in sorting</h3>
-      <p>
-        For <code>sortable</code> tables, you can use the <code>disableBuiltinSorting</code> prop to
-        disable built-in sort function. This is useful when the table receives already sorted data,
-        for example when sorting is done by backend or a custom sorting function outside the table.
-        In this case, when one of the header sort buttons is clicked, the table won't sort the
-        column itself, but only emit the <code>changeSort</code> event to notify the parent
-        component to handle the sorting logic. The event contains column index of the header and the
-        sort order in its payload.
-      </p>
-
-      <DocsExample
-        loadExample="KTable/DisableBuiltinSort.vue"
-        exampleId="disable-builtin-sort"
         block
       />
     </DocsPageSection>
