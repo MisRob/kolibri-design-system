@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#985]
+  - **Description:** Smaller improvements of KTable documentation page
+  - **Products impact:** none
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#985]: https://github.com/learningequality/kolibri-design-system/pull/985
+
+
+
 - [#1035]
   - **Description:** Adds visual tests for KIcon.
   - **Products impact:** None
