@@ -7,6 +7,263 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1035]
+  - **Description:** Adds visual tests for KIcon.
+  - **Products impact:** None
+  - **Addresses:** [#1009](https://github.com/learningequality/kolibri-design-system/issues/1008)
+  - **Components:** No
+  - **Breaking:** No
+  - **Impacts a11y:** No
+  - **Guidance:** None
+
+[#1035]: https://github.com/learningequality/kolibri-design-system/pull/1035
+
+
+
+- [#967]
+  - **Description:** Removes `font-weight: bold` from KBreadcrumbs
+  - **Products impact:** All
+  - **Addresses:** Discussion in KDS tactical
+  - **Components:** KBreadcrumbs
+  - **Breaking:** No
+  - **Impacts a11y:** No
+  - **Guidance:** This is a minor style change.
+
+[#967]: https://github.com/learningequality/kolibri-design-system/pull/967
+
+
+
+- [#1039]
+  - **Description:** Added new prop readonly to KTextbox
+  - **Products impact:** Yes, new feature added
+  - **Addresses:** [#1030](https://github.com/learningequality/kolibri-design-system/issues/1030)
+  - **Components:** No
+  - **Breaking:** No
+  - **Impacts a11y:** No
+  - **Guidance:** none
+
+[#1039]: https://github.com/learningequality/kolibri-design-system/pull/1039
+
+
+
+- [#1040]
+  - **Description:** Bumps KDS version to 5.1.0
+  - **Products impact:** -
+  - **Addresses:** -.
+  - **Components:** -.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -.
+
+[#1040]: https://github.com/learningequality/kolibri-design-system/pull/1040
+
+
+
+- [#1031]
+  - **Description:** Adds icons needed for feature development in Kolibri
+  - **Products impact:** Kolibri
+  - **Addresses:** n/a
+  - **Components:** KIcon*
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** Use the given added icon key(s) to use the icons in Kolibri
+
+[#1031]: https://github.com/learningequality/kolibri-design-system/pull/1031
+
+
+
+- [#1024]
+  - **Description:** Added a Usage section to the KModal documentation.
+  - **Products impact:** None
+  - **Addresses:** [#921](https://github.com/learningequality/kolibri-design-system/issues/921)
+  - **Components:** -
+  - **Breaking:** No
+  - **Impacts a11y:** No
+  - **Guidance:** None
+
+[#1024]: https://github.com/learningequality/kolibri-design-system/pull/1024
+
+
+
+- [#1025]
+  - **Description:** Adds visual tests for KLogo.
+  - **Products impact:** None
+  - **Addresses:** [#1010](https://github.com/learningequality/kolibri-design-system/issues/1010)
+  - **Components:** No
+  - **Breaking:** No
+  - **Impacts a11y:** No
+  - **Guidance:** None
+
+[#1025]: https://github.com/learningequality/kolibri-design-system/pull/1025
+
+
+
+- [#1034]
+  - **Description:** Updated disableBuiltInSorting method
+  - **Products impact:** None
+  - **Addresses:** https://github.com/learningequality/kolibri/issues/12705
+  - **Components:** KTable
+  - **Breaking:** No
+  - **Impacts a11y:** No
+  - **Guidance:**  -
+
+[#1034]: https://github.com/learningequality/kolibri-design-system/pull/1034
+
+
+
+- [#956]
+  - **Description:** Migrated `KTabsList` documentation to use `DocsExample`.
+  - **Products impact:** Documentation update (no API impact).
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/953
+  - **Components:** `KTabsList` documentation.
+  - **Breaking:** No
+  - **Impacts a11y:** No
+  - **Guidance:** No changes needed for consumers.
+
+[#956]: https://github.com/learningequality/kolibri-design-system/pull/956
+
+
+
+- [#1027]
+  - **Description:** Adds truncateOptionsLabel prop to control wether to truncate or wrap KSelect options label when it overflows.
+  - **Products impact:** new API.
+  - **Addresses:** https://github.com/learningequality/kolibri/issues/12166.
+  - **Components:** KSelect.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** .
+
+[#1027]: https://github.com/learningequality/kolibri-design-system/pull/1027
+
+
+
+- [#1021]
+  - **Description:** This PR changes allows individual documentation tabs (template, script, and style) to be hidden using their respective boolean props.
+  - **Products impact:** None
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/995
+  - **Components:** KCard, DocsExample
+  - **Breaking:** No
+  - **Impacts a11y:**  No
+  - **Guidance:** None
+
+[#1021]: https://github.com/learningequality/kolibri-design-system/pull/1021
+
+
+
+- [#990]
+  - **Description:** Adds KCardGrid management for reserving space for selection control width in KCard to align cards that already selection controls and the ones who doesnt.
+  - **Products impact:** bugfix.
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/980.
+  - **Components:** KCard
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** .
+
+[#990]: https://github.com/learningequality/kolibri-design-system/pull/990
+
+
+
+- [#1023]
+  - **Description:** Adds a `min-width: 0` to k card area to prevent text overflow issues within KCards with checkboxes.
+  - **Products impact:** bugfix.
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/958.
+  - **Components:**  KCard.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -.
+
+[#1023]: https://github.com/learningequality/kolibri-design-system/pull/1023
+
+
+
+- [#1016]
+  - **Description:** Adds clarifications regarding registering KDS components in `visual.load-test-components.js` to the visual testing development docs.
+  - **Products impact:** none.
+  - **Addresses:** -.
+  - **Components:** -.
+  - **Breaking:** no.
+  - **Impacts a11y:** no.
+  - **Guidance:** -.
+
+[#1016]: https://github.com/learningequality/kolibri-design-system/pull/1016
+
+
+
+- [#1026]
+  - **Description:** Wraps ResizeObserver callback in `useKResponsiveElement` with requestAnimationFrame to avoid possible resize observer issues.
+  - **Products impact:** none.
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/960.
+  - **Components:** -.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** .
+
+[#1026]: https://github.com/learningequality/kolibri-design-system/pull/1026
+
+
+
+- [#1017]
+  - **Description:** added visual tests for the KCheckbox component and the KCheckbox component file has been renamed from KCheckbox.vue to KCheckbox/index.vue to better organize the component structure.
+  - **Products impact:** none
+  - **Addresses:** [[Visual testing]: Add visual tests for KCheckbox](https://github.com/learningequality/kolibri-design-system/issues/925)
+  - **Components:** KCheckbox
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** Visual test is implemented in separate test file
+
+[#1017]: https://github.com/learningequality/kolibri-design-system/pull/1017
+
+
+
+- [#999]
+  - **Description:** Changed default grid gap to 24px instead of 30px of KCardGrid.
+  - **Products impact:** KDS, Studio, Kolibri
+  - **Addresses:**  issue #[996](https://github.com/learningequality/kolibri-design-system/issues/996) and one related PR in kolibri #[13344](https://github.com/learningequality/kolibri/pull/13344/)
+  - **Components:** KCardGrid
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** none
+
+[#999]: https://github.com/learningequality/kolibri-design-system/pull/999
+
+
+
+- [#975]
+  - **Description:** Updated KCard documentation to use the DocsExample component and migrated example code into separate Vue files in the KCard directory. Cleaned up unnecessary script in KCard.vue.
+  - **Products impact:** none
+  - **Addresses:** [#950](https://github.com/learningequality/kolibri-design-system/issues/950)
+  - **Components:** KCard
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -
+
+[#975]: https://github.com/learningequality/kolibri-design-system/pull/975
+
+
+
+- [#978]
+  - **Description:** Refactored KCardGrid docs and example files to use the new DocsExample component
+  - **Products impact**: none
+  - **Components**: KCardGrid
+  - **Breaking**: no
+  - **Impacts a11y**: no
+  - **Guidance**: -
+
+
+
+- [#986]
+  - **Description:** Bumps KDS version to 5.0.2
+  - **Products impact:** -
+  - **Addresses:** -.
+  - **Components:** -.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -.
+
+[#986]: https://github.com/learningequality/kolibri-design-system/pull/986
+
+
+
 - [#981]
   - **Description:** Adds the automation to remove stale assignments from issues
   - **Products impact:** none

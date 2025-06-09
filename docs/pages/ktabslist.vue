@@ -7,18 +7,10 @@
     >
       <p>Displays the tab list of a tabbed interface:</p>
 
-      <DocsShow language="html">
-        <KTabsList
-          v-model="ex1activeTabId"
-          tabsId="tabsIntro"
-          ariaLabel="Coach reports"
-          :tabs="tabs"
-        />
-        <KTabsPanel
-          tabsId="tabsIntro"
-          :activeTabId="ex1activeTabId"
-        />
-      </DocsShow>
+      <DocsExample
+        exampleId="overview"
+        loadExample="KTabsList/Intro.vue"
+      />
 
       <p>
         <code>KTabsList</code> is meant to be used together with
@@ -228,38 +220,10 @@
 
       <p>Using props is the most straightforward:</p>
 
-      <DocsShow
-        language="html"
-        dark
-      >
-        <KTabsList
-          v-model="ex2activeTabId"
-          tabsId="tabsProps"
-          ariaLabel="Coach reports"
-          :tabs="tabs"
-          :color="$themeTokens.textInverted"
-          :colorActive="$themeTokens.textInverted"
-          :backgroundColor="$themeTokens.primary"
-          :hoverBackgroundColor="$themeTokens.primaryDark"
-        />
-        <KTabsPanel
-          tabsId="tabsProps"
-          :activeTabId="ex2activeTabId"
-        />
-      </DocsShow>
-
-      <DocsShowCode language="html">
-        <KTabsList
-          v-model="activeTabId"
-          tabsId="tabsProps"
-          ariaLabel="Coach reports"
-          :tabs="tabs"
-          :color="$themeTokens.textInverted"
-          :colorActive="$themeTokens.textInverted"
-          :backgroundColor="$themeTokens.primary"
-          :hoverBackgroundColor="$themeTokens.primaryDark"
-        />
-      </DocsShowCode>
+      <DocsExample
+        loadExample="KTabsList/CustomStyling.vue"
+        exampleId="custom-styling"
+      />
 
       <p>
         When that's not sufficient, <code>appearanceOverrides</code> and
@@ -268,102 +232,20 @@
         tab:
       </p>
 
-      <DocsShow language="html">
-        <KTabsList
-          v-model="ex3activeTabId"
-          tabsId="tabsAppearanceOverrides"
-          ariaLabel="Coach reports"
-          :tabs="tabs"
-          :appearanceOverrides="{
-            ':hover': {
-              color: $themeTokens.primary,
-            },
-            textTransform: 'none',
-            margin: '0 32px',
-          }"
-          :appearanceOverridesActive="{
-            borderBottomWidth: '6px',
-          }"
-        />
-        <KTabsPanel
-          tabsId="tabsAppearanceOverrides"
-          :activeTabId="ex3activeTabId"
-        />
-      </DocsShow>
-
-      <DocsShowCode language="html">
-        <KTabsList
-          v-model="activeTabId"
-          tabsId="tabsAppearanceOverrides"
-          ariaLabel="Coach reports"
-          :tabs="tabs"
-          :appearanceOverrides="{
-            ':hover': {
-              color: $themeTokens.primary,
-            },
-            textTransform: 'none',
-            margin: '0 32px',
-          }"
-          :appearanceOverridesActive="{
-            borderBottomWidth: '6px',
-          }"
-        />
-      </DocsShowCode>
+      <DocsExample
+        loadExample="KTabsList/AppearanceOverrides.vue"
+        exampleId="appearance-overrides"
+      />
 
       <p>
         Lastly, the <code>tab</code> slot can be used to adjust labels, for example to add icons.
         It's a scoped slot that exposes <code>tab</code> object and <code>isActive</code> boolean
         value:
       </p>
-
-      <DocsShow language="html">
-        <KTabsList
-          v-model="ex4activeTabId"
-          tabsId="tabsSlot"
-          ariaLabel="Coach reports"
-          :tabs="tabs"
-        >
-          <template #tab="{ tab, isActive }">
-            <KLabeledIcon
-              :icon="icons[tab.id]"
-              :label="tab.label"
-              :color="isActive ? $themeTokens.primary : $themeTokens.annotation"
-            />
-          </template>
-        </KTabsList>
-        <KTabsPanel
-          tabsId="tabsSlot"
-          :activeTabId="ex4activeTabId"
-        />
-      </DocsShow>
-
-      <DocsShowCode language="html">
-        <KTabsList
-          v-model="activeTabId"
-          tabsId="tabsSlot"
-          ariaLabel="Coach reports"
-          :tabs="tabs"
-        >
-          <template #tab="{ tab, isActive }">
-            <KLabeledIcon
-              :icon="icons[tab.id]"
-              :label="tab.label"
-              :color="isActive ? $themeTokens.primary : $themeTokens.annotation"
-            />
-          </template>
-        </KTabsList>
-      </DocsShowCode>
-
-      <!-- eslint-disable -->
-      <!-- prettier-ignore -->
-      <DocsShowCode language="javascript">
-        icons: {
-          tabLessons: 'lesson',
-          tabLearners: 'person',
-          tabGroups: 'people',
-        },
-      </DocsShowCode>
-      <!-- eslint-enable -->
+      <DocsExample
+        loadExample="KTabsList/CustomTabs.vue"
+        exampleId="custom-tabs"
+      />
     </DocsPageSection>
 
     <DocsPageSection
@@ -395,15 +277,12 @@
   export default {
     data() {
       return {
+        activeTabId: 'tabLessons',
         tabs: [
           { id: 'tabLessons', label: 'Lessons' },
           { id: 'tabLearners', label: 'Learners' },
           { id: 'tabGroups', label: 'Groups' },
         ],
-        ex1activeTabId: 'tabLessons',
-        ex2activeTabId: 'tabLessons',
-        ex3activeTabId: 'tabLessons',
-        ex4activeTabId: 'tabLessons',
         icons: {
           tabLessons: 'lesson',
           tabLearners: 'person',
@@ -414,6 +293,3 @@
   };
 
 </script>
-
-
-<style lang="scss" scoped></style>
