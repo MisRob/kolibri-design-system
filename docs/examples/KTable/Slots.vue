@@ -3,7 +3,7 @@
   <KTable
     :headers="headers"
     :rows="rows"
-    caption="Table showing use of slots"
+    caption="User name, age and city"
     sortable
   >
     <template #header="{ header }">
