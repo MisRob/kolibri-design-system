@@ -26,8 +26,12 @@
       <h3>Table caption</h3>
 
       <p>
-        A caption is required via the <code>caption</code> prop. Provide a concise and translated
-        string that accurately describes the table’s content. See
+        A caption is required via the <code>caption</code> prop. Provide a concise and
+        <a
+          href="https://kolibri-dev.readthedocs.io/en/develop/i18n.html#internationalization"
+          target="_blank"
+        >translated string</a>
+        that accurately describes the table’s content. See
         <a
           href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/caption#table_with_caption"
           target="_blank"
