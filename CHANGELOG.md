@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1046]
+  - **Description:** Bumps KDS version to 5.2.0
+  - **Products impact:** -
+  - **Addresses:** -.
+  - **Components:** -.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -.
+
+[#1046]: https://github.com/learningequality/kolibri-design-system/pull/1046
+
+
+
 - [#1043]
   - **Description:** Added horizontal separator lines
   - **Products impact:** None
