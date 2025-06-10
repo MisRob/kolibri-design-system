@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1043]
+  - **Description:** Added horizontal separator lines
+  - **Products impact:** None
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/1036
+  - **Components:** KTable
+  - **Breaking:** No
+  - **Impacts a11y:** No
+  - **Guidance:**  -
+
+[#1043]: https://github.com/learningequality/kolibri-design-system/pull/1043
+
+
+
 - [#1044]
   - **Description:**  Adds `presentational` prop to KCheckbox, to make the checkbox unfocusable but not disabled.
   - **Products impact:** new API.
