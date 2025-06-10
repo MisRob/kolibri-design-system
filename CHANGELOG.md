@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1044]
+  - **Description:**  Adds `presentational` prop to KCheckbox, to make the checkbox unfocusable but not disabled.
+  - **Products impact:** new API.
+  - **Addresses:** https://github.com/learningequality/kolibri/issues/13408.
+  - **Components:** KCheckbox.
+  - **Breaking:** no
+  - **Impacts a11y:** yes.
+  - **Guidance:**.
+
+[#1044]: https://github.com/learningequality/kolibri-design-system/pull/1044
+
+
+
 - [#985]
   - **Description:** Smaller improvements of KTable documentation page
   - **Products impact:** none
