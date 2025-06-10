@@ -3,11 +3,13 @@
   <div
     class="k-checkbox-container"
     :class="{ 'k-checkbox-disabled': disabled }"
+    :style="{ pointerEvents: presentational ? 'none' : 'auto' }"
     @click="toggleCheck"
   >
     <div class="tr">
       <div class="k-checkbox">
         <input
+          v-if="!presentational"
           :id="id"
           ref="kCheckboxInput"
           type="checkbox"
@@ -42,10 +44,11 @@
         />
       </div>
 
-      <label
+      <component
+        :is="labelTag"
         :dir="labelDir"
         class="k-checkbox-label"
-        :for="id"
+        :for="presentational ? null : id"
         :class="{ visuallyhidden: !showLabel }"
         :style="labelStyle"
         @click.prevent
@@ -63,7 +66,7 @@
         >
           {{ description }}
         </div>
-      </label>
+      </component>
     </div>
   </div>
 
@@ -129,6 +132,16 @@
         default: null,
         required: false,
       },
+      /**
+       * Whether or not the checkbox is presentational.
+       * Useful for cases where the checkbox is used
+       * as a visual element only, and keyboard focus
+       * should be managed by other elements.
+       */
+      presentational: {
+        type: Boolean,
+        default: false,
+      },
     },
     data: () => ({
       isActive: false,
@@ -157,6 +170,9 @@
         return {
           color: this.disabled ? this.$themeTokens.textDisabled : '',
         };
+      },
+      labelTag() {
+        return this.presentational ? 'div' : 'label';
       },
     },
     methods: {
