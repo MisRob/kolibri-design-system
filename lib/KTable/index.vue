@@ -43,6 +43,7 @@
                 { backgroundColor: $themePalette.white },
                 isColumnFocused(index) ? { backgroundColor: $themePalette.grey.v_100 } : {},
                 { textAlign: getTextAlign(header.dataType) },
+                { borderBottom: `1px solid ${$themeTokens.fineLine}` },
               ]"
               role="columnheader"
               data-focus="true"
@@ -202,6 +203,7 @@
         const style = {};
         if (header.minWidth) style.minWidth = header.minWidth;
         if (header.width) style.width = header.width;
+
         return style;
       };
 

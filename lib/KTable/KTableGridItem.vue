@@ -2,7 +2,7 @@
 
   <td
     :class="$computedClass(coreOutlineFocus)"
-    :style="{ textAlign: textAlign, minWidth: minWidth, width: width }"
+    :style="tdStyle"
     tabindex="0"
     data-focus="true"
     role="gridcell"
@@ -55,6 +55,14 @@
             ...this.$coreOutline,
             outlineOffset: '-2px',
           },
+        };
+      },
+      tdStyle() {
+        return {
+          textAlign: this.textAlign,
+          minWidth: this.minWidth,
+          width: this.width,
+          borderBottom: `1px solid ${this.$themeTokens.fineLine}`,
         };
       },
     },
