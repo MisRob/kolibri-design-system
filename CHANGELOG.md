@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1037]
+  - **Description:** Removes custom issue templates and turn on issue header automation
+  - **Products impact:** none
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#1037]: https://github.com/learningequality/kolibri-design-system/pull/1037
+
+
+
 - [#1046]
   - **Description:** Bumps KDS version to 5.2.0
   - **Products impact:** -
