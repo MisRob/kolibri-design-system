@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#961]
+  - **Description:** Enhanced the test coverage for KTable
+  - **Products impact:** none
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:**  -
+
+[#961]: https://github.com/learningequality/kolibri-design-system/pull/961
+
+
+
 - [#1037]
   - **Description:** Removes custom issue templates and turn on issue header automation
   - **Products impact:** none
