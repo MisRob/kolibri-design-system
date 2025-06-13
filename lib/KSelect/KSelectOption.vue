@@ -108,12 +108,20 @@
           };
         },
       },
+      /**
+       * Whether to truncate the label text if it is too long, and keep it on one line.
+       */
+      truncateLabel: {
+        type: Boolean,
+        default: true,
+      },
     },
 
     computed: {
       classes() {
         return [
           `ui-select-option--type-${this.type}`,
+          { 'truncate-label': this.truncateLabel },
           { 'is-highlighted': this.highlighted },
           { 'is-selected': this.selected },
           { 'is-disabled': this.option.disabled },
@@ -172,9 +180,11 @@
     }
   }
 
-  .ui-select-option-basic,
-  .ui-select-option-image-text {
-    @include text-truncation;
+  .truncate-label {
+    .ui-select-option-basic,
+    .ui-select-option-image-text {
+      @include text-truncation;
+    }
   }
 
   .ui-select-option-image {

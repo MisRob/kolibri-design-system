@@ -321,7 +321,6 @@
     margin-top: 8px;
     margin-bottom: 8px;
     font-size: 16px;
-    font-weight: bold;
     line-height: 32px;
     white-space: nowrap;
   }
@@ -353,7 +352,6 @@
     z-index: 8;
     max-width: 100%;
     padding: 16px;
-    font-weight: bold;
   }
 
   .breadcrumbs-dropdown-items {

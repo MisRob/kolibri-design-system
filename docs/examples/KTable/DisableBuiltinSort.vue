@@ -3,9 +3,9 @@
   <KTable
     :headers="headers"
     :rows="rows"
-    caption="Disable Builtin Sorting Example"
+    caption="User name, age and city"
     sortable
-    disableDefaultSorting
+    disableBuiltinSorting
     @changeSort="changeSortHandler"
   />
 

@@ -23,7 +23,22 @@
       title="Usage"
       anchor="#usage"
     >
-      <!--Non-Sortable Table-->
+      <h3>Table caption</h3>
+
+      <p>
+        A caption is required via the <code>caption</code> prop. Provide a concise and
+        <a
+          href="https://kolibri-dev.readthedocs.io/en/develop/i18n.html#internationalization"
+          target="_blank"
+        >translated string</a>
+        that accurately describes the table’s content. See
+        <a
+          href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/caption#table_with_caption"
+          target="_blank"
+        >MDN</a>
+        for more.
+      </p>
+
       <h3>Table without sorting functionality</h3>
       <p>
         This is an example to show how <code>KTable</code> can be used without any sorting
@@ -36,7 +51,6 @@
         block
       />
 
-      <!-- Frontend Sorting Example-->
       <h3>Table with sorting</h3>
       <p>
         The <code>KTable</code> offers built-in sorting functionality. There are 4 permissible data
@@ -56,7 +70,6 @@
         block
       />
 
-      <!--Table showing use of slots-->
       <h3>Table showing use of slots</h3>
       <p>
         This is an example to show how slots can be used in <code>KTable</code>. The table currently
@@ -70,7 +83,6 @@
         block
       />
 
-      <!--Table with custom column widths-->
       <h3>Table with custom column widths</h3>
       <p>
         This is an example to show how <code>KTable</code> can be used with custom column widths.
@@ -86,33 +98,6 @@
         block
       />
 
-      <!--Table with default sort-->
-      <h3>Table with default sort</h3>
-      <p>
-        This is an example to show how to use the <code>defaultSort</code> prop to sort the table
-        based on a particular column upon the initial load. The <code>defaultSort</code> attribute
-        can be used irrespective of the <code>sortable</code> attribute.
-      </p>
-
-      <p>
-        The <code>defaultSort</code> attribute takes an object with two properties -
-        <code>columnId</code> and <code>direction</code>. The <code>columnId</code> is the unique
-        identifier of the column based on which the table should be sorted. The
-        <code>direction</code> can be either <code>asc</code> or <code>desc</code>.
-      </p>
-
-      <p>
-        To make use of <code>defaultSort</code>, please ensure that the
-        <code>disableBuiltinSorting</code> attribute is not set to <code>true</code>.
-      </p>
-
-      <DocsExample
-        loadExample="KTable/DefaultSort.vue"
-        exampleId="default-sort"
-        block
-      />
-
-      <!-- Disable built-in sorting -->
       <h3>Disable built-in sorting</h3>
       <p>
         For <code>sortable</code> tables, you can use the <code>disableBuiltinSorting</code> prop to
@@ -124,16 +109,31 @@
         sort order in its payload.
       </p>
 
-      <p>
-        You should not use this attribute if <code>sortable</code> is set to <code>false</code>. If
-        <code>sortable</code> is set to <code>true</code>, then the table component will emit a
-        <code>changeSort</code> event with column index of the header clicked and the sort order to
-        notify the parent component to handle the sorting logic.
-      </p>
-
       <DocsExample
         loadExample="KTable/DisableBuiltinSort.vue"
         exampleId="disable-builtin-sort"
+        block
+      />
+
+      <h3>Table with default sort</h3>
+      <p>
+        This is an example to show how to use the <code>defaultSort</code> prop to sort the table
+        based on a particular column upon the initial load. The <code>defaultSort</code> attribute
+        can be used irrespective of the <code>sortable</code> attribute. If built-in sorting is
+        disabled via <code>disableBuiltinSorting</code>, <code>defaultSort</code> will have no
+        effect.
+      </p>
+
+      <p>
+        The <code>defaultSort</code> attribute takes an object with two properties -
+        <code>columnId</code> and <code>direction</code>. The <code>columnId</code> is the unique
+        identifier of the column based on which the table should be sorted. The
+        <code>direction</code> can be either <code>asc</code> or <code>desc</code>.
+      </p>
+
+      <DocsExample
+        loadExample="KTable/DefaultSort.vue"
+        exampleId="default-sort"
         block
       />
     </DocsPageSection>

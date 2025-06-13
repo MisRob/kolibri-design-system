@@ -43,6 +43,7 @@
                 { backgroundColor: $themePalette.white },
                 isColumnFocused(index) ? { backgroundColor: $themePalette.grey.v_100 } : {},
                 { textAlign: getTextAlign(header.dataType) },
+                { borderBottom: `1px solid ${$themeTokens.fineLine}` },
               ]"
               role="columnheader"
               data-focus="true"
@@ -189,20 +190,20 @@
       );
 
       const handleSort = index => {
-        if (headers.value[index].dataType === DATA_TYPE_OTHERS) {
+        if (headers.value[index].dataType === DATA_TYPE_OTHERS || !props.sortable) {
           return;
         }
-
-        if (props.disableBuiltinSorting && props.sortable) {
-          // Emit the event to the parent to notify that the sorting has been requested
-          emit('changeSort', index, sortOrder.value);
-        } else localHandleSort(index);
+        localHandleSort(index);
+        if (props.disableBuiltinSorting) {
+          emit('changeSort', { sortKey: index, sortOrder: sortOrder.value });
+        }
       };
 
       const getHeaderStyle = header => {
         const style = {};
         if (header.minWidth) style.minWidth = header.minWidth;
         if (header.width) style.width = header.width;
+
         return style;
       };
 
