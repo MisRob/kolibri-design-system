@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1042]
+  - **Description:** Bump tar-fs from 3.0.8 to 3.0.9
+  - **Products impact:** Dev Dependency upgrade
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#1042]: https://github.com/learningequality/kolibri-design-system/pull/1042
+
+
+
 - [#961]
   - **Description:** Enhanced the test coverage for KTable
   - **Products impact:** none
