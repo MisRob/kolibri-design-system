@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1038]
+  - **Description:** Adds visual tests for KImg.
+  - **Products impact:** None
+  - **Addresses:** [#1009](https://github.com/learningequality/kolibri-design-system/issues/1009)
+  - **Components:** No
+  - **Breaking:** No
+  - **Impacts a11y:** No
+  - **Guidance:** None
+
+[#1038]: https://github.com/learningequality/kolibri-design-system/pull/1038
+
+
+
 - [#1048]
   - **Description:** Bump jest from 29.7.0 to 30.0.0
   - **Products impact:** Dev Dependency upgrade
