@@ -7,6 +7,21 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1018]
+  - **Description:** At Sizes less than `768px`
+  - Set the content-wrapper width to 100%
+  - Made props table and other lower sections to `overflow-scroll`
+  - **Products impact:** KDS.
+  - **Addresses:** #940
+  - **Components:** DocsPageTemplate, DocsPageSection
+  - **Breaking:** No
+  - **Impacts a11y:** No
+  - **Guidance:** Investigate the responsiveness of component pages at screen sizes less than 768px
+
+[#1018]: https://github.com/learningequality/kolibri-design-system/pull/1018
+
+
+
 - [#1038]
   - **Description:** Adds visual tests for KImg.
   - **Products impact:** None
