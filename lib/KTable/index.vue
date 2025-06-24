@@ -10,6 +10,7 @@
     <template v-else>
       <table
         v-if="!isTableEmpty"
+        ref="tableElement"
         class="k-table"
         role="grid"
       >
@@ -33,14 +34,17 @@
                 [$computedClass(coreOutlineFocus)]: true,
                 sortable: isColumnSortable(index),
                 'sticky-header': true,
-                'sticky-column': index === 0,
+                'sticky-column': colIndexIsSticky(index),
+                'sticky-column-shadow-right':
+                  isTableScrollable && isRightmostLeftStickyColumn(index),
+                'sticky-column-shadow-left': isTableScrollable && isLastStickyColumn(index),
               }"
               :style="[
                 getHeaderStyle(header),
+                getStickyColumnStyle(-1, index), // Use -1 for header row
                 isColumnSortActive(index)
                   ? { color: $themeBrand.primary.v_500 }
                   : { color: $themePalette.grey.v_800 },
-                { backgroundColor: $themePalette.white },
                 isColumnFocused(index) ? { backgroundColor: $themePalette.grey.v_100 } : {},
                 { textAlign: getTextAlign(header.dataType) },
                 { borderBottom: `1px solid ${$themeTokens.fineLine}` },
@@ -108,9 +112,12 @@
               :colIndex="colIndex"
               :textAlign="getTextAlign(headers[colIndex].dataType)"
               :class="{
-                'sticky-column': colIndex === 0,
+                'sticky-column': colIndexIsSticky(colIndex),
+                'sticky-column-shadow-right':
+                  isTableScrollable && isRightmostLeftStickyColumn(colIndex),
+                'sticky-column-shadow-left': isTableScrollable && isLastStickyColumn(colIndex),
               }"
-              :style="getCellStyle(rowIndex, colIndex)"
+              :style="[getCellStyle(rowIndex, colIndex), getStickyColumnStyle(rowIndex, colIndex)]"
               data-focus="true"
               role="gridcell"
               :aria-colindex="colIndex + 1"
@@ -148,7 +155,9 @@
 
 <script>
 
-  import { ref, computed, watch } from 'vue';
+  import debounce from 'lodash/debounce';
+  import { onMounted, ref, computed, watch, nextTick } from 'vue';
+  import useKResponsiveElement from '../composables/useKResponsiveElement';
   import useSorting, {
     SORT_ORDER_ASC,
     SORT_ORDER_DESC,
@@ -166,6 +175,10 @@
       const headers = ref(props.headers);
       const rows = ref(props.rows);
       const disableBuiltinSorting = ref(props.disableBuiltinSorting);
+      const tableWrapper = ref(null);
+      const tableElement = ref(null);
+
+      const { elementWidth } = useKResponsiveElement();
 
       const defaultSort = ref({
         index: props.headers.findIndex(h => h.columnId === props.defaultSort.columnId),
@@ -181,6 +194,13 @@
       } = useSorting(headers, rows, defaultSort, disableBuiltinSorting);
 
       const isTableEmpty = computed(() => sortedRows.value.length === 0);
+
+      const isTableScrollable = ref(false);
+
+      const checkScrollable = () => {
+        if (!tableWrapper.value || !tableElement.value || !elementWidth.value) return;
+        isTableScrollable.value = tableElement.value.scrollWidth > elementWidth.value;
+      };
 
       watch(
         () => props.rows,
@@ -207,6 +227,12 @@
         return style;
       };
 
+      onMounted(() => {
+        nextTick(() => {
+          debounce(checkScrollable, 300)();
+        });
+      });
+
       return {
         sortKey,
         sortOrder,
@@ -218,6 +244,9 @@
         DATA_TYPE_OTHERS,
         getHeaderStyle,
         isTableEmpty,
+        isTableScrollable,
+        tableWrapper,
+        tableElement,
       };
     },
     props: {
@@ -267,6 +296,23 @@
       sortable: {
         type: Boolean,
         default: false,
+      },
+      /**
+       * Sticky columns configuration for managing column
+       * interactivity and information, especially on smaller screens.
+       * An array of strings that can include:
+       * - `'first'`: Makes the first column sticky.
+       * - `'firstTwo'`: Makes the first two columns sticky.
+       * - `'last'`: Makes the last column sticky.
+       * The default value is `['first']`.
+       */
+      stickyColumns: {
+        type: Array,
+        default: () => ['first'],
+        validator: function (value) {
+          return value.every(item => ['first', 'firstTwo', 'last'].includes(item));
+        },
+        required: false,
       },
       /**
        * The message to display when the table is empty.
@@ -343,15 +389,12 @@
       getCellStyle() {
         return (rowIndex, colIndex) => {
           const styles = [];
-          if (colIndex === 0) {
-            styles.push({ backgroundColor: this.$themePalette.white });
+          if (!this.colIndexIsSticky(colIndex)) {
+            if (this.hoveredRowIndex === rowIndex || this.focusedRowIndex === rowIndex) {
+              styles.push({ backgroundColor: this.$themePalette.grey.v_100 });
+            }
           }
-          if (
-            (this.hoveredRowIndex === rowIndex || this.focusedRowIndex === rowIndex) &&
-            colIndex === 0
-          ) {
-            styles.push({ backgroundColor: this.$themePalette.grey.v_100 });
-          }
+
           return styles;
         };
       },
@@ -366,6 +409,21 @@
       },
       isColumnSortable() {
         return colIndex => this.sortable && this.headers[colIndex].dataType !== DATA_TYPE_OTHERS;
+      },
+      isRightmostLeftStickyColumn() {
+        return colIndex => {
+          return (
+            (this.stickyColumns.includes('firstTwo') && colIndex === 1) ||
+            (this.stickyColumns.includes('first') &&
+              !this.stickyColumns.includes('firstTwo') &&
+              colIndex === 0)
+          );
+        };
+      },
+      isLastStickyColumn() {
+        return colIndex => {
+          return this.stickyColumns.includes('last') && colIndex === this.headers.length - 1;
+        };
       },
     },
     watch: {
@@ -629,6 +687,18 @@
           return this.$refs[`cell-${rowIndex}-${colIndex}`][0].$el;
         }
       },
+      getStickyColumns() {
+        return this.stickyColumns.reduce((acc, sticky) => {
+          if (sticky === 'first') {
+            acc.push(0);
+          } else if (sticky === 'firstTwo') {
+            acc.push(0, 1);
+          } else if (sticky === 'last') {
+            acc.push(this.headers.length - 1);
+          }
+          return acc;
+        }, []);
+      },
       scrollCellIntoView(cell) {
         if (cell) {
           cell.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
@@ -674,7 +744,7 @@
       setHighlightHeader(header, highlight) {
         header.style.backgroundColor = highlight
           ? this.$themePalette.grey.v_100
-          : this.$themePalette.white;
+          : this.$themeTokens.surface;
       },
       highlightHeader(colIndex) {
         const headers = this.$refs;
@@ -684,6 +754,85 @@
             this.setHighlightHeader(headers[refKey][0], index === colIndex);
           }
         });
+      },
+      colIndexIsSticky(colIndex) {
+        const stickyIndices = this.getStickyColumns();
+        return stickyIndices.includes(colIndex);
+      },
+      getStickyColumnStyle(rowIndex, colIndex) {
+        if (!this.colIndexIsSticky(colIndex)) {
+          return {};
+        }
+
+        const styles = {
+          // Handle background color based on hover/focus state
+          // ensure row hover state appears but that sticky columns "stack" properly
+          backgroundColor:
+            this.hoveredRowIndex === rowIndex || this.focusedRowIndex === rowIndex
+              ? this.$themePalette.grey.v_100
+              : this.$themeTokens.surface,
+        };
+        const lastColIndex = this.headers.length - 1;
+
+        // Handle last column sticky
+        if (this.stickyColumns.includes('last') && colIndex === lastColIndex) {
+          styles.right = '0px';
+          return styles;
+        }
+
+        // Handle first/firstTwo columns sticky
+        if (this.stickyColumns.includes('first') || this.stickyColumns.includes('firstTwo')) {
+          // Determine if this column should be positioned on the left
+          const shouldStickLeft =
+            (this.stickyColumns.includes('firstTwo') && (colIndex === 0 || colIndex === 1)) ||
+            (this.stickyColumns.includes('first') && colIndex === 0);
+
+          if (shouldStickLeft) {
+            // Calculate left position by getting actual rendered widths
+            let leftPosition = 0;
+            for (let i = 0; i < colIndex; i++) {
+              if (this.colIndexIsSticky(i)) {
+                const cellElement = this.getRenderedCellElement(i);
+                if (cellElement) {
+                  leftPosition += cellElement.offsetWidth;
+                } else {
+                  // Fallback to header width if element not found
+                  const header = this.headers[i];
+                  const width = header.width || header.minWidth || '120px';
+                  leftPosition += parseInt(width.replace('px', '')) || 120;
+                }
+              }
+            }
+
+            styles.left = `${leftPosition}px`;
+
+            // Determine if this is the rightmost sticky column on the left side
+            const isRightmostLeftSticky =
+              (this.stickyColumns.includes('firstTwo') && colIndex === 1) ||
+              (this.stickyColumns.includes('first') &&
+                !this.stickyColumns.includes('firstTwo') &&
+                colIndex === 0);
+
+            if (isRightmostLeftSticky) {
+              // CSS classes will handle the dropshadow
+            }
+          }
+        }
+
+        return styles;
+      },
+      getRenderedCellElement(colIndex) {
+        const headerElement = this.$refs[`header-${colIndex}`];
+        if (headerElement && headerElement[0]) {
+          return headerElement[0];
+        }
+
+        const cellElement = this.$refs[`cell-0-${colIndex}`];
+        if (cellElement && cellElement[0] && cellElement[0].$el) {
+          return cellElement[0].$el;
+        }
+
+        return null;
       },
       getTextAlign(dataType) {
         const alignLtr = dataType === DATA_TYPE_NUMERIC ? 'right' : 'left';
@@ -701,12 +850,12 @@
 </script>
 
 
-<style scoped>
+<style lang="scss" scoped>
 
   .k-table-wrapper {
     position: relative;
     height: auto;
-    overflow: auto;
+    overflow-x: auto;
   }
 
   .k-table {
@@ -718,7 +867,10 @@
   td {
     position: relative;
     z-index: auto;
-    padding: 8px;
+    height: auto;
+    min-height: 40px;
+    padding: 0 8px;
+    vertical-align: middle;
   }
 
   .sticky-header {
@@ -729,13 +881,36 @@
 
   .sticky-column {
     position: sticky;
-    left: 0;
-    z-index: 1;
+    z-index: 2;
+    min-height: inherit;
   }
 
-  th.sticky-header.sticky-column,
-  td.sticky-header.sticky-column {
+  .sticky-header.sticky-column {
     z-index: 3;
+  }
+
+  .sticky-column-shadow-right::after {
+    position: absolute;
+    top: 0;
+    right: -3px;
+    bottom: 0;
+    z-index: 1;
+    width: 3px;
+    pointer-events: none;
+    content: '';
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.2), transparent);
+  }
+
+  .sticky-column-shadow-left::before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -3px;
+    z-index: 1;
+    width: 3px;
+    pointer-events: none;
+    content: '';
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.2), transparent);
   }
 
   .sortable {
