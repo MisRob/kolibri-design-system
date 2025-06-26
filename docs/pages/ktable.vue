@@ -98,6 +98,28 @@
         block
       />
 
+      <!-- Table with sticky columns -->
+      <h3>Table with sticky columns</h3>
+      <p>
+        This is an example to show how <code>KTable</code> can be used with sticky columns. The
+        <code>stickyColumns</code> prop is used to define which columns should be sticky. The value
+        can be a string or an array of strings. The string can be one of the following:
+      </p>
+      <ul>
+        <li><code>first</code> - makes the first column sticky</li>
+        <li><code>last</code> - makes the last column sticky</li>
+        <li>
+          <code>firstTwo</code> - makes the first Two columns sticky; overrides "first" if both are
+          present
+        </li>
+      </ul>
+      <DocsExample
+        loadExample="KTable/StickyColumns.vue"
+        exampleId="sticky-columns"
+        block
+      />
+
+      <!-- Disable built-in sorting -->
       <h3>Disable built-in sorting</h3>
       <p>
         For <code>sortable</code> tables, you can use the <code>disableBuiltinSorting</code> prop to
