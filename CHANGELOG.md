@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1051]
+  - **Description:** Bump @babel/core from 7.26.10 to 7.27.4 in the babel group
+  - **Products impact:** Dev Dependency upgrade
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#1051]: https://github.com/learningequality/kolibri-design-system/pull/1051
+
+
+
 - [#1018]
   - **Description:** At Sizes less than `768px`
   - Set the content-wrapper width to 100%
