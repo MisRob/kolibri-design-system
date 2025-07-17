@@ -6,17 +6,6 @@ Changelog is rather internal in nature. See release notes for the public overvie
 
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
-- [#1068]
-  - **Description:** Add `expand` icon
-  - **Products impact:** new icon
-  - **Addresses:** https://github.com/learningequality/kolibri/issues/13504
-  - **Components:** `KIcon`
-  - **Breaking:** no
-  - **Impacts a11y:** no
-  - **Guidance:** -
-
-[#1068]: https://github.com/learningequality/kolibri-design-system/pull/1068
-
 
 - [#1018]
   - **Description:** At Sizes less than `768px`
