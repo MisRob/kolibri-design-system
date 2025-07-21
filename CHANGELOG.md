@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1071]
+  - **Description:** Fix `KTransition` in `component-vertical-slide-out-in` mode moving from/to too high
+  - **Products impact:** bugfix
+  - **Addresses:** [studio conversation](https://github.com/learningequality/studio/pull/5162#discussion_r2197304969)
+  - **Components:** KTransition
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -
+
+[#1071]: https://github.com/learningequality/kolibri-design-system/pull/1071
+
+
+
 - [#1068]
   - **Description:** Add `expand` icon
   - **Products impact:** new icon
