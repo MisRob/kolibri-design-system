@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1072]
+  - **Description:** Update workflow that handles contributor comments to the latest version
+  - **Products impact:** none
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#1072]: https://github.com/learningequality/kolibri-design-system/pull/1072
+
+
+
 - [#1071]
   - **Description:** Fix `KTransition` in `component-vertical-slide-out-in` mode moving from/to too high
   - **Products impact:** bugfix
