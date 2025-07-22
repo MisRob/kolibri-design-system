@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1076]
+  - **Description:** Bump form-data from 4.0.1 to 4.0.4
+  - **Products impact:** Dev Dependency upgrade
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#1076]: https://github.com/learningequality/kolibri-design-system/pull/1076
+
+
+
 - [#1070]
   - **Description:** Fixes KSelect content being overflowed when there was a selected option with a long label.
   - **Products impact:** bugfix.
