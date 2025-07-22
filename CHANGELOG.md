@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1050]
+  - **Description:** Added visual tests for KSelect.
+  - **Products impact:** None
+  - **Addresses:** [#1007 ](https://github.com/learningequality/kolibri-design-system/issues/1007)
+  - **Components:** No
+  - **Breaking:** No
+  - **Impacts a11y:** No
+  - **Guidance:** None
+
+[#1050]: https://github.com/learningequality/kolibri-design-system/pull/1050
+
+
+
 - [#1072]
   - **Description:** Update workflow that handles contributor comments to the latest version
   - **Products impact:** none
