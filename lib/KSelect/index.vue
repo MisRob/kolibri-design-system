@@ -88,6 +88,7 @@
           </UiIcon>
           <KIconButton
             v-else
+            size="small"
             class="overlay-close-button"
             icon="close"
             :ariaLabel="clearText"
@@ -1032,6 +1033,7 @@
 
   .ui-select-content {
     flex-grow: 1;
+    width: 100%;
   }
 
   .ui-select-label-text {
@@ -1135,11 +1137,6 @@
   }
 
   /* stylelint-enable */
-
-  .overlay-close-button {
-    position: absolute;
-    right: 0;
-  }
 
   .ui-select-inline {
     display: inline-block;
