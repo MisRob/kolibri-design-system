@@ -7,6 +7,30 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1070]
+  - **Description:** Fixes KSelect content being overflowed when there was a selected option with a long label.
+  - **Products impact:** bugfix.
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/1066.
+  - **Components:** KSelect.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** .
+
+[#1070]: https://github.com/learningequality/kolibri-design-system/pull/1070
+
+- [#1070]
+  - **Description:** Turns clear button to be small to avoid vertical overflow on button hover.
+  - **Products impact:** bugfix.
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/1066.
+  - **Components:** KSelect.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** .
+
+[#1070]: https://github.com/learningequality/kolibri-design-system/pull/1070
+
+
+
 - [#1050]
   - **Description:** Added visual tests for KSelect.
   - **Products impact:** None
