@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1063]
+  - **Description:** Improves KTabsList documentation example styling
+  - **Products impact:** none
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/993
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#1063]: https://github.com/learningequality/kolibri-design-system/pull/1063
+
+
+
 - [#1077]
   - **Description:** Bumps kds version to 5.2.1.
   - **Products impact:** -.
