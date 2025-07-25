@@ -14,9 +14,7 @@
 
   <span>
     <transition
-      :name="transition"
-      :enterActiveClass="enterActiveClass"
-      :leaveActiveClass="leaveActiveClass"
+      name="fade"
       @after-leave="doDestroy"
     >
       <span
@@ -77,14 +75,6 @@
         type: String,
         default: null,
       },
-      enterActiveClass: {
-        type: String,
-        default: null,
-      },
-      leaveActiveClass: {
-        type: String,
-        default: null,
-      },
       boundariesSelector: {
         type: String,
         default: null,
@@ -107,10 +97,6 @@
       visibleArrow: {
         type: Boolean,
         default: true,
-      },
-      transition: {
-        type: String,
-        default: '',
       },
       options: {
         type: Object,
@@ -458,6 +444,14 @@
     margin-left: 0;
     border-color: transparent transparent transparent #fafafa;
     border-width: 5px 0 5px 5px;
+  }
+
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .3s;
+  }
+
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
   }
 
 </style>
