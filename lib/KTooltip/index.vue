@@ -12,11 +12,7 @@
     <div
       dir="auto"
       class="k-tooltip"
-      :style="{
-        backgroundColor: $themeTokens.text,
-        color: $themeTokens.textInverted,
-        maxWidth: maxWidth ? maxWidth : 'calc(100vw - 10px)',
-      }"
+      :class="$computedClass(tooltipStyle)"
     >
       <!-- If text prop is provided, display the text -->
       <template v-if="text">
@@ -105,6 +101,14 @@
         type: Boolean,
         default: false,
       },
+      /**
+       * Dynamic styles object to be applied to .k-tooltip
+       */
+      appearanceOverrides: {
+        type: Object,
+        required: false,
+        default: () => {}
+      },
     },
     data() {
       return {
@@ -133,6 +137,14 @@
         }
         return element;
       },
+      tooltipStyle() {
+        return {
+          backgroundColor: this.$themeTokens.text,
+          color: this.$themeTokens.textInverted,
+          maxWidth: this.maxWidth ? this.maxWidth : 'calc(100vw - 10px)',
+          ...this.appearanceOverrides
+        }
+      }
     },
     mounted() {
       this.$nextTick(() => {
