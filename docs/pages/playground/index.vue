@@ -23,6 +23,13 @@
     /> -->
 
     <!-- Play around with your component here: -->
+
+    <div class="wrapper">
+      <KIcon
+        icon="image"
+        :style="{width: '40%', height: 'auto' }"
+      />
+    </div>
   </div>
 
 </template>
@@ -44,3 +51,18 @@
   };
 
 </script>
+
+
+<style lang="scss" scoped>
+
+.wrapper {
+  width: 50%;
+  max-width: 300px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(102, 137, 102);
+}
+
+</style>
