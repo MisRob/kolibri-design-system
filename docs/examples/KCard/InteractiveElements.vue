@@ -12,11 +12,25 @@
       thumbnailAlign="right"
     >
       <template #footer>
-        <KIconButton
-          ariaLabel="Bookmark resource"
-          :icon="isBookmarked ? 'bookmark' : 'bookmarkEmpty'"
-          @click.stop="isBookmarked = !isBookmarked"
-        />
+        <div class="footer">
+          <KIconButton
+            ariaLabel="Bookmark resource"
+            :icon="isBookmarked ? 'bookmark' : 'bookmarkEmpty'"
+            @click.stop="isBookmarked = !isBookmarked"
+          />
+          <router-link
+            :to="{ path: '/kbutton' }"
+            :class="['link', linkComputedClass]"
+            aria-label="Read more about this resource"
+            @click.native.stop
+            @keyup.native.capture.stop
+          >
+            <KIcon
+              icon="infoOutline"
+              class="link-icon"
+            />
+          </router-link>
+        </div>
       </template>
     </Card>
   </KCardGrid>
@@ -57,6 +71,16 @@
         ],
       };
     },
+    computed: {
+      linkComputedClass() {
+        return this.$computedClass({
+          ':hover': {
+            backgroundColor: 'rgba(0,0,0,.1)',
+          },
+          ':focus': { ...this.$coreOutline, outlineOffset: 0 },
+        });
+      },
+    },
     mounted() {
       setTimeout(() => {
         this.loading = false;
@@ -65,3 +89,28 @@
   };
 
 </script>
+
+
+<style lang="scss" scoped>
+
+  .footer {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+
+  .link-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+</style>

@@ -682,12 +682,16 @@
       </h3>
 
       <p>
-        When adding interactive elements like buttons to a card via slots, apply the
-        <code>.stop</code> event modifier to their <code>@click</code> event to prevent the card
+        When placing an interactive element, such as a button, inside a card using a slot, use the
+        <code>.stop</code> event modifier on its <code>@click</code> handler. This prevents the
+        card's own
         <DocsInternalLink
           text="click event and navigation"
           href="#click-navigation"
-        />.
+        />
+        from being triggered. For <code>router-link</code> elements, apply
+        <code>@click.native.stop</code> and <code>@keyup.native.capture.stop</code> to ensure that
+        both mouse and keyboard interactions do not trigger the card's default click behavior.
       </p>
 
       <p>
@@ -698,25 +702,62 @@
         needed to indicate the bookmark's toggled state. Always assess on a case-by-case basis.
       </p>
 
+      <p>
+        In the example below, notice how using a router link allows users to Ctrl+click to open the
+        link in a new tab.
+      </p>
+
       <DocsExample
         loadExample="KCard/InteractiveElements.vue"
         exampleId="kcard-interactive-elements"
         block
       >
         <template #html>
-          <!-- eslint-disable -->
           <DocsShowCode language="html">
             <KCardGrid ...>
               <KCard ...>
                 <template #footer>
-                  <KIconButton
-                    ariaLabel="Bookmark resource"
-                    :icon="isBookmarked ? 'bookmark' : 'bookmarkEmpty'"
-                    @click.stop="isBookmarked = !isBookmarked"
-                  />
+                  <div class="footer">
+                    <KIconButton
+                      ariaLabel="Bookmark resource"
+                      :icon="isBookmarked ? 'bookmark' : 'bookmarkEmpty'"
+                      @click.stop="isBookmarked = !isBookmarked"
+                    />
+                    <router-link
+                      :to="{ path: '/kbutton' }"
+                      :class="['link', linkComputedClass]"
+                      aria-label="Read more about this resource"
+                      @click.native.stop
+                      @keyup.native.capture.stop
+                    >
+                      <KIcon
+                        icon="infoOutline"
+                        class="link-icon"
+                      />
+                    </router-link>
+                  </div>
                 </template>
               </KCard>
             </KCardGrid>
+          </DocsShowCode>
+        </template>
+        <template #javascript>
+          <!-- eslint-disable -->
+          <!-- prettier-ignore -->
+          <DocsShowCode language="javascript">
+            export default {
+              ...
+              computed: {
+                linkComputedClass() {
+                  return this.$computedClass({
+                    ':hover': {
+                      backgroundColor: 'rgba(0,0,0,.1)',
+                    },
+                    ':focus': { ...this.$coreOutline, outlineOffset: 0 },
+                  });
+                },
+              },
+            };
           </DocsShowCode>
           <!-- eslint-enable -->
         </template>
