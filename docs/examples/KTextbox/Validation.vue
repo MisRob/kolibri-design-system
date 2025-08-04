@@ -5,6 +5,7 @@
     label="Numbers only"
     :invalid="!isNumeric(numericInput)"
     invalidText="Please enter a valid number."
+    showInvalidText
   />
 
 </template>
@@ -15,7 +16,7 @@
   export default {
     data() {
       return {
-        numericInput: '',
+        numericInput: 'abc',
       };
     },
     methods: {

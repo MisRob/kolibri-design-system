@@ -18,7 +18,7 @@
     >
       <h3>Input with label</h3>
       <DocsExample
-        loadExample="KTextbox/Label.vue"
+        loadExample="KTextbox/WithLabel.vue"
         exampleId="ktextbox-label"
         block
       />
@@ -86,13 +86,43 @@
         and invalidText props to handle validation as needed.
       </p>
 
+      <h3>Password input</h3>
+      <DocsExample
+        loadExample="KTextbox/Password.vue"
+        exampleId="ktextbox-password"
+        block
+      />
+      <p>This text box masks the entered characters to enhance security and privacy.</p>
+
       <h3>Text area</h3>
       <DocsExample
-        loadExample="KTextbox/Textarea.vue"
+        loadExample="KTextbox/AsTextarea.vue"
         exampleId="ktextbox-textarea"
         block
       />
       <p>This is a multi-line text input area, suitable for longer text entries.</p>
+
+      <h3>Clearable</h3>
+      <DocsExample
+        loadExample="KTextbox/Clearable.vue"
+        exampleId="ktextbox-clearable"
+        block
+      />
+
+      <p>
+        This text box includes a clear button that allows users to quickly remove the entered text.
+      </p>
+
+      <h3>Validation text</h3>
+      <DocsExample
+        loadExample="KTextbox/InvalidText.vue"
+        exampleId="ktextbox-invalidtext"
+        block
+      />
+      <p>
+        When the value is invalid, shows the validation text even if the user has not focused or
+        changed the input.
+      </p>
     </DocsPageSection>
   </DocsPageTemplate>
 
