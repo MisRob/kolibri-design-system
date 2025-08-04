@@ -245,6 +245,7 @@
       <DocsExample
         loadExample="KCard/Title.vue"
         exampleId="kcard-title"
+        hideScript
         block
       >
         <template #html>
@@ -419,7 +420,8 @@
       <DocsExample
         loadExample="KCard/Layout1.vue"
         exampleId="kcard-layout"
-        :hideStyle="true"
+        hideScript
+        hideStyle
         block
       >
         <template #html>
@@ -452,6 +454,8 @@
       <DocsExample
         loadExample="KCard/Layout2.vue"
         exampleId="kcard-layout"
+        hideScript
+        hideStyle
         block
       >
         <template #html>
@@ -481,6 +485,8 @@
       <DocsExample
         loadExample="KCard/Layout3.vue"
         exampleId="kcard-layout"
+        hideScript
+        hideStyle
         block
       >
         <template #html>
@@ -533,6 +539,8 @@
       <DocsExample
         loadExample="KCard/ContentSlots.vue"
         exampleId="kcard-content-slots"
+        hideScript
+        hideStyle
         block
       >
         <template #html>
@@ -631,6 +639,7 @@
       <DocsExample
         loadExample="KCard/Placeholder.vue"
         exampleId="kcard-placeholder"
+        hideScript
         block
       >
         <template #html>
@@ -790,6 +799,7 @@
       <DocsExample
         loadExample="KCard/SelectionControls.vue"
         exampleId="kcard-selection-controls"
+        hideScript
         block
       >
         <template #html>
