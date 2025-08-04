@@ -199,6 +199,17 @@
         by descriptive text.
       </p>
     </DocsPageSection>
+
+    <DocsPageSection
+      title="Related"
+      anchor="#related"
+    >
+      <ul>
+        <li><DocsLibraryLink component="KIcon" /> displays icons</li>
+        <li><DocsLibraryLink component="KLabeledIcon" /> displays icons with associated text</li>
+        <li><DocsLibraryLink component="KIconButton" /> displays icons as buttons</li>
+      </ul>
+    </DocsPageSection>
   </DocsPageTemplate>
 
 </template>
