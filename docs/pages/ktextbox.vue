@@ -38,6 +38,17 @@
         be considered invalid.
       </p>
 
+      <h3>Character limit</h3>
+      <DocsExample
+        loadExample="KTextbox/CharacterLimit.vue"
+        exampleId="ktextbox-charlimit"
+        block
+      />
+      <p>
+        This text box has a maximum character limit of 20. It displays a character counter to inform
+        the user of the remaining characters they can enter.
+      </p>
+
       <h3>Disabled input</h3>
       <DocsExample
         loadExample="KTextbox/Disabled.vue"
