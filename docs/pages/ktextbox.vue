@@ -16,7 +16,25 @@
       title="Usage"
       anchor="#usage"
     >
-      <h3>Input with label</h3>
+      <DocsSubNav
+        :items="[
+          { text: 'Input with label', href: '#with-label' },
+          { text: 'Valid and invalid input', href: '#validation' },
+          { text: 'Character limit', href: '#charlimit' },
+          { text: 'Disabled input', href: '#disabled' },
+          { text: 'Readonly input', href: '#readonly' },
+          { text: 'Number input', href: '#number' },
+          { text: 'Password input', href: '#password' },
+          { text: 'Text area', href: '#textarea' },
+          { text: 'Clearable', href: '#clearable' },
+          { text: 'Validation text', href: '#invalidtext' },
+        ]"
+      />
+
+      <h3>
+        Input with label
+        <DocsAnchorTarget anchor="#with-label" />
+      </h3>
       <DocsExample
         loadExample="KTextbox/WithLabel.vue"
         exampleId="ktextbox-label"
@@ -27,7 +45,10 @@
         about the expected input.
       </p>
 
-      <h3>Valid and invalid input</h3>
+      <h3>
+        Valid and invalid input
+        <DocsAnchorTarget anchor="#validation" />
+      </h3>
       <DocsExample
         loadExample="KTextbox/Validation.vue"
         exampleId="ktextbox-validation"
@@ -38,7 +59,10 @@
         be considered invalid.
       </p>
 
-      <h3>Character limit</h3>
+      <h3>
+        Character limit
+        <DocsAnchorTarget anchor="#charlimit" />
+      </h3>
       <DocsExample
         loadExample="KTextbox/CharacterLimit.vue"
         exampleId="ktextbox-charlimit"
@@ -49,7 +73,10 @@
         the user of the remaining characters they can enter.
       </p>
 
-      <h3>Disabled input</h3>
+      <h3>
+        Disabled input
+        <DocsAnchorTarget anchor="#disabled" />
+      </h3>
       <DocsExample
         loadExample="KTextbox/Disabled.vue"
         exampleId="ktextbox-disabled"
@@ -60,7 +87,10 @@
         keyboard navigation.
       </p>
 
-      <h3>Readonly input</h3>
+      <h3>
+        Readonly input
+        <DocsAnchorTarget anchor="#readonly" />
+      </h3>
       <DocsExample
         loadExample="KTextbox/Readonly.vue"
         exampleId="ktextbox-readonly"
@@ -71,7 +101,10 @@
         It's also included in keyboard navigation.
       </p>
 
-      <h3>Number input</h3>
+      <h3>
+        Number input
+        <DocsAnchorTarget anchor="#number" />
+      </h3>
       <DocsExample
         loadExample="KTextbox/Number.vue"
         exampleId="ktextbox-number"
@@ -86,7 +119,10 @@
         and invalidText props to handle validation as needed.
       </p>
 
-      <h3>Password input</h3>
+      <h3>
+        Password input
+        <DocsAnchorTarget anchor="#password" />
+      </h3>
       <DocsExample
         loadExample="KTextbox/Password.vue"
         exampleId="ktextbox-password"
@@ -94,7 +130,10 @@
       />
       <p>This text box masks the entered characters to enhance security and privacy.</p>
 
-      <h3>Text area</h3>
+      <h3>
+        Text area
+        <DocsAnchorTarget anchor="#textarea" />
+      </h3>
       <DocsExample
         loadExample="KTextbox/AsTextarea.vue"
         exampleId="ktextbox-textarea"
@@ -102,7 +141,10 @@
       />
       <p>This is a multi-line text input area, suitable for longer text entries.</p>
 
-      <h3>Clearable</h3>
+      <h3>
+        Clearable
+        <DocsAnchorTarget anchor="#clearable" />
+      </h3>
       <DocsExample
         loadExample="KTextbox/Clearable.vue"
         exampleId="ktextbox-clearable"
@@ -113,7 +155,10 @@
         This text box includes a clear button that allows users to quickly remove the entered text.
       </p>
 
-      <h3>Validation text</h3>
+      <h3>
+        Validation text
+        <DocsAnchorTarget anchor="#invalidtext" />
+      </h3>
       <DocsExample
         loadExample="KTextbox/InvalidText.vue"
         exampleId="ktextbox-invalidtext"
