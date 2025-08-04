@@ -266,6 +266,13 @@
         slot to place content in the area.
       </p>
 
+      <p>
+        In the example below, also note
+        <DocsInternalLink href="kicon#responsive">
+          responsive implementation of <code>KIcon</code>
+        </DocsInternalLink>. Resize the browser window to see how the icon adjusts.
+      </p>
+
       <DocsExample
         loadExample="KImg/Placeholder.vue"
         exampleId="placeholder"
