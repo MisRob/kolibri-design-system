@@ -618,6 +618,16 @@
         <em>Provide a placeholder element even if a thumbnail image is available.</em> It serves as
         fallback content if the image fails to load unexpectedly.
       </p>
+
+      <p>
+        See
+        <DocsInternalLink
+          text="KImg placeholder"
+          href="/kimg#placeholder"
+        />
+        for more examples, such as responsive placeholder icons.
+      </p>
+
       <DocsExample
         loadExample="KCard/Placeholder.vue"
         exampleId="kcard-placeholder"
