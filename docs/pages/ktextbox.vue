@@ -35,81 +35,76 @@
         Input with label
         <DocsAnchorTarget anchor="#with-label" />
       </h3>
+      <p>
+        This text box includes a visible label, providing clear guidance and context to the user
+        about the expected input.
+      </p>
       <DocsExample
         loadExample="KTextbox/WithLabel.vue"
         exampleId="ktextbox-label"
         block
       />
-      <p>
-        This text box includes a visible label, providing clear guidance and context to the user
-        about the expected input.
-      </p>
 
       <h3>
         Valid and invalid input
         <DocsAnchorTarget anchor="#validation" />
       </h3>
+      <p>
+        This text box only accepts numeric input. If any non-numeric character is entered, it will
+        be considered invalid.
+      </p>
       <DocsExample
         loadExample="KTextbox/Validation.vue"
         exampleId="ktextbox-validation"
         block
       />
-      <p>
-        This text box only accepts numeric input. If any non-numeric character is entered, it will
-        be considered invalid.
-      </p>
 
       <h3>
         Character limit
         <DocsAnchorTarget anchor="#charlimit" />
       </h3>
+      <p>
+        This text box has a maximum character limit of 20. It displays a character counter to inform
+        the user of the remaining characters they can enter.
+      </p>
       <DocsExample
         loadExample="KTextbox/CharacterLimit.vue"
         exampleId="ktextbox-charlimit"
         block
       />
-      <p>
-        This text box has a maximum character limit of 20. It displays a character counter to inform
-        the user of the remaining characters they can enter.
-      </p>
 
       <h3>
         Disabled input
         <DocsAnchorTarget anchor="#disabled" />
       </h3>
+      <p>
+        This text box is disabled. It cannot be edited or focused, so it will be skipped during
+        keyboard navigation.
+      </p>
       <DocsExample
         loadExample="KTextbox/Disabled.vue"
         exampleId="ktextbox-disabled"
         block
       />
-      <p>
-        This text box is disabled. It cannot be edited or focused, so it will be skipped during
-        keyboard navigation.
-      </p>
 
       <h3>
         Readonly input
         <DocsAnchorTarget anchor="#readonly" />
       </h3>
+      <p>
+        This text box is readonly. It cannot be edited but it can still select and copy the text.
+        It's also included in keyboard navigation.
+      </p>
       <DocsExample
         loadExample="KTextbox/Readonly.vue"
         exampleId="ktextbox-readonly"
         block
       />
-      <p>
-        This text box is readonly. It cannot be edited but it can still select and copy the text.
-        It's also included in keyboard navigation.
-      </p>
 
       <h3>
         Number input
         <DocsAnchorTarget anchor="#number" />
       </h3>
-      <DocsExample
-        loadExample="KTextbox/Number.vue"
-        exampleId="ktextbox-number"
-        block
-      />
       <p>
         This is a numeric input field where users can input values within the range of 0 to 100.
       </p>
@@ -118,56 +113,61 @@
         however, it is recommended to use them for accessibility purposes while using the invalid
         and invalidText props to handle validation as needed.
       </p>
+      <DocsExample
+        loadExample="KTextbox/Number.vue"
+        exampleId="ktextbox-number"
+        block
+      />
 
       <h3>
         Password input
         <DocsAnchorTarget anchor="#password" />
       </h3>
+      <p>This text box masks the entered characters to enhance security and privacy.</p>
       <DocsExample
         loadExample="KTextbox/Password.vue"
         exampleId="ktextbox-password"
         block
       />
-      <p>This text box masks the entered characters to enhance security and privacy.</p>
 
       <h3>
         Text area
         <DocsAnchorTarget anchor="#textarea" />
       </h3>
+      <p>This is a multi-line text input area, suitable for longer text entries.</p>
       <DocsExample
         loadExample="KTextbox/AsTextarea.vue"
         exampleId="ktextbox-textarea"
         block
       />
-      <p>This is a multi-line text input area, suitable for longer text entries.</p>
 
       <h3>
         Clearable
         <DocsAnchorTarget anchor="#clearable" />
       </h3>
+
+      <p>
+        This text box includes a clear button that allows users to quickly remove the entered text.
+      </p>
       <DocsExample
         loadExample="KTextbox/Clearable.vue"
         exampleId="ktextbox-clearable"
         block
       />
 
-      <p>
-        This text box includes a clear button that allows users to quickly remove the entered text.
-      </p>
-
       <h3>
         Validation text
         <DocsAnchorTarget anchor="#invalidtext" />
       </h3>
+      <p>
+        When the value is invalid, shows the validation text even if the user has not focused or
+        changed the input.
+      </p>
       <DocsExample
         loadExample="KTextbox/InvalidText.vue"
         exampleId="ktextbox-invalidtext"
         block
       />
-      <p>
-        When the value is invalid, shows the validation text even if the user has not focused or
-        changed the input.
-      </p>
     </DocsPageSection>
   </DocsPageTemplate>
 
