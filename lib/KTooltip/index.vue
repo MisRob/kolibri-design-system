@@ -93,6 +93,9 @@
        * If it's not provided, the tooltip's
        * size fits its content.
        */
+      // TODO: Can be removed in the next version,
+      // which can be configured like
+      // <KTooltip :style="{ maxWidth: '250px', width: '40%' }">
       maxWidth: {
         type: String,
         default: null,
