@@ -16,90 +16,95 @@
       title="Usage"
       anchor="#usage"
     >
-      <h3>Input with label</h3>
-      <KTextbox label="Input with label" />
-      <DocsShowCode language="html">
-        <KTextbox label="Input with label" />
-      </DocsShowCode>
+      <DocsSubNav
+        :items="[
+          { text: 'Input with label', href: '#with-label' },
+          { text: 'Valid and invalid input', href: '#validation' },
+          { text: 'Character limit', href: '#charlimit' },
+          { text: 'Disabled input', href: '#disabled' },
+          { text: 'Readonly input', href: '#readonly' },
+          { text: 'Number input', href: '#number' },
+          { text: 'Password input', href: '#password' },
+          { text: 'Text area', href: '#textarea' },
+          { text: 'Clearable', href: '#clearable' },
+          { text: 'Validation text', href: '#invalidtext' },
+        ]"
+      />
+
+      <h3>
+        Input with label
+        <DocsAnchorTarget anchor="#with-label" />
+      </h3>
       <p>
         This text box includes a visible label, providing clear guidance and context to the user
         about the expected input.
       </p>
-
-      <h3>Valid and invalid input</h3>
-
-      <KTextbox
-        v-model="numericInput"
-        label="Numbers only"
-        :invalid="!isNumeric(numericInput)"
-        invalidText="Please enter a valid number."
+      <DocsExample
+        loadExample="KTextbox/WithLabel.vue"
+        exampleId="ktextbox-label"
+        block
       />
 
-      <DocsShowCode language="html">
-        <KTextbox
-          v-model="numericInput"
-          label="Numbers only"
-          :invalid="!isNumeric(numericInput)"
-          invalidText="Please enter a valid number."
-        />
-      </DocsShowCode>
-
+      <h3>
+        Valid and invalid input
+        <DocsAnchorTarget anchor="#validation" />
+      </h3>
       <p>
         This text box only accepts numeric input. If any non-numeric character is entered, it will
         be considered invalid.
       </p>
-
-      <h3>Disabled input</h3>
-      <KTextbox
-        label="Disabled input"
-        disabled
+      <DocsExample
+        loadExample="KTextbox/Validation.vue"
+        exampleId="ktextbox-validation"
+        block
       />
-      <DocsShowCode language="html">
-        <KTextbox
-          label="Disabled input"
-          disabled
-        />
-      </DocsShowCode>
+
+      <h3>
+        Character limit
+        <DocsAnchorTarget anchor="#charlimit" />
+      </h3>
+      <p>
+        This text box has a maximum character limit of 20. It displays a character counter to inform
+        the user of the remaining characters they can enter.
+      </p>
+      <DocsExample
+        loadExample="KTextbox/CharacterLimit.vue"
+        exampleId="ktextbox-charlimit"
+        block
+      />
+
+      <h3>
+        Disabled input
+        <DocsAnchorTarget anchor="#disabled" />
+      </h3>
       <p>
         This text box is disabled. It cannot be edited or focused, so it will be skipped during
         keyboard navigation.
       </p>
-
-      <h3>Readonly input</h3>
-      <KTextbox
-        label="Token"
-        value="123456789"
-        readonly
+      <DocsExample
+        loadExample="KTextbox/Disabled.vue"
+        exampleId="ktextbox-disabled"
+        block
       />
-      <DocsShowCode language="html">
-        <KTextbox
-          label="Token"
-          value="123456789"
-          readonly
-        />
-      </DocsShowCode>
+
+      <h3>
+        Readonly input
+        <DocsAnchorTarget anchor="#readonly" />
+      </h3>
       <p>
         This text box is readonly. It cannot be edited but it can still select and copy the text.
         It's also included in keyboard navigation.
       </p>
-
-      <h3>Number input</h3>
-      <KTextbox
-        label="Number input"
-        type="number"
-        :min="0"
-        :max="100"
+      <DocsExample
+        loadExample="KTextbox/Readonly.vue"
+        exampleId="ktextbox-readonly"
+        block
       />
 
-      <DocsShowCode language="html">
-        <KTextbox
-          label="Number Input"
-          type="number"
-          :min="0"
-          :max="100"
-        />
-      </DocsShowCode>
-
+      <h3>
+        Number input
+        <DocsAnchorTarget anchor="#number" />
+      </h3>
       <p>
         This is a numeric input field where users can input values within the range of 0 to 100.
       </p>
@@ -108,38 +113,62 @@
         however, it is recommended to use them for accessibility purposes while using the invalid
         and invalidText props to handle validation as needed.
       </p>
-
-      <h3>Text area</h3>
-      <KTextbox
-        label="Text area"
-        :textArea="true"
+      <DocsExample
+        loadExample="KTextbox/Number.vue"
+        exampleId="ktextbox-number"
+        block
       />
-      <DocsShowCode language="html">
-        <KTextbox
-          label="Text area"
-          :textArea="true"
-        />
-      </DocsShowCode>
+
+      <h3>
+        Password input
+        <DocsAnchorTarget anchor="#password" />
+      </h3>
+      <p>This text box masks the entered characters to enhance security and privacy.</p>
+      <DocsExample
+        loadExample="KTextbox/Password.vue"
+        exampleId="ktextbox-password"
+        block
+      />
+
+      <h3>
+        Text area
+        <DocsAnchorTarget anchor="#textarea" />
+      </h3>
       <p>This is a multi-line text input area, suitable for longer text entries.</p>
+      <DocsExample
+        loadExample="KTextbox/AsTextarea.vue"
+        exampleId="ktextbox-textarea"
+        block
+      />
+
+      <h3>
+        Clearable
+        <DocsAnchorTarget anchor="#clearable" />
+      </h3>
+
+      <p>
+        This text box includes a clear button that allows users to quickly remove the entered text.
+      </p>
+      <DocsExample
+        loadExample="KTextbox/Clearable.vue"
+        exampleId="ktextbox-clearable"
+        block
+      />
+
+      <h3>
+        Validation text
+        <DocsAnchorTarget anchor="#invalidtext" />
+      </h3>
+      <p>
+        When the value is invalid, shows the validation text even if the user has not focused or
+        changed the input.
+      </p>
+      <DocsExample
+        loadExample="KTextbox/InvalidText.vue"
+        exampleId="ktextbox-invalidtext"
+        block
+      />
     </DocsPageSection>
   </DocsPageTemplate>
 
 </template>
-
-
-<script>
-
-  export default {
-    data() {
-      return {
-        numericInput: '',
-      };
-    },
-    methods: {
-      isNumeric(value) {
-        return !isNaN(parseFloat(value)) && isFinite(value);
-      },
-    },
-  };
-
-</script>

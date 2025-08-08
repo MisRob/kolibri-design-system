@@ -15,6 +15,17 @@
       title="Usage"
       anchor="#usage"
     >
+      <DocsSubNav
+        :items="[
+          { text: 'Rendering within inline and block elements', href: '#inline-and-block' },
+          { text: 'Alternative text', href: '#alt-text' },
+          { text: 'Scaling', href: '#scaling' },
+          { text: 'Aspect ratio', href: '#aspect-ratio' },
+          { text: 'Placeholder area', href: '#placeholder' },
+          { text: 'Displaying content on top of an image', href: '#display-on-top' },
+        ]"
+      />
+
       <p>Unless you set fixed dimensions, <code>KImg</code> is responsive by default.</p>
 
       <p>
@@ -39,7 +50,10 @@
         dimensions are 200×114 px.
       </p>
 
-      <h3>Rendering within inline and block elements</h3>
+      <h3>
+        Rendering within inline and block elements
+        <DocsAnchorTarget anchor="#inline-and-block" />
+      </h3>
 
       <h4>Inline</h4>
 
@@ -89,7 +103,10 @@
         </template>
       </DocsExample>
 
-      <h3>Alternative text</h3>
+      <h3>
+        Alternative text
+        <DocsAnchorTarget anchor="#alt-text" />
+      </h3>
 
       <p>
         Unless an image is
@@ -124,7 +141,10 @@
         />
       </DocsShowCode>
 
-      <h3 id="scaling">Scaling</h3>
+      <h3>
+        Scaling
+        <DocsAnchorTarget anchor="#scaling" />
+      </h3>
 
       <p>
         The <DocsInternalLink href="/kimg#prop:scaleType"> scale type </DocsInternalLink> determines
@@ -215,7 +235,10 @@
         </template>
       </DocsExample>
 
-      <h3>Aspect ratio</h3>
+      <h3>
+        Aspect ratio
+        <DocsAnchorTarget anchor="#aspect-ratio" />
+      </h3>
 
       <p>
         You can set the aspect ratio of the image container with
@@ -250,7 +273,10 @@
         </template>
       </DocsExample>
 
-      <h3>Placeholder area</h3>
+      <h3>
+        Placeholder area
+        <DocsAnchorTarget anchor="#placeholder" />
+      </h3>
 
       <p>
         The placeholder area is displayed when an image is not available. The area respects the
@@ -266,13 +292,23 @@
         slot to place content in the area.
       </p>
 
+      <p>
+        In the example below, also note
+        <DocsInternalLink href="kicon#responsive">
+          responsive implementation of <code>KIcon</code>
+        </DocsInternalLink>. Resize the browser window to see how the icon adjusts.
+      </p>
+
       <DocsExample
         loadExample="KImg/Placeholder.vue"
         exampleId="placeholder"
         block
       />
 
-      <h3>Displaying content on top of an image</h3>
+      <h3>
+        Displaying content on top of an image
+        <DocsAnchorTarget anchor="#display-on-top" />
+      </h3>
 
       <p>
         Use
