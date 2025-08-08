@@ -7,6 +7,42 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1086]
+  - **Description:** Adds new documentation examples to `KCard`, `KImg`, `KIcon`, and `KTextbox` . Adds anchors and sub-navigation to some documentation pages. Hides irrelevant parts of code samples from `KCard` examples.
+  - **Products impact:** None
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:**  -
+
+[#1086]: https://github.com/learningequality/kolibri-design-system/pull/1086
+
+- [#1086]
+  - **Description:** Refactors some documentation examples to use `DocsExample`, adds more visual tests, and moves some visual test suites to one .vue file.
+  - **Products impact:** None
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:**  -
+
+[#1086]: https://github.com/learningequality/kolibri-design-system/pull/1086
+
+- [#1086]
+  - **Description:** Changes 'UiToolbar' component (in-code, not file) name to 'KToolbar'
+  - **Products impact:** None
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:**  -
+
+[#1086]: https://github.com/learningequality/kolibri-design-system/pull/1086
+  -
+
+
+
 - [#1063]
   - **Description:** Improves KTabsList documentation example styling
   - **Products impact:** none
