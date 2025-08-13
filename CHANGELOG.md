@@ -7,6 +7,18 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1096]
+  - **Description:** Added visual tests for KBreadcrumbs and restructured component file organization from KBreadcrumbs.vue to KBreadcrumbs/index.vue.
+  - **Products impact:** None
+  - **Addresses:**  Visual testing: Add visual tests for KBreadcrumbs #924
+  - **Components:** KBreadcrumbs
+  - **Breaking:** No
+  - **Guidance:** Visual tests implemented following KButton patterns, covering all 7 required scenarios including overflow dropdown behavior.
+
+[#1096]: https://github.com/learningequality/kolibri-design-system/pull/1096
+
+
+
 - [#1086]
   - **Description:** Adds new documentation examples to `KCard`, `KImg`, `KIcon`, and `KTextbox` . Adds anchors and sub-navigation to some documentation pages. Hides irrelevant parts of code samples from `KCard` examples.
   - **Products impact:** None
