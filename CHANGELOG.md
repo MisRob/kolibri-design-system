@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1099]
+  - **Description:** Bumps KDS version to 5.2.2.
+  - **Products impact:** .
+  - **Addresses:** .
+  - **Components:** .
+  - **Breaking:**
+  - **Impacts a11y:**
+  - **Guidance:** .
+
+[#1099]: https://github.com/learningequality/kolibri-design-system/pull/1099
+
+
+
 - [#1096]
   - **Description:** Added visual tests for KBreadcrumbs and restructured component file organization from KBreadcrumbs.vue to KBreadcrumbs/index.vue.
   - **Products impact:** None
