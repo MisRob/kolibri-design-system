@@ -5,10 +5,13 @@
     <KModal
       v-if="showModal"
       title="Title"
-      cancelText="Close"
-      @cancel="closeModal"
     >
-      Description
+      <template #actions>
+        <KIconButton
+          icon="close"
+          @click="closeModal"
+        />
+      </template>
     </KModal>
   </div>
 
