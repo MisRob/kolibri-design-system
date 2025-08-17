@@ -20,12 +20,12 @@
     </div>
 
     <div class="ui-textbox-content">
-      <label class="ui-textbox-label"
-             :style="labelBorderStyles"
-      >
+      <label class="ui-textbox-label" :style="labelBorderStyles">
         <div :class="['ui-input-content', inputContentClasses]">
           <input
             v-if="!multiLine"
+            :data-floating-id="tooltip ? `tooltip-input-${_uid}` : undefined"
+            :aria-describedby="tooltip ? `tooltip-input-${_uid}` : undefined"
             ref="input"
             v-autofocus="autofocus"
             class="ui-textbox-input"
@@ -55,6 +55,8 @@
 
           <textarea
             v-else ref="textarea"
+            :data-floating-id="tooltip ? `tooltip-input-${_uid}` : undefined"
+            :aria-describedby="tooltip ? `tooltip-input-${_uid}` : undefined"
             v-autofocus="autofocus"
             :value="value"
             class="ui-textbox-textarea"
@@ -74,7 +76,8 @@
             @change="onChange"
             @focus="onFocus"
             @input="updateValue($event.target.value)"
-            @keydown.enter="onKeydownEnter" @keydown="onKeydown"
+            @keydown.enter="onKeydownEnter"
+            @keydown="onKeydown"
           ></textarea>
           <KIconButton
             v-if="showClearButton"
@@ -125,6 +128,48 @@
         </div>
       </div>
     </div>
+
+    <HoverIcon
+      :id="`info-icon-${_uid}`"
+      aria-hidden
+      :data-floating-id="`tooltip-icon-${_uid}`"
+      outlineIcon="infoOutline"
+      filledIcon="info"
+    />
+    <!--
+      This tooltip is activated when
+      the textbox is focused with keyboard,
+      but not on textbox hover or click.
+
+      Becomes disabled after user starts typing
+      to ensure that on all screen sizes,
+      input text won't be hidden under the tooltip.
+    -->
+    <KTooltipNext
+      :id="`tooltip-input-${_uid}`"
+      :activateOn="['keyboardfocus']"
+      :anchorId="`info-icon-${_uid}`"
+      placement="right"
+      :disabled="startedTyping"
+      :style="{ maxWidth: '400px', width: '40%' }"
+      :text="tooltip"
+    />
+    <!--
+      This tooltip is activated
+      when help icon is hovered
+      or touched..
+
+      It's not disabled like the other one,
+      so it can be still accessed when user
+      is typing via mouse hover.
+      -->
+    <KTooltipNext
+      :id="`tooltip-icon-${_uid}`"
+      :activateOn="['hover', 'touch']"
+      placement="right"
+      :style="{ maxWidth: '400px', width: '40%' }"
+      :text="tooltip"
+    />
   </div>
 
 </template>
@@ -133,8 +178,9 @@
 <script>
 
   import autosize from 'autosize';
-  import UiIcon from './UiIcon.vue';
-  import KIconButton from '../buttons-and-links/KIconButton.vue';
+  import UiIcon from './UiIcon';
+  import HoverIcon from '../KTextbox/HoverIcon';
+  import KTooltipNext from '../KTooltip/next';
 
   const autofocus = {
     inserted(el, { value }) {
@@ -149,6 +195,8 @@
 
     components: {
       UiIcon,
+      HoverIcon,
+      KTooltipNext,
     },
 
     directives: {
@@ -220,6 +268,14 @@
         default: false,
       },
       help: String,
+      /**
+       * Show help icon next to the input field
+       * that has a tooltip with this text.
+       */
+      tooltip: {
+        type: String,
+        default: null,
+      },
       error: String,
       invalid: {
         type: Boolean,
@@ -241,6 +297,7 @@
         isTouched: false,
         initialValue: this.value,
         autosizeInitialized: false,
+        startedTyping: false
       };
     },
 
@@ -374,12 +431,21 @@
         
       },
 
+      disableTooltip() {
+        this.startedTyping = true;
+      },
+
+      enableTooltip() {
+        this.startedTyping = false;
+      },
+
       onChange(e) {
         this.$emit('change', this.value, e);
       },
 
       onFocus(e) {
         this.isActive = true;
+        this.enableTooltip();
         this.$emit('focus', e);
       },
 
@@ -394,6 +460,7 @@
       },
 
       onKeydown(e) {
+        this.disableTooltip();
         this.$emit('keydown', e);
       },
 
