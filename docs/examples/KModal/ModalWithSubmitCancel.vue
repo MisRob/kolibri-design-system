@@ -7,21 +7,19 @@
       v-if="showModal"
       :appendToOverlay="true"
       size="medium"
-      title="Submit form"
+      title="Title"
       submitText="Submit"
       :submitDisabled="!enableSubmit"
       cancelText="Cancel"
       @submit="modalEmits('submit')"
       @cancel="modalEmits('cancel')"
     >
-      <template>
-        <p>Check the below check box to enable the submit button</p>
-        <KCheckbox
-          :checked="enableSubmit"
-          label="Enable submit"
-          @change="triggerCheckBox"
-        />
-      </template>
+      <p>Check the below check box to enable the submit button</p>
+      <KCheckbox
+        :checked="enableSubmit"
+        label="Enable submit"
+        @change="triggerCheckBox"
+      />
     </KModal>
   </div>
 

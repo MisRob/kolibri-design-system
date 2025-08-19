@@ -6,16 +6,12 @@
     <KButton @click="openModal('large')">Large Modal</KButton>
     <KModal
       v-if="showModal"
-      :appendToOverlay="true"
       :size="modalSize"
-      :title="`Modal with ${modalSize} size`"
+      title="Title"
+      cancelText="Close"
+      @cancel="closeModal"
     >
-      <template>
-        {{ `Modal with ${modalSize} size` }}
-      </template>
-      <template #actions>
-        <KButton @click="closeModal"> Close </KButton>
-      </template>
+      {{ `Modal with ${modalSize} size` }}
     </KModal>
   </div>
 
