@@ -16,7 +16,7 @@
       :maxlength="maxlength"
       :autocomplete="autocomplete"
       :autocapitalize="autocapitalize"
-      :style="changedOrFocused ? $coreOutline : {}"
+      :style="[changedOrFocused ? $coreOutline : {}, appearanceOverrides]"
       :type="type"
       :min="min"
       :max="max"
@@ -163,6 +163,13 @@
       clearable: {
         type: Boolean,
         default: false,
+      },
+      /**
+       * CSS styles to apply to the container
+       */
+      appearanceOverrides: {
+        type: Object,
+        default: null,
       },
       /**
        * @ignore
