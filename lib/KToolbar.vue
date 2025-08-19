@@ -43,7 +43,7 @@
           {{ title }}
         </div>
       </slot>
-      
+
       <div
         v-if="$slots.navigation"
         class="k-toolbar-nav"
@@ -75,12 +75,12 @@
 
   /**
    * Flexible toolbar component for app bars and navigation headers in Kolibri applications.
-   * 
-   * Provides consistent structure for displaying titles, navigation icons, and action buttons 
-   * with customizable colors and styling options. Supports theme tokens for proper color 
+   *
+   * Provides consistent structure for displaying titles, navigation icons, and action buttons
+   * with customizable colors and styling options. Supports theme tokens for proper color
    * theming, flexible slot-based content placement, and accessibility features.
-   * 
-   * Use KToolbar to replace Vuetify's VToolbar and maintain design consistency across 
+   *
+   * Use KToolbar to replace Vuetify's VToolbar and maintain design consistency across
    * your Kolibri apps.
    */
 
@@ -203,8 +203,8 @@
 
 </script>
 
-<!-- Your existing styles -->
 
+<!-- Your existing styles -->
 
 <style lang="scss">
 
