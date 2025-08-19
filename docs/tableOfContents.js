@@ -448,6 +448,11 @@ export default [
         title: 'KFocusTrap',
         isCode: true,
       }),
+      new Page({
+        path: '/ktoolbar',
+        title: 'KToolbar',
+        isCode: true,
+      }),
     ],
   }),
 ];

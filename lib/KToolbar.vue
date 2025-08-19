@@ -10,6 +10,7 @@
         v-if="!removeNavIcon"
         class="k-toolbar-nav-icon"
       >
+        <!-- @slot Customize the navigation icon. Provides a UiIconButton by default. -->
         <slot name="icon">
           <UiIconButton
             size="large"
@@ -25,12 +26,15 @@
         v-if="brand || $slots.brand"
         class="k-toolbar-brand"
       >
+        <!-- @slot Customize the brand area. Shows brand text by default. -->
         <slot name="brand">
           <div class="k-toolbar-brand-text">
             {{ brand }}
           </div>
         </slot>
       </div>
+
+      <!-- @slot Main content area. Shows the title by default. -->
       <slot>
         <div
           v-if="title"
@@ -39,13 +43,18 @@
           {{ title }}
         </div>
       </slot>
-      <slot
-        name="navigation"
+      
+      <div
+        v-if="$slots.navigation"
         class="k-toolbar-nav"
-      ></slot>
+      >
+        <!-- @slot Navigation links or menu items area. -->
+        <slot name="navigation"></slot>
+      </div>
     </div>
 
     <div class="k-toolbar-right">
+      <!-- @slot Action buttons or secondary controls area. -->
       <slot name="actions"></slot>
     </div>
 
@@ -64,47 +73,97 @@
   import UiIconButton from './keen/UiIconButton.vue';
   import UiProgressLinear from './keen/UiProgressLinear.vue';
 
+  /**
+   * Flexible toolbar component for app bars and navigation headers in Kolibri applications.
+   * 
+   * Provides consistent structure for displaying titles, navigation icons, and action buttons 
+   * with customizable colors and styling options. Supports theme tokens for proper color 
+   * theming, flexible slot-based content placement, and accessibility features.
+   * 
+   * Use KToolbar to replace Vuetify's VToolbar and maintain design consistency across 
+   * your Kolibri apps.
+   */
+
   export default {
     name: 'KToolbar',
-
     components: {
       UiIconButton,
       UiProgressLinear,
     },
 
     props: {
+      /**
+       * Controls the toolbar appearance and styling. Options are:
+       * - 'default': Standard white background with shadow
+       * - 'colored': Uses theme primary color as background
+       * - 'clear': Transparent background with no shadow or border
+       */
       type: {
         type: String,
-        default: 'default', // 'default', 'colored' or 'clear' - colored is brand primary color
+        default: 'default',
+        validator(value) {
+          return ['default', 'colored', 'clear'].includes(value);
+        },
       },
+      /**
+       * Controls the text color throughout the toolbar. Use 'white' for dark backgrounds
+       * and 'black' for light backgrounds to ensure proper contrast.
+       */
       textColor: {
         type: String,
-        default: 'black', // 'black' or 'white'
+        default: 'black',
+        validator(value) {
+          return ['black', 'white'].includes(value);
+        },
       },
+      /**
+       * The main title text displayed in the toolbar
+       */
       title: {
         type: String,
         default: '',
       },
+      /**
+       * Brand text displayed alongside the title in the left area
+       */
       brand: {
         type: String,
         default: '',
       },
+      /**
+       * Icon name displayed in the navigation button when using the default icon slot
+       */
       navIcon: {
         type: String,
         default: 'menu',
       },
+      /**
+       * Whether to hide the navigation icon button completely
+       */
       removeNavIcon: {
         type: Boolean,
         default: false,
       },
+      /**
+       * Whether the toolbar has elevated shadow styling for visual hierarchy
+       */
       raised: {
         type: Boolean,
         default: true,
       },
+      /**
+       * Position of the loading progress bar indicator. Options are 'top' or 'bottom'.
+       */
       progressPosition: {
         type: String,
-        default: 'bottom', // 'top' or 'bottom'
+        default: 'bottom',
+        validator(value) {
+          return ['top', 'bottom'].includes(value);
+        },
       },
+      /**
+       * Whether to show the loading progress indicator
+       */
       loading: {
         type: Boolean,
         default: false,
@@ -133,12 +192,18 @@
 
     methods: {
       navIconClick() {
+        /**
+         * Emitted when the navigation icon is clicked
+         * @event nav-icon-click
+         */
         this.$emit('nav-icon-click');
       },
     },
   };
 
 </script>
+
+<!-- Your existing styles -->
 
 
 <style lang="scss">
