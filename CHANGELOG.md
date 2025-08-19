@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1104]
+  - **Description:** Adds `containerAppearanceOverrides` prop to KTextbox to override its container styles without using deep selectors.
+  - **Products impact:** new API.
+  - **Addresses:** Will help with https://github.com/learningequality/studio/issues/5209.
+  - **Components:** KTextbox.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** .
+
+[#1104]: https://github.com/learningequality/kolibri-design-system/pull/1104
+
+
+
 - [#1099]
   - **Description:** Bumps KDS version to 5.2.2.
   - **Products impact:** .
