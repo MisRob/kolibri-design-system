@@ -53,7 +53,6 @@
             />
           </DocsShowCode>
         </template>
-
       </DocsExample>
 
       <!-- Example 2: Dark theme with back icon in router-link -->
@@ -94,7 +93,6 @@
             />
           </DocsShowCode>
         </template>
-
       </DocsExample>
     </DocsPageSection>
   </DocsPageTemplate>
