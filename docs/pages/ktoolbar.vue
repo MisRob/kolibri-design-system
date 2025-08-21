@@ -46,12 +46,14 @@
 
         <template #html>
           <DocsShowCode language="html">
-            &lt;KToolbar title="Page Title" textColor="black" :style="{ backgroundColor:
-            $themeTokens.appBar }" &gt; &lt;template #icon&gt; &lt;KIconButton icon="close"
-            :color="$themeTokens.text" :ariaLabel="'Close'" /&gt; &lt;/template&gt;
-            &lt;/KToolbar&gt;
+            <KToolbar
+              title="Page Title"
+              textColor="black"
+              :style="{ backgroundColor: $themeTokens.appBar }"
+            />
           </DocsShowCode>
         </template>
+
       </DocsExample>
 
       <!-- Example 2: Dark theme with back icon in router-link -->
@@ -85,13 +87,14 @@
 
         <template #html>
           <DocsShowCode language="html">
-            &lt;KToolbar title="Page Title" textColor="white" :style="{ backgroundColor:
-            $themeTokens.appBarDark }" &gt; &lt;template #icon&gt; &lt;router-link to="/"
-            style="display: inline-block; border-radius: 50%;"&gt; &lt;KIconButton icon="back"
-            :color="$themeTokens.textInverted" :ariaLabel="'Go back'" /&gt; &lt;/router-link&gt;
-            &lt;/template&gt; &lt;/KToolbar&gt;
+            <KToolbar
+              title="Page Title"
+              textColor="white"
+              :style="{ backgroundColor: $themeTokens.appBarDark }"
+            />
           </DocsShowCode>
         </template>
+
       </DocsExample>
     </DocsPageSection>
   </DocsPageTemplate>
