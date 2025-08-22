@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1103]
+  - **Description:** Refactors visual test layout
+  - **Products impact:** none.
+  - **Addresses:** -.
+  - **Components:** -.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** .
+
+[#1103]: https://github.com/learningequality/kolibri-design-system/pull/1103
+
+
+
 - [#1104]
   - **Description:** Adds `containerAppearanceOverrides` prop to KTextbox to override its container styles without using deep selectors.
   - **Products impact:** new API.
