@@ -1,67 +1,82 @@
 <template>
 
-  <div>
-    <p>Label:</p>
-    <WithLabel />
+  <VisualTestLayout>
+    <VisualTestExample
+      title="Label"
+      width="400px"
+      loadExample="KTextbox/WithLabel.vue"
+    />
 
-    <p>Validation:</p>
-    <Validation />
+    <VisualTestExample
+      id="active-textbox"
+      title="Active textbox"
+      width="400px"
+    >
+      <KTextbox label="Active textbox" />
+    </VisualTestExample>
 
-    <p>Character Limit:</p>
-    <CharacterLimit />
+    <VisualTestExample
+      title="Validation"
+      width="400px"
+      loadExample="KTextbox/Validation.vue"
+    />
 
-    <p>Disabled:</p>
-    <Disabled />
+    <VisualTestExample
+      title="Character limit"
+      width="400px"
+      loadExample="KTextbox/CharacterLimit.vue"
+    />
 
-    <p>Readonly:</p>
-    <Readonly />
+    <VisualTestExample
+      title="Disabled"
+      width="400px"
+      loadExample="KTextbox/Disabled.vue"
+    />
 
-    <p>Number input:</p>
-    <Number />
+    <VisualTestExample
+      title="Readonly"
+      width="400px"
+      loadExample="KTextbox/Readonly.vue"
+    />
 
-    <p>Password input:</p>
-    <Password />
+    <VisualTestExample
+      title="Number input"
+      width="400px"
+      loadExample="KTextbox/Number.vue"
+    />
 
-    <p>Textarea:</p>
-    <AsTextarea />
+    <VisualTestExample
+      title="Password input"
+      width="400px"
+      loadExample="KTextbox/Password.vue"
+    />
 
-    <p>Clearable:</p>
-    <Clearable />
+    <VisualTestExample
+      title="Textarea"
+      width="400px"
+      loadExample="KTextbox/AsTextarea.vue"
+    />
 
-    <p>Invalid Text:</p>
-    <InvalidText />
-  </div>
+    <VisualTestExample
+      title="Clearable"
+      width="400px"
+      loadExample="KTextbox/Clearable.vue"
+    />
+
+    <VisualTestExample
+      title="Invalid text"
+      width="400px"
+      loadExample="KTextbox/InvalidText.vue"
+    />
+  </VisualTestLayout>
 
 </template>
 
 
 <script>
 
-  import WithLabel from '../../../../docs/examples/KTextbox/WithLabel';
-  import Validation from '../../../../docs/examples/KTextbox/Validation';
-  import CharacterLimit from '../../../../docs/examples/KTextbox/CharacterLimit';
-  import Disabled from '../../../../docs/examples/KTextbox/Disabled';
-  import Readonly from '../../../../docs/examples/KTextbox/Readonly';
-  import Number from '../../../../docs/examples/KTextbox/Number';
-  import Password from '../../../../docs/examples/KTextbox/Password';
-  import AsTextarea from '../../../../docs/examples/KTextbox/AsTextarea';
-  import Clearable from '../../../../docs/examples/KTextbox/Clearable';
-  import InvalidText from '../../../../docs/examples/KTextbox/InvalidText';
-
   export default {
     name: 'KIconVisualTest',
-    components: {
-      WithLabel,
-      Validation,
-      CharacterLimit,
-      Disabled,
-      Readonly,
-      Number,
-      Password,
-      AsTextarea,
-      Clearable,
-      InvalidText,
-    },
   };
 
 </script>

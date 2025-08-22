@@ -1,5 +1,7 @@
 import Vue from 'vue';
 
+import VisualTestExample from './components/VisualTestExample.vue';
+import VisualTestLayout from './components/VisualTestLayout.vue';
 import KButtonWithDropdownTest from '~~/lib/buttons-and-links/__tests__/components/KButtonWithDropdownTest.vue';
 import KDropdownMenuTest from '~~/lib/KDropdownMenu/__tests__/components/KDropdownMenuTest.vue';
 import KCheckboxSlotTest from '~~/lib/KCheckbox/__tests__/components/KCheckboxSlotTest.vue';
@@ -16,6 +18,10 @@ import KImgWithBackgroundColorTest from '~~/lib/KImg/__tests__/components/KImgWi
 
 import KIconVisualTest from '~~/lib/KIcon/__tests__/components/KIconVisualTest.vue';
 import KTextboxVisualTest from '~~/lib/KTextbox/__tests__/components/KTextboxVisualTest.vue';
+
+// Visual tests helper components
+Vue.component('VisualTestExample', VisualTestExample);
+Vue.component('VisualTestLayout', VisualTestLayout);
 
 Vue.component('KCheckboxSlotTest', KCheckboxSlotTest);
 Vue.component('KButtonWithDropdownTest', KButtonWithDropdownTest);

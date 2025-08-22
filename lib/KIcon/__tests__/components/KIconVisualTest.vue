@@ -1,46 +1,45 @@
 <template>
 
-  <div>
-    <p>Basic:</p>
-    <Basic />
-
-    <p>Size:</p>
-    <Size />
-
-    <p>Color:</p>
-    <Color />
-
-    <p>Responsive:</p>
-    <Responsive />
-
-    <p>Ignores color prop:</p>
-    <KIcon
-      icon="allActivities"
-      color="green"
+  <VisualTestLayout>
+    <VisualTestExample
+      title="Basic"
+      loadExample="KIcon/Basic.vue"
     />
 
-    <p>Broken image for non-existent icon:</p>
-    <KIcon icon="Non icon" />
-  </div>
+    <VisualTestExample
+      title="Color"
+      loadExample="KIcon/Color.vue"
+    />
+
+    <VisualTestExample title="Ignores color prop">
+      <KIcon
+        icon="allActivities"
+        color="green"
+      />
+    </VisualTestExample>
+
+    <VisualTestExample title="Broken image for non-existent icon">
+      <KIcon icon="Non icon" />
+    </VisualTestExample>
+
+    <VisualTestExample
+      title="Size"
+      loadExample="KIcon/Size.vue"
+    />
+
+    <VisualTestExample
+      title="Responsive"
+      loadExample="KIcon/Responsive.vue"
+    />
+  </VisualTestLayout>
 
 </template>
 
 
 <script>
 
-  import Basic from '../../../../docs/examples/KIcon/Basic';
-  import Size from '../../../../docs/examples/KIcon/Size';
-  import Color from '../../../../docs/examples/KIcon/Color';
-  import Responsive from '../../../../docs/examples/KIcon/Responsive';
-
   export default {
     name: 'KIconVisualTest',
-    components: {
-      Basic,
-      Size,
-      Color,
-      Responsive,
-    },
   };
 
 </script>

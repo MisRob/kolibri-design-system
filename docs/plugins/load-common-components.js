@@ -18,6 +18,8 @@ import DocsToggleButton from '~/common/DocsToggleButton';
 import DocsFilter from '~/common/DocsFilter';
 import DocsTable from '~/common/DocsTable';
 import DocsSubNav from '~/common/DocsSubNav';
+import VisualTestExample from '~~/jest.conf/components/VisualTestExample.vue';
+import VisualTestLayout from '~~/jest.conf/components/VisualTestLayout.vue';
 
 Vue.component('DocsExample', DocsExample);
 Vue.component('DocsPageTemplate', DocsPageTemplate);
@@ -38,3 +40,7 @@ Vue.component('DocsSubNav', DocsSubNav);
 Vue.component('Card', Card);
 
 Vue.use(VueSimpleMarkdown);
+
+// Visual tests helper components
+Vue.component('VisualTestExample', VisualTestExample);
+Vue.component('VisualTestLayout', VisualTestLayout);
