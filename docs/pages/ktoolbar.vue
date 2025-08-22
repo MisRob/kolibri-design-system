@@ -22,14 +22,17 @@
       anchor="#usage"
     >
       <!-- Example 1: Light theme with close icon -->
-      <h3>Light Theme Toolbar</h3>
+      <h3>Light theme toolbar</h3>
       <p>
         This example demonstrates a toolbar with light theme colors using
         <code>$themeTokens.appBar</code> background and <code>$themeTokens.text</code>
         color, with a close icon in the icon slot.
       </p>
 
-      <DocsExample exampleId="ktoolbar-light-theme">
+      <DocsExample
+        exampleId="ktoolbar-light-theme"
+        block
+      >
         <KToolbar
           title="Page Title"
           textColor="black"
@@ -56,7 +59,7 @@
       </DocsExample>
 
       <!-- Example 2: Dark theme with back icon in router-link -->
-      <h3>Dark Theme Toolbar with Router Navigation</h3>
+      <h3>Dark theme toolbar with router navigation</h3>
       <p>
         This example shows a dark-themed toolbar using
         <code>$themeTokens.appBarDark</code> background and
@@ -64,7 +67,10 @@
         router-link.
       </p>
 
-      <DocsExample exampleId="ktoolbar-dark-theme">
+      <DocsExample
+        exampleId="ktoolbar-dark-theme"
+        block
+      >
         <KToolbar
           title="Page Title"
           textColor="white"
