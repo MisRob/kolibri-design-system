@@ -10,11 +10,6 @@
         Kolibri applications. It provides a consistent structure for displaying titles, navigation
         icons, and action buttons with customizable colors and styling options.
       </p>
-      <p>
-        The component supports theme tokens for proper color theming, flexible slot-based content
-        placement, and accessibility features. Use KToolbar to replace Vuetify's VToolbar and
-        maintain design consistency across your Kolibri apps.
-      </p>
     </DocsPageSection>
 
     <DocsPageSection
@@ -30,33 +25,10 @@
       </p>
 
       <DocsExample
+        loadExample="KToolbar/LightTheme.vue"
         exampleId="ktoolbar-light-theme"
         block
-      >
-        <KToolbar
-          title="Page Title"
-          textColor="black"
-          :style="{ backgroundColor: $themeTokens.appBar }"
-        >
-          <template #icon>
-            <KIconButton
-              icon="close"
-              :color="$themeTokens.text"
-              :ariaLabel="'Close'"
-            />
-          </template>
-        </KToolbar>
-
-        <template #html>
-          <DocsShowCode language="html">
-            <KToolbar
-              title="Page Title"
-              textColor="black"
-              :style="{ backgroundColor: $themeTokens.appBar }"
-            />
-          </DocsShowCode>
-        </template>
-      </DocsExample>
+      />
 
       <!-- Example 2: Dark theme with back icon in router-link -->
       <h3>Dark theme toolbar with router navigation</h3>
@@ -68,38 +40,10 @@
       </p>
 
       <DocsExample
+        loadExample="KToolbar/DarkTheme.vue"
         exampleId="ktoolbar-dark-theme"
         block
-      >
-        <KToolbar
-          title="Page Title"
-          textColor="white"
-          :style="{ backgroundColor: $themeTokens.appBarDark }"
-        >
-          <template #icon>
-            <router-link
-              to="/"
-              style="display: inline-block; border-radius: 50%"
-            >
-              <KIconButton
-                icon="back"
-                :color="$themeTokens.textInverted"
-                :ariaLabel="'Go back'"
-              />
-            </router-link>
-          </template>
-        </KToolbar>
-
-        <template #html>
-          <DocsShowCode language="html">
-            <KToolbar
-              title="Page Title"
-              textColor="white"
-              :style="{ backgroundColor: $themeTokens.appBarDark }"
-            />
-          </DocsShowCode>
-        </template>
-      </DocsExample>
+      />
     </DocsPageSection>
   </DocsPageTemplate>
 

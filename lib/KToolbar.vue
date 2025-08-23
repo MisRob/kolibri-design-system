@@ -73,17 +73,6 @@
   import UiIconButton from './keen/UiIconButton.vue';
   import UiProgressLinear from './keen/UiProgressLinear.vue';
 
-  /**
-   * Flexible toolbar component for app bars and navigation headers in Kolibri applications.
-   *
-   * Provides consistent structure for displaying titles, navigation icons, and action buttons
-   * with customizable colors and styling options. Supports theme tokens for proper color
-   * theming, flexible slot-based content placement, and accessibility features.
-   *
-   * Use KToolbar to replace Vuetify's VToolbar and maintain design consistency across
-   * your Kolibri apps.
-   */
-
   export default {
     name: 'KToolbar',
     components: {
