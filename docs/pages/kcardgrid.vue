@@ -166,7 +166,8 @@
 
       <DocsExample
         exampleId="1-1-1-grid"
-        loadExample="KCardGrid/Grid1-1-1.vue"
+        loadExample="KCardGrid/Grid111.vue"
+        hideScript
         block
       >
         <template #html>
@@ -226,8 +227,9 @@
 
       <DocsExample
         exampleId="1-2-2-grid"
-        loadExample="KCardGrid/Grid1-2-2.vue"
+        loadExample="KCardGrid/Grid122.vue"
         block
+        hideScript
       >
         <template #html>
           <!-- eslint-disable -->
@@ -286,8 +288,9 @@
 
       <DocsExample
         exampleId="1-2-3-grid"
-        loadExample="KCardGrid/Grid1-2-3.vue"
+        loadExample="KCardGrid/Grid123.vue"
         block
+        hideScript
       >
         <template #html>
           <!-- eslint-disable -->
@@ -412,6 +415,7 @@
         exampleId="card-height-alignment"
         loadExample="KCardGrid/CardHeightAlignment.vue"
         block
+        hideStyle
       >
         <template #html>
           <!-- eslint-disable -->

@@ -2,7 +2,7 @@
 
   <KCardGrid
     layout="1-2-3"
-    :skeletonsConfig="skeletonsConfig5"
+    :skeletonsConfig="skeletonsConfig"
     :loading="loading"
   >
     <Card
@@ -137,7 +137,20 @@
           '(3) Learn everything about hummingbirds: their habitats, feeding patterns, and stunning flight abilities',
         description:
           'Discover how hummingbirds play a big role in nature despite their small size. Find out more about their beauty, how they help plants grow, and where they live.',
+        skeletonsConfig: [
+          {
+            breakpoints: [0, 1, 2, 3, 4, 5, 6, 7],
+            height: '380px',
+            orientation: 'vertical',
+            thumbnailDisplay: 'large',
+          },
+        ],
       };
+    },
+    computed: {
+      slicedPills() {
+        return ['Short Activity', 'Biology', 'Ecology', 'Ornithology'].slice(0, 2);
+      },
     },
     mounted() {
       setTimeout(() => {
@@ -147,3 +160,19 @@
   };
 
 </script>
+
+
+<style lang="scss" scoped>
+
+  .pills {
+    margin-left: -4px;
+
+    span {
+      display: inline-block;
+      padding: 4px 8px;
+      margin: 4px;
+      border-radius: 4px;
+    }
+  }
+
+</style>
