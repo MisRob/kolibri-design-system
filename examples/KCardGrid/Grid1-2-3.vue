@@ -1,17 +1,29 @@
 <template>
 
   <KCardGrid
-    layout="1-1-1"
+    layout="1-2-3"
     :skeletonsConfig="skeletonsConfig"
     :loading="loading"
   >
     <Card
-      v-for="i in 2"
+      v-for="i in 5"
       :key="i"
       :headingLevel="5"
-      orientation="horizontal"
       :prependTitle="`(${i})`"
     />
   </KCardGrid>
 
 </template>
+
+
+<script>
+
+  import Card from '../common/Card';
+
+  export default {
+    components: {
+      Card,
+    },
+  };
+
+</script>

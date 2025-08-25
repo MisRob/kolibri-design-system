@@ -8,9 +8,9 @@
     <KCard
       :to="{ path: '#guidelines' }"
       :headingLevel="4"
-      :thumbnailSrc="require('../../assets/hummingbird-large-cc-by-sa-4.jpg')"
+      :thumbnailSrc="require('../common/hummingbird-large-cc-by-sa-4.jpg')"
       thumbnailDisplay="large"
-      title="Learn everything about hummingbirds: their habitats, feeding patterns, and stunning flight abilities"
+      :title="title"
     >
       <template #aboveTitle>
         <KLabeledIcon
@@ -20,7 +20,7 @@
       </template>
       <template #belowTitle>
         <KTextTruncator
-          text="Discover how hummingbirds play a big role in nature despite their small size. Find out more about their beauty, how they help plants grow, and where they live."
+          :text="description"
           :maxLines="5"
         />
       </template>
@@ -45,6 +45,10 @@
     data() {
       return {
         loading: true,
+        title:
+          'Learn everything about hummingbirds: their habitats, feeding patterns, and stunning flight abilities',
+        description:
+          'Discover how hummingbirds play a big role in nature despite their small size. Find out more about their beauty, how they help plants grow, and where they live.',
         skeletonsConfig: [
           {
             breakpoints: [0, 1, 2, 3, 4, 5, 6, 7],

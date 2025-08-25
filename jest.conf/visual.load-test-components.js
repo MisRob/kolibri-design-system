@@ -6,13 +6,13 @@ import KButtonWithDropdownTest from '~~/lib/buttons-and-links/__tests__/componen
 import KDropdownMenuTest from '~~/lib/KDropdownMenu/__tests__/components/KDropdownMenuTest.vue';
 import KCheckboxSlotTest from '~~/lib/KCheckbox/__tests__/components/KCheckboxSlotTest.vue';
 import KBreadcrumbs from '~~/lib/KBreadcrumbs/index.vue';
-import KImgTest from '~~/docs/examples/KImg/Base.vue';
-import KImgAspectRatioTest from '~~/docs/examples/KImg/AspectRatio.vue';
-import KImgContentOnTopTest from '~~/docs/examples/KImg/ContentOnTop.vue';
-import KImgPlaceholderTest from '~~/docs/examples/KImg/Placeholder.vue';
-import KImgFitXYTest from '~~/docs/examples/KImg/FitXY.vue';
-import KImgFitCenterTest from '~~/docs/examples/KImg/FitCenterInside.vue';
-import KImgFitContainTest from '~~/docs/examples/KImg/FitContain.vue';
+import KImgTest from '~~/examples/KImg/Base.vue';
+import KImgAspectRatioTest from '~~/examples/KImg/AspectRatio.vue';
+import KImgContentOnTopTest from '~~/examples/KImg/ContentOnTop.vue';
+import KImgPlaceholderTest from '~~/examples/KImg/Placeholder.vue';
+import KImgFitXYTest from '~~/examples/KImg/FitXY.vue';
+import KImgFitCenterTest from '~~/examples/KImg/FitCenterInside.vue';
+import KImgFitContainTest from '~~/examples/KImg/FitContain.vue';
 import KImgWithBorderTest from '~~/lib/KImg/__tests__/components/KImgWithBorder.vue';
 import KImgWithBackgroundColorTest from '~~/lib/KImg/__tests__/components/KImgWithBackgroundColor.vue';
 

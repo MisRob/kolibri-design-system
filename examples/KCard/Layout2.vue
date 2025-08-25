@@ -1,33 +1,25 @@
 <template>
 
   <KCardGrid
-    layout="1-2-3"
+    layout="1-2-2"
     :skeletonsConfig="skeletonsConfig"
     :loading="loading"
   >
     <Card
       :headingLevel="4"
-      orientation="vertical"
-      thumbnailDisplay="none"
+      orientation="horizontal"
+      thumbnailDisplay="large"
+      :thumbnailSrc="null"
+      thumbnailAlign="left"
       prependTitle="(1)"
     />
     <Card
       :headingLevel="4"
-      orientation="vertical"
-      thumbnailDisplay="none"
+      orientation="horizontal"
+      thumbnailDisplay="small"
+      thumbnailAlign="right"
       prependTitle="(2)"
       showProgressInFooter
-    >
-      <template #footer>
-        <span></span>
-      </template>
-    </Card>
-    <Card
-      :headingLevel="4"
-      orientation="vertical"
-      thumbnailDisplay="none"
-      prependTitle="(3)"
-      showMenuInFooter
     />
   </KCardGrid>
 
@@ -36,7 +28,12 @@
 
 <script>
 
+  import Card from '../common/Card';
+
   export default {
+    components: {
+      Card,
+    },
     data() {
       return {
         loading: true,

@@ -1,7 +1,6 @@
 import Vue from 'vue';
 
 import VueSimpleMarkdown from 'vue-simple-markdown';
-import Card from '../examples/common/Card.vue';
 import DocsExample from '~/common/DocsExample';
 import DocsExternalLink from '~/common/DocsExternalLink';
 import DocsGithubLink from '~/common/DocsGithubLink';
@@ -37,7 +36,6 @@ Vue.component('DocsToggleContent', DocsToggleContent);
 Vue.component('DocsToggleButton', DocsToggleButton);
 Vue.component('DocsTable', DocsTable);
 Vue.component('DocsSubNav', DocsSubNav);
-Vue.component('Card', Card);
 
 Vue.use(VueSimpleMarkdown);
 

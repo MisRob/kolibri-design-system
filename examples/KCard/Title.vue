@@ -29,7 +29,12 @@
 
 <script>
 
+  import Card from '../common/Card';
+
   export default {
+    components: {
+      Card,
+    },
     data() {
       return {
         loading: true,

@@ -63,7 +63,7 @@ export default {
         test: /rstIconReplacements.txt/,
         loader: 'raw-loader',
       });
-      // Allow raw files of `.vue` file from `/docs/examples` directory
+      // Allow raw files of `.vue` file from `examples/` directory
       // to be imported as strings with `?raw` query
       config.module.rules.push({
         resourceQuery: /raw/,

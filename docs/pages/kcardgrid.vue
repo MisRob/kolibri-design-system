@@ -166,7 +166,7 @@
 
       <DocsExample
         exampleId="1-1-1-grid"
-        loadExample="KCardGrid/BasicGrids/1-1-1.vue"
+        loadExample="KCardGrid/Grid1-1-1.vue"
         block
       >
         <template #html>
@@ -226,7 +226,7 @@
 
       <DocsExample
         exampleId="1-2-2-grid"
-        loadExample="KCardGrid/BasicGrids/1-2-2.vue"
+        loadExample="KCardGrid/Grid1-2-2.vue"
         block
       >
         <template #html>
@@ -286,7 +286,7 @@
 
       <DocsExample
         exampleId="1-2-3-grid"
-        loadExample="KCardGrid/BasicGrids/1-2-3.vue"
+        loadExample="KCardGrid/Grid1-2-3.vue"
         block
       >
         <template #html>

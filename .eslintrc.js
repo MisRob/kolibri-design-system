@@ -19,7 +19,7 @@ esLintConfig.overrides.push({
 });
 
 const nuxtExampleOverrides = {
-  files: ['docs/examples/**/*.vue'],
+  files: ['examples/**/*.vue'],
   rules: {
     // Allow console.log in examples
     'no-console': 0,

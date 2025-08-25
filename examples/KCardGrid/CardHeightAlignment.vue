@@ -21,7 +21,7 @@
         <div :style="{ height: '52px' }">
           <KTextTruncator
             :maxLines="2"
-            text="(1) Learn everything about hummingbirds: their habitats, feeding patterns, and stunning flight abilities"
+            :text="title1"
           />
         </div>
       </template>
@@ -63,14 +63,14 @@
         <div :style="{ height: '52px' }">
           <KTextTruncator
             :maxLines="2"
-            text="(2) Short title"
+            :text="title2"
           />
         </div>
       </template>
       <template #belowTitle>
         <KTextTruncator
           :maxLines="4"
-          text="Discover how hummingbirds play a big role in nature despite their small size. Find out more about their beauty, how they help plants grow, and where they live. "
+          :text="description"
         />
       </template>
       <template #footer>
@@ -89,14 +89,14 @@
         <div :style="{ height: '52px' }">
           <KTextTruncator
             :maxLines="2"
-            text="(3) Learn everything about hummingbirds: their habitats, feeding patterns, and stunning flight abilities"
+            :text="title3"
           />
         </div>
       </template>
       <template #belowTitle>
         <KTextTruncator
           :maxLines="4"
-          text="Discover how hummingbirds play a big role in nature despite their small size. Find out more about their beauty, how they help plants grow, and where they live. "
+          :text="description"
         />
       </template>
       <template #footer>
@@ -121,10 +121,22 @@
 
 <script>
 
+  import Card from '../common/Card';
+
   export default {
+    components: {
+      Card,
+    },
     data() {
       return {
         loading: true,
+        title1:
+          '(1) Learn everything about hummingbirds: their habitats, feeding patterns, and stunning flight abilities',
+        title2: '(2) Short title',
+        title3:
+          '(3) Learn everything about hummingbirds: their habitats, feeding patterns, and stunning flight abilities',
+        description:
+          'Discover how hummingbirds play a big role in nature despite their small size. Find out more about their beauty, how they help plants grow, and where they live.',
       };
     },
     mounted() {

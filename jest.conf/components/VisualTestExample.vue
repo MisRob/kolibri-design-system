@@ -32,7 +32,7 @@
       const loadedComponent = ref(null);
 
       const loadComponent = async () => {
-        const component = await import(`~/examples/${props.loadExample}`);
+        const component = await import(`~~/examples/${props.loadExample}`);
         loadedComponent.value = component.default;
       };
 
@@ -62,7 +62,7 @@
       },
       /**
        * Path to the Vue component file to be displayed as example
-       * The path should be relative to the 'docs/examples/' directory.
+       * The path should be relative to '/examples' directory.
        * @type {String}
        * @example 'KComponent/Variant.vue'
        */

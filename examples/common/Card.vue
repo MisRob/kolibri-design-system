@@ -6,9 +6,7 @@
     :orientation="orientation"
     :thumbnailDisplay="thumbnailDisplay"
     :thumbnailAlign="thumbnailAlign"
-    :thumbnailSrc="
-      thumbnailSrc === null ? null : require('~/assets/hummingbird-large-cc-by-sa-4.jpg')
-    "
+    :thumbnailSrc="thumbnailSrc === null ? null : require('./hummingbird-large-cc-by-sa-4.jpg')"
     :title="cardTitle"
   >
     <template
@@ -55,7 +53,7 @@
       #belowTitle
     >
       <KTextTruncator
-        text="Discover how hummingbirds play a big role in nature despite their small size. Find out more about their beauty, how they help plants grow, and where they live."
+        :text="description"
         :maxLines="5"
       />
     </template>
@@ -190,6 +188,12 @@
         type: Boolean,
         default: false,
       },
+    },
+    data() {
+      return {
+        description:
+          'Discover how hummingbirds play a big role in nature despite their small size. Find out more about their beauty, how they help plants grow, and where they live.',
+      };
     },
     computed: {
       cardTitle() {

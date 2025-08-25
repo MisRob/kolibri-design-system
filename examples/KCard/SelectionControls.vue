@@ -61,9 +61,13 @@
 
 <script>
 
-  import useKResponsiveWindow from '../../../lib/composables/useKResponsiveWindow';
+  import useKResponsiveWindow from '../../lib/composables/useKResponsiveWindow';
+  import Card from '../common/Card';
 
   export default {
+    components: {
+      Card,
+    },
     setup() {
       const { windowBreakpoint } = useKResponsiveWindow();
       return { windowBreakpoint };
