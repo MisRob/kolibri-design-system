@@ -87,14 +87,10 @@ import KTextboxVisualTest from '~~/lib/KTextbox/__tests__/components/KTextboxVis
 Vue.component('KTextboxVisualTest', KTextboxVisualTest);
 ```
 
-5. **Call Percy snapshot** of `KTextboxVisualTest.vue` by using `renderComponentForVisualTest` and `takeSnapshot` in [`/lib/KTextbox/__tests__/KTextbox.spec.js`](../lib/KTextbox/__tests__/KTextbox.spec.js). **Be sure to use `describe.visual` or `it.visual` instead of the default Jest notations.** For a full list of available snapshot options for `takeSnapshot`, refer to the [Percy documentation](https://www.browserstack.com/docs/percy/take-percy-snapshots/snapshots-via-scripts#per-snapshot-configuration).
+5. **Add `visual.spec.js`** for `KTextbox` ([`/lib/KTextbox/__tests__/visual.spec.js`](../lib/KTextbox/__tests__/visual.spec.js)). Use `renderComponentForVisualTest` and `takeSnapshot` to capture the `KTextboxVisualTest` snapshot. **Be sure to use `describe.visual` or `it.visual` instead of the default Jest notations.** For a full list of available snapshot options for `takeSnapshot`, refer to the [Percy documentation](https://www.browserstack.com/docs/percy/take-percy-snapshots/snapshots-via-scripts#per-snapshot-configuration).
    
 ```javascript
 import { renderComponentForVisualTest, takeSnapshot } from '../../../jest.conf/visual.testUtils';
-
-describe('some unit tests', () => {
-  ...
-})
 
 describe.visual('KTextbox visual tests', () => {
   const snapshotOptions = { widths: [800], minHeight: 512 };
