@@ -452,7 +452,7 @@
       </DocsExample>
 
       <DocsExample
-        loadExample="cards/HorizontalLayoutSmallThumbnail.vue"
+        loadExample="cards/HorizontalLayout.vue"
         exampleId="kcard-layout"
         hideScript
         hideStyle

@@ -18,6 +18,7 @@ import KImgWithBackgroundColorTest from '~~/lib/KImg/__tests__/components/KImgWi
 
 import KIconVisualTest from '~~/lib/KIcon/__tests__/components/KIconVisualTest.vue';
 import KTextboxVisualTest from '~~/lib/KTextbox/__tests__/components/KTextboxVisualTest.vue';
+import CardsVisualTest from '~~/lib/cards/__tests__/components/CardsVisualTest.vue';
 
 // Visual tests helper components
 Vue.component('VisualTestExample', VisualTestExample);
@@ -39,4 +40,5 @@ Vue.component('KImgWithBackgroundColorTest', KImgWithBackgroundColorTest);
 
 Vue.component('KIconVisualTest', KIconVisualTest);
 Vue.component('KTextboxVisualTest', KTextboxVisualTest);
+Vue.component('CardsVisualTest', CardsVisualTest);
 Vue.component('KBreadcrumbs', KBreadcrumbs);

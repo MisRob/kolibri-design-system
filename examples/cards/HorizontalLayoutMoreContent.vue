@@ -2,7 +2,7 @@
 
   <KCardGrid layout="1-2-3">
     <KCard
-      v-for="{ display, align } in horizontalThumbnailCombinations"
+      v-for="{ display, align } in thumbnailCombinations"
       :key="`${display}-${align}`"
       :headingLevel="3"
       orientation="horizontal"
