@@ -6,7 +6,9 @@
     :orientation="orientation"
     :thumbnailDisplay="thumbnailDisplay"
     :thumbnailAlign="thumbnailAlign"
-    :thumbnailSrc="thumbnailSrc === null ? null : require('./hummingbird-large-cc-by-sa-4.jpg')"
+    :thumbnailSrc="
+      thumbnailSrc === null ? null : require('../common/hummingbird-large-cc-by-sa-4.jpg')
+    "
     :title="cardTitle"
   >
     <template

@@ -6,9 +6,10 @@
     :loading="loading"
   >
     <Card
-      v-for="i in 3"
+      v-for="i in 2"
       :key="i"
-      :headingLevel="5"
+      :headingLevel="4"
+      :orientation="windowBreakpoint < 4 ? 'vertical' : 'horizontal'"
       :prependTitle="`(${i})`"
     />
   </KCardGrid>
@@ -18,11 +19,16 @@
 
 <script>
 
-  import Card from '../common/Card';
+  import useKResponsiveWindow from '../../lib/composables/useKResponsiveWindow';
+  import Card from './Card';
 
   export default {
     components: {
       Card,
+    },
+    setup() {
+      const { windowBreakpoint } = useKResponsiveWindow();
+      return { windowBreakpoint };
     },
     data() {
       return {
@@ -30,9 +36,15 @@
         skeletonsConfig: [
           {
             breakpoints: [0, 1, 2, 3, 4, 5, 6, 7],
-            height: '380px',
             orientation: 'vertical',
             thumbnailDisplay: 'large',
+            height: '440px',
+          },
+          {
+            breakpoints: [4, 5, 6, 7],
+            height: '220px',
+            orientation: 'horizontal',
+            thumbnailAlign: 'left',
           },
         ],
       };

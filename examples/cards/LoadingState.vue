@@ -46,7 +46,7 @@
 <script>
 
   import useKResponsiveWindow from '../../lib/composables/useKResponsiveWindow';
-  import Card from '../common/Card';
+  import Card from './Card';
 
   export default {
     components: {

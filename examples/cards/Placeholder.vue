@@ -1,25 +1,16 @@
 <template>
 
   <KCardGrid
-    layout="1-2-2"
+    layout="1-1-1"
     :skeletonsConfig="skeletonsConfig"
     :loading="loading"
   >
     <Card
       :headingLevel="4"
-      orientation="horizontal"
+      :orientation="windowBreakpoint > 2 ? 'horizontal' : 'vertical'"
       thumbnailDisplay="large"
-      :thumbnailSrc="null"
-      thumbnailAlign="left"
-      prependTitle="(1)"
-    />
-    <Card
-      :headingLevel="4"
-      orientation="horizontal"
-      thumbnailDisplay="small"
       thumbnailAlign="right"
-      prependTitle="(2)"
-      showProgressInFooter
+      :thumbnailSrc="null"
     />
   </KCardGrid>
 
@@ -28,11 +19,16 @@
 
 <script>
 
-  import Card from '../common/Card';
+  import useKResponsiveWindow from '../../lib/composables/useKResponsiveWindow';
+  import Card from './Card';
 
   export default {
     components: {
       Card,
+    },
+    setup() {
+      const { windowBreakpoint } = useKResponsiveWindow();
+      return { windowBreakpoint };
     },
     data() {
       return {
@@ -42,11 +38,17 @@
             breakpoints: [0, 1, 2, 3, 4, 5, 6, 7],
             orientation: 'vertical',
             thumbnailDisplay: 'large',
-            height: '490px',
+            height: '460px',
+          },
+          {
+            breakpoints: [2],
+            height: '390px',
           },
           {
             breakpoints: [3, 4, 5, 6, 7],
-            height: '420px',
+            orientation: 'horizontal',
+            thumbnailAlign: 'right',
+            height: '170px',
           },
         ],
       };
@@ -59,19 +61,3 @@
   };
 
 </script>
-
-
-<style scoped>
-
-  .pills {
-    margin-left: -4px;
-  }
-
-  .pills span {
-    display: inline-block;
-    padding: 4px 8px;
-    margin: 4px;
-    border-radius: 4px;
-  }
-
-</style>

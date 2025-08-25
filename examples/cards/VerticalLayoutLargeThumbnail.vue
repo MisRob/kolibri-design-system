@@ -8,27 +8,61 @@
     <Card
       :headingLevel="4"
       orientation="vertical"
-      thumbnailDisplay="none"
+      thumbnailDisplay="large"
       prependTitle="(1)"
-    />
-    <Card
-      :headingLevel="4"
-      orientation="vertical"
-      thumbnailDisplay="none"
-      prependTitle="(2)"
-      showProgressInFooter
     >
+      <template #aboveTitle>
+        <KLabeledIcon
+          icon="readSolid"
+          label="Read"
+        />
+      </template>
       <template #footer>
-        <span></span>
+        <div
+          class="pills"
+          :style="{ color: $themeTokens.annotation }"
+        >
+          <span :style="{ 'background-color': $themePalette.grey.v_100 }"> Short Activity </span>
+          <span :style="{ 'background-color': $themePalette.grey.v_100 }"> Biology </span>
+        </div>
       </template>
     </Card>
     <Card
       :headingLevel="4"
       orientation="vertical"
-      thumbnailDisplay="none"
+      thumbnailDisplay="large"
+      :thumbnailSrc="null"
+      prependTitle="(2)"
+    >
+      <template #aboveTitle>
+        <KLabeledIcon
+          icon="readSolid"
+          label="Read"
+        />
+      </template>
+      <template #footer>
+        <div
+          class="pills"
+          :style="{ color: $themeTokens.annotation }"
+        >
+          <span :style="{ 'background-color': $themePalette.grey.v_100 }"> Short Activity </span>
+        </div>
+      </template>
+    </Card>
+    <Card
+      :headingLevel="4"
+      orientation="vertical"
+      thumbnailDisplay="small"
       prependTitle="(3)"
-      showMenuInFooter
-    />
+      hideFooter
+    >
+      <template #aboveTitle>
+        <KLabeledIcon
+          icon="readSolid"
+          label="Read"
+        />
+      </template>
+    </Card>
   </KCardGrid>
 
 </template>
@@ -36,7 +70,7 @@
 
 <script>
 
-  import Card from '../common/Card';
+  import Card from './Card';
 
   export default {
     components: {
