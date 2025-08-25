@@ -9,9 +9,7 @@
       class="example-content"
       :style="{ width: width }"
     >
-      <slot>
-        <component :is="loadedComponent" />
-      </slot>
+      <component :is="loadedComponent" />
     </div>
   </div>
 
@@ -68,10 +66,9 @@
        */
       loadExample: {
         type: String,
-        required: false,
-        default: null,
+        required: true,
         validator(value) {
-          return value === null || value.endsWith('.vue');
+          return value.endsWith('.vue');
         },
       },
       /**

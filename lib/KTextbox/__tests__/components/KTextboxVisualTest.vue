@@ -11,9 +11,8 @@
       id="active-textbox"
       title="Active textbox"
       width="400px"
-    >
-      <KTextbox label="Active textbox" />
-    </VisualTestExample>
+      loadExample="KTextbox/WithLabel.vue"
+    />
 
     <VisualTestExample
       title="Validation"
@@ -71,12 +70,3 @@
   </VisualTestLayout>
 
 </template>
-
-
-<script>
-
-  export default {
-    name: 'KIconVisualTest',
-  };
-
-</script>
