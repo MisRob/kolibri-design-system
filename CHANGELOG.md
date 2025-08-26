@@ -7,6 +7,31 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1105]
+  - **Description:** Added comprehensive documentation page for KToolbar component
+  - **Products impact:** none
+  - **Addresses:** #1085
+  - **Components:** KToolbar
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -
+
+[#1105]: https://github.com/learningequality/kolibri-design-system/pull/1105
+
+- [#1105]
+  - **Description:** Added prop validators to KToolbar
+  - **Products impact:** none
+  - **Addresses:** -
+  - **Components:** KToolbar
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -
+
+[#1105]: https://github.com/learningequality/kolibri-design-system/pull/1105
+  -
+
+
+
 - [#1103]
   - **Description:** Refactors visual test layout
   - **Products impact:** none.
