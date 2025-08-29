@@ -572,6 +572,7 @@
           const prevCell = this.getCell(prevRowIndex, prevColIndex);
           const prevFocusableElements = this.getFocusableElements(prevCell);
           prevFocusableElements[prevFocusableElements.length - 1].focus();
+          this.scrollCellIntoView(prevCell);
           this.updateFocusState(prevRowIndex, prevColIndex, false);
           event.preventDefault();
           return;
@@ -710,19 +711,30 @@
         }, []);
       },
       scrollCellIntoView(cell) {
-        if (cell) {
-          cell.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+        if (!cell) return;
 
-          // Adjust scroll position to account for sticky headers
-          const stickyHeader = this.$refs.stickyHeader;
-          const stickyColumn = this.$refs['header-0'][0];
-          const tableWrapper = this.$refs.tableWrapper;
+        const tableWrapper = this.$refs.tableWrapper;
+        if (!tableWrapper) return;
+        const stickyHeader = this.$refs.stickyHeader;
+        const stickyHeaderHeight = stickyHeader ? stickyHeader.offsetHeight : 0;
+        let leftStickyWidth = 0;
+        let rightStickyWidth = 0;
 
-          const stickyHeaderHeight = stickyHeader ? stickyHeader.offsetHeight : 0;
-          const stickyColumnWidth = stickyColumn ? stickyColumn.offsetWidth : 0;
+        const stickyColumns = this.getStickyColumns();
+        stickyColumns.forEach(colIndex => {
+          const headerElement = this.$refs[`header-${colIndex}`];
+          if (headerElement && headerElement[0]) {
+            const width = headerElement[0].offsetWidth;
+            if (colIndex === this.headers.length - 1 && this.stickyColumns.includes('last')) {
+              rightStickyWidth += width;
+            } else {
+              leftStickyWidth += width;
+            }
+          }
+        });
 
-          const cellRect = cell.getBoundingClientRect();
-          const wrapperRect = tableWrapper.getBoundingClientRect();
+        const cellRect = cell.getBoundingClientRect();
+        const wrapperRect = tableWrapper.getBoundingClientRect();
 
         if (cellRect.top < wrapperRect.top + stickyHeaderHeight) {
           tableWrapper.scrollTop -= wrapperRect.top + stickyHeaderHeight - cellRect.top;
@@ -737,10 +749,14 @@
         if (cellRect.left < availableLeft) {
           const scrollAmount = availableLeft - cellRect.left;
           tableWrapper.scrollLeft -= scrollAmount;
-        } else if (cellRect.right > availableRight) {
+        }
+
+        else if (cellRect.right > availableRight) {
           const scrollAmount = cellRect.right - availableRight;
           tableWrapper.scrollLeft += scrollAmount;
-        } else if (cellRect.width > availableWidth && cellRect.left > availableLeft) {
+        }
+
+        else if (cellRect.width > availableWidth && cellRect.left > availableLeft) {
           const scrollAmount = cellRect.left - availableLeft;
           tableWrapper.scrollLeft += scrollAmount;
         }
