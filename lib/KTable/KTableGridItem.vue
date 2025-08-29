@@ -91,9 +91,7 @@
 <style scoped>
 
   .cell-content {
-    display: flex;
-    align-items: center;
-    min-height: 40px;
+    justify-content: inherit;
     word-break: break-word;
     white-space: normal;
   }

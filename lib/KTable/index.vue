@@ -198,16 +198,26 @@
       const isTableScrollable = ref(false);
 
       const checkScrollable = () => {
-        if (!tableWrapper.value || !tableElement.value || !elementWidth.value) return;
+        if (!tableWrapper.value || !tableElement.value || !elementWidth.value) {
+          isTableScrollable.value = false;
+          return;
+        }
         isTableScrollable.value = tableElement.value.scrollWidth > elementWidth.value;
       };
+
+      const debouncedCheckScrollable = debounce(checkScrollable, 300);
 
       watch(
         () => props.rows,
         newRows => {
           rows.value = newRows;
+          nextTick(() => debouncedCheckScrollable());
         },
       );
+
+      watch(elementWidth, () => {
+        debouncedCheckScrollable();
+      });
 
       const handleSort = index => {
         if (headers.value[index].dataType === DATA_TYPE_OTHERS || !props.sortable) {
@@ -229,7 +239,7 @@
 
       onMounted(() => {
         nextTick(() => {
-          debounce(checkScrollable, 300)();
+          debouncedCheckScrollable();
         });
       });
 
@@ -714,12 +724,25 @@
           const cellRect = cell.getBoundingClientRect();
           const wrapperRect = tableWrapper.getBoundingClientRect();
 
-          if (cellRect.top < wrapperRect.top + stickyHeaderHeight) {
-            tableWrapper.scrollTop -= wrapperRect.top + stickyHeaderHeight - cellRect.top;
-          }
-          if (cellRect.left < wrapperRect.left + stickyColumnWidth) {
-            tableWrapper.scrollLeft -= wrapperRect.left + stickyColumnWidth - cellRect.left;
-          }
+        if (cellRect.top < wrapperRect.top + stickyHeaderHeight) {
+          tableWrapper.scrollTop -= wrapperRect.top + stickyHeaderHeight - cellRect.top;
+        } else if (cellRect.bottom > wrapperRect.bottom) {
+          tableWrapper.scrollTop += cellRect.bottom - wrapperRect.bottom;
+        }
+
+        const availableLeft = wrapperRect.left + leftStickyWidth;
+        const availableRight = wrapperRect.right - rightStickyWidth;
+        const availableWidth = availableRight - availableLeft;
+
+        if (cellRect.left < availableLeft) {
+          const scrollAmount = availableLeft - cellRect.left;
+          tableWrapper.scrollLeft -= scrollAmount;
+        } else if (cellRect.right > availableRight) {
+          const scrollAmount = cellRect.right - availableRight;
+          tableWrapper.scrollLeft += scrollAmount;
+        } else if (cellRect.width > availableWidth && cellRect.left > availableLeft) {
+          const scrollAmount = cellRect.left - availableLeft;
+          tableWrapper.scrollLeft += scrollAmount;
         }
       },
       focusCell(rowIndex, colIndex) {
@@ -868,8 +891,7 @@
     position: relative;
     z-index: auto;
     height: auto;
-    min-height: 40px;
-    padding: 0 8px;
+    padding: 8px;
     vertical-align: middle;
   }
 
