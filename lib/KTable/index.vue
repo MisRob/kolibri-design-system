@@ -749,14 +749,10 @@
         if (cellRect.left < availableLeft) {
           const scrollAmount = availableLeft - cellRect.left;
           tableWrapper.scrollLeft -= scrollAmount;
-        }
-
-        else if (cellRect.right > availableRight) {
+        } else if (cellRect.right > availableRight) {
           const scrollAmount = cellRect.right - availableRight;
           tableWrapper.scrollLeft += scrollAmount;
-        }
-
-        else if (cellRect.width > availableWidth && cellRect.left > availableLeft) {
+        } else if (cellRect.width > availableWidth && cellRect.left > availableLeft) {
           const scrollAmount = cellRect.left - availableLeft;
           tableWrapper.scrollLeft += scrollAmount;
         }
