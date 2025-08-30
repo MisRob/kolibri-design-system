@@ -26,9 +26,7 @@
 
   import { onMounted, onUnmounted, ref, watch, nextTick } from 'vue';
   import useKFloatingInteraction from '../../composables/useKFloatingInteraction';
-  /* import useKFloatingPosition from '../../composables/useKFloatingPosition'; */
-  // Floating UI versions
-  import useKFloatingPosition from '../../composables/useKFloatingPosition2';
+  import useKFloatingPosition from '../../composables/useKFloatingPosition';
   import _useOverlay from '../../composables/_useOverlay';
   import { getPositionOptions } from './positionOptions';
 
@@ -46,11 +44,7 @@
         props.activateOn,
         props.delegateTo,
       );
-
-      /* const { initPosition, disablePosition, destroyPosition } = useKFloatingPosition(); */
-
-      // Floating UI
-      const { initPosition, destroyPosition } = useKFloatingPosition();
+      const { initPosition, disablePosition, destroyPosition } = useKFloatingPosition();
 
       const options = getPositionOptions(positionOptions, placement);
 
@@ -90,10 +84,7 @@
             });
           }, 250);
         } else {
-          /* disablePosition(tooltipId); */
-
-          // Floating UI version
-          destroyPosition(tooltipId);
+          disablePosition(tooltipId);
         }
       }
 
