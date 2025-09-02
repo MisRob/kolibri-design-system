@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1106]
+  - **Description:** Bump sha.js from 2.4.11 to 2.4.12
+  - **Products impact:** Dev Dependency upgrade
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#1106]: https://github.com/learningequality/kolibri-design-system/pull/1106
+
+
+
 - [#1097]
   - **Description:** Bump actions/checkout from 4 to 5 in the github group
   - **Products impact:** Dev Dependency upgrade
