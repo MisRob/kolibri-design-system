@@ -30,9 +30,19 @@
       const { windowBreakpoint } = useKResponsiveWindow();
       return { windowBreakpoint };
     },
+    props: {
+      /**
+       * How long in seconds to simulate loading
+       * state before displaying cards
+       */
+      loadFor: {
+        type: Number,
+        default: 3,
+      },
+    },
     data() {
       return {
-        loading: true,
+        loading: this.loadFor > 0,
         skeletonsConfig: [
           {
             breakpoints: [0, 1, 2, 3, 4, 5, 6, 7],
@@ -54,9 +64,11 @@
       };
     },
     mounted() {
-      setTimeout(() => {
-        this.loading = false;
-      }, 3000);
+      if (this.loadFor > 0) {
+        setTimeout(() => {
+          this.loading = false;
+        }, this.loadFor * 1000);
+      }
     },
   };
 

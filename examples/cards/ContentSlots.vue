@@ -42,9 +42,19 @@
 <script>
 
   export default {
+    props: {
+      /**
+       * How long in seconds to simulate loading
+       * state before displaying cards
+       */
+      loadFor: {
+        type: Number,
+        default: 3,
+      },
+    },
     data() {
       return {
-        loading: true,
+        loading: this.loadFor > 0,
         title:
           'Learn everything about hummingbirds: their habitats, feeding patterns, and stunning flight abilities',
         description:
@@ -65,9 +75,11 @@
       };
     },
     mounted() {
-      setTimeout(() => {
-        this.loading = false;
-      }, 3000);
+      if (this.loadFor > 0) {
+        setTimeout(() => {
+          this.loading = false;
+        }, this.loadFor * 1000);
+      }
     },
   };
 

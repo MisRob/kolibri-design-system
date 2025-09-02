@@ -9,7 +9,10 @@
       class="example-content"
       :style="{ width: width }"
     >
-      <component :is="loadedComponent" />
+      <component
+        :is="loadedComponent"
+        v-bind="$attrs"
+      />
     </div>
   </div>
 
@@ -26,6 +29,7 @@
    */
   export default {
     name: 'VisualTestExample',
+    inheritAttrs: false,
     setup(props) {
       const loadedComponent = ref(null);
 

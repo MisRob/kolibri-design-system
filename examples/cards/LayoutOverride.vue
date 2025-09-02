@@ -26,9 +26,19 @@
     components: {
       Card,
     },
+    props: {
+      /**
+       * How long in seconds to simulate loading
+       * state before displaying cards
+       */
+      loadFor: {
+        type: Number,
+        default: 3,
+      },
+    },
     data() {
       return {
-        loading: true,
+        loading: this.loadFor > 0,
         layoutOverride: [
           {
             breakpoints: [0, 1],
@@ -50,9 +60,11 @@
       };
     },
     mounted() {
-      setTimeout(() => {
-        this.loading = false;
-      }, 3000);
+      if (this.loadFor > 0) {
+        setTimeout(() => {
+          this.loading = false;
+        }, this.loadFor * 1000);
+      }
     },
   };
 
