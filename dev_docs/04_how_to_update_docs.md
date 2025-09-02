@@ -95,7 +95,7 @@ The `DocsExample` component is used to show a live example of a component along 
 - `javascript` - The JavaScript (`<script>`) code
 - `scss` - The SCSS (`<style>`) code
 
-You can also provide a `loadExample` prop to the same, which is a file path relative to the `/docs/examples` directory, which will be used to load the example code from. This is useful when you want to show a more complex example, and want all of the code to be dynamically loaded from a file. You can still provide the all the slots to the `DocsExample` component to override the code that is loaded from the file.
+You can also provide a `loadExample` prop to the same, which is a file path relative to `/examples` directory, which will be used to load the example code from. This is useful when you want to show a more complex example, and want all of the code to be dynamically loaded from a file. You can still provide the all the slots to the `DocsExample` component to override the code that is loaded from the file.
 
 <details>
 <summary>Usage Examples</summary>

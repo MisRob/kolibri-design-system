@@ -9,9 +9,10 @@
       class="example-content"
       :style="{ width: width }"
     >
-      <slot>
-        <component :is="loadedComponent" />
-      </slot>
+      <component
+        :is="loadedComponent"
+        v-bind="$attrs"
+      />
     </div>
   </div>
 
@@ -28,11 +29,12 @@
    */
   export default {
     name: 'VisualTestExample',
+    inheritAttrs: false,
     setup(props) {
       const loadedComponent = ref(null);
 
       const loadComponent = async () => {
-        const component = await import(`~/examples/${props.loadExample}`);
+        const component = await import(`~~/examples/${props.loadExample}`);
         loadedComponent.value = component.default;
       };
 
@@ -62,16 +64,15 @@
       },
       /**
        * Path to the Vue component file to be displayed as example
-       * The path should be relative to the 'docs/examples/' directory.
+       * The path should be relative to '/examples' directory.
        * @type {String}
        * @example 'KComponent/Variant.vue'
        */
       loadExample: {
         type: String,
-        required: false,
-        default: null,
+        required: true,
         validator(value) {
-          return value === null || value.endsWith('.vue');
+          return value.endsWith('.vue');
         },
       },
       /**

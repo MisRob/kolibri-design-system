@@ -243,7 +243,7 @@
       </p>
 
       <DocsExample
-        loadExample="KCard/Title.vue"
+        loadExample="cards/Title.vue"
         exampleId="kcard-title"
         hideScript
         block
@@ -418,7 +418,7 @@
       </p>
 
       <DocsExample
-        loadExample="KCard/Layout1.vue"
+        loadExample="cards/VerticalLayoutLargeThumbnail.vue"
         exampleId="kcard-layout"
         hideScript
         hideStyle
@@ -452,7 +452,7 @@
       </DocsExample>
 
       <DocsExample
-        loadExample="KCard/Layout2.vue"
+        loadExample="cards/HorizontalLayout.vue"
         exampleId="kcard-layout"
         hideScript
         hideStyle
@@ -483,7 +483,7 @@
       </DocsExample>
 
       <DocsExample
-        loadExample="KCard/Layout3.vue"
+        loadExample="cards/VerticalLayoutNoThumbnail.vue"
         exampleId="kcard-layout"
         hideScript
         hideStyle
@@ -537,7 +537,7 @@
       </p>
 
       <DocsExample
-        loadExample="KCard/ContentSlots.vue"
+        loadExample="cards/ContentSlots.vue"
         exampleId="kcard-content-slots"
         hideScript
         hideStyle
@@ -637,7 +637,7 @@
       </p>
 
       <DocsExample
-        loadExample="KCard/Placeholder.vue"
+        loadExample="cards/Placeholder.vue"
         exampleId="kcard-placeholder"
         hideScript
         block
@@ -717,7 +717,7 @@
       </p>
 
       <DocsExample
-        loadExample="KCard/InteractiveElements.vue"
+        loadExample="cards/InteractiveElements.vue"
         exampleId="kcard-interactive-elements"
         block
       >
@@ -797,7 +797,7 @@
       <p>Managing the selection state is not <code>KCard</code>'s responsibility.</p>
 
       <DocsExample
-        loadExample="KCard/SelectionControls.vue"
+        loadExample="cards/SelectionControls.vue"
         exampleId="kcard-selection-controls"
         hideScript
         block
@@ -852,8 +852,12 @@
 <script>
 
   import useKResponsiveWindow from '../../lib/composables/useKResponsiveWindow';
+  import Card from '../../examples/cards/Card';
 
   export default {
+    components: {
+      Card,
+    },
     setup() {
       const { windowBreakpoint } = useKResponsiveWindow();
       return { windowBreakpoint };

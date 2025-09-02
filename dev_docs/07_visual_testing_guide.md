@@ -1,20 +1,26 @@
 # Visual Testing
 
-KDS has a visual testing system that allows you to take snapshots of how KDS Components would look like in different browsers, and compare them with the previously set baseline versions of these components, allowing you to see the visual differences in a PR's changes more quickly.
+KDS has a visual testing system that allows you to take Percy snapshots of how KDS components look in different browsers and compare them with previously set baseline versions. This enables you to quickly see visual differences resulting from changes in a pull request.
+
+> **Note:** The original approach to structuring visual tests is now deprecated. For reference, you can find the archived documentation [here](./08_deprecated_visual_testing_guide.md).
 
 ## Prerequisites
 
-- Make sure that your Node version is >= 18.x with all the requirements (listed in package.json) installed.
-- Ensure that you declare the `PERCY_TOKEN` environment variable when running visual tests locally.
-- You should not have anything running on `port:4000` as the visual testing server utilizes that port to run the tests.
+- Ensure Node.js version is >= 18.x and all dependencies from package.json are installed.
+- Make sure nothing is running on `port:4000`
+- Obtain your `PERCY_TOKEN`:
 
-## Guide to using the visual testing mechanism
+### Percy token
 
-### Running visual tests locally
+- Create a [BrowserStack Percy](https://percy.io/) account.
+- Go to the _Percy Dashboard_ and create a new project.
+- Find your `PERCY_TOKEN` in the _Project settings_.
 
-1. **Setup**:
+## Run tests locally
 
-   - Ensure all dependencies are installed:
+1. **Setup:**
+
+   - Install dependencies:
 
      ```bash
      yarn install
@@ -26,123 +32,176 @@ KDS has a visual testing system that allows you to take snapshots of how KDS Com
      export PERCY_TOKEN=<your-percy-token>
      ```
 
-2. **Run Visual Tests**:
+2. **Run visual tests:**
 
-   - Execute the tests with the visual testing configuration:
+   - Execute the tests:
 
      ```bash
      yarn test:visual
      ```
 
-3. **Check results**:
-   - Head over to the Percy Dashboard and check the results for the latest Percy build.
+3. **Check results:**
 
-### Visual testing workflow
+   - Go to the Percy Dashboard and review the results for the latest Percy build.
 
-We use GitHub Actions to execute the visual testing workflow on every PR. When changes to a PR are made, a deployment request is initiated. Only **Learning Equality team members** can approve this request. Once approved, the deployment is executed, and visual tests are run automatically. The results of the test run are surfaced in the form of an automated comment containing a link to the Percy build.
+## Create visual tests for a component
 
-**Note:** Developers outside of Learning Equality can only review the visual changes for local test runs. To review the visual tests executions that run on GitHub Actions, one needs to be a part of Learning Equality's Browserstack team.
+Most commonly, each visual test scenario for a given component is placed as a `.vue` file in the [`/examples`](../examples) directory—a shared location for visual examples used in both documentation and visual testing. These example files are then imported into a single test page, `ComponentVisualTest.vue`, which is snapshotted by the component's Jest test suite.
 
-### Writing visual tests
+A visual test page for a component typically includes (1) examples from the documentation website that are suitable for visual testing and (2) additional scenarios, such as edge cases. **Always check if there are existing `/examples` that can be imported into visual tests instead of duplicating scenarios.**
 
-You can write the visual tests alongside the unit tests, i.e. in the same test file. Take a look at [`KButton.spec.js`](../lib/buttons-and-links/__tests__/KButton.spec.js) to familiarize yourself with writing visual tests.
+Let's see how this works in practice by writing visual tests for `KTextbox`:
 
-1. **Import Utility Functions**:
+1. **Create a page to contain all visual tests** for `KTextbox` in [`/lib/KTextbox/__tests__/components/KTextboxVisualTest.vue`](../lib/KTextbox/__tests__/components/KTextboxVisualTest.vue). This is the page that will be later snapshotted.
 
-   - Import the utility functions from [`visual.testUtils.js`](../jest.conf/visual.testUtils.js):
+2. **For each scenario you wish to test, check if there is a visual example in the `/examples` directory, or add a new one.** For example, [`/examples/KTextbox/WithLabel.vue`](../examples/KTextbox/WithLabel.vue) shows a simple textbox with label, and [`/examples/KTextbox/Validation.vue`](../examples/KTextbox/Validation.vue) shows textbox with validation.
 
-     ```javascript
-     import { renderComponentForVisualTest, takeSnapshot } from './visual.testUtils';
-     ```
+3. **Load the examples files** into `KTextboxVisualTest.vue` via `VisualTestExample`'s `loadExample` - the example file path relative to the `/examples` directory. Wrap all examples with `VisualTestLayout`. 
 
-     You can import and use the utility functions for managing component's visual states as needed. Different utility functions available are:
+```html
+<template>
+  <VisualTestLayout>
+    <VisualTestExample
+      title="Label"
+      width="400px"
+      loadExample="KTextbox/WithLabel.vue"
+    />
 
-     - `renderComponentForVisualTest(component, props, slots)`: Renders the specified component with given props and slots in the visual testing playground.
-     - `takeSnapshot(name, options)`: Takes a Percy snapshot with the given name and options.
-     - `click(selector)`, `hover(selector)`, `scrollToPos(selector, scrollOptions)`, `waitFor(selector)`, `delay(time)`: Utility functions for simulating user interactions.
+    <VisualTestExample
+      title="Validation"
+      width="400px"
+      loadExample="KTextbox/Validation.vue"
+    />
 
-2. **Write Tests**:
+    ...
 
-   - Use the utility functions to render components and take snapshots. For example:
+  </VisualTestLayout>
+</template
+```
 
-     ```javascript
-     describe.visual('KButton Visual Tests', () => {
-       it('Sample test for KButton', async () => {
-         await renderComponentForVisualTest('KButton', {
-           text: 'Raised Button',
-           appearance: 'raised-button',
-         });
-         await takeSnapshot('KButton - Raised Button', { widths: [375, 520] });
-       });
-     });
-     ```
+4. **Register** `KTextboxVisualTest.vue` in [`/jest.conf/visual.load-test-components.js`](../jest.conf/visual.load-test-components.js).
+   
+```javascript
+import KTextboxVisualTest from '~~/lib/KTextbox/__tests__/components/KTextboxVisualTest.vue';
 
-    The components we can render with `renderComponentForVisualTest` are the ones that are already registered for the KDS Docs nuxt server, that means, the KDS components that are exposed in [KThemePlugin](../lib/KThemePlugin.js), and the docs common components that are registered in the [load-common-components.js file](../docs/plugins/load-common-components.js). If you need to use a component that is not registered here, you can refer to the **Example involving more complex component structures** point below.
+Vue.component('KTextboxVisualTest', KTextboxVisualTest);
+```
 
-     Note that the `widths` parameter passed to the `takeSnaphot` function is a part of Percy CLI's snapshot options. For a full list of available options, refer the [Percy documentation](https://www.browserstack.com/docs/percy/take-percy-snapshots/snapshots-via-scripts#per-snapshot-configuration).
+5. **Add `visual.spec.js`** for `KTextbox` ([`/lib/KTextbox/__tests__/visual.spec.js`](../lib/KTextbox/__tests__/visual.spec.js)). Use `renderComponentForVisualTest` and `takeSnapshot` to capture the `KTextboxVisualTest` snapshot. **Be sure to use `describe.visual` or `it.visual` instead of the default Jest notations.** For a full list of available snapshot options for `takeSnapshot`, refer to the [Percy documentation](https://www.browserstack.com/docs/percy/take-percy-snapshots/snapshots-via-scripts#per-snapshot-configuration).
+   
+```javascript
+import { renderComponentForVisualTest, takeSnapshot } from '../../../jest.conf/visual.testUtils';
 
-   - For rendering complex commponents, refer to the following:
+describe.visual('KTextbox visual tests', () => {
+  const snapshotOptions = { widths: [800], minHeight: 512 };
+  it('renders', async () => {
+    await renderComponentForVisualTest('KTextboxVisualTest');
+    await takeSnapshot('KTextbox visual tests', snapshotOptions);
+  });
+});
 
-     - **Example with slots:** For components that involve slots, you can render them with `renderComponentForVisualTest` by passing the slot structure using element and elementProps. You can pass multiple slots at once.
+```
 
-       ```javascript
-       await renderComponentForVisualTest(
-         'KIconButton',
-         { icon: 'add' },
-         {
-           menu: {
-             // slot named #menu
-             element: 'KDropdownMenu',
-             elementProps: {
-               items: ['Option 1', 'Option 2'],
-             },
-           },
-         }
-       );
-       ```
+6. **Run the tests and preview the results** in your Percy Dashboard.
 
-       **Note:** Use `'default'` key for passing default slots, with the HTML content specified using `innerHTML` prop. Checkout [`KButton.spec.js`](../lib/buttons-and-links/__tests__/KButton.spec.js) for reference.
+```bash
+yarn test:visual
+```
 
-     - **Example involving more complex component structures:** When dealing with more complex component structures, it's recommended to create a dedicated test component for visual testing purposes.
+7. If everything looks good, open a pull request. **One of the Learning Equality Browserstack team members must approve our GitHub Actions workflow to run Percy for the KDS project**. Once approved, visual tests are run automatically and the results are reported as a comment containing a link to the Percy build.
 
-       - This custom component should be placed in the same directory as the test file, inside a `components` folder with a name following the pattern `K[TestCase]Test.vue`
-         - e.g.: `/lib/KImg/__tests__/components/KImgTest.vue`.
-       - Then you will need to declare this component in the the [visual.load-test-components.js](../jest.conf/visual.load-test-components.js) file so that its available for rendering in the visual testing playground.
+**Note:** Developers outside of Learning Equality can only review the visual changes for local test runs.
 
-         - e.g.:
+## Simulate interactions
 
-           ```javascript
-           import KImgTest from '~~/lib/KImg/__tests__/components/KImgTest.vue';
+You can use utility functions to simulate user interactions. Let's add a new scenario to the `KTextbox` test page we created above that checks the active state of the textbox.
 
-           ...
+If there is no suitable example for visual testing interactions, add a new one. In this case, we can reuse the `WithLabel.vue` example, and add an `id` attribute to it so that the click target can be located. Finally, import `click` from the visual testing utilities in the Jest file and await it before taking the snapshot.
 
-           Vue.component('KImgTest', KImgTest);
-           ```
+```html
+<!-- lib/KTextbox/__tests__/components/KTextboxVisualTest.vue -->
+<template>
+  <VisualTestLayout>
+    <VisualTestExample
+      title="Label"
+      width="400px"
+      loadExample="KTextbox/WithLabel.vue"
+    />
 
-       - Finally, you can then use the test component name in the `renderComponentForVisualTest` method.
+    <VisualTestExample
+      id="active-textbox"
+      title="Active textbox"
+      width="400px"
+      loadExample="KTextbox/WithLabel.vue"
+    />
 
-         ```javascript
-         await renderComponentForVisualTest('KImgTest', { someProp: 'someValue' });
-         ```
+    ...
 
-         This approach ensures that all necessary child components and slots are correctly set up and rendered.
+  </VisualTestLayout>
+</template
+```
 
-         **Note:** You don't need to do this for KDS components that are already registered in our KThemePlugin or the docs common components that are registered in the [load-common-components.js file](../docs/plugins/load-common-components.js) as they are already available for rendering in the visual testing playground.
+```javascript
+// lib/KTextbox/__tests__/KTextbox.spec.js
 
-   - Make sure to use `describe.visual` or `it.visual` instead of the default notations for writing test blocks containing visual tests so as to prevent any unexpected behavior. These custom blocks add a `[Visual]` tag to the test name whose presence or absence are then checked using a regex pattern based on the type of tests executed.
-     - Anything inside these blocks will not be executed when running unit tests. The default `describe` and `it` blocks can be used inside a parent `describe.visual` block, which itelf can be placed within a `describe` block as its parent (as `describe` blocks just group the tests placed within them).
-     - In simple terms, any test block with a `[Visual]` tag will be executed when running visual tests, regardless of the type of test blocks used within it, and will be ignored when running unit tests. Using `describe.visual` or `it.visual` automatically appends this tag to the test name.
-     - This implementation helps determine which test blocks should be executed by Jest and which ones should be skipped.
+import {
+  click,
+  renderComponentForVisualTest,
+  takeSnapshot,
+} from '../../../jest.conf/visual.testUtils';
 
-3. **Simulate User Interactions**:
+describe.visual('KTextbox visual tests', () => {
+  const snapshotOptions = { widths: [800], minHeight: 512 };
+  it('renders', async () => {
+    await renderComponentForVisualTest('KTextboxVisualTest');
 
-   - Use the custom commands to simulate user interactions. For example, to simulate the _'click'_ user event, you can do something like:
+    // Prepares active textbox test case
+    await click('#active-textbox input');
 
-     ```javascript
-     await click('button');
-     ```
+    await takeSnapshot('KTextbox visual tests', snapshotOptions);
+  });
+});
+```
 
-     Here, _'button'_ is the CSS selector for the component. You can pass different selectors to the functions, exposed by [`visual.testUtils.js`](../jest.conf/visual.testUtils.js), to simulate user interaction as per requirement.
+Besides `click`, you can import other utilities for simulating user interactions from [`visual.testUtils.js`](../jest.conf/visual.testUtils.js):
+
+- `click(selector)`
+- `hover(selector)` (note that hover may not function properly)
+- `scrollToPos(selector, scrollOptions)`
+- `waitFor(selector)`
+- `delay(time)`
+
+## Development preview
+
+When developing visual tests, it is more efficient to preview them locally rather than wait for a Percy build each time.
+
+You can use the [playground page](../docs/pages/playground/index.vue). Simply import `ComponentVisualTest.vue`, run the KDS development server with `yarn dev`, and navigate to [http://localhost:4000/playground](http://localhost:4000/playground). There, you will see the page that will later be snapshotted.
+
+```html
+<!-- /docs/pages/playground/index.vue -->
+
+<template>
+
+  <KTextboxVisualTest />
+
+</template>
+```
+
+```javascript
+import KTextboxVisualTest from '~~/lib/KTextbox/__tests__/components/KTextboxVisualTest';
+
+export default {
+  name: 'Playground',
+  components: {
+    KTextboxVisualTest,
+  },
+};
+```
+
+---
+
+<details>
+<summary>Implementation details</summary>
 
 ## Implementation details
 
@@ -164,3 +223,5 @@ The key parts of the mechanism include:
 3. **Visual Testing Playground** ([**_testing-playground.vue_**](../docs/pages/testing-playground.vue)):
    - A dedicated page rendered by the devserver for component visual testing, ensuring expected visual behavior under various conditions.
    - The visual test command runs the devserver and once the server is up and the testing playground page is loaded, the visual tests are executed and the required components are rendered dynamically based on messages received from the test runner.
+
+</details>

@@ -11,16 +11,15 @@
       loadExample="KIcon/Color.vue"
     />
 
-    <VisualTestExample title="Ignores color prop">
-      <KIcon
-        icon="allActivities"
-        color="green"
-      />
-    </VisualTestExample>
+    <VisualTestExample
+      title="Icons with default color ignore color prop"
+      loadExample="KIcon/IgnoresColorProp.vue"
+    />
 
-    <VisualTestExample title="Broken image for non-existent icon">
-      <KIcon icon="Non icon" />
-    </VisualTestExample>
+    <VisualTestExample
+      title="Broken image for non-existent icon"
+      loadExample="KIcon/Broken.vue"
+    />
 
     <VisualTestExample
       title="Size"
@@ -34,12 +33,3 @@
   </VisualTestLayout>
 
 </template>
-
-
-<script>
-
-  export default {
-    name: 'KIconVisualTest',
-  };
-
-</script>

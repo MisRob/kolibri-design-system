@@ -166,7 +166,8 @@
 
       <DocsExample
         exampleId="1-1-1-grid"
-        loadExample="KCardGrid/BasicGrids/1-1-1.vue"
+        loadExample="cards/Grid111.vue"
+        hideScript
         block
       >
         <template #html>
@@ -226,8 +227,9 @@
 
       <DocsExample
         exampleId="1-2-2-grid"
-        loadExample="KCardGrid/BasicGrids/1-2-2.vue"
+        loadExample="cards/Grid122.vue"
         block
+        hideScript
       >
         <template #html>
           <!-- eslint-disable -->
@@ -286,8 +288,9 @@
 
       <DocsExample
         exampleId="1-2-3-grid"
-        loadExample="KCardGrid/BasicGrids/1-2-3.vue"
+        loadExample="cards/Grid123.vue"
         block
+        hideScript
       >
         <template #html>
           <!-- eslint-disable -->
@@ -336,7 +339,7 @@
 
       <DocsExample
         exampleId="custom-layout"
-        loadExample="KCardGrid/LayoutOverride.vue"
+        loadExample="cards/LayoutOverride.vue"
         block
       >
         <template #html>
@@ -410,8 +413,9 @@
 
       <DocsExample
         exampleId="card-height-alignment"
-        loadExample="KCardGrid/CardHeightAlignment.vue"
+        loadExample="cards/HeightAndAlignment.vue"
         block
+        hideStyle
       >
         <template #html>
           <!-- eslint-disable -->
@@ -499,7 +503,7 @@
 
       <DocsExample
         exampleId="responsive-orientation"
-        loadExample="KCardGrid/ResponsiveOrientation.vue"
+        loadExample="cards/ResponsiveOrientation.vue"
         block
       >
         <template #html>
@@ -540,7 +544,7 @@
 
       <DocsExample
         exampleId="responsive-footer"
-        loadExample="KCardGrid/ResponsiveFooter.vue"
+        loadExample="cards/ResponsiveFooter.vue"
         block
       >
         <template #html>
@@ -679,7 +683,7 @@
 
       <DocsExample
         exampleId="loading-state"
-        loadExample="KCardGrid/LoadingState.vue"
+        loadExample="cards/LoadingState.vue"
         block
       >
         <template #html>

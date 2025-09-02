@@ -92,7 +92,7 @@
     props: {
       /**
        * Path to the Vue component file to be displayed as example
-       * The path should be relative to the 'docs/examples/' directory.
+       * The path should be relative to the 'examples/' directory.
        * @type {String}
        * @example 'KComponent/Variant.vue'
        */
@@ -243,7 +243,7 @@
         if (environment.local || environment.pull_request) {
           return;
         }
-        const exampleFileURL = `${environment.url}/docs/examples/${this.loadExample}`;
+        const exampleFileURL = `${environment.url}/examples/${this.loadExample}`;
         window.open(exampleFileURL, '_blank');
       },
       /*
@@ -252,7 +252,7 @@
        */
       async loadComponentCode() {
         try {
-          const content = await import(`!!raw-loader!@/examples/${this.loadExample}?raw`);
+          const content = await import(`!!raw-loader!~~/examples/${this.loadExample}?raw`);
           this.content = content.default;
         } catch (error) {
           throw new Error(`Failed to load component code: ${error}`);
@@ -264,7 +264,7 @@
        */
       async loadComponent() {
         try {
-          const component = await import(`../examples/${this.loadExample}`);
+          const component = await import(`~~/examples/${this.loadExample}`);
           this.loadedComponent = component.default;
         } catch (error) {
           throw new Error(`Failed to load component: ${error}`);
