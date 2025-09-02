@@ -56,7 +56,7 @@ Let's see how this works in practice by writing visual tests for `KTextbox`:
 
 2. **For each scenario you wish to test, check if there is a visual example in the `/examples` directory, or add a new one.** For example, [`/examples/KTextbox/WithLabel.vue`](../examples/KTextbox/WithLabel.vue) shows a simple textbox with label, and [`/examples/KTextbox/Validation.vue`](../examples/KTextbox/Validation.vue) shows textbox with validation.
 
-3. **Import the examples files** into `KTextboxVisualTest.vue` using `VisualTestExample`, and wrap all examples with `VisualTestLayout`. `loadExample` is the example file path relative to the `/examples` directory.
+3. **Load the examples files** into `KTextboxVisualTest.vue` via `VisualTestExample`'s `loadExample` - the example file path relative to the `/examples` directory. Wrap all examples with `VisualTestLayout`. 
 
 ```html
 <template>
@@ -108,7 +108,9 @@ describe.visual('KTextbox visual tests', () => {
 yarn test:visual
 ```
 
-7. If everything looks good, open a pull request. Our automated workflow will run Percy for the KDS project and report the results in the pull request comment.
+7. If everything looks good, open a pull request. **One of the Learning Equality Browserstack team members must approve our GitHub Actions workflow to run Percy for the KDS project**. Once approved, visual tests are run automatically and the results are reported as a comment containing a link to the Percy build.
+
+**Note:** Developers outside of Learning Equality can only review the visual changes for local test runs.
 
 ## Simulate interactions
 
@@ -195,12 +197,6 @@ export default {
   },
 };
 ```
-
-## Pull request workflow
-
-We use GitHub Actions to execute the visual testing workflow on every PR. When changes to a PR are made, a deployment request is initiated. Only **Learning Equality team members** can approve this request. Once approved, the deployment is executed, and visual tests are run automatically. The results of the test run are surfaced in the form of an automated comment containing a link to the Percy build.
-
-**Note:** Developers outside of Learning Equality can only review the visual changes for local test runs. To review the visual tests executions that run on GitHub Actions, one needs to be a part of Learning Equality's Browserstack team.
 
 ---
 
