@@ -98,6 +98,20 @@
       loadExample="cards/LayoutOverride.vue"
       :loadFor="0"
     />
+
+    <VisualTestExample
+      title="Loading state for horizontal cards"
+      loadExample="cards/Grid111.vue"
+      width="800px"
+      :loadFor="30"
+    />
+
+    <VisualTestExample
+      title="Loading state for vertical cards"
+      loadExample="cards/Grid122.vue"
+      width="800px"
+      :loadFor="30"
+    />
   </VisualTestLayout>
 
 </template>
