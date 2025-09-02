@@ -7,6 +7,31 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1107]
+  - **Description:** Adds new visual testing guidance and updates the codebase accordingly.
+  - **Products impact:** none
+  - **Addresses:** Prepares the codebase for https://github.com/learningequality/kolibri-design-system/issues/1094
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#1107]: https://github.com/learningequality/kolibri-design-system/pull/1107
+
+- [#1107]
+  - **Description:** Adds visual tests for KCard, KCardGrid and KTable.
+  - **Products impact:** none
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/889
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#1107]: https://github.com/learningequality/kolibri-design-system/pull/1107
+  -
+
+
+
 - [#1105]
   - **Description:** Added comprehensive documentation page for KToolbar component
   - **Products impact:** none
