@@ -28,6 +28,7 @@
     "lib"
   ],
   "dependencies": {
+    "@floating-ui/dom": "^1.7.4",
     "@popperjs/core": "^2.11.8",
     "aphrodite": "https://github.com/learningequality/aphrodite/",
     "autosize": "3.0.21",
