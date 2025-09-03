@@ -84,6 +84,15 @@ export default [
     ],
   }),
   new Section({
+    title: 'Temporary',
+    pages: [
+      new Page({
+        path: '/floating',
+        title: 'Floating...',
+      }),
+    ],
+  }),
+  new Section({
     title: 'Foundation',
     autoSort: true,
     pages: [

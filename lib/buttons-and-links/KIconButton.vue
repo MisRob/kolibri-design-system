@@ -1,6 +1,7 @@
 <template>
 
   <KButton
+    :data-floating-id="computedDataFloatingId"
     :color="color"
     :disabled="disabled"
     :appearance="appearance"
@@ -10,20 +11,24 @@
     text=""
     v-on="$listeners"
   >
-    <!-- if no "position" is passed as a prop, defaults to bottom, as previously -->
-    <UiTooltip
+    <!--
+      Since `KTooltip` will allows this, would be probaby better
+      to move outside <button>?
+    -->
+    <KTooltipNext
       v-if="tooltip"
-      :zIndex="24"
-      openOn="hover"
+      :id="`tooltip-${_uid}`"
+      :text="tooltip"
+      :style="{ textTransform: 'none' }"
       :position="tooltipPosition"
-    >
-      {{ tooltip }}
-    </UiTooltip>
+      :activateOn="['hover', 'focus', 'touch']"
+      lazy
+    />
     <!-- UiIconButton used flexbox - 7px is the magic centering number -->
     <KIcon
       :icon="icon"
       :color="color"
-      :style="iconStyles"
+      :style="{ cursor: 'pointer', ...iconStyles }"
     />
     <!-- @slot Pass sub-components into the button, typically `KDropdownMenu` -->
     <template #menu>
@@ -36,11 +41,13 @@
 
 <script>
 
-  import UiTooltip from '../keen/UiTooltip.vue';
+  import KTooltipNext from '../../lib/KTooltip/next';
 
   export default {
     name: 'KIconButton',
-    components: { UiTooltip },
+    components: {
+      KTooltipNext,
+    },
     props: {
       /**
        * Name of icon to display
@@ -105,8 +112,20 @@
         type: String,
         default: 'bottom',
       },
+      dataFloatingId: {
+        type: String,
+        default: null,
+      },
     },
     computed: {
+      computedDataFloatingId() {
+        if (this.tooltip) {
+          return `tooltip-${this._uid}`;
+        } else if (this.dataFloatingId) {
+          return this.dataFloatingId;
+        }
+        return undefined;
+      },
       appearanceOverrides() {
         return {
           ...this.sizeStyles,

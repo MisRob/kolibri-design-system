@@ -24,6 +24,7 @@
       :floatingLabel="floatingLabel"
       :multiLine="textArea"
       :rows="3"
+      :tooltip="tooltip"
       @input="updateText"
       @keydown="emitKeydown"
       @focus="emitFocus"
@@ -172,6 +173,14 @@
       floatingLabel: {
         type: Boolean,
         default: true,
+      },
+      /**
+       * Show help icon next to the input field
+       * that has a tooltip with this text.
+       */
+      tooltip: {
+        type: String,
+        default: null,
       },
     },
     data() {
