@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1112]
+  - **Description:** Adds a new prop `appearanceOverrides` prop to the `KTooltip` component.
+  - **Products impact:** updated API
+  - **Addresses:** https://github.com/learningequality/studio/issues/5350, https://github.com/learningequality/studio/issues/5349.
+  - **Components:** KTooltip.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** welcomed for non-breaking changes when relevant.
+
+[#1112]: https://github.com/learningequality/kolibri-design-system/pull/1112
+
+
+
 - [#1106]
   - **Description:** Bump sha.js from 2.4.11 to 2.4.12
   - **Products impact:** Dev Dependency upgrade
