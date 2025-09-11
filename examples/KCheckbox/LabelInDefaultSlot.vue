@@ -1,0 +1,7 @@
+<template>
+
+  <KCheckbox showLabel>
+    <span>Label from default slot</span>
+  </KCheckbox>
+
+</template>
