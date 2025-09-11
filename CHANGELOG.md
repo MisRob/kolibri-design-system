@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1116]
+  - **Description:** Migrate visual testing for KCheckbox to single page test.
+  - **Products impact:** none
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/1091
+  - **Components:** N/A
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** N/A
+
+[#1116]: https://github.com/learningequality/kolibri-design-system/pull/1116
+
+
+
 - [#1120]
   - **Description:** Bump the github group with 2 updates
   - **Products impact:** Dev Dependency upgrade
