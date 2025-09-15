@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1115]
+  - **Description:** Bump @babel/core from 7.27.4 to 7.28.3 in the babel group
+  - **Products impact:** Dev Dependency upgrade
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#1115]: https://github.com/learningequality/kolibri-design-system/pull/1115
+
+
+
 - [#1116]
   - **Description:** Migrate visual testing for KCheckbox to single page test.
   - **Products impact:** none
