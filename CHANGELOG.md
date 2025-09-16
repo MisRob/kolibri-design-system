@@ -7,6 +7,30 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1126]
+  - **Description:** Fixes KSelect focus outline not being shown.
+  - **Products impact:** bugfix.
+  - **Addresses:** https://github.com/learningequality/kolibri/issues/13733.
+  - **Components:** KSelect.
+  - **Breaking:** no
+  - **Impacts a11y:** yes
+  - **Guidance:** -.
+
+[#1126]: https://github.com/learningequality/kolibri-design-system/pull/1126
+
+- [#1126]
+  - **Description:** Fixes clear button click action not being triggered when using the keyboard.
+  - **Products impact:** bugfix.
+  - **Addresses:** https://github.com/learningequality/kolibri/issues/13733.
+  - **Components:** KSelect.
+  - **Breaking:** no
+  - **Impacts a11y:** yes
+  - **Guidance:** -.
+
+[#1126]: https://github.com/learningequality/kolibri-design-system/pull/1126
+
+
+
 - [#1118]
   - **Description:** Refactor KLogo visual tests into one Vue file
   - **Products impact:** none
