@@ -28,7 +28,8 @@
       <div
         ref="label"
         class="ui-select-label"
-        :class="$computedClass({ ':focus': $coreOutline })"
+        :class="isAnyOptionHighlighted ? '' : $computedClass({ ':focus': $coreOutline })"
+        supports-modality="keyboard"
         :tabindex="disabled ? null : '0'"
         @focus="onFocus"
         @blur="selectBlur"
@@ -86,16 +87,21 @@
               <path d="M6.984 9.984h10.03L12 15z" />
             </svg>
           </UiIcon>
-          <KIconButton
+          <!-- Trick to stop keyboard events being propagated -->
+          <span
             v-else
-            size="small"
-            class="overlay-close-button"
-            icon="close"
-            :ariaLabel="clearText"
-            :color="$themeTokens.text"
-            :tooltip="clearText"
-            @click.stop="setValue()"
-          />
+            @keydown.stop
+          >
+            <KIconButton
+              size="small"
+              class="overlay-close-button"
+              icon="close"
+              :ariaLabel="clearText"
+              :color="$themeTokens.text"
+              :tooltip="clearText"
+              @click.stop="onClear"
+            />
+          </span>
         </div>
         <Popper
           v-if="appendToEl"
@@ -137,7 +143,6 @@
                 :truncateLabel="truncateOptionsLabel"
                 type="basic"
                 @click.native.stop="selectOption(option)"
-                @mouseover.native.stop="onMouseover(option)"
               >
                 <!-- @slot Optional slot to override the display of
                 the option in the options dropdown -->
@@ -435,6 +440,10 @@
         };
       },
 
+      isAnyOptionHighlighted() {
+        return Boolean(this.highlightedOption) && this.isDropdownOpen;
+      },
+
       hasLabel() {
         return Boolean(this.label) || Boolean(this.$slots.default);
       },
@@ -719,6 +728,13 @@
         }
       },
 
+      onClear() {
+        this.setValue();
+        this.$nextTick(() => {
+          this.$refs.label.focus();
+        });
+      },
+
       selectHighlighted() {
         if (
           this.highlightedOption &&
@@ -817,12 +833,6 @@
           await this.$nextTick();
           this.$refs.label.focus();
           this.isActive = true;
-        }
-      },
-
-      onMouseover(option) {
-        if (this.isDropdownOpen) {
-          this.highlightOption(option, { autoScroll: false });
         }
       },
 

@@ -125,6 +125,9 @@
           { 'is-highlighted': this.highlighted },
           { 'is-selected': this.selected },
           { 'is-disabled': this.option.disabled },
+          this.highlighted
+            ? this.$computedClass({ ...this.$coreOutline, outlineOffset: '-2px' })
+            : '',
         ];
       },
 
@@ -169,7 +172,8 @@
       background-color: rgba(black, 0.05);
     }
 
-    &.is-highlighted:not(.is-disabled) {
+    &.is-highlighted:not(.is-disabled),
+    &:hover:not(.is-disabled) {
       background-color: rgba(black, 0.1);
     }
 
