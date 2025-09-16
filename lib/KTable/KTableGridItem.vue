@@ -63,6 +63,8 @@
           minWidth: this.minWidth,
           width: this.width,
           borderBottom: `1px solid ${this.$themeTokens.fineLine}`,
+          minHeight: '40px',
+          height: 'auto',
         };
       },
     },
@@ -89,6 +91,7 @@
 <style scoped>
 
   .cell-content {
+    justify-content: inherit;
     word-break: break-word;
     white-space: normal;
   }
