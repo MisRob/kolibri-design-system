@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1056]
+  - **Description:** This PR adds optional sticky columns for the first, firstTwo, and last columns. The default is 'first' only if nothing else is specified, and the stickiness is only apparent is the contents of the table is wider than the container
+  - **Products impact:** Choose from - none (for internal updates) / bugfix / new API / updated API / removed API. If it's 'none', use "-" for all items below to indicate they are not relevant.
+  - **Addresses:** [Link(s) to GH issue(s) addressed. Include KDS links as well as links to related issues in a consumer product repository too.](https://github.com/learningequality/kolibri-design-system/issues/1005). Part of 0.19 Kolibri work
+  - **Components:** KTable
+  - **Breaking:** No
+  - **Impacts a11y:** No
+  - **Guidance:** The "default" behavior of the first column being sticky will be introduced when KDS is updated after this is merged. Use of the additional options depends on the content of the table, and may need to be customized for mobile responsiveness
+
+[#1056]: https://github.com/learningequality/kolibri-design-system/pull/1056
+
+
+
 - [#1126]
   - **Description:** Fixes KSelect focus outline not being shown.
   - **Products impact:** bugfix.
