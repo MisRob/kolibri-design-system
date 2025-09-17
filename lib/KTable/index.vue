@@ -435,6 +435,9 @@
           return this.stickyColumns.includes('last') && colIndex === this.headers.length - 1;
         };
       },
+      surfacecolor() {
+        return this.$themeTokens.surface;
+      },
     },
     watch: {
       // Use a watcher on props to perform validation on props.
@@ -795,18 +798,25 @@
         return stickyIndices.includes(colIndex);
       },
       getStickyColumnStyle(rowIndex, colIndex) {
-        if (!this.colIndexIsSticky(colIndex)) {
-          return {};
+        const styles = {};
+
+        // Headers are always sticky, so they need a background color "stack" properly
+        if (rowIndex === -1) {
+          styles.backgroundColor = this.$themeTokens.surface;
         }
 
-        const styles = {
+        if (!this.colIndexIsSticky(colIndex)) {
+          return styles;
+        }
+
+        if (this.hoveredRowIndex === rowIndex || this.focusedRowIndex === rowIndex) {
           // Handle background color based on hover/focus state
           // ensure row hover state appears but that sticky columns "stack" properly
-          backgroundColor:
-            this.hoveredRowIndex === rowIndex || this.focusedRowIndex === rowIndex
-              ? this.$themePalette.grey.v_100
-              : this.$themeTokens.surface,
-        };
+          styles.backgroundColor = this.$themePalette.grey.v_100;
+        } else {
+          styles.backgroundColor = this.$themeTokens.surface;
+        }
+
         const lastColIndex = this.headers.length - 1;
 
         // Handle last column sticky
@@ -923,28 +933,58 @@
     z-index: 3;
   }
 
-  .sticky-column-shadow-right::after {
+  /*
+    A common problem when we have sticky rows/columns with shadows or transparent backgrounds is
+    that the shadows or transparency stack up when there are multiple sticky rows/columns stacked.
+    This makes that when the table is scrolled, the shadows or transparency become darker because
+    they stack up.
+    A way to solve this is to have a ::before pseudo element that has the surface color as
+    background that covers the exact same area the transparent background or shadow is applied to,
+    This way, the ::before element acts as a "base" layer that covers the back of
+    the transparent color, and don't let it stack up.
+  */
+  @mixin sticky-column-shadow-base($direction) {
+    // Create a base mixin as the same styles will be applied to both ::before and ::after
+    // pseudo elements
     position: absolute;
     top: 0;
-    right: -3px;
     bottom: 0;
     z-index: 1;
     width: 3px;
     pointer-events: none;
     content: '';
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.2), transparent);
+
+    @if $direction == right {
+      right: -3px;
+    } @else if $direction == left {
+      left: -3px;
+    }
   }
 
-  .sticky-column-shadow-left::before {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: -3px;
-    z-index: 1;
-    width: 3px;
-    pointer-events: none;
-    content: '';
-    background: linear-gradient(to left, rgba(0, 0, 0, 0.2), transparent);
+  @mixin sticky-column-shadow($direction) {
+    &::before {
+      @include sticky-column-shadow-base($direction);
+
+      // stylelint-disable-next-line
+      background: v-bind(surfacecolor);
+    }
+
+    &::after {
+      @include sticky-column-shadow-base($direction);
+      @if $direction == right {
+        background: linear-gradient(to right, rgba(0, 0, 0, 0.2), transparent);
+      } @else if $direction == left {
+        background: linear-gradient(to left, rgba(0, 0, 0, 0.2), transparent);
+      }
+    }
+  }
+
+  .sticky-column-shadow-right {
+    @include sticky-column-shadow(right);
+  }
+
+  .sticky-column-shadow-left {
+    @include sticky-column-shadow(left);
   }
 
   .sortable {
