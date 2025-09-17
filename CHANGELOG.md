@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1124]
+  - **Description:** Updates assignCoaches icon
+  - **Products impact:** Kolibri.
+  - **Addresses:** [#1084](https://github.com/learningequality/kolibri-design-system/issues/1084).
+  - **Components:** N/a.
+  - **Breaking:** No
+  - **Impacts a11y:** No
+  - **Guidance:**
+
+[#1124]: https://github.com/learningequality/kolibri-design-system/pull/1124
+
+
+
 - [#1056]
   - **Description:** This PR adds optional sticky columns for the first, firstTwo, and last columns. The default is 'first' only if nothing else is specified, and the stickiness is only apparent is the contents of the table is wider than the container
   - **Products impact:** Choose from - none (for internal updates) / bugfix / new API / updated API / removed API. If it's 'none', use "-" for all items below to indicate they are not relevant.
