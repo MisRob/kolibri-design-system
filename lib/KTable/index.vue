@@ -795,18 +795,25 @@
         return stickyIndices.includes(colIndex);
       },
       getStickyColumnStyle(rowIndex, colIndex) {
-        if (!this.colIndexIsSticky(colIndex)) {
-          return {};
+        const styles = {};
+
+        // Headers are always sticky, so they need a background color "stack" properly
+        if (rowIndex === -1) {
+          styles.backgroundColor = this.$themeTokens.surface;
         }
 
-        const styles = {
+        if (!this.colIndexIsSticky(colIndex)) {
+          return styles
+        }
+
+        if (this.hoveredRowIndex === rowIndex || this.focusedRowIndex === rowIndex) {
           // Handle background color based on hover/focus state
           // ensure row hover state appears but that sticky columns "stack" properly
-          backgroundColor:
-            this.hoveredRowIndex === rowIndex || this.focusedRowIndex === rowIndex
-              ? this.$themePalette.grey.v_100
-              : this.$themeTokens.surface,
-        };
+          styles.backgroundColor = this.$themePalette.grey.v_100;
+        } else {
+          styles.backgroundColor = this.$themeTokens.surface;
+        }
+
         const lastColIndex = this.headers.length - 1;
 
         // Handle last column sticky
