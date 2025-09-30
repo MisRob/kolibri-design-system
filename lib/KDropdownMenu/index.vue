@@ -7,6 +7,7 @@
       :zIndex="100"
       :trigger="trigger"
       :containFocus="true"
+      :hideOnClick="hideOnClick"
       :dropdownPosition="position"
       :positionX="contextMenuPosition[0]"
       :positionY="contextMenuPosition[1]"
@@ -119,6 +120,16 @@
       isContextMenu: {
         type: Boolean,
         default: false,
+      },
+      /**
+       * Private. Do not use.
+       */
+      // Disables hide on click behavior
+      // This is useful to capture multiple open dropdowns
+      // in visual regression tests
+      hideOnClick: {
+        type: Boolean,
+        default: true,
       },
     },
     data() {

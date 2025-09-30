@@ -7,7 +7,7 @@
     <div
       :id="id"
       class="example-content"
-      :style="{ width: width }"
+      :style="{ width: width, height: height }"
     >
       <component
         :is="loadedComponent"
@@ -59,6 +59,13 @@
        * The width of the card container.
        */
       width: {
+        type: String,
+        default: null,
+      },
+      /**
+       * The height of the card container.
+       */
+      height: {
         type: String,
         default: null,
       },
