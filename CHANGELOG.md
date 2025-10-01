@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1134]
+  - **Description:** Bump jest from 30.0.0 to 30.2.0
+  - **Products impact:** Dev Dependency upgrade
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#1134]: https://github.com/learningequality/kolibri-design-system/pull/1134
+
+
+
 - [#1131]
   - **Description:** Bumps KDS version to 5.3.0.
   - **Products impact:** .
