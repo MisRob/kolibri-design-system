@@ -71,6 +71,10 @@
         type: Boolean,
         default: true,
       },
+      hideOnClick: {
+        type: Boolean,
+        default: true,
+      },
       trigger: {
         validator(value) {
           /* eslint-disable-next-line import/no-named-as-default-member */
@@ -137,7 +141,7 @@
           delay: [0, 0],
           distance: 0,
           duration: this.animation === 'none' ? 0 : [250, 200],
-          hideOnClick: true,
+          hideOnClick: this.hideOnClick,
           ignoreAttributes: true,
           interactive: true,
           lazy: true,
@@ -263,7 +267,9 @@
       },
 
       onOpen() {
-        this.addCloseEventListeners();
+        if (this.hideOnClick) {
+          this.addCloseEventListeners();
+        }
 
         classlist.add(this.triggerEl, 'has-dropdown-open');
 
@@ -358,7 +364,6 @@
   .ui-popover {
     &.is-raised {
       @extend %dropshadow-2dp;
-    
     }
 
     .ui-menu {
