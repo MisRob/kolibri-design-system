@@ -7,6 +7,30 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1133]
+  - **Description:** Migrates KDropdownMenu Visual tests to be in one file
+  - **Products impact:** none.
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/1089.
+  - **Components:** -.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -.
+
+[#1133]: https://github.com/learningequality/kolibri-design-system/pull/1133
+
+- [#1133]
+  - **Description:** Adds a private `hideOnClick` prop to `KDropdownMenu` to prevent menus from closing due to external clicks.
+  - **Products impact:** none.
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/1089.
+  - **Components:** -.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -.
+
+[#1133]: https://github.com/learningequality/kolibri-design-system/pull/1133
+
+
+
 - [#1134]
   - **Description:** Bump jest from 30.0.0 to 30.2.0
   - **Products impact:** Dev Dependency upgrade
