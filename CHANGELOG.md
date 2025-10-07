@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1132]
+  - **Description:** Bump tar-fs from 3.0.9 to 3.1.1
+  - **Products impact:** Dev Dependency upgrade
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#1132]: https://github.com/learningequality/kolibri-design-system/pull/1132
+
+
+
 - [#1128]
   - **Description:** Bump ad-m/github-push-action from 0.8.0 to 1.0.0
   - **Products impact:** Dev Dependency upgrade
