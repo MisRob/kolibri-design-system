@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1128]
+  - **Description:** Bump ad-m/github-push-action from 0.8.0 to 1.0.0
+  - **Products impact:** Dev Dependency upgrade
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#1128]: https://github.com/learningequality/kolibri-design-system/pull/1128
+
+
+
 - [#1133]
   - **Description:** Migrates KDropdownMenu Visual tests to be in one file
   - **Products impact:** none.
