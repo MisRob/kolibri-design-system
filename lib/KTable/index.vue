@@ -3,151 +3,148 @@
   <div
     ref="tableWrapper"
     class="k-table-wrapper"
+    :style="wrapperInlineStyle"
   >
-    <template v-if="dataLoading">
-      <p><KCircularLoader /></p>
-    </template>
-    <template v-else>
-      <table
-        v-if="!isTableEmpty"
-        ref="tableElement"
-        class="k-table"
-        role="grid"
+    <div
+      v-show="loaderVisible"
+      class="k-table-loader"
+    >
+      <KCircularLoader />
+    </div>
+    <table
+      v-show="!loaderVisible && !isTableEmpty"
+      ref="tableElement"
+      class="k-table"
+      role="grid"
+    >
+      <caption
+        v-if="caption"
+        class="visuallyhidden"
       >
-        <caption
-          v-if="caption"
-          class="visuallyhidden"
-        >
-          {{
-            caption
-          }}
-        </caption>
-        <thead>
-          <tr ref="stickyHeader">
-            <th
-              v-for="(header, index) in headers"
-              :ref="'header-' + index"
-              :key="index"
-              tabindex="0"
-              :aria-sort="isColumnSortable(index) ? getAriaSort(index) : null"
-              :class="{
-                [$computedClass(coreOutlineFocus)]: true,
-                sortable: isColumnSortable(index),
-                'sticky-header': true,
-                'sticky-column': colIndexIsSticky(index),
-                'sticky-column-shadow-right':
-                  isTableScrollable && isRightmostLeftStickyColumn(index),
-                'sticky-column-shadow-left': isTableScrollable && isLastStickyColumn(index),
-              }"
-              :style="[
-                getHeaderStyle(header),
-                getStickyColumnStyle(-1, index), // Use -1 for header row
-                isColumnSortActive(index)
-                  ? { color: $themeBrand.primary.v_500 }
-                  : { color: $themePalette.grey.v_800 },
-                isColumnFocused(index) ? { backgroundColor: $themePalette.grey.v_100 } : {},
-                { textAlign: getTextAlign(header.dataType) },
-                { borderBottom: `1px solid ${$themeTokens.fineLine}` },
-              ]"
-              role="columnheader"
-              data-focus="true"
-              :aria-colindex="index + 1"
-              @click="sortable ? handleSort(index) : null"
-              @keydown="handleKeydown($event, -1, index)"
-            >
-              <!--@slot Scoped slot for customizing the content of each header cell.
-               Provides a header object `header` and its column index `colIndex`.-->
-              <slot
-                name="header"
-                :header="header"
-                :colIndex="index"
-              >
-                {{ header.label }}
-              </slot>
-              <span
-                v-if="isColumnSortable(index)"
-                class="sort-icon"
-              >
-                <span v-if="isColumnSortActive(index) && sortOrder === SORT_ORDER_ASC"><KIcon
-                  icon="dropup"
-                  :color="
-                    isColumnSortActive(index)
-                      ? $themeBrand.primary.v_600
-                      : $themePalette.grey.v_800
-                  "
-                /></span>
-                <span v-else-if="isColumnSortActive(index) && sortOrder === SORT_ORDER_DESC"><KIcon
-                  icon="dropdown"
-                  :color="
-                    isColumnSortActive(index)
-                      ? $themeBrand.primary.v_600
-                      : $themePalette.grey.v_800
-                  "
-                /></span>
-                <span v-else><KIcon
-                  icon="sortColumn"
-                  :color="$themePalette.grey.v_800"
-                /></span>
-              </span>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            v-for="(row, rowIndex) in finalRows"
-            :key="rowIndex"
-            :style="getRowStyle(rowIndex)"
-            @mouseover="handleRowMouseOver(rowIndex)"
-            @mouseleave="handleRowMouseLeave"
+        {{
+          caption
+        }}
+      </caption>
+      <thead>
+        <tr ref="stickyHeader">
+          <th
+            v-for="(header, index) in headers"
+            :ref="'header-' + index"
+            :key="index"
+            tabindex="0"
+            :aria-sort="isColumnSortable(index) ? getAriaSort(index) : null"
+            :class="{
+              [$computedClass(coreOutlineFocus)]: true,
+              sortable: isColumnSortable(index),
+              'sticky-header': true,
+              'sticky-column': colIndexIsSticky(index),
+              'sticky-column-shadow-right': isTableScrollable && isRightmostLeftStickyColumn(index),
+              'sticky-column-shadow-left': isTableScrollable && isLastStickyColumn(index),
+            }"
+            :style="[
+              getHeaderStyle(header),
+              getStickyColumnStyle(-1, index), // Use -1 for header row
+              isColumnSortActive(index)
+                ? { color: $themeBrand.primary.v_500 }
+                : { color: $themePalette.grey.v_800 },
+              isColumnFocused(index) ? { backgroundColor: $themePalette.grey.v_100 } : {},
+              { textAlign: getTextAlign(header.dataType) },
+              { borderBottom: `1px solid ${$themeTokens.fineLine}` },
+            ]"
+            role="columnheader"
+            data-focus="true"
+            :aria-colindex="index + 1"
+            @click="sortable ? handleSort(index) : null"
+            @keydown="handleKeydown($event, -1, index)"
           >
-            <KTableGridItem
-              v-for="(col, colIndex) in row"
-              :ref="'cell-' + rowIndex + '-' + colIndex"
-              :key="colIndex"
-              :content="col"
-              :dataType="headers[colIndex].dataType"
-              :minWidth="headers[colIndex].minWidth"
-              :width="headers[colIndex].width"
-              :rowIndex="rowIndex"
-              :colIndex="colIndex"
-              :textAlign="getTextAlign(headers[colIndex].dataType)"
-              :class="{
-                'sticky-column': colIndexIsSticky(colIndex),
-                'sticky-column-shadow-right':
-                  isTableScrollable && isRightmostLeftStickyColumn(colIndex),
-                'sticky-column-shadow-left': isTableScrollable && isLastStickyColumn(colIndex),
-              }"
-              :style="[getCellStyle(rowIndex, colIndex), getStickyColumnStyle(rowIndex, colIndex)]"
-              data-focus="true"
-              role="gridcell"
-              :aria-colindex="colIndex + 1"
-              @keydown="handleKeydown($event, rowIndex, colIndex)"
+            <!--@slot Scoped slot for customizing the content of each header cell.
+               Provides a header object `header` and its column index `colIndex`.-->
+            <slot
+              name="header"
+              :header="header"
+              :colIndex="index"
             >
-              <template #default="slotProps">
-                <!--@slot Scoped slot for customizing the content of each data cell.
+              {{ header.label }}
+            </slot>
+            <span
+              v-if="isColumnSortable(index)"
+              class="sort-icon"
+            >
+              <span v-if="isColumnSortActive(index) && sortOrder === SORT_ORDER_ASC"><KIcon
+                icon="dropup"
+                :color="
+                  isColumnSortActive(index) ? $themeBrand.primary.v_600 : $themePalette.grey.v_800
+                "
+              /></span>
+              <span v-else-if="isColumnSortActive(index) && sortOrder === SORT_ORDER_DESC"><KIcon
+                icon="dropdown"
+                :color="
+                  isColumnSortActive(index) ? $themeBrand.primary.v_600 : $themePalette.grey.v_800
+                "
+              /></span>
+              <span v-else><KIcon
+                icon="sortColumn"
+                :color="$themePalette.grey.v_800"
+              /></span>
+            </span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          v-for="(row, rowIndex) in finalRows"
+          :key="rowIndex"
+          :style="getRowStyle(rowIndex)"
+          @mouseover="handleRowMouseOver(rowIndex)"
+          @mouseleave="handleRowMouseLeave"
+        >
+          <KTableGridItem
+            v-for="(col, colIndex) in row"
+            :ref="'cell-' + rowIndex + '-' + colIndex"
+            :key="colIndex"
+            :content="col"
+            :dataType="headers[colIndex].dataType"
+            :minWidth="headers[colIndex].minWidth"
+            :width="headers[colIndex].width"
+            :rowIndex="rowIndex"
+            :colIndex="colIndex"
+            :textAlign="getTextAlign(headers[colIndex].dataType)"
+            :class="{
+              'sticky-column': colIndexIsSticky(colIndex),
+              'sticky-column-shadow-right':
+                isTableScrollable && isRightmostLeftStickyColumn(colIndex),
+              'sticky-column-shadow-left': isTableScrollable && isLastStickyColumn(colIndex),
+            }"
+            :style="[getCellStyle(rowIndex, colIndex), getStickyColumnStyle(rowIndex, colIndex)]"
+            data-focus="true"
+            role="gridcell"
+            :aria-colindex="colIndex + 1"
+            @keydown="handleKeydown($event, rowIndex, colIndex)"
+          >
+            <template #default="slotProps">
+              <!--@slot Scoped slot for customizing the content of each data cell.
                  Provides the content of a data cell `content`, its row index `rowIndex`,
                  its column index `colIndex`, and the corresponding whole row object `row`.-->
-                <slot
-                  name="cell"
-                  :content="slotProps.content"
-                  :rowIndex="rowIndex"
-                  :colIndex="colIndex"
-                  :row="row"
-                >
-                  {{ slotProps.content }}
-                </slot>
-              </template>
-            </KTableGridItem>
-          </tr>
-        </tbody>
-      </table>
-      <div
-        v-else
-        class="empty-message"
-      >
-        {{ emptyMessage }}
-      </div>
-    </template>
+              <slot
+                name="cell"
+                :content="slotProps.content"
+                :rowIndex="rowIndex"
+                :colIndex="colIndex"
+                :row="row"
+              >
+                {{ slotProps.content }}
+              </slot>
+            </template>
+          </KTableGridItem>
+        </tr>
+      </tbody>
+    </table>
+    <div
+      v-show="!loaderVisible && isTableEmpty"
+      class="empty-message"
+    >
+      {{ emptyMessage }}
+    </div>
   </div>
 
 </template>
@@ -156,8 +153,9 @@
 <script>
 
   import debounce from 'lodash/debounce';
-  import { onMounted, ref, computed, watch, nextTick } from 'vue';
+  import { onMounted, onBeforeUnmount, ref, computed, watch, nextTick } from 'vue';
   import useKResponsiveElement from '../composables/useKResponsiveElement';
+  import useKShow from '../composables/useKShow';
   import useSorting, {
     SORT_ORDER_ASC,
     SORT_ORDER_DESC,
@@ -177,8 +175,13 @@
       const disableBuiltinSorting = ref(props.disableBuiltinSorting);
       const tableWrapper = ref(null);
       const tableElement = ref(null);
+      const MIN_HEIGHT_PX = 120;
+      const MIN_VISIBLE_MS = 300;
+      const lastStableHeight = ref(0);
+      let resizeObserver = null;
 
       const { elementWidth } = useKResponsiveElement();
+      const { show } = useKShow();
 
       const defaultSort = ref({
         index: props.headers.findIndex(h => h.columnId === props.defaultSort.columnId),
@@ -194,6 +197,14 @@
       } = useSorting(headers, rows, defaultSort, disableBuiltinSorting);
 
       const isTableEmpty = computed(() => sortedRows.value.length === 0);
+
+      const loaderVisible = computed(() => show('KTableLoader', props.dataLoading, MIN_VISIBLE_MS));
+
+      const wrapperInlineStyle = computed(() => {
+        if (!loaderVisible.value) return {};
+        const height = Math.max(lastStableHeight.value, MIN_HEIGHT_PX);
+        return { minHeight: `${height}px` };
+      });
 
       const isTableScrollable = ref(false);
 
@@ -240,7 +251,22 @@
       onMounted(() => {
         nextTick(() => {
           debouncedCheckScrollable();
+          // Initialize ResizeObserver if browser supports it
+          if (typeof window !== 'undefined' && window.ResizeObserver) {
+            resizeObserver = new ResizeObserver(entries => {
+              if (!loaderVisible.value && entries[0]) {
+                lastStableHeight.value = tableWrapper.value.offsetHeight || 0;
+              }
+            });
+            if (tableWrapper.value) resizeObserver.observe(tableWrapper.value);
+          }
         });
+      });
+
+      onBeforeUnmount(() => {
+        if (resizeObserver) {
+          resizeObserver.disconnect();
+        }
       });
 
       return {
@@ -257,6 +283,8 @@
         isTableScrollable,
         tableWrapper,
         tableElement,
+        loaderVisible,
+        wrapperInlineStyle,
       };
     },
     props: {
@@ -994,6 +1022,14 @@
   .empty-message {
     margin-top: 16px;
     margin-bottom: 16px;
+  }
+
+  .k-table-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0;
+    transform: translate(-50%, -50%);
   }
 
 </style>
