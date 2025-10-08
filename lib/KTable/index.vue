@@ -140,7 +140,7 @@
       </tbody>
     </table>
     <div
-      v-show="!loaderVisible && isTableEmpty"
+      v-show="!(loaderVisible || delayActive) && isTableEmpty"
       class="empty-message"
     >
       {{ emptyMessage }}
@@ -191,7 +191,7 @@
         getAriaSort,
       } = useSorting(headers, rows, defaultSort, disableBuiltinSorting);
 
-      const { loaderVisible, wrapperInlineStyle } = useLoading(props, {
+      const { delayActive, loaderVisible, wrapperInlineStyle } = useLoading(props, {
         wrapperRef: tableWrapper,
         loadingDelay: 300, // delay showing loader by 300ms
         minVisibleMs: 350, // keep loader visible for at least 350ms
@@ -262,6 +262,7 @@
         isTableScrollable,
         tableWrapper,
         tableElement,
+        delayActive,
         loaderVisible,
         wrapperInlineStyle,
       };
