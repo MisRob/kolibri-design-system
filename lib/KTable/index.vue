@@ -252,16 +252,16 @@
         nextTick(() => {
           debouncedCheckScrollable();
           // Initialize ResizeObserver if browser supports it
-            if (typeof window !== 'undefined' && window.ResizeObserver) {
-              resizeObserver = new ResizeObserver(entries => {
-                requestAnimationFrame(() => {
-                  if (!loaderVisible.value && entries[0]) {
-                    lastStableHeight.value = tableWrapper.value.offsetHeight || 0;
-                  }
-                });
+          if (typeof window !== 'undefined' && window.ResizeObserver) {
+            resizeObserver = new ResizeObserver(entries => {
+              requestAnimationFrame(() => {
+                if (!loaderVisible.value && entries[0]) {
+                  lastStableHeight.value = tableWrapper.value.offsetHeight || 0;
+                }
               });
-              if (tableWrapper.value) resizeObserver.observe(tableWrapper.value); 
-            }
+            });
+            if (tableWrapper.value) resizeObserver.observe(tableWrapper.value);
+          }
         });
       });
 
