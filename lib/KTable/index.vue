@@ -155,7 +155,6 @@
   import debounce from 'lodash/debounce';
   import { onMounted, onBeforeUnmount, ref, computed, watch, nextTick } from 'vue';
   import useKResponsiveElement from '../composables/useKResponsiveElement';
-  import useKShow from '../composables/useKShow';
   import useSorting, {
     SORT_ORDER_ASC,
     SORT_ORDER_DESC,
@@ -175,13 +174,21 @@
       const disableBuiltinSorting = ref(props.disableBuiltinSorting);
       const tableWrapper = ref(null);
       const tableElement = ref(null);
+
+      const LOADING_DELAY = 300;
+      const MIN_LOADING_TIME = 350;
+
+      const loaderVisible = ref(false); // Determines whether to display table loader
+      const delayActive = ref(false); // True during the delay window
+      let delayTimer = null; // setTimeout id for delay
+      let holdTimer = null; // setTimeout id for min visible time
+      let loadingStartTime = null; // Timestamp when loader actually becames visible
+
       const MIN_HEIGHT_PX = 120;
-      const MIN_VISIBLE_MS = 175;
       const lastStableHeight = ref(0);
       let resizeObserver = null;
 
       const { elementWidth } = useKResponsiveElement();
-      const { show } = useKShow();
 
       const defaultSort = ref({
         index: props.headers.findIndex(h => h.columnId === props.defaultSort.columnId),
@@ -198,13 +205,13 @@
 
       const isTableEmpty = computed(() => sortedRows.value.length === 0);
 
-      const loaderVisible = computed(() => show('KTableLoader', props.dataLoading, MIN_VISIBLE_MS));
-
       const wrapperInlineStyle = computed(() => {
         if (!loaderVisible.value) return {};
         const height = Math.max(lastStableHeight.value, MIN_HEIGHT_PX);
         return { minHeight: `${height}px` };
       });
+
+      const canRecordHeight = () => !loaderVisible.value && !delayActive.value;
 
       const isTableScrollable = ref(false);
 
@@ -229,6 +236,59 @@
       watch(elementWidth, () => {
         debouncedCheckScrollable();
       });
+
+      watch(
+        () => props.dataLoading,
+        isLoading => {
+          if (delayTimer) {
+            clearTimeout(delayTimer);
+            delayTimer = null;
+          }
+          if (holdTimer) {
+            clearTimeout(holdTimer);
+            holdTimer = null;
+          }
+          if (isLoading) {
+            // Start delay window, spinner isn't displayed yet
+            delayActive.value = true;
+            loadingStartTime = null;
+            delayTimer = setTimeout(() => {
+              // Delay elapsed and still loading, show spinner
+              if (props.dataLoading) {
+                loaderVisible.value = true;
+                delayActive.value = false;
+                loadingStartTime = Date.now();
+              } else {
+                // Loading ended during delay, spinner will never show
+                delayActive.value = false;
+                loaderVisible.value = false;
+              }
+              delayTimer = null;
+            }, LOADING_DELAY);
+          } else {
+            // Loading has finished
+            delayActive.value = false;
+
+            if (loaderVisible.value && loadingStartTime) {
+              // Spinner is visible: ensure min visible time
+              const elapsedTime = Date.now() - loadingStartTime;
+              const remaining = Math.max(0, MIN_LOADING_TIME - elapsedTime);
+
+              holdTimer = setTimeout(() => {
+                loaderVisible.value = false;
+                loadingStartTime = null;
+
+                holdTimer = null;
+              }, remaining);
+            } else {
+              // Spinner never became visible
+              loaderVisible.value = false;
+              loadingStartTime = null;
+            }
+          }
+        },
+        { immediate: true },
+      );
 
       const handleSort = index => {
         if (headers.value[index].dataType === DATA_TYPE_OTHERS || !props.sortable) {
@@ -255,7 +315,7 @@
           if (typeof window !== 'undefined' && window.ResizeObserver) {
             resizeObserver = new ResizeObserver(entries => {
               requestAnimationFrame(() => {
-                if (!loaderVisible.value && entries[0]) {
+                if (canRecordHeight() && entries[0]) {
                   lastStableHeight.value = tableWrapper.value.offsetHeight || 0;
                 }
               });
@@ -266,9 +326,9 @@
       });
 
       onBeforeUnmount(() => {
-        if (resizeObserver) {
-          resizeObserver.disconnect();
-        }
+        if (resizeObserver) resizeObserver.disconnect();
+        if (delayTimer) clearTimeout(delayTimer);
+        if (holdTimer) clearTimeout(holdTimer);
       });
 
       return {
