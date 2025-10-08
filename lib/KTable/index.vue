@@ -153,7 +153,7 @@
 <script>
 
   import debounce from 'lodash/debounce';
-  import { onMounted, onBeforeUnmount, ref, computed, watch, nextTick } from 'vue';
+  import { onMounted, ref, computed, watch, nextTick } from 'vue';
   import useKResponsiveElement from '../composables/useKResponsiveElement';
   import useSorting, {
     SORT_ORDER_ASC,
@@ -162,6 +162,7 @@
     DATA_TYPE_NUMERIC,
   } from './useSorting';
   import KTableGridItem from './KTableGridItem.vue';
+  import useLoading from './useLoading';
 
   export default {
     name: 'KTable',
@@ -174,19 +175,6 @@
       const disableBuiltinSorting = ref(props.disableBuiltinSorting);
       const tableWrapper = ref(null);
       const tableElement = ref(null);
-
-      const LOADING_DELAY = 300;
-      const MIN_LOADING_TIME = 350;
-
-      const loaderVisible = ref(false); // Determines whether to display table loader
-      const delayActive = ref(false); // True during the delay window
-      let delayTimer = null; // setTimeout id for delay
-      let holdTimer = null; // setTimeout id for min visible time
-      let loadingStartTime = null; // Timestamp when loader actually becames visible
-
-      const MIN_HEIGHT_PX = 120;
-      const lastStableHeight = ref(0);
-      let resizeObserver = null;
 
       const { elementWidth } = useKResponsiveElement();
 
@@ -203,15 +191,14 @@
         getAriaSort,
       } = useSorting(headers, rows, defaultSort, disableBuiltinSorting);
 
-      const isTableEmpty = computed(() => sortedRows.value.length === 0);
-
-      const wrapperInlineStyle = computed(() => {
-        if (!loaderVisible.value) return {};
-        const height = Math.max(lastStableHeight.value, MIN_HEIGHT_PX);
-        return { minHeight: `${height}px` };
+      const { loaderVisible, wrapperInlineStyle } = useLoading(props, {
+        wrapperRef: tableWrapper,
+        loadingDelay: 300, // delay showing loader by 300ms
+        minVisibleMs: 350, // keep loader visible for at least 350ms
+        minHeightPx: 120,
       });
 
-      const canRecordHeight = () => !loaderVisible.value && !delayActive.value;
+      const isTableEmpty = computed(() => sortedRows.value.length === 0);
 
       const isTableScrollable = ref(false);
 
@@ -237,59 +224,6 @@
         debouncedCheckScrollable();
       });
 
-      watch(
-        () => props.dataLoading,
-        isLoading => {
-          if (delayTimer) {
-            clearTimeout(delayTimer);
-            delayTimer = null;
-          }
-          if (holdTimer) {
-            clearTimeout(holdTimer);
-            holdTimer = null;
-          }
-          if (isLoading) {
-            // Start delay window, spinner isn't displayed yet
-            delayActive.value = true;
-            loadingStartTime = null;
-            delayTimer = setTimeout(() => {
-              // Delay elapsed and still loading, show spinner
-              if (props.dataLoading) {
-                loaderVisible.value = true;
-                delayActive.value = false;
-                loadingStartTime = Date.now();
-              } else {
-                // Loading ended during delay, spinner will never show
-                delayActive.value = false;
-                loaderVisible.value = false;
-              }
-              delayTimer = null;
-            }, LOADING_DELAY);
-          } else {
-            // Loading has finished
-            delayActive.value = false;
-
-            if (loaderVisible.value && loadingStartTime) {
-              // Spinner is visible: ensure min visible time
-              const elapsedTime = Date.now() - loadingStartTime;
-              const remaining = Math.max(0, MIN_LOADING_TIME - elapsedTime);
-
-              holdTimer = setTimeout(() => {
-                loaderVisible.value = false;
-                loadingStartTime = null;
-
-                holdTimer = null;
-              }, remaining);
-            } else {
-              // Spinner never became visible
-              loaderVisible.value = false;
-              loadingStartTime = null;
-            }
-          }
-        },
-        { immediate: true },
-      );
-
       const handleSort = index => {
         if (headers.value[index].dataType === DATA_TYPE_OTHERS || !props.sortable) {
           return;
@@ -311,24 +245,7 @@
       onMounted(() => {
         nextTick(() => {
           debouncedCheckScrollable();
-          // Initialize ResizeObserver if browser supports it
-          if (typeof window !== 'undefined' && window.ResizeObserver) {
-            resizeObserver = new ResizeObserver(entries => {
-              requestAnimationFrame(() => {
-                if (canRecordHeight() && entries[0]) {
-                  lastStableHeight.value = tableWrapper.value.offsetHeight || 0;
-                }
-              });
-            });
-            if (tableWrapper.value) resizeObserver.observe(tableWrapper.value);
-          }
         });
-      });
-
-      onBeforeUnmount(() => {
-        if (resizeObserver) resizeObserver.disconnect();
-        if (delayTimer) clearTimeout(delayTimer);
-        if (holdTimer) clearTimeout(holdTimer);
       });
 
       return {
