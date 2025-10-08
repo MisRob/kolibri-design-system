@@ -176,7 +176,7 @@
       const tableWrapper = ref(null);
       const tableElement = ref(null);
       const MIN_HEIGHT_PX = 120;
-      const MIN_VISIBLE_MS = 300;
+      const MIN_VISIBLE_MS = 175;
       const lastStableHeight = ref(0);
       let resizeObserver = null;
 
@@ -252,14 +252,16 @@
         nextTick(() => {
           debouncedCheckScrollable();
           // Initialize ResizeObserver if browser supports it
-          if (typeof window !== 'undefined' && window.ResizeObserver) {
-            resizeObserver = new ResizeObserver(entries => {
-              if (!loaderVisible.value && entries[0]) {
-                lastStableHeight.value = tableWrapper.value.offsetHeight || 0;
-              }
-            });
-            if (tableWrapper.value) resizeObserver.observe(tableWrapper.value);
-          }
+            if (typeof window !== 'undefined' && window.ResizeObserver) {
+              resizeObserver = new ResizeObserver(entries => {
+                requestAnimationFrame(() => {
+                  if (!loaderVisible.value && entries[0]) {
+                    lastStableHeight.value = tableWrapper.value.offsetHeight || 0;
+                  }
+                });
+              });
+              if (tableWrapper.value) resizeObserver.observe(tableWrapper.value); 
+            }
         });
       });
 
