@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1125]
+  - **Description:** Fix KExternalLink's unexpected margin
+  - **Products impact:** bugfix
+  - **Addresses:** #1055
+  - **Components:** KExternalLink
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -
+
+[#1125]: https://github.com/learningequality/kolibri-design-system/pull/1125
+
+
+
 - [#1132]
   - **Description:** Bump tar-fs from 3.0.9 to 3.1.1
   - **Products impact:** Dev Dependency upgrade
