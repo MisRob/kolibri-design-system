@@ -12,7 +12,7 @@
       <KCircularLoader />
     </div>
     <table
-      v-show="!loaderVisible && !isTableEmpty"
+      v-show="canShowTable && !isTableEmpty"
       ref="tableElement"
       class="k-table"
       role="grid"
@@ -140,7 +140,7 @@
       </tbody>
     </table>
     <div
-      v-show="!(loaderVisible || delayActive) && isTableEmpty"
+      v-show="canShowTable && isTableEmpty"
       class="empty-message"
     >
       {{ emptyMessage }}
@@ -197,6 +197,8 @@
         minVisibleMs: 350, // keep loader visible for at least 350ms
         minHeightPx: 120,
       });
+
+      const canShowTable = computed(() => !loaderVisible.value && !delayActive.value);
 
       const isTableEmpty = computed(() => sortedRows.value.length === 0);
 
@@ -262,7 +264,7 @@
         isTableScrollable,
         tableWrapper,
         tableElement,
-        delayActive,
+        canShowTable,
         loaderVisible,
         wrapperInlineStyle,
       };
