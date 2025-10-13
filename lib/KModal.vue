@@ -27,6 +27,7 @@
               id="modal-title"
               ref="title"
               class="title"
+              :style="titleStyles"
             >
               {{ title }}
               <!-- Accessible error reporting per @radina -->
@@ -51,6 +52,7 @@
                 class="content"
                 :style="[
                   contentSectionMaxHeight,
+                  contentStyles,
                   scrollShadow
                     ? {
                       borderTop: `1px solid ${$themeTokens.fineLine}`,
@@ -241,6 +243,16 @@
       wrapper() {
         return this.appendToOverlay ? 'KOverlay' : 'div';
       },
+      titleStyles() {
+        return {
+          color: this.$themeTokens.text,
+        };
+      },
+      contentStyles() {
+        return {
+          color: this.$themeTokens.text,
+        };
+      },
     },
     created() {
       if (this.$props.cancelText && !this.$listeners.cancel) {
@@ -426,11 +438,15 @@
     padding: 24px;
     margin: 0;
     font-size: 24px;
+    font-weight: bold;
+    text-align: start;
   }
 
   .content {
     padding: 0 24px;
     overflow-x: hidden;
+    text-align: start;
+    white-space: normal;
   }
 
   .scroll-shadow {
