@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1142]
+  - **Description:** Bump actions/setup-node from 5 to 6 in the github group
+  - **Products impact:** Dev Dependency upgrade
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#1142]: https://github.com/learningequality/kolibri-design-system/pull/1142
+
+
+
 - [#1125]
   - **Description:** Fix KExternalLink's unexpected margin
   - **Products impact:** bugfix
