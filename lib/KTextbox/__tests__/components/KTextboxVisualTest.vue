@@ -67,6 +67,24 @@
       width="400px"
       loadExample="KTextbox/InvalidText.vue"
     />
+
+    <VisualTestExample
+      title="Outer before and inner afterslots"
+      width="400px"
+      loadExample="KTextbox/OuterBeforeInnerAfter.vue"
+    />
+
+    <VisualTestExample
+      title="Inner before and outer after slots"
+      width="400px"
+      loadExample="KTextbox/InnerBeforeOuterAfter.vue"
+    />
+
+    <VisualTestExample
+      title="Combination of several features"
+      width="400px"
+      loadExample="KTextbox/Combined.vue"
+    />
   </VisualTestLayout>
 
 </template>

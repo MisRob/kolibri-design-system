@@ -28,6 +28,7 @@
           { text: 'Text area', href: '#textarea' },
           { text: 'Clearable', href: '#clearable' },
           { text: 'Validation text', href: '#invalidtext' },
+          { text: 'Prepend and append content', href: '#prepend-append' },
         ]"
       />
 
@@ -166,6 +167,27 @@
       <DocsExample
         loadExample="KTextbox/InvalidText.vue"
         exampleId="ktextbox-invalidtext"
+        block
+      />
+
+      <h3>
+        Prepend and append content
+        <DocsAnchorTarget anchor="#prepend-append" />
+      </h3>
+      <p>
+        Use the <code>outerBefore</code>, <code>innerBefore</code>, <code>innerAfter</code>, and
+        <code>outerAfter</code> slots to prepend or append content inside or outside the input area.
+      </p>
+
+      <DocsExample
+        loadExample="KTextbox/OuterBeforeInnerAfter.vue"
+        exampleId="ktextbox-outer-before-inner-after"
+        block
+      />
+
+      <DocsExample
+        loadExample="KTextbox/InnerBeforeOuterAfter.vue"
+        exampleId="ktextbox-inner-before-outer-after"
         block
       />
     </DocsPageSection>

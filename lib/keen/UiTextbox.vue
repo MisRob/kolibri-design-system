@@ -8,22 +8,30 @@
    want to simply consolidate it with our component and remove any unused
    functionality.
   -->
-  <div class="ui-textbox" :class="classes">
-
-    <div v-if="icon || $slots.icon" class="ui-textbox-icon-wrapper">
-      <slot name="icon" >
-        <UiIcon 
-          :icon="icon" 
-          :iconStyle="{ color: $themePalette.grey.v_700 }"
-        />
-      </slot>
+  <div
+    class="ui-textbox" 
+    :class="classes"
+  >
+    <div
+      v-if="$slots.outerBefore"
+      class="outer-before"  
+    >
+      <slot name="outerBefore"></slot>
     </div>
 
     <div class="ui-textbox-content">
-      <label class="ui-textbox-label"
-             :style="labelBorderStyles"
+      <label
+        class="ui-textbox-label"
+        :style="labelBorderStyles"
       >
         <div :class="['ui-input-content', inputContentClasses]">
+          <div
+            v-if="$slots.innerBefore"
+            class="inner-before"
+          >
+            <slot name="innerBefore"></slot>
+          </div>
+          
           <input
             v-if="!multiLine"
             ref="input"
@@ -40,7 +48,8 @@
             :name="name"
             :number="type === 'number' ? true : null"
             :placeholder="hasFloatingLabel ? null : placeholder"
-            :readonly="readonly" :required="required"
+            :readonly="readonly" 
+            :required="required"
             :step="stepValue"
             :tabindex="tabindex"
             :type="type"
@@ -54,7 +63,8 @@
           >
 
           <textarea
-            v-else ref="textarea"
+            v-else 
+            ref="textarea"
             v-autofocus="autofocus"
             :value="value"
             class="ui-textbox-textarea"
@@ -74,8 +84,17 @@
             @change="onChange"
             @focus="onFocus"
             @input="updateValue($event.target.value)"
-            @keydown.enter="onKeydownEnter" @keydown="onKeydown"
+            @keydown.enter="onKeydownEnter" 
+            @keydown="onKeydown"
           ></textarea>
+
+          <div
+            v-if="$slots.innerAfter"
+            class="inner-after"
+          >
+            <slot name="innerAfter"></slot>
+          </div>
+
           <KIconButton
             v-if="showClearButton"
             icon="clear"
@@ -93,7 +112,7 @@
           :class="labelClasses"
           :style="labelStyles"
         >
-          <slot>{{ label }}</slot>
+          <slot> {{ label }}</slot>
         </div>
       </label>
 
@@ -108,7 +127,11 @@
           </slot>
         </div>
 
-        <div v-else-if="showHelp" class="ui-textbox-feedback-text">
+        <div 
+          v-else-if="showHelp" 
+          class="ui-textbox-feedback-text"
+        >
+
           <slot name="help">
             {{ help }}
           </slot>
@@ -116,15 +139,29 @@
 
         <!-- Placeholder to keep the text height spacing in place even when
              not showing any errors -->
-        <div v-else class="ui-textbox-feedback-text">
+        <div 
+          v-else 
+          class="ui-textbox-feedback-text"
+        >
           &nbsp;
         </div>
 
-        <div v-if="maxlength" class="ui-textbox-counter">
+        <div
+          v-if="maxlength"
+          class="ui-textbox-counter"
+        >
           {{ valueLength + '/' + maxlength }}
         </div>
       </div>
     </div>
+
+    <div
+      v-if="$slots.outerAfter"
+      class="outer-after"  
+    >
+      <slot name="outerAfter"></slot>
+    </div>
+
   </div>
 
 </template>
@@ -133,8 +170,6 @@
 <script>
 
   import autosize from 'autosize';
-  import UiIcon from './UiIcon.vue';
-  import KIconButton from '../buttons-and-links/KIconButton.vue';
 
   const autofocus = {
     inserted(el, { value }) {
@@ -146,10 +181,6 @@
 
   export default {
     name: 'UiTextbox',
-
-    components: {
-      UiIcon,
-    },
 
     directives: {
       autofocus,
@@ -166,11 +197,6 @@
       clearAriaLabel: { 
         type: String,
         default: 'Clear',
-      },
-      icon: String,
-      iconPosition: {
-        type: String,
-        default: 'left', // 'left' or 'right'
       },
       label: String,
       floatingLabel: {
@@ -259,7 +285,6 @@
 
       classes() {
         return [
-          `ui-textbox--icon-position-${this.iconPosition}`,
           { 'is-active': this.isActive },
           { 'is-invalid': this.invalid },
           { 'is-touched': this.isTouched },
@@ -269,6 +294,7 @@
           { 'is-readonly': this.readonly},
           { 'has-label': this.hasLabel },
           { 'has-floating-label': this.hasFloatingLabel },
+          { 'has-inner-slot': this.hasInnerSlot },
         ];
       },
 
@@ -336,6 +362,13 @@
 
       showHelp() {
         return Boolean(this.help) || Boolean(this.$slots.help);
+      },
+
+      hasInnerSlot() {
+        return Boolean(
+          (this.$slots.innerBefore && this.$slots.innerBefore.length) ||
+          (this.$slots.innerAfter && this.$slots.innerAfter.length)
+        );
       },
     },
 
@@ -462,11 +495,9 @@
       }
     }
 
-   
-
     .ui-input-content {
-      display: grid;
-      grid-template-columns: 1fr auto;
+      display: flex;  
+      align-items: center;
       position: relative;
     }
 
@@ -474,14 +505,8 @@
           padding-right: 0;
     }
 
-      .ui-input-content.clear-button-padding {
-          padding-right: 0.15rem;
-      }
-
-    .ui-cle &.has-label {
-      .ui-textbox-icon-wrapper {
-        padding-top: $ui-input-icon-margin-top--with-label;
-      }
+    .ui-input-content.clear-button-padding {
+        padding-right: 0.15rem;
     }
 
     &.has-counter {
@@ -509,8 +534,15 @@
         }
       }
 
-      
-
+      // do not apply transform when inner slot is present
+      // to prevent from overlapping
+      &.has-floating-label.has-inner-slot {
+        .ui-textbox-label-text {
+          &.is-inline {
+            transform: none;
+          }
+        }
+      }
     
       // Fixes glitch in chrome where label and input value overlap each other
       // when webkit-autofill value has not been propagated yet (e.g. https://github.com/vuejs/vue/issues/1331)
@@ -525,7 +557,6 @@
     &.is-invalid:not(.is-disabled) {
 
       .ui-textbox-label-text,
-      .ui-textbox-icon-wrapper .ui-icon,
       .ui-textbox-counter {
         color: $ui-input-label-color--invalid;
       }
@@ -541,16 +572,11 @@
     }
 
     &.is-disabled, &.is-readonly{
-      .ui-textbox-input,
       .ui-textbox-label,
       .ui-textbox-textarea {
         color: $ui-input-text-color--disabled;
         border-bottom-style: $ui-input-border-style--disabled;
         border-bottom-width: $ui-input-border-width--active;
-      }
-
-      .ui-textbox-icon-wrapper .ui-icon {
-        opacity: $ui-input-icon-opacity--disabled;
       }
 
       .ui-textbox-feedback {
@@ -571,14 +597,6 @@
     border-bottom-width: $ui-input-border-width;
   }
 
-  .ui-textbox-icon-wrapper {
-    flex-shrink: 0;
-    padding-top: $ui-input-icon-margin-top;
-    margin-right: rem(12px);
-
-   
-  }
-
   .ui-textbox-content {
     flex-grow: 1;
   }
@@ -594,6 +612,7 @@
 
   .ui-textbox-input,
   .ui-textbox-textarea {
+    flex: 1;
     display: block;
     width: 100%;
     padding: 0 0 0 8px;
@@ -640,16 +659,14 @@
     right: 0;
   }
 
-  // ================================================
-  // Icon position
-  // ================================================
-
-  .ui-textbox--icon-position-right {
-    .ui-textbox-icon-wrapper {
-      order: 1;
-      margin-right: 0;
-      margin-left: rem(8px);
-    }
+  // Ensure that slot stretch to full height
+  // so that consumers can style their inner
+  // more easily (e.g. center an icon vertically)
+  .outer-before,
+  .outer-after,
+  .inner-before,
+  .inner-after {
+    align-self: stretch;
   }
 
 </style>
