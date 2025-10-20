@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1123]
+  - **Description:** Add `outerBefore`, `outerAfter`, `innerBefore`, `innerAfter` slots to `KTextbox` to append elements before or after input
+  - **Products impact:** KTextbox
+  - **Addresses:** #1113
+  - **Components:** : KTextbox, UiTextbox
+  - **Breaking:** No
+  - **Impacts a11y:** No
+  - **Guidance:** -
+
+[#1123]: https://github.com/learningequality/kolibri-design-system/pull/1123
+
+
+
 - [#1141]
   - **Description:** Bump jest-environment-jsdom from 29.7.0 to 30.2.0
   - **Products impact:** Dev Dependency upgrade
