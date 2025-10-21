@@ -6,7 +6,6 @@ import KButtonWithDropdownTest from '~~/lib/buttons-and-links/__tests__/componen
 import KDropdownMenuVisualTest from '~~/lib/KDropdownMenu/__tests__/components/KDropdownMenuVisualTest.vue';
 import KCheckboxSlotTest from '~~/lib/KCheckbox/__tests__/components/KCheckboxSlotTest.vue';
 import KCheckboxVisualTest from '~~/lib/KCheckbox/__tests__/components/KCheckboxVisualTest.vue';
-import KBreadcrumbs from '~~/lib/KBreadcrumbs/index.vue';
 import KImgTest from '~~/examples/KImg/Base.vue';
 import KImgAspectRatioTest from '~~/examples/KImg/AspectRatio.vue';
 import KImgContentOnTopTest from '~~/examples/KImg/ContentOnTop.vue';
@@ -46,7 +45,6 @@ Vue.component('KIconVisualTest', KIconVisualTest);
 Vue.component('KTextboxVisualTest', KTextboxVisualTest);
 Vue.component('KTableVisualTest', KTableVisualTest);
 Vue.component('CardsVisualTest', CardsVisualTest);
-Vue.component('KBreadcrumbs', KBreadcrumbs);
 Vue.component('KLogoVisualTest', KLogoVisualTest);
 Vue.component('KDropdownMenuVisualTest', KDropdownMenuVisualTest);
 Vue.component('KBreadcrumbsVisualTest', KBreadcrumbsVisualTest);
