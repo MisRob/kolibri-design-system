@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1144]
+  - **Description:** Bumps KDS version to 5.4.1.
+  - **Products impact:** .
+  - **Addresses:** .
+  - **Components:** .
+  - **Breaking:**
+  - **Impacts a11y:**
+  - **Guidance:** .
+
+[#1144]: https://github.com/learningequality/kolibri-design-system/pull/1144
+
+
+
 - [#1123]
   - **Description:** Add `outerBefore`, `outerAfter`, `innerBefore`, `innerAfter` slots to `KTextbox` to append elements before or after input
   - **Products impact:** KTextbox
