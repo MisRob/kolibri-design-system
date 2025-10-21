@@ -123,7 +123,7 @@ Changelog is rather internal in nature. See release notes for the public overvie
 
 
 - [#1131]
-  - **Description:** Bumps KDS version to 5.3.0.
+  - **Description:** Bumps KDS version to 5.4.0.
   - **Products impact:** .
   - **Addresses:** .
   - **Components:** .
