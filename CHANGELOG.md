@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1139]
+  - **Description:** KBreadcrumbs visual tests in one file
+  - **Products impact:* none.
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/1098.
+  - **Components:** -.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:**
+
+[#1139]: https://github.com/learningequality/kolibri-design-system/pull/1139
+
+
+
 - [#1144]
   - **Description:** Bumps KDS version to 5.4.1.
   - **Products impact:** .
