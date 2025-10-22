@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1136]
+  - **Description:** Updates KTable's loading state, reducing height inconsistencies and improving user experience.
+  - **Products impact:** -
+  - **Addresses:** https://github.com/learningequality/kolibri/issues/13766
+  - **Components:** KTable
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -
+
+[#1136]: https://github.com/learningequality/kolibri-design-system/pull/1136
+
+
+
 - [#1139]
   - **Description:** KBreadcrumbs visual tests in one file
   - **Products impact:* none.
