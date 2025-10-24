@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1148]
+  - **Description:** Move KButton visual tests into one file
+  - **Products impact:** none
+  - **Addresses:** https://github.com/learningequality/kolibri-design-system/issues/1095
+  - **Components:** -
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -
+
+[#1148]: https://github.com/learningequality/kolibri-design-system/pull/1148
+
+
+
 - [#1136]
   - **Description:** Updates KTable's loading state, reducing height inconsistencies and improving user experience.
   - **Products impact:** -
