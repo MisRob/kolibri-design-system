@@ -77,10 +77,11 @@
 
   /**
    * @returns {Boolean} Returns true if value satisfies "x:y"
-   *                    format where x and y are numbers
+   *                    format where x and y are numbers,
+   *                    or is "auto"
    */
   function isValidAspectRatio(value) {
-    return RATIO_REGEX.test(value);
+    return value === 'auto' || RATIO_REGEX.test(value);
   }
 
   /**
@@ -113,10 +114,15 @@
         default: false,
       },
       /**
-       * Sets the ratio of the width(w) to the height(h)
-       * of the image container. The required format is `w:h`.
+       * Sets the ratio of the width to the height of the image container.
+       * Options: `'auto'`, or in the form of `width:height` (e.g., `16:9`, `4:3`).
        */
       aspectRatio: {
+        type: String,
+        default: null,
+        validator: isValidAspectRatio,
+      },
+      letterboxAspectRatio: {
         type: String,
         default: null,
         validator: isValidAspectRatio,
@@ -201,6 +207,20 @@
        * the image container
        */
       scaleStyles() {
+        if (this.aspectRatio === 'auto') {
+          return {
+            outerContainer: {
+              display: 'block',
+            },
+            innerContainer: {
+              display: 'block',
+            },
+            img: {
+              height: 'auto',
+              width: '100%',
+            },
+          };
+        }
         const scaleKind = isValidScaleType(this.scaleType) ? this.scaleType : ScaleTypes.CONTAIN;
         const scaleStyles = {
           [ScaleTypes.CONTAIN]: {
@@ -259,8 +279,21 @@
           this.onError(new Error('Invalid aspect ratio provided: ' + this.aspectRatio));
           return defaultValue;
         }
+
+        if (this.aspectRatio === 'auto' && this.src) {
+          return defaultValue;
+        }
+
+        let ratio;
+        if (this.aspectRatio === 'auto' && !this.src) {
+          ratio=extractAspectRatio(this.letterboxAspectRatio);
+        }
+        else {
+          ratio = this.ratio;
+        }
+
         // https://www.sitepoint.com/maintain-image-aspect-ratios-responsive-web-design/
-        const paddingTopInPercent = (this.ratio.y / this.ratio.x) * 100;
+        const paddingTopInPercent = (ratio.y / ratio.x) * 100;
         return {
           outerContainer: {},
           innerContainer: {

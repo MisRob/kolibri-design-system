@@ -141,6 +141,7 @@
             :src="thumbnailSrc"
             :scaleType="thumbnailScaleType"
             :aspectRatio="thumbnailAspectRatio"
+            :letterboxAspectRatio="thumbnailPlaceholderRatio"
             :isDecorative="true"
             :appearanceOverrides="thumbnailStyles"
             @error="onThumbnailError"
@@ -338,6 +339,20 @@
         validator: cardValidator(ThumbnailAlignOptions, 'thumbnailAlign'),
       },
       /**
+       * Sets the aspect ratio of the thumbnail area.
+       * Options: `'auto'`, or in the form of `width:height` (e.g., `16:9`, `4:3`).
+       */
+      thumbnailRatio: {
+        type: String,
+        required: false,
+        default: null,
+      },
+      thumbnailPlaceholderRatio: {
+        type: String,
+        required: false,
+        default: null,
+      },
+      /**
        * If `aboveTitle` slot is empty, controls
        * whether its space is preserved or not.
        */
@@ -426,7 +441,7 @@
         ) {
           return {
             cardAreaClasses: ['k-vertical-with-large-thumbnail'],
-            thumbnailAspectRatio: undefined,
+            thumbnailAspectRatio: this.thumbnailRatio ? this.thumbnailRatio : undefined,
             thumbnailStyles: {
               ...thumbnailCommonStyles,
               borderRadius: '8px 8px 0 0',
@@ -440,7 +455,7 @@
         ) {
           return {
             cardAreaClasses: ['k-vertical-with-small-thumbnail'],
-            thumbnailAspectRatio: undefined,
+            thumbnailAspectRatio: this.thumbnailRatio ? this.thumbnailRatio : undefined,
             thumbnailStyles: {
               ...thumbnailCommonStyles,
               borderRadius: '4px',
@@ -468,7 +483,7 @@
               'k-horizontal-with-large-thumbnail',
               `k-thumbnail-align-${this.thumbnailAlign}`,
             ],
-            thumbnailAspectRatio: undefined,
+            thumbnailAspectRatio: this.thumbnailRatio ? this.thumbnailRatio : undefined,
             thumbnailStyles: {
               ...thumbnailCommonStyles,
               borderRadius: this.thumbnailAlign === 'right' ? '0 8px 8px 0' : '8px 0 0 8px',
@@ -485,7 +500,7 @@
               'k-horizontal-with-small-thumbnail',
               `k-thumbnail-align-${this.thumbnailAlign}`,
             ],
-            thumbnailAspectRatio: '1:1',
+            thumbnailAspectRatio: this.thumbnailRatio ? this.thumbnailRatio : '1:1',
             thumbnailStyles: {
               ...thumbnailCommonStyles,
               borderRadius: '8px',
