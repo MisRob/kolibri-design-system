@@ -269,11 +269,8 @@
        * Object currently selected
        */
       value: {
-        type: Object,
+        type: [Object, Array],
         required: true,
-        validator(val) {
-          return isValidOption(val);
-        },
       },
       /**
        * Array of option objects { value, label, disabled }.
