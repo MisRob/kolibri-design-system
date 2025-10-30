@@ -271,6 +271,14 @@
       value: {
         type: [Object, Array],
         required: true,
+        validator(value) {
+          if (Array.isArray(value)) {
+            return value.every(
+              item => item && typeof item === 'object' && 'value' in item
+            );
+          }
+          return value && typeof value === 'object' && 'value' in value;
+        }
       },
       /**
        * Array of option objects { value, label, disabled }.
