@@ -1,21 +1,16 @@
 <template>
 
   <KToolbar
-    title="Page Title"
-    textColor="white"
-    :style="{ backgroundColor: $themeTokens.appBarDark }"
+    title="Toolbar title"
+    :textColor="$themeTokens.textInverted"
+    :backgroundColor="$themeTokens.appBarDark"
   >
     <template #icon>
-      <router-link
-        to="/ktoolbar"
-        style="display: inline-block; border-radius: 50%"
-      >
-        <KIconButton
-          icon="back"
-          :color="$themeTokens.textInverted"
-          :ariaLabel="'Go back'"
-        />
-      </router-link>
+      <KIconButton
+        icon="back"
+        :color="$themeTokens.textInverted"
+        :ariaLabel="'Go back'"
+      />
     </template>
   </KToolbar>
 
