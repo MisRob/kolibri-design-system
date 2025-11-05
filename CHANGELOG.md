@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1150]
+  - **Description:**  Adds an allowance for an array to be passed as KSelect value prop
+  - **Products impact:** N/A
+  - **Addresses:** https://github.com/learningequality/kolibri/issues/13696
+  - **Components:** N/A
+  - **Breaking:** N/A
+  - **Impacts a11y:** N/A
+  - **Guidance:** N/A
+
+[#1150]: https://github.com/learningequality/kolibri-design-system/pull/1150
+
+
+
 - [#1148]
   - **Description:** Move KButton visual tests into one file
   - **Products impact:** none
