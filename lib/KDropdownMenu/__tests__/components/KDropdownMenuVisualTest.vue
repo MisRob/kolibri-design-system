@@ -14,6 +14,12 @@
       height="200px"
     />
     <VisualTestExample
+      title="Icon button"
+      loadExample="KDropdownMenu/IconButton.vue"
+      width="200px"
+      height="200px"
+    />
+    <VisualTestExample
       title="With icons"
       loadExample="KDropdownMenu/WithIcons.vue"
       width="200px"
