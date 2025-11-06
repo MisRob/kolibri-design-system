@@ -8,7 +8,9 @@
       v-if="showModal"
       :size="modalSize"
       title="Title"
+      submitText="Submit"
       cancelText="Close"
+      @submit="closeModal"
       @cancel="closeModal"
     >
       {{ `Modal with ${modalSize} size` }}
