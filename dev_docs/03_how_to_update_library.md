@@ -49,35 +49,20 @@ If there is already a documentation page for a component, please ensure that any
 
 When creating a new component, it is recommended to add a new documentation page for it as described in the "Create a documentation page for a new component" section of [How to update the documentation website](./04_how_to_update_docs.md). Even if you are not specifically writing documentation, certain sections of the documentation page will be automatically generated from the component's props and related.
 
-### (2) Preview updates in a product
+### (2) Preview updates in Kolibri apps
 
-You can test local Kolibri Design System updates reflected in a product that is using it, such as [Kolibri Learning Platform](https://github.com/learningequality/kolibri) or [Kolibri Studio](https://github.com/learningequality/studio).
+You can test local Kolibri Design System updates in apps that use it, such as [Kolibri Learning Platform](https://github.com/learningequality/kolibri) or [Kolibri Studio](https://github.com/learningequality/studio).
 
-For Kolibri Learning Platform, we recommend `devserver-with-kds` command. See ["Running Kolibri with local Kolibri Design System"](https://kolibri-dev.readthedocs.io/en/develop/howtos/development_with_kds.html) guide.
+### Kolibri Learning Platform
 
-In other products, you can use `yarn link`:
+We recommend using the `devserver-with-kds` command. See [Running Kolibri with local Kolibri Design System](https://kolibri-dev.readthedocs.io/en/develop/howtos/development_with_kds.html).
 
-1. While in the root of your local `kolibri-design-system` repository, run `yarn link`.
-2. In the root of a product where you intend to use `kolibri-design-system` run `yarn link kolibri-design-system` and then `yarn install`.
+Alternatively, you can use `yarn link`:
 
-Now, when you run the product your changes in `kolibri-design-system` will be updated live when running the product's development server.
+1. In `kolibri-design-system` repository, run `yarn link`
+2. In `kolibri` repository, run `yarn link kolibri-design-system` and then `yarn install`
 
-For example, to test Kolibri Design System in Kolibri Studio (local `studio` repository):
+### Kolibri Studio
 
-```bash
-# change to the Kolibri Design System repository and add it to yarn's local package registry
-cd ./kolibri-design-system
-yarn link
-
-# change to the Kolibri repository and link it to the local Kolibri Design System package
-cd ../studio
-yarn link kolibri-design-system
-
-# re-install Studio dependencies
-yarn install
-
-# run the Studio development server
-yarn run devserver
-```
-
-Now you're all set to see your changes to the Kolibri Design System working live in Studio!
+1. In `studio` repository, run `pnpm install file:../kolibri-design-system`
+2. When you make changes in `kolibri-design-system`, you may need to stop your Studio development server, run the `pnpm` command above again, and restart the server for changes to take effect.
