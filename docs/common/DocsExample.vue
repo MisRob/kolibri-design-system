@@ -65,7 +65,10 @@
         :block="block"
       >
         <slot>
-          <component :is="loadedComponent" />
+          <component
+            v-bind="$attrs"
+            :is="loadedComponent"
+          />
         </slot>
       </DocsShow>
     </KTransition>
@@ -81,6 +84,7 @@
 
   export default {
     name: 'DocsExample',
+    inheritAttrs: false,
     setup() {
       const { show } = useKShow();
       return {
