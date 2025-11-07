@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1137]
+  - **Description:** Bump pbkdf2 from 3.1.2 to 3.1.5
+  - **Products impact:** Dev Dependency upgrade
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#1137]: https://github.com/learningequality/kolibri-design-system/pull/1137
+
+
+
 - [#1150]
   - **Description:**  Adds an allowance for an array to be passed as KSelect value prop
   - **Products impact:** N/A
