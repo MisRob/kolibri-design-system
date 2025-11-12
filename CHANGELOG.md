@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1154]
+  - **Description:** Bump @babel/core from 7.28.4 to 7.28.5 in the babel group
+  - **Products impact:** Dev Dependency upgrade
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#1154]: https://github.com/learningequality/kolibri-design-system/pull/1154
+
+
+
 - [#1165]
   - **Description:** Bumps KDS version to 4.5.2.
   - **Products impact:** -.
