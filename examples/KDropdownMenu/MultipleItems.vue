@@ -6,9 +6,10 @@
   >
     <template #menu>
       <KDropdownMenu
-        :hideOnClick="false"
-        :constrainToScrollParent="false"
-        :options="['Option 1', 'Option 2', 'Option 3']"
+        :hideOnClick="hideOnClick"
+        :constrainToScrollParent="constrainToScrollParent"
+        :options="options"
+        @select="onOptionSelect"
       />
     </template>
   </KButton>
@@ -20,10 +21,40 @@
 
   export default {
     name: 'MultipleItems',
+    props: {
+      openOnMount: {
+        type: Boolean,
+        default: true,
+      },
+      hideOnClick: {
+        type: Boolean,
+        default: false,
+      },
+      constrainToScrollParent: {
+        type: Boolean,
+        default: false,
+      },
+    },
+    data() {
+      return {
+        options: [
+          { label: 'Option 1', value: 'option1' },
+          { label: 'Option 2', value: 'option2' },
+          { label: 'Option 3', value: 'option3' },
+        ],
+      };
+    },
     mounted() {
-      this.$nextTick(() => {
-        this.$el.click();
-      });
+      if (this.openOnMount) {
+        this.$nextTick(() => {
+          this.$el.click();
+        });
+      }
+    },
+    methods: {
+      onOptionSelect(option) {
+        console.log('Selected option:', option);
+      },
     },
   };
 

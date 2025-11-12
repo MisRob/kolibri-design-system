@@ -233,60 +233,10 @@
       title="Dropdowns"
       anchor="#dropdowns"
     >
-      <p>Buttons can also have drop-down menus.</p>
       <p>
-        <code>KDropdownMenu</code> component can be added using <code>#menu</code> slot in either a
-        <code>KButton</code> or a <code>KIconButton</code>.
+        Buttons can also have drop-down menus. See <DocsLibraryLink component="KDropdownMenu" />.
       </p>
-
-      <DocsShow>
-        <KButtonGroup>
-          <KButton
-            text="Options"
-            :primary="true"
-            iconAfter="chevronDown"
-          >
-            <KDropdownMenu
-              style="margin-right: 16px"
-              text="Primary"
-              :primary="true"
-              :options="['Option 1', 'Option 2']"
-              appearance="raised-button"
-            />
-          </KButton>
-          <KIconButton
-            tooltip="Dropdown options"
-            icon="optionsHorizontal"
-            appearance="flat-button"
-            :primary="false"
-          >
-            <template #menu>
-              <KDropdownMenu
-                style="margin-right: 16px"
-                text="Primary"
-                :primary="true"
-                :options="['Option 1', 'Option 2']"
-                appearance="raised-button"
-              />
-            </template>
-          </KIconButton>
-        </KButtonGroup>
-      </DocsShow>
-      <p>For more guidance, see the <DocsLibraryLink component="KDropdownMenu" /> component.</p>
     </DocsPageSection>
-
-    <DocsPageSection
-      title="Visual specs"
-      anchor="#specs"
-    />
-    <ul>
-      <li>Border radius: 2px</li>
-      <li>Elevation: 4dp</li>
-      <li>Font size: 14px</li>
-      <li>Icon size: 14px</li>
-      <li>Text button padding: 8px 16px</li>
-      <li>Icon button padding: 8px</li>
-    </ul>
   </DocsPageTemplate>
 
 </template>

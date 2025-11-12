@@ -6,7 +6,9 @@
       v-if="showModal"
       title="Title"
       size="600"
+      submitText="Submit"
       cancelText="Close"
+      @submit="closeModal"
       @cancel="closeModal"
     >
       Modal with 600px size

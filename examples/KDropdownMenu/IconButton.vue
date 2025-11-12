@@ -1,19 +1,20 @@
 <template>
 
-  <KButton
-    text="Options"
-    hasDropdown
+  <KIconButton
+    tooltip="Dropdown options"
+    icon="optionsHorizontal"
+    appearance="flat-button"
+    :primary="false"
   >
     <template #menu>
       <KDropdownMenu
-        hasIcons
         :hideOnClick="hideOnClick"
         :constrainToScrollParent="constrainToScrollParent"
         :options="options"
         @select="onOptionSelect"
       />
     </template>
-  </KButton>
+  </KIconButton>
 
 </template>
 
@@ -21,7 +22,6 @@
 <script>
 
   export default {
-    name: 'MultipleItems',
     props: {
       openOnMount: {
         type: Boolean,
@@ -39,8 +39,9 @@
     data() {
       return {
         options: [
-          { label: 'Option 1', value: 'option1', icon: 'add' },
-          { label: 'Option 2', value: 'option2', icon: 'delete' },
+          { label: 'Option 1', value: 'option1' },
+          { label: 'Option 2', value: 'option2' },
+          { label: 'Option 3', value: 'option3' },
         ],
       };
     },

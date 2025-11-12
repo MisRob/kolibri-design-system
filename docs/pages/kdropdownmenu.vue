@@ -6,64 +6,212 @@
       anchor="#overview"
     >
       <p>
-        Implements a dropdown set of options, based on
+        Dropdown set of options, based on
         <DocsExternalLink
           text="Keen's UI Menu"
           href="https://josephuspaye.github.io/Keen-UI/#/ui-menu"
         />. See these docs to understand the current implementation of the options object array.
+        Notable possible for configuring the menu include icons, text, secondary text, and dividers.
       </p>
-      <p>
-        Notable possible for configuring the menu include: icons, text, secondary text, and
-        dividers.
-      </p>
-      <p>
-        Please see the
-        <DocsInternalLink
-          href="/buttons#dropdowns"
-          text="Dropdown section of the Buttons and links page"
-        />
-        on the buttons page for more details about how to use with a button, and a code example.
-      </p>
+    </DocsPageSection>
 
-      <h3>Context menu</h3>
+    <DocsPageSection
+      title="Usage"
+      anchor="#usage"
+    >
+      <DocsSubNav
+        :items="[
+          { text: 'Button with dropdown', href: '#button-with-dropdown' },
+          { text: 'Icon button with dropdown', href: '#icon-button-with-dropdown' },
+          { text: 'Options with icons', href: '#options-with-icons' },
+          { text: 'Context menu', href: '#context-menu' },
+        ]"
+      />
+
+      <h3>
+        Button with dropdown
+        <DocsAnchorTarget anchor="#button-with-dropdown" />
+      </h3>
+
+      <DocsExample
+        loadExample="KDropdownMenu/MultipleItems.vue"
+        exampleId="button-with-dropdown"
+        block
+        :hideOnClick="true"
+        :openOnMount="false"
+        :constrainToScrollParent="false"
+      >
+        <template #html>
+          <!-- eslint-disable -->
+          <DocsShowCode language="html">
+            <KButton
+              text="Options"
+              hasDropdown
+            >
+              <template #menu>
+                <KDropdownMenu
+                  :options="options"
+                  @select="onOptionSelect"
+                />
+              </template>
+            </KButton>
+          </DocsShowCode>
+          <!-- eslint-enable -->
+        </template>
+
+        <template #javascript>
+          <!-- eslint-disable -->
+          <!-- prettier-ignore -->
+          <DocsShowCode language="javascript">
+              export default {
+                data() {
+                  return {
+                    options: [
+                      { label: 'Option 1', value: 'option1' },
+                      { label: 'Option 2', value: 'option2' },
+                      { label: 'Option 3', value: 'option3' },
+                    ],
+                  };
+                },
+                methods: {
+                  onOptionSelect(option) {
+                    console.log('Selected option:', option);
+                  },
+                },
+              };
+            </DocsShowCode>
+          <!-- eslint-enable -->
+        </template>
+      </DocsExample>
+
+      <h3>
+        Icon button with dropdown
+        <DocsAnchorTarget anchor="#icon-button-with-dropdown" />
+      </h3>
+      <DocsExample
+        loadExample="KDropdownMenu/IconButton.vue"
+        exampleId="icon-button-with-dropdown"
+        block
+        :hideOnClick="true"
+        :openOnMount="false"
+        :constrainToScrollParent="false"
+      >
+        <template #html>
+          <!-- eslint-disable -->
+          <DocsShowCode language="html">
+            <KIconButton
+              tooltip="Dropdown options"
+              icon="optionsHorizontal"
+              appearance="flat-button"
+              :primary="false"
+            >
+              <template #menu>
+                <KDropdownMenu
+                  :options="options"
+                  @select="onOptionSelect"
+                />
+              </template>
+            </KIconButton>
+          </DocsShowCode>
+          <!-- eslint-enable -->
+        </template>
+        <template #javascript>
+          <!-- eslint-disable -->
+          <!-- prettier-ignore -->
+          <DocsShowCode language="javascript">
+              export default {
+                data() {
+                  return {
+                    options: [
+                      { label: 'Option 1', value: 'option1' },
+                      { label: 'Option 2', value: 'option2' },
+                      { label: 'Option 3', value: 'option3' },
+                    ],
+                  };
+                },
+                methods: {
+                  onOptionSelect(option) {
+                    console.log('Selected option:', option);
+                  },
+                },
+              };
+            </DocsShowCode>
+          <!-- eslint-enable -->
+        </template>
+      </DocsExample>
+
+      <h3>
+        Options with icons
+        <DocsAnchorTarget anchor="#options-with-icons" />
+      </h3>
+
+      <DocsExample
+        loadExample="KDropdownMenu/WithIcons.vue"
+        exampleId="options-with-icons"
+        block
+        :hideOnClick="true"
+        :openOnMount="false"
+        :constrainToScrollParent="false"
+      >
+        <template #html>
+          <!-- eslint-disable -->
+          <DocsShowCode language="html">
+            <KButton
+              text="Options"
+              hasDropdown
+            >
+              <template #menu>
+                <KDropdownMenu
+                  hasIcons
+                  :options="options"
+                  @select="onOptionSelect"
+                />
+              </template>
+            </KButton>
+          </DocsShowCode>
+          <!-- eslint-enable -->
+        </template>
+
+        <template #javascript>
+          <!-- eslint-disable -->
+          <!-- prettier-ignore -->
+          <DocsShowCode language="javascript">
+              export default {
+                data() {
+                  return {
+                    options: [
+                      { label: 'Option 1', value: 'option1', icon: 'add' },
+                      { label: 'Option 2', value: 'option2', icon: 'delete' },
+                    ],
+                  };
+                },
+                methods: {
+                  onOptionSelect(option) {
+                    console.log('Selected option:', option);
+                  },
+                },
+              };
+            </DocsShowCode>
+          <!-- eslint-enable -->
+        </template>
+      </DocsExample>
+
+      <h3>
+        Context menu
+        <DocsAnchorTarget anchor="#context-menu" />
+      </h3>
 
       <p>
         This component can be also used to create a context menu, which is a dropdown menu that
-        appears when a user right-clicks on an element.
+        appears when a user right-clicks on an element. The context menu will then be attached to
+        the parent element.
       </p>
 
-      <DocsShow block>
-        <p>For example, you can right click on this paragraph to see a context menu.</p>
-        <KDropdownMenu
-          isContextMenu
-          :options="[{ label: 'Option 1' }, { label: 'Option 2' }, { label: 'Option 3' }]"
-        />
-      </DocsShow>
-
-      <DocsShow block>
-        <p>
-          Note that just one context menu can be open at a time. If you right-click on this
-          paragraph, any other context menu will close.
-        </p>
-        <KDropdownMenu
-          isContextMenu
-          :options="[{ label: 'Option 1' }, { label: 'Option 2' }]"
-        />
-      </DocsShow>
-
-      <p>
-        To achieve this, set the <code>isContextMenu</code> prop to true. The context menu will then
-        be attached to the parent element.
-      </p>
-      <DocsShowCode language="html">
-        <div>
-          <p>...</p>
-          <KDropdownMenu
-            isContextMenu
-            :options="[{ label: 'Option 1' }, { label: 'Option 2' }, { label: 'Option 3' }]"
-          />
-        </div>
-      </DocsShowCode>
+      <DocsExample
+        loadExample="KDropdownMenu/ContextMenu.vue"
+        exampleId="context-menu"
+        block
+      />
     </DocsPageSection>
   </DocsPageTemplate>
 

@@ -5,7 +5,9 @@
     <KModal
       v-if="showModal"
       title="Title"
+      submitText="Submit"
       cancelText="Close"
+      @submit="closeModal"
       @cancel="closeModal"
     >
       Description

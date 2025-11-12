@@ -17,7 +17,7 @@
     >
       <DocsSubNav
         :items="[
-          { text: 'With description', href: '#description' },
+          { text: 'With description and actions', href: '#description' },
           { text: 'With enabled / disabled submit', href: '#enabled-disabled-submit' },
           { text: 'With predefined sizes', href: '#predefined-sizes' },
           { text: 'With precise size', href: '#precise-size' },
@@ -26,7 +26,7 @@
       />
 
       <h3>
-        With description
+        With description and actions
         <DocsAnchorTarget anchor="#description" />
       </h3>
       <p>To show information, warnings, or notifications.</p>
