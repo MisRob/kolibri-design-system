@@ -7,6 +7,31 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1155]
+  - **Description:** Improve `KDropdownMenu` and `KModal` documentation, and adds new `KDropdownMenu` visual tests
+  - **Products impact:** none
+  - **Addresses:** -
+  - **Components:**  `KDropdownMenu`, `KModal`
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -
+
+[#1155]: https://github.com/learningequality/kolibri-design-system/pull/1155
+
+- [#1155]
+  - **Description:** Update dev docs to have the latest information on how to preview local KDS changes in Kolibri apps
+  - **Products impact:** none
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -
+
+[#1155]: https://github.com/learningequality/kolibri-design-system/pull/1155
+  -
+
+
+
 - [#1137]
   - **Description:** Bump pbkdf2 from 3.1.2 to 3.1.5
   - **Products impact:** Dev Dependency upgrade
