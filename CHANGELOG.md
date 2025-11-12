@@ -7,6 +7,19 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1165]
+  - **Description:** Bumps KDS version to 4.5.2.
+  - **Products impact:** -.
+  - **Addresses:** -.
+  - **Components:** -.
+  - **Breaking:** -.
+  - **Impacts a11y:** -.
+  - **Guidance:** -.
+
+[#1165]: https://github.com/learningequality/kolibri-design-system/pull/1165
+
+
+
 - [#1155]
   - **Description:** Improve `KDropdownMenu` and `KModal` documentation, and adds new `KDropdownMenu` visual tests
   - **Products impact:** none
