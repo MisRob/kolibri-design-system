@@ -5,7 +5,7 @@
       ref="textbox"
       v-model="currentText"
       class="textbox"
-      :label="label"
+      :label="$slots.label ? null : label"
       :readonly="readonly"
       :disabled="disabled"
       :clearAriaLabel="clearAriaLabel"
@@ -29,9 +29,9 @@
       @focus="emitFocus"
       @blur="emitBlur"
     >
-      <template #default>
+      <template v-if="$slots.label" #default>
         <!--
-          @slot The content for the label. It can be a string or HTML elements.
+          @slot The content for the label. It can be a string or HTML elements. This will override the `label` prop.
         -->
         <slot name="label"></slot>
       </template>

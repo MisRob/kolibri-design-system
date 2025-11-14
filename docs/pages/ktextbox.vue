@@ -37,14 +37,24 @@
         <DocsAnchorTarget anchor="#with-label" />
       </h3>
       <p>
-        This text box includes a visible label, providing clear guidance and context to the user
-        about the expected input.
+        The label can be passed via the `label` prop or the `label` slot.
+        The `label` slot is useful when the label contains HTML elements, and it takes precedence over the `label` prop.
+        One of them is required.
       </p>
       <DocsExample
         loadExample="KTextbox/WithLabel.vue"
         exampleId="ktextbox-label"
         block
-        data-test-id="ktextbox-label-slot"
+      />
+      <DocsExample
+        loadExample="KTextbox/WithLabelSlot.vue"
+        exampleId="ktextbox-label-slot"
+        block
+      />
+      <DocsExample
+        loadExample="KTextbox/WithLabelSlotAndProp.vue"
+        exampleId="ktextbox-label-slot-and-prop"
+        block
       />
 
       <h3>
@@ -154,11 +164,6 @@
       <DocsExample
         loadExample="KTextbox/Clearable.vue"
         exampleId="ktextbox-clearable"
-        block
-      />
-      <DocsExample
-        loadExample="KTextbox/WithLabelSlot.vue"
-        exampleId="ktextbox-label-slot"
         block
       />
 
