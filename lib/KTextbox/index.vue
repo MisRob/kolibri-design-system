@@ -5,7 +5,7 @@
       ref="textbox"
       v-model="currentText"
       class="textbox"
-      :label="label"
+      :label="$slots.label ? null : label"
       :readonly="readonly"
       :disabled="disabled"
       :clearAriaLabel="clearAriaLabel"
@@ -29,6 +29,12 @@
       @focus="emitFocus"
       @blur="emitBlur"
     >
+      <template v-if="$slots.label" #default>
+        <!--
+          @slot The content for the label. It can be a string or HTML elements. This will override the `label` prop.
+        -->
+        <slot name="label"></slot>
+      </template>
       <template #outerBefore>
         <!--@slot Places content before the input area-->
         <slot name="outerBefore"></slot>
@@ -68,7 +74,7 @@
        */
       label: {
         type: String,
-        required: true,
+        default: null,
       },
       /**
        * Value of the aria-label for clear button
@@ -197,6 +203,11 @@
         type: Boolean,
         default: true,
       },
+    },
+    created() {
+      if (!this.label && !this.$slots.label) {
+        console.warn('KTextbox: label prop or slot is required');
+      }
     },
     data() {
       return {
