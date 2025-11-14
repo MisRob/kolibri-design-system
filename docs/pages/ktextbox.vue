@@ -44,6 +44,7 @@
         loadExample="KTextbox/WithLabel.vue"
         exampleId="ktextbox-label"
         block
+        data-test-id="ktextbox-label-slot"
       />
 
       <h3>
@@ -153,6 +154,11 @@
       <DocsExample
         loadExample="KTextbox/Clearable.vue"
         exampleId="ktextbox-clearable"
+        block
+      />
+      <DocsExample
+        loadExample="KTextbox/WithLabelSlot.vue"
+        exampleId="ktextbox-label-slot"
         block
       />
 
