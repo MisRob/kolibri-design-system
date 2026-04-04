@@ -74,6 +74,10 @@ export default [
         title: 'Installation',
       }),
       new Page({
+        path: '/browsersupport',
+        title: 'Browser support',
+      }),
+      new Page({
         path: '/principles',
         title: 'Design principles',
       }),
@@ -173,6 +177,11 @@ export default [
         path: '/loaders',
         title: 'Loaders',
       }),
+      new Page({
+        path: '/floatingelements',
+        title: 'Floating elements',
+        keywords: ['tooltip', 'dropdown', 'popover', 'floating', 'trigger', 'anchor'],
+      }),
     ],
   }),
   new Section({
@@ -219,6 +228,20 @@ export default [
           'visible',
           'loader',
           'loading',
+        ],
+      }),
+      new Page({
+        path: '/usekfloatingposition',
+        title: 'useKFloatingPosition',
+        isCode: true,
+        keywords: [
+          ...compositionRelatedKeywords,
+          'floating',
+          'position',
+          'popper',
+          'tooltip',
+          'dropdown',
+          'anchor',
         ],
       }),
     ],
