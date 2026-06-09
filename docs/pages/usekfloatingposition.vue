@@ -198,7 +198,7 @@
           />
           has general overview of floating elements
         </li>
-        <li><DocsLibraryLink component="useKFloatingInteraction" /> TBD</li>
+        <li><DocsLibraryLink component="useKFloatingInteraction" /></li>
         <li>
           <DocsExternalLink
             href="https://floating-ui.com/docs/getting-started"
