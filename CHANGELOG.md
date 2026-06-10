@@ -7,6 +7,201 @@ Changelog is rather internal in nature. See release notes for the public overvie
 <!-- [DO NOT REMOVE-USED BY GH ACTION] PASTE CHANGELOG -->
 
 
+- [#1280]
+  - **Description:** Added an optional color prop to KRadioButton and included component tests
+  - **Products impact:** KDS
+  - **Addresses:**  #1276
+  - **Components:** KRadioButton
+  - **Breaking:** no
+  - **Impacts a11y:**  no
+  - **Guidance:**  -
+
+[#1280]: https://github.com/learningequality/kolibri-design-system/pull/1280
+
+
+
+- [#1255]
+  - **Description:** Bump @babel/plugin-transform-modules-systemjs from 7.25.9 to 7.29.4
+  - **Products impact:** Dev Dependency upgrade
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#1255]: https://github.com/learningequality/kolibri-design-system/pull/1255
+
+
+
+- [#1253]
+  - **Description:** Bump axios from 1.8.2 to 1.16.0
+  - **Products impact:** Dev Dependency upgrade
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#1253]: https://github.com/learningequality/kolibri-design-system/pull/1253
+
+
+
+- [#1254]
+  - **Description:** Bump fast-uri from 3.0.6 to 3.1.2
+  - **Products impact:** Dev Dependency upgrade
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#1254]: https://github.com/learningequality/kolibri-design-system/pull/1254
+
+
+
+- [#1235]
+  - **Description:** Bump follow-redirects from 1.15.9 to 1.16.0
+  - **Products impact:** Dev Dependency upgrade
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#1235]: https://github.com/learningequality/kolibri-design-system/pull/1235
+
+
+
+- [#1233]
+  - **Description:** Bump basic-ftp from 5.2.0 to 5.2.2
+  - **Products impact:** Dev Dependency upgrade
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#1233]: https://github.com/learningequality/kolibri-design-system/pull/1233
+
+
+
+- [#1232]
+  - **Description:** Bump lodash from 4.17.23 to 4.18.1
+  - **Products impact:** Dev Dependency upgrade
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#1232]: https://github.com/learningequality/kolibri-design-system/pull/1232
+
+
+
+- [#1222]
+  - **Description:** Bump flatted from 3.3.2 to 3.4.2
+  - **Products impact:** Dev Dependency upgrade
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#1222]: https://github.com/learningequality/kolibri-design-system/pull/1222
+
+
+
+- [#1250]
+  - **Description:** Bump actions/setup-node from 6.3.0 to 6.4.0 in the github group
+  - **Products impact:** Dev Dependency upgrade
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#1250]: https://github.com/learningequality/kolibri-design-system/pull/1250
+
+
+
+- [#1251]
+  - **Description:** Bump ad-m/github-push-action from 1.0.0 to 1.1.0
+  - **Products impact:** Dev Dependency upgrade
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#1251]: https://github.com/learningequality/kolibri-design-system/pull/1251
+
+
+
+- [#1249]
+  - **Description:** Listen for `opened` events in the shared pull-request-target caller workflow, so the new dependabot reviewer handler in `learningequality/.github` fires on dependabot PR open.
+  - **Products impact:** none
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** no
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#1249]: https://github.com/learningequality/kolibri-design-system/pull/1249
+
+
+
+- [#1244]
+  - **Description:** Bump the github group across 1 directory with 3 updates
+  - **Products impact:** Dev Dependency upgrade
+  - **Addresses:** -
+  - **Components:** -
+  - **Breaking:** -
+  - **Impacts a11y:** -
+  - **Guidance:** -
+
+[#1244]: https://github.com/learningequality/kolibri-design-system/pull/1244
+
+
+
+- [#1243]
+  - **Description:** Merges `release-v5` into `develop`.
+  - **Products impact:** -.
+  - **Addresses:** -.
+  - **Components:** -.
+  - **Breaking:** no
+  - **Impacts a11y:** -
+  - **Guidance:** -.
+
+[#1243]: https://github.com/learningequality/kolibri-design-system/pull/1243
+
+
+
+- [#1237]
+  - **Description:** Update Node.js from 18 to 20 and kolibri-format from 1.x to 2.x. Rename `data-test` attributes to `data-testid` across KRouterLink, KDateRange, KDateCalendar, and KCard.
+  - **Products impact:** updated API
+  - **Addresses:** #1149
+  - **Components:** KRouterLink, KDateRange, KCard
+  - **Breaking:** yes
+  - **Impacts a11y:** no
+  - **Guidance:** Consumers querying `[data-test="..."]` in tests must update selectors to `[data-testid="..."]`.
+
+[#1237]: https://github.com/learningequality/kolibri-design-system/pull/1237
+
+
+
+- [#1241]
+  - **Description:** Bumps KDS version to 5.6.2
+  - **Products impact:** none.
+  - **Addresses:** -.
+  - **Components:** -.
+  - **Breaking:** no
+  - **Impacts a11y:** no
+  - **Guidance:** -.
+
+[#1241]: https://github.com/learningequality/kolibri-design-system/pull/1241
+
+
+
 - [#1239]
   - **Description:** Add `v_50` shade to palette colors (`red`, `green`, `orange`, `pink`, `darkgreen`, `lightblue`) and brand colors (`primary`, `secondary`)
   - **Products impact:** ux
