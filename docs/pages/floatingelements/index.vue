@@ -54,11 +54,12 @@
       <ul>
         <li>
           <DocsLibraryLink component="useKFloatingPosition" /> manages the positioning of floating
-          elements relative to their anchor elements. Some design system components use it
-          internally, but it can also be used independently, typically (but not necessarily)
-          together with <code>useKFloatingInteraction</code>.
+          elements relative to their anchor elements
         </li>
-        <li><DocsLibraryLink component="useKFloatingInteraction" /> TBD</li>
+        <li>
+          <DocsLibraryLink component="useKFloatingInteraction" /> observes user interactions with
+          activator elements to determine when a floating element should be considered active
+        </li>
       </ul>
     </DocsPageSection>
   </DocsPageTemplate>

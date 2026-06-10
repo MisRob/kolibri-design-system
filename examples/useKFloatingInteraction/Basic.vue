@@ -1,7 +1,7 @@
 <template>
 
   <div>
-    <KButton data-floating-id="basic-interaction-tooltip"> Hover me </KButton>
+    <KButton :data-floating-id="TOOLTIP_ID"> Hover me </KButton>
 
     <div
       v-if="isActive"
@@ -24,7 +24,7 @@
 
   export default {
     setup() {
-      const TOOLTIP_ID = 'basic-interaction-tooltip';
+      const TOOLTIP_ID = 'tooltip-basic';
       const floatingRef = ref(null);
 
       const { isActive, activatorEl } = useKFloatingInteraction(TOOLTIP_ID);
@@ -47,7 +47,7 @@
         destroyPosition(TOOLTIP_ID);
       });
 
-      return { isActive, floatingRef };
+      return { TOOLTIP_ID, isActive, floatingRef };
     },
   };
 

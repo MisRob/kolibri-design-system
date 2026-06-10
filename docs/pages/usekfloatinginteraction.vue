@@ -7,15 +7,14 @@
     >
       <p>
         A composable that observes user interactions with activator elements to determine when a
-        floating element should be considered active. Activator elements are identified by the
-        <code>data-floating-id</code> attribute, which matches the ID of the associated floating
-        element.
+        floating element should be considered active. It supports several interaction types, such as
+        hover, click, and many others. It does not directly set visibility, leaving each
+        implementation to manage it depending on context.
       </p>
 
       <p>
-        The composable does not directly set visibility, leaving components to manage it depending
-        on context. It can be used both within and outside of the design system, typically together
-        with
+        Some design system components use it internally, but it can also be used independently,
+        typically (but not necessarily) together with
         <DocsLibraryLink component="useKFloatingPosition" />.
       </p>
 
@@ -34,72 +33,45 @@
     >
       <DocsSubNav
         :items="[
-          { text: 'Basic usage', href: '#basic-usage' },
-          { text: 'Interaction types', href: '#interaction-types' },
+          { text: 'Basic', href: '#basic' },
+          { text: 'Interactions', href: '#interactions' },
           { text: 'Performance optimization', href: '#performance-optimization' },
         ]"
       />
 
-      <h3 id="basic-usage">Basic usage</h3>
+      <h3 id="basic">Basic</h3>
       <p>
-        Add a <code>data-floating-id</code> attribute to the activator element. Its value must match
-        the <code>floatingId</code> passed to <code>useKFloatingInteraction</code>. Use the returned
-        <code>isActive</code> ref to conditionally show the floating element. When positioning the
-        floating element, pass <code>activatorEl.value</code> as the anchor.
+        First, add a <code>data-floating-id</code> attribute to the activator element. Its value
+        must match the <code>floatingId</code> passed to <code>useKFloatingInteraction</code>. Then
+        use the returned <code>isActive</code> ref to conditionally show the floating element.
       </p>
 
-      <!-- eslint-disable -->
-      <!-- prettier-ignore -->
-      <DocsShowCode language="javascript">
-        import useKFloatingInteraction from 'kolibri-design-system/lib/composables/useKFloatingInteraction';
+      <p>
+        <code>useKFloatingInteraction</code> also returns the activator element. This is useful when
+        using it together with <code>useKFloatingPosition</code>, as you can pass it directly to
+        <code>initPosition</code>.
+      </p>
 
-        const { isActive, activatorEl } = useKFloatingInteraction('my-tooltip');
-
-        // isActive.value is true when the user hovers the activator (default)
-        // activatorEl.value holds the activator Element when isActive.value is true
-      </DocsShowCode>
-      <!-- eslint-enable -->
-
-      <p>Hover the button to show the tooltip.</p>
       <DocsExample
         exampleId="basic"
         loadExample="useKFloatingInteraction/Basic.vue"
         block
       />
 
-      <h3 id="interaction-types">Interaction types</h3>
+      <h3 id="interactions">Interactions</h3>
+      <p>By default, the floating element is activated on hover.</p>
+
       <p>
         The optional <code>activateOn</code> parameter controls which user interactions activate the
-        floating element. Supported values: <code>'hover'</code>, <code>'touch'</code>,
-        <code>'focus'</code>, <code>'keyboardfocus'</code>, <code>'click'</code>. Defaults to
-        <code>['hover']</code>.
-      </p>
-      <p>
+        floating element. Supported values are <code>'hover'</code>, <code>'touch'</code>,
+        <code>'focus'</code>, <code>'click'</code>, and <code>'keyboardfocus'</code>.
         <code>'keyboardfocus'</code> activates the floating element only when the user navigates
-        with the keyboard, not when they click with a mouse. <code>'click'</code> toggles the
-        floating element on each click of the activator.
+        with the keyboard. Multiple interaction types can be passed.
       </p>
 
-      <!-- eslint-disable -->
-      <!-- prettier-ignore -->
-      <DocsShowCode language="javascript">
-        import useKFloatingInteraction from 'kolibri-design-system/lib/composables/useKFloatingInteraction';
-
-        // Activate on click (toggle)
-        const { isActive } = useKFloatingInteraction('my-tooltip', ['click']);
-
-        // Activate on keyboard focus only
-        const { isActive } = useKFloatingInteraction('my-tooltip', ['keyboardfocus']);
-
-        // Activate on multiple interactions
-        const { isActive } = useKFloatingInteraction('my-tooltip', ['hover', 'focus']);
-      </DocsShowCode>
-      <!-- eslint-enable -->
-
-      <p>Click the button to toggle the tooltip.</p>
       <DocsExample
         exampleId="click"
-        loadExample="useKFloatingInteraction/Click.vue"
+        loadExample="useKFloatingInteraction/Interactions.vue"
         block
       />
 
@@ -110,31 +82,9 @@
         optimize performance on pages with many floating elements.
       </p>
       <p>
-        Pass <code>'root'</code> to delegate to the document (or window for focus events), or pass
-        the ID of a common ancestor element.
+        Pass <code>'root'</code> to delegate to the document or window, or pass the ID of a common
+        ancestor element.
       </p>
-
-      <!-- eslint-disable -->
-      <!-- prettier-ignore -->
-      <DocsShowCode language="javascript">
-        import useKFloatingInteraction from 'kolibri-design-system/lib/composables/useKFloatingInteraction';
-
-        // All three share a single mouseenter listener on 'my-container'
-        const { isActive: isActive1 } = useKFloatingInteraction('tooltip-1', ['hover'], 'my-container');
-        const { isActive: isActive2 } = useKFloatingInteraction('tooltip-2', ['hover'], 'my-container');
-        const { isActive: isActive3 } = useKFloatingInteraction('tooltip-3', ['hover'], 'my-container');
-      </DocsShowCode>
-      <!-- eslint-enable -->
-
-      <p>
-        Hover each button to show its tooltip. All three share a single event listener on the
-        container.
-      </p>
-      <DocsExample
-        exampleId="delegation"
-        loadExample="useKFloatingInteraction/Delegation.vue"
-        block
-      />
     </DocsPageSection>
 
     <DocsPageSection
@@ -149,12 +99,9 @@
           />
           has general overview of floating elements
         </li>
-        <li><DocsLibraryLink component="useKFloatingPosition" /></li>
         <li>
-          <DocsExternalLink
-            href="https://floating-ui.com/docs/getting-started"
-            text="Floating UI"
-          />
+          <DocsLibraryLink component="useKFloatingPosition" /> manages the positioning of floating
+          elements relative to their anchor elements
         </li>
       </ul>
     </DocsPageSection>

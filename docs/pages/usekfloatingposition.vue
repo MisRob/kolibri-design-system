@@ -184,6 +184,16 @@
         loadExample="useKFloatingPosition/Basic.vue"
         block
       />
+
+      <p>
+        See
+        <DocsInternalLink
+          href="/usekfloatinginteraction"
+          text="useKFloatingInteraction"
+        />
+        for examples using <code>useKFloatingPosition</code> together with
+        <code>useKFloatingInteraction</code>.
+      </p>
     </DocsPageSection>
 
     <DocsPageSection
@@ -198,7 +208,10 @@
           />
           has general overview of floating elements
         </li>
-        <li><DocsLibraryLink component="useKFloatingInteraction" /></li>
+        <li>
+          <DocsLibraryLink component="useKFloatingInteraction" /> observes user interactions with
+          activator elements to determine when a floating element should be considered active
+        </li>
         <li>
           <DocsExternalLink
             href="https://floating-ui.com/docs/getting-started"

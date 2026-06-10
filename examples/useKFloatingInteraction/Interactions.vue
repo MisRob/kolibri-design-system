@@ -1,7 +1,7 @@
 <template>
 
   <div>
-    <KButton data-floating-id="click-interaction-tooltip"> Click me </KButton>
+    <KButton :data-floating-id="TOOLTIP_ID"> Hover or keyboard focus me </KButton>
 
     <div
       v-if="isActive"
@@ -9,7 +9,7 @@
       class="tooltip"
       :style="{ color: $themeTokens.textInverted, background: $themeTokens.text }"
     >
-      Click again to close
+      Kolibri Fly!
     </div>
   </div>
 
@@ -24,10 +24,13 @@
 
   export default {
     setup() {
-      const TOOLTIP_ID = 'click-interaction-tooltip';
+      const TOOLTIP_ID = 'tooltip-interactions';
       const floatingRef = ref(null);
 
-      const { isActive, activatorEl } = useKFloatingInteraction(TOOLTIP_ID, ['click']);
+      const { isActive, activatorEl } = useKFloatingInteraction(TOOLTIP_ID, [
+        'hover',
+        'keyboardfocus',
+      ]);
       const { initPosition, destroyPosition, offset, flip } = useKFloatingPosition();
 
       watch(isActive, active => {
@@ -47,7 +50,7 @@
         destroyPosition(TOOLTIP_ID);
       });
 
-      return { isActive, floatingRef };
+      return { TOOLTIP_ID, isActive, floatingRef };
     },
   };
 
