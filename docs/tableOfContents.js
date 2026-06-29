@@ -261,6 +261,12 @@ export default [
         isCode: true,
         keywords: [...compositionRelatedKeywords, ...floatingRelatedKeywords],
       }),
+      new Page({
+        path: '/usekfloatinginteraction',
+        title: 'useKFloatingInteraction',
+        isCode: true,
+        keywords: [...compositionRelatedKeywords, ...floatingRelatedKeywords, 'interaction'],
+      }),
     ],
   }),
   new Section({
