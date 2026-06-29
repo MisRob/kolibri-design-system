@@ -58,7 +58,12 @@
           internally, but it can also be used independently, typically (but not necessarily)
           together with <code>useKFloatingInteraction</code>.
         </li>
-        <li><DocsLibraryLink component="useKFloatingInteraction" /> TBD</li>
+        <li>
+          <DocsLibraryLink component="useKFloatingInteraction" /> observes interactions with
+          activator elements (hover, click, touch, focus, keyboard focus) to determine when a
+          floating element should be active. It does not set visibility itself, leaving each
+          implementation to manage it depending on context.
+        </li>
       </ul>
     </DocsPageSection>
   </DocsPageTemplate>

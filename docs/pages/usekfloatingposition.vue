@@ -198,7 +198,10 @@
           />
           has general overview of floating elements
         </li>
-        <li><DocsLibraryLink component="useKFloatingInteraction" /> TBD</li>
+        <li>
+          <DocsLibraryLink component="useKFloatingInteraction" /> observes interactions with
+          activator elements to determine when a floating element should be active
+        </li>
         <li>
           <DocsExternalLink
             href="https://floating-ui.com/docs/getting-started"
