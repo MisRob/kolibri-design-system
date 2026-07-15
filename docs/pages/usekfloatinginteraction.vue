@@ -94,16 +94,41 @@
         By default, activation events are listened for on the activator element itself. The optional
         <code>delegate</code> option listens for them on the document instead (or on the window, for
         focus events), so that all delegating floating elements share a single listener per event
-        type. Use it on pages with many activator elements.
+        type.
       </p>
 
       <p>
-        The trade-off differs per interaction. Delegating <code>'click'</code>,
-        <code>'focus'</code> and <code>'touch'</code> saves listeners at little cost, as their
-        events are rare. Delegating <code>'hover'</code> saves listeners too, but its events are
-        observed in the capture phase, so the activator element lookup runs on every
-        <code>mouseenter</code> anywhere on the page.
+        The cost of delegation is fixed and tiny; the cost of not delegating grows with the number
+        of floating elements. Below roughly a hundred on a page it doesn't matter; above that,
+        delegate.
       </p>
+
+      <p>In more detail, the main points to consider:</p>
+
+      <ul>
+        <li>
+          A delegated listener runs for every event of its type anywhere on the page. For
+          <code>'click'</code>, <code>'touch'</code>, and <code>'focus'</code> these events are
+          rare, so sharing one listener is a pure win.
+        </li>
+        <li>
+          <code>'hover'</code> is the frequent one: delegating it costs an activator element lookup
+          on every <code>mouseenter</code> anywhere on the page. In practice this is negligible, as
+          the <code>data-floating-id</code> check lets the handler exit immediately on elements that
+          aren't activators.
+        </li>
+        <li>
+          Without delegation, every floating element attaches its own activation listeners, and the
+          internal observation of activator elements stays on for as long as any non-delegated
+          floating element is mounted, doing work proportional to their number on every DOM change
+          on the page. Both costs grow with the number of floating elements, while the cost of
+          delegation stays the same.
+        </li>
+        <li>
+          On pages where the choice could matter, it's best to profile with and without delegation
+          and compare.
+        </li>
+      </ul>
 
       <!-- eslint-disable -->
       <!-- prettier-ignore -->
