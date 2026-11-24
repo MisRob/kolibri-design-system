@@ -210,6 +210,7 @@
         useKFloatingInteraction(floatingId, floatingRef, {
           interactions: ['hover', 'focus', 'click', 'touch']  // simplified notation, uses the defaults below
           interactions: { hover: true, focus: true }          // simplified notation, uses the defaults below
+          interactions: { hover: !hasTouch, touch: true }     // false leaves an interaction out
           interactions: {
             hover: { activateDelay: 300, deactivateDelay: 250 },
             focus: { keyboardOnly: false, activateDelay: 300, deactivateDelay: 250 },
@@ -259,9 +260,12 @@
       </p>
 
       <DocsBanner a11y>
-        When rendering lazily, use <code>aria-label</code>/ <code>aria-description</code>.
-        <code>aria-labelledby</code>/ <code>aria-describedby</code> would point at an element that
-        doesn't exist most of the time, which breaks for assistive technologies.
+        When rendering lazily, don't point <code>aria-labelledby</code>/
+        <code>aria-describedby</code> at the floating element, because it doesn't exist most of the
+        time. Use <code>aria-label</code> when the activator has no visible text, or point
+        <code>aria-describedby</code> at a <code>.visuallyhidden</code> copy of the text that's
+        always rendered, as below. Avoid <code>aria-description</code>, which Firefox and Safari
+        don't support.
       </DocsBanner>
 
       <DocsExample
@@ -348,7 +352,17 @@
       <p>
         By default, pressing <code>Escape</code> deactivates a floating element, whatever
         interaction opened it. With nested floating elements, for example a tooltip inside a popup,
-        <code>Escape</code> closes them one layer at a time, innermost first.
+        <code>Escape</code> closes them one layer at a time, innermost first. If focus was inside
+        the floating element, it moves back to the activator element. A widget inside the floating
+        element can keep <code>Escape</code> for itself by calling
+        <code>event.preventDefault()</code> in its <code>keydown</code> handler. Likewise, the
+        composable calls <code>event.preventDefault()</code> when it closes a floating element.
+      </p>
+
+      <p>
+        Other KDS components that close on <code>Escape</code>, such as <code>KModal</code>, don't
+        coordinate with this yet, so a single <code>Escape</code> press can close both a floating
+        element and the component it's in.
       </p>
 
       <DocsExample

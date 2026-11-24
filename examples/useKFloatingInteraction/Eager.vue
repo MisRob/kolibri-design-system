@@ -51,10 +51,18 @@
               placement: 'bottom',
               middleware: [offset(8), flip()],
             });
-            Object.assign(tooltipRef.value.style, { opacity: '1', pointerEvents: 'auto' });
+            Object.assign(tooltipRef.value.style, {
+              opacity: '1',
+              visibility: 'visible',
+              pointerEvents: 'auto',
+            });
           });
         } else {
-          Object.assign(tooltipRef.value.style, { opacity: '0', pointerEvents: 'none' });
+          Object.assign(tooltipRef.value.style, {
+            opacity: '0',
+            visibility: 'hidden',
+            pointerEvents: 'none',
+          });
           // Performance: Always destroy position when
           // the tooltip becomes inactive
           destroyPosition(FLOATING_ID);
@@ -98,9 +106,12 @@
     line-height: 1.4;
     text-align: center;
     pointer-events: none;
+    visibility: hidden;
     border-radius: 8px;
     opacity: 0;
-    transition: opacity 0.25s ease;
+    transition:
+      opacity 0.25s ease,
+      visibility 0.25s;
   }
 
 </style>

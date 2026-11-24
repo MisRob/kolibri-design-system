@@ -6,12 +6,16 @@
         icon="infoOutline"
         ariaLabel="About learners"
         :data-floating-id="FIRST_FLOATING_ID"
+        :aria-expanded="String(isFirstActive)"
+        :aria-controls="FIRST_FLOATING_ID"
       />
 
       <KIconButton
         icon="infoOutline"
         ariaLabel="About quizzes"
         :data-floating-id="SECOND_FLOATING_ID"
+        :aria-expanded="String(isSecondActive)"
+        :aria-controls="SECOND_FLOATING_ID"
       />
 
       <KButton
@@ -60,6 +64,7 @@
 
       <KButton
         v-if="tourStep === 2"
+        ref="endButtonRef"
         primary
         text="End the tour"
         @click="endTour"
@@ -83,6 +88,7 @@
 
       const firstRef = ref(null);
       const secondRef = ref(null);
+      const endButtonRef = ref(null);
       const tourStep = ref(0);
 
       const {
@@ -110,9 +116,15 @@
         setSecondActive(true);
       }
 
+      // The clicked tour buttons unmount, and the browser would
+      // otherwise drop focus to the page body
       function endTour() {
+        const buttonEl = secondActivatorEl.value;
         tourStep.value = 0;
         setSecondActive(false);
+        if (buttonEl) {
+          buttonEl.focus();
+        }
       }
 
       function positionOn(active, floatingId, floatingRef, activatorEl) {
@@ -120,24 +132,30 @@
           // Performance: Position needs to be initialized
           // only when the popup becomes active (= visible),
           // not when it's mounted
-          nextTick(() => {
+          return nextTick().then(() =>
             initPosition(floatingId, floatingRef.value, activatorEl.value, {
               placement: 'bottom-start',
               middleware: [offset(4), flip(), shift({ padding: 8 })],
-            });
-          });
-        } else {
-          // Performance: Always destroy position when
-          // the popup becomes inactive
-          destroyPosition(floatingId);
+            }),
+          );
         }
+        // Performance: Always destroy position when
+        // the popup becomes inactive
+        destroyPosition(floatingId);
+        return Promise.resolve();
       }
 
       watch(isFirstActive, active =>
         positionOn(active, FIRST_FLOATING_ID, firstRef, firstActivatorEl),
       );
       watch(isSecondActive, active =>
-        positionOn(active, SECOND_FLOATING_ID, secondRef, secondActivatorEl),
+        positionOn(active, SECOND_FLOATING_ID, secondRef, secondActivatorEl).then(() => {
+          // Only once the popup is in place, otherwise the page
+          // scrolls to wherever it was before being positioned
+          if (active && endButtonRef.value) {
+            endButtonRef.value.focus();
+          }
+        }),
       );
 
       onBeforeUnmount(() => {
@@ -152,6 +170,7 @@
         SECOND_FLOATING_ID,
         firstRef,
         secondRef,
+        endButtonRef,
         isFirstActive,
         isSecondActive,
         tourStep,

@@ -1,12 +1,20 @@
 <template>
 
   <div>
-    <KButton :data-floating-id="FLOATING_ID">Click me</KButton>
+    <KButton
+      :data-floating-id="FLOATING_ID"
+      :aria-expanded="String(isActive)"
+      :aria-controls="FLOATING_ID"
+    >
+      Click me
+    </KButton>
 
     <div
       v-show="isActive"
       :id="FLOATING_ID"
       ref="popupRef"
+      role="dialog"
+      aria-label="Example popup"
       class="popup"
       :style="{
         color: $themeTokens.text,

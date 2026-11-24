@@ -1,7 +1,13 @@
 <template>
 
   <div>
-    <KButton :data-floating-id="FLOATING_ID">Click me</KButton>
+    <KButton
+      :data-floating-id="FLOATING_ID"
+      :aria-expanded="String(isActive)"
+      :aria-controls="FLOATING_ID"
+    >
+      Click me
+    </KButton>
 
     <div
       v-show="isActive"

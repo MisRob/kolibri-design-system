@@ -3,10 +3,16 @@
   <div>
     <KButton
       :data-floating-id="FLOATING_ID"
-      :aria-description="tooltipLabel"
+      :aria-describedby="DESCRIPTION_ID"
     >
       Hover or focus me
     </KButton>
+    <span
+      :id="DESCRIPTION_ID"
+      class="visuallyhidden"
+    >
+      {{ tooltipLabel }}
+    </span>
 
     <div
       v-if="isRendered"
@@ -32,6 +38,7 @@
   export default {
     setup() {
       const FLOATING_ID = 'lazy-tooltip';
+      const DESCRIPTION_ID = 'lazy-tooltip-description';
       // Same duration as the CSS opacity transition
       const TRANSITION_DURATION = 250;
 
@@ -61,10 +68,18 @@
               placement: 'bottom',
               middleware: [offset(8), flip()],
             });
-            Object.assign(tooltipRef.value.style, { opacity: '1', pointerEvents: 'auto' });
+            Object.assign(tooltipRef.value.style, {
+              opacity: '1',
+              visibility: 'visible',
+              pointerEvents: 'auto',
+            });
           });
         } else {
-          Object.assign(tooltipRef.value.style, { opacity: '0', pointerEvents: 'none' });
+          Object.assign(tooltipRef.value.style, {
+            opacity: '0',
+            visibility: 'hidden',
+            pointerEvents: 'none',
+          });
           // Keep the tooltip in the DOM until it has faded out,
           // otherwise it would vanish at once with no transition
           removeTimeout = setTimeout(() => {
@@ -85,6 +100,7 @@
 
       return {
         FLOATING_ID,
+        DESCRIPTION_ID,
         tooltipRef,
         isRendered,
         tooltipLabel,
@@ -115,9 +131,12 @@
     line-height: 1.4;
     text-align: center;
     pointer-events: none;
+    visibility: hidden;
     border-radius: 8px;
     opacity: 0;
-    transition: opacity 0.25s ease;
+    transition:
+      opacity 0.25s ease,
+      visibility 0.25s;
   }
 
 </style>

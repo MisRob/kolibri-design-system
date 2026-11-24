@@ -6,6 +6,8 @@
     <KButton
       primary
       :text="isActive ? 'set Active (false)' : 'set Active (true)'"
+      :aria-expanded="String(isActive)"
+      :aria-controls="FLOATING_ID"
       @click="setActive(!isActive)"
     />
 
@@ -90,6 +92,7 @@
 
   .buttons {
     display: flex;
+    flex-wrap: wrap;
     gap: 48px;
     align-items: center;
   }
